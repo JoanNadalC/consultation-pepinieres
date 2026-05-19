@@ -1417,20 +1417,48 @@ function closeModal(id){document.getElementById(id).classList.remove('open');}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
 
 async function callClaude(messages,maxTokens=1000){
-  const res=await fetch(PROXY_URL,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,messages})
-  });
-  if(!res.ok)throw new Error(`Erreur proxy : ${res.status}`);
-  const data=await res.json();
-  if(data.error)throw new Error(data.error.message||'Erreur API Claude');
+  let res;
+  try{
+    res=await fetch(PROXY_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTokens,messages})
+    });
+  }catch(netErr){
+    throw new Error('Proxy injoignable — vérifiez que votre Worker Cloudflare est actif. Détail: '+netErr.message);
+  }
+  if(!res.ok){
+    let detail='';
+    try{detail=(await res.text()).substring(0,300);}catch(_){}
+    throw new Error('Erreur proxy HTTP '+res.status+' — '+( detail||'réponse vide'));
+  }
+  let data;
+  try{data=await res.json();}
+  catch(e){throw new Error('Réponse proxy illisible (JSON invalide).');}
+  if(data.error)throw new Error('Erreur API Claude : '+(data.error.message||JSON.stringify(data.error)));
+  if(!data.content)throw new Error('Réponse inattendue : '+JSON.stringify(data).substring(0,200));
   return data.content.map(b=>b.text||'').join('');
+}
+
+async function testProxy(){
+  try{
+    const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'ping'}]})});
+    if(res.ok){console.log('%c✅ Proxy Cloudflare OK','color:green;font-weight:bold');return true;}
+    const t=await res.text();
+    console.warn('⚠️ Proxy — réponse anormale:',res.status,t);
+    return false;
+  }catch(e){
+    console.error('❌ Proxy injoignable:',e.message);
+    return false;
+  }
 }
 
 document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
 renderLangSel();
 document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
+// Test proxy au démarrage (résultat visible dans F12 > Console)
+testProxy();
 </script>
 </body>
 </html>
