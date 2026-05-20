@@ -922,38 +922,147 @@ function detectHdr(rows){
   return{hi:bi,hasH:nr<0.5};
 }
 async function detectCols(){
-  const res=await callClaude([{role:'user',content:`Tableau végétaux pépinière. Colonnes: ${JSON.stringify(iCols)}\nExemples: ${JSON.stringify(iRows.slice(0,5))}\nIndex (0-based) ou null pour: latin, calibre, qte, conditionnement, remarques.\nJSON uniquement: {"latin":X,"calibre":X,"qte":X,"conditionnement":X,"remarques":X}`}],250);
-  try{iMap=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){iMap={};}
+  const res=await callClaude([{role:'user',content:`Tu analyses un tableau de végétaux pour paysagiste/bureau d'études.
+Colonnes disponibles: ${JSON.stringify(iCols)}
+Exemples de données (5 premières lignes): ${JSON.stringify(iRows.slice(0,5))}
+
+IMPORTANT: Une colonne peut contenir à la fois le nom latin ET la taille/calibre/conditionnement mélangés (ex: "Acer platanoides 12/14 MG" ou "Betula pendula 60-80 RN"). Dans ce cas, indique l'index de cette colonne pour "latin" ET signale-le avec "mixed":true.
+
+Pour chaque champ, donne l'index (0-based) ou null si absent:
+- latin: nom latin/botanique de la plante (peut être mélangé avec taille)
+- calibre: taille, hauteur, circonférence (ex: 12/14, 60-80cm, 10/12)
+- conditionnement: mode de culture (MG=Motte Grillagée, RN=Racine Nue, CT=Conteneur, AP=Airpot, C1/C2/C3...=Conteneur litres)
+- qte: quantité (nombre entier)
+- unite: unité (U, m², m, forfait...)
+- prixEtude: prix prévu HT
+- remarques: notes diverses
+
+JSON uniquement: {"latin":X,"calibre":X,"conditionnement":X,"qte":X,"unite":X,"prixEtude":X,"remarques":X,"mixed":false}`}],400);
+  try{iMap=JSON.parse(res.replace(/\`\`\`json|\`\`\`/g,'').trim());}catch(e){iMap={};}
   clearSt();renderMapping();renderPreview();
 }
+
 function renderMapping(){
-  const fields=[{k:'latin',l:'Nom latin *'},{k:'calibre',l:'Calibre/Taille'},{k:'qte',l:'Quantité *'},{k:'conditionnement',l:'Conditionnement'},{k:'remarques',l:'Remarques'}];
-  const opts='<option value="">— Ignorer —</option>'+iCols.map((c,i)=>`<option value="${i}">${i}—${c}</option>`).join('');
-  document.getElementById('mtbl').innerHTML=`<thead><tr><th>Champ</th><th>Colonne IA</th><th>Corriger</th></tr></thead><tbody>
-    ${fields.map(f=>`<tr><td style="font-family:var(--mono);font-size:.66rem;">${f.l}</td>
-    <td style="color:var(--sage-d);font-weight:500;">${iMap[f.k]!=null?(iCols[iMap[f.k]]||`Col.${iMap[f.k]}`):'<span style="color:#aaa">—</span>'}</td>
-    <td><select id="mp-${f.k}" onchange="iMap['${f.k}']=this.value===''?null:parseInt(this.value)">${opts}</select></td></tr>`).join('')}
-  </tbody>`;
-  fields.forEach(f=>{const s=document.getElementById('mp-'+f.k);if(iMap[f.k]!=null)s.value=String(iMap[f.k]);});
+  const fields=[
+    {k:'latin',l:'Désignation (nom latin) *'},
+    {k:'calibre',l:'Taille / Calibre'},
+    {k:'conditionnement',l:'Conditionnement (MG, RN, CT…)'},
+    {k:'qte',l:'Quantité *'},
+    {k:'unite',l:'Unité'},
+    {k:'prixEtude',l:'Prix étude HT (€)'},
+    {k:'remarques',l:'Remarques'}
+  ];
+  const opts='<option value="">— Ignorer —</option>'+iCols.map((c,i)=>`<option value="${i}">${i} — ${c}</option>`).join('');
+  const mixedWarn=iMap.mixed?`<div style="background:#fdecd4;border:1px solid #f0cc90;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:.74rem;color:#7a4a10;">
+    ⚠️ <strong>Colonne mixte détectée</strong> — La désignation contient taille et/ou conditionnement mélangés.<br>
+    L'IA va les séparer automatiquement à l'import.
+  </div>`:'';
+  document.getElementById('mtbl').innerHTML=mixedWarn+`<table style="width:100%;border-collapse:collapse;font-size:.76rem;margin-top:10px;">
+    <thead><tr><th style="background:var(--earth-l);padding:6px 10px;text-align:left;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;">Champ</th>
+    <th style="background:var(--earth-l);padding:6px 10px;text-align:left;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;">Colonne détectée</th>
+    <th style="background:var(--earth-l);padding:6px 10px;text-align:left;font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;">Corriger</th></tr></thead><tbody>
+    ${fields.map(f=>`<tr><td style="padding:5px 10px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.66rem;">${f.l}</td>
+    <td style="padding:5px 10px;border-bottom:1px solid var(--border);color:var(--sage-d);font-weight:500;">${iMap[f.k]!=null?(iCols[iMap[f.k]]||`Col.${iMap[f.k]}`):'<span style="color:#aaa">—</span>'}</td>
+    <td style="padding:5px 10px;border-bottom:1px solid var(--border);"><select id="mp-${f.k}" onchange="iMap['${f.k}']=this.value===''?null:parseInt(this.value)">${opts}</select></td></tr>`).join('')}
+  </tbody></table>`;
+  fields.forEach(f=>{const s=document.getElementById('mp-'+f.k);if(s&&iMap[f.k]!=null)s.value=String(iMap[f.k]);});
   document.getElementById('msec').style.display='block';
 }
+
 function renderPreview(){
   const max=Math.min(iRows.length,8);
   document.getElementById('ptbl').innerHTML=`<thead><tr>${iCols.map((c,i)=>`<th>${i}—${c}</th>`).join('')}</tr></thead><tbody>${iRows.slice(0,max).map(r=>`<tr>${iCols.map((_,i)=>`<td>${r[i]??''}</td>`).join('')}</tr>`).join('')}</tbody>`;
   document.getElementById('psec').style.display='block';
 }
-function applyImport(){
-  if(iMap['latin']==null){alert('Colonne Nom latin obligatoire.');return;}
+
+// Normalisation des conditionnements
+function normCond(s){
+  if(!s)return'';
+  const t=s.toUpperCase().trim();
+  if(t==='MG'||t.includes('MOTTE GRILL')||t.includes('MOTTE GR'))return'MG';
+  if(t==='RN'||t.includes('RACINE NUE')||t.includes('RAC NUE'))return'RN';
+  if(t==='AP'||t.includes('AIRPOT'))return'AP';
+  if(/^CT$|CONTENEUR$|^CONT$/.test(t))return'CT';
+  if(/^C(\d+)L?$/.test(t)){const m=t.match(/^C(\d+)/);return m?`C${m[1]}`:'CT';}
+  if(t.includes('GOD')||t.includes('POT'))return'CT';
+  return s.trim();
+}
+
+// Parsing intelligent d'une désignation mixte
+async function parseDesignationMixte(rows){
+  showSt('<div class="aibox"><div class="spin"></div>Séparation désignation / taille / conditionnement…</div>');
+  const sample=rows.slice(0,Math.min(rows.length,80));
+  const res=await callClaude([{role:'user',content:`Tu es expert en végétaux pour paysagistes. Voici des désignations de plantes qui mélangent nom botanique, taille/calibre et conditionnement.
+
+DONNÉES (${sample.length} lignes):
+${JSON.stringify(sample)}
+
+Pour chaque ligne, sépare:
+- "d": désignation = nom latin + cultivar uniquement (ex: "Acer platanoides 'Crimson King'" ou "Betula pendula")
+- "t": taille/calibre uniquement (ex: "12/14", "60-80cm", "10/12", "H150", "Tour 6/8")
+- "c": conditionnement normalisé: MG=Motte Grillagée, RN=Racine Nue, CT=Conteneur sans litre, AP=Airpot, C1/C2/C3...=Conteneur en litres. "" si absent.
+
+Exemples:
+"Acer platanoides 12/14 MG" → {"d":"Acer platanoides","t":"12/14","c":"MG"}
+"Betula pendula 'Youngii' 60-80 RN" → {"d":"Betula pendula 'Youngii'","t":"60-80","c":"RN"}
+"Rosa 'The Fairy' C2" → {"d":"Rosa 'The Fairy'","t":"","c":"C2"}
+"Taxus baccata 40/60cm Airpot" → {"d":"Taxus baccata","t":"40/60cm","c":"AP"}
+
+JSON uniquement, tableau de même longueur que l'entrée:
+[{"d":"...","t":"...","c":"..."},...]`}],2000);
+  let parsed;
+  try{parsed=JSON.parse(res.replace(/\`\`\`json|\`\`\`/g,'').trim());}
+  catch(e){
+    // Fallback: pas de parsing IA, retourner les valeurs brutes
+    return sample.map(s=>({d:String(s),t:'',c:''}));
+  }
+  // Si le fichier a plus de 80 lignes, traiter les suivantes par batch
+  if(rows.length>80){
+    for(let i=80;i<rows.length;i+=80){
+      const batch=rows.slice(i,i+80);
+      const r2=await callClaude([{role:'user',content:`Même exercice de séparation désignation/taille/conditionnement.
+DONNÉES: ${JSON.stringify(batch)}
+JSON uniquement: [{"d":"...","t":"...","c":"..."},...]`}],2000);
+      try{const p2=JSON.parse(r2.replace(/\`\`\`json|\`\`\`/g,'').trim());parsed.push(...p2);}catch(e){batch.forEach(s=>parsed.push({d:String(s),t:'',c:''}));}
+    }
+  }
+  return parsed;
+}
+
+async function applyImport(){
+  if(iMap['latin']==null){alert('Colonne Désignation obligatoire.');return;}
+  showSt('<div class="aibox"><div class="spin"></div>Import en cours…</div>');
   let n=0,sk=0;
+  // Extraire les valeurs brutes de la colonne désignation
+  const rawDesig=iRows.map(r=>String(r[iMap['latin']]??'').trim()).filter(s=>s);
+  let parsed=null;
+  // Si colonne mixte détectée OU si la colonne calibre n'est pas renseignée → parsing IA
+  if(iMap.mixed||(iMap['calibre']==null&&iMap['conditionnement']==null)){
+    try{parsed=await parseDesignationMixte(rawDesig);}catch(e){parsed=null;}
+  }
+  let pi=0;
   iRows.forEach(r=>{
-    const lat=String(r[iMap['latin']]??'').trim();
-    if(!lat||lat.toLowerCase().startsWith('total')||(!isNaN(parseFloat(lat))&&lat.length<5)){sk++;return;}
+    const rawLat=String(r[iMap['latin']]??'').trim();
+    if(!rawLat||rawLat.toLowerCase().startsWith('total')||(!isNaN(parseFloat(rawLat))&&rawLat.length<5)){sk++;pi++;return;}
+    let lat=rawLat,cal='',cond='';
+    if(parsed&&parsed[pi]){
+      lat=parsed[pi].d||rawLat;
+      cal=parsed[pi].t||'';
+      cond=normCond(parsed[pi].c||'');
+    } else {
+      cal=iMap['calibre']!=null?String(r[iMap['calibre']]??'').trim():'';
+      cond=normCond(iMap['conditionnement']!=null?String(r[iMap['conditionnement']]??'').trim():'');
+    }
     const qty=iMap['qte']!=null?parseInt(String(r[iMap['qte']]).replace(/\s/g,''))||1:1;
-    vegs.push({latin:lat,calibre:iMap['calibre']!=null?String(r[iMap['calibre']]??'').trim():'',qte:qty,conditionnement:iMap['conditionnement']!=null?String(r[iMap['conditionnement']]??'').trim():'',remarques:iMap['remarques']!=null?String(r[iMap['remarques']]??'').trim():'',variantes:[],prixEtude:null});n++;
+    const unite=iMap['unite']!=null?String(r[iMap['unite']]??'').trim():'U';
+    const pe=iMap['prixEtude']!=null?parseFloat(String(r[iMap['prixEtude']]).replace(',','.'))||null:null;
+    const rem=iMap['remarques']!=null?String(r[iMap['remarques']]??'').trim():'';
+    vegs.push({latin:lat,calibre:cal,qte:qty,conditionnement:cond,unite:unite||'U',remarques:rem,variantes:[],prixEtude:pe});
+    n++;pi++;
   });
   cancelImport();renderVeg();
   showSt(`<div style="background:#d4edda;border:1px solid #a8d8b0;border-radius:7px;padding:9px 13px;color:#1a5c28;font-size:.78rem;">✓ ${n} ${T('imported')}${sk?` (${sk} ignorée(s))`:''}</div>`);
-  setTimeout(clearSt,5000);
+  setTimeout(clearSt,6000);
 }
 function cancelImport(){iRows=[];iCols=[];iMap={};document.getElementById('msec').style.display='none';document.getElementById('psec').style.display='none';}
 function showSt(h){const e=document.getElementById('istatus');e.style.display='block';e.innerHTML=h;}
