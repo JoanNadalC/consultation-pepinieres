@@ -20,193 +20,206 @@ body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weigh
 /* AUTH */
 #auth-screen{position:fixed;inset:0;background:var(--sage-d);display:flex;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s;padding:16px;}
 #auth-screen.hidden{opacity:0;pointer-events:none;}
-.auth-box{background:var(--white);border-radius:16px;padding:44px 38px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
-.auth-logo{text-align:center;margin-bottom:24px;}
-.auth-logo h1{font-family:var(--serif);font-size:2rem;color:var(--sage-d);}
-.auth-logo p{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-top:3px;}
-.atabs{display:flex;gap:2px;background:var(--cream);padding:3px;border-radius:7px;margin-bottom:20px;}
-.atab{flex:1;text-align:center;padding:7px;border-radius:5px;font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--sage);transition:all .15s;}
+.auth-box{background:var(--white);border-radius:16px;padding:42px 36px;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.auth-logo{text-align:center;margin-bottom:22px;}
+.auth-logo h1{font-family:var(--serif);font-size:1.9rem;color:var(--sage-d);}
+.auth-logo p{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-top:3px;}
+.atabs{display:flex;gap:2px;background:var(--cream);padding:3px;border-radius:7px;margin-bottom:18px;}
+.atab{flex:1;text-align:center;padding:7px;border-radius:5px;font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--sage);transition:all .15s;}
 .atab.active{background:var(--sage-d);color:var(--white);}
 .aform{display:none;}.aform.active{display:block;}
-.aerr{border-radius:6px;padding:9px 13px;font-size:.76rem;margin-bottom:11px;display:none;}
+.aerr{border-radius:6px;padding:8px 12px;font-size:.74rem;margin-bottom:10px;display:none;}
 
 /* HEADER */
-header{background:var(--sage-d);color:var(--cream);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--earth);gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.2);}
-.brand h1{font-family:var(--serif);font-size:1.38rem;font-weight:600;}
-.brand p{font-size:.6rem;opacity:.5;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;}
-.hright{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;}
-.avatar-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:all .15s;flex-shrink:0;}
-.avatar-btn:hover{background:rgba(255,255,255,.22);}
-.avatar-menu{display:none;position:absolute;top:44px;right:0;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);min-width:220px;box-shadow:0 8px 30px rgba(0,0,0,.15);z-index:200;overflow:hidden;}
-.avatar-menu.open{display:block;}
-.avatar-menu-header{background:var(--sage-d);color:var(--cream);padding:12px 16px;}
-.avatar-menu-header .am-name{font-family:var(--serif);font-size:.95rem;font-weight:600;}
-.avatar-menu-header .am-email{font-family:var(--mono);font-size:.62rem;opacity:.65;margin-top:2px;}
-.am-item{display:flex;align-items:center;gap:9px;padding:10px 16px;cursor:pointer;font-size:.8rem;transition:background .13s;border-bottom:1px solid var(--border);}
-.am-item:last-child{border:none;}
-.am-item:hover{background:var(--cream);}
-.am-item .ami{font-size:1rem;width:18px;text-align:center;}
+header{background:var(--sage-d);color:var(--cream);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--earth);gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.2);}
+.brand h1{font-family:var(--serif);font-size:1.32rem;font-weight:600;}
+.brand p{font-size:.58rem;opacity:.5;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;}
+.hright{display:flex;align-items:center;gap:7px;flex-wrap:wrap;position:relative;}
+.av-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;transition:all .15s;flex-shrink:0;}
+.av-btn:hover{background:rgba(255,255,255,.22);}
+.av-menu{display:none;position:absolute;top:42px;right:0;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);min-width:210px;box-shadow:0 8px 28px rgba(0,0,0,.15);z-index:200;overflow:hidden;}
+.av-menu.open{display:block;}
+.av-mh{background:var(--sage-d);color:var(--cream);padding:11px 15px;}
+.av-mh .mn{font-family:var(--serif);font-size:.92rem;font-weight:600;}
+.av-mh .me{font-family:var(--mono);font-size:.6rem;opacity:.6;margin-top:1px;}
+.av-mi{display:flex;align-items:center;gap:8px;padding:9px 15px;cursor:pointer;font-size:.78rem;transition:background .13s;border-bottom:1px solid var(--border);}
+.av-mi:last-child{border:none;}.av-mi:hover{background:var(--cream);}
 .tabs{display:flex;gap:2px;background:rgba(0,0,0,.2);padding:3px;border-radius:8px;flex-wrap:wrap;}
-.tab{padding:6px 11px;border-radius:5px;cursor:pointer;font-family:var(--mono);font-size:.63rem;letter-spacing:.07em;text-transform:uppercase;border:none;background:transparent;color:rgba(245,240,228,.55);transition:all .15s;position:relative;}
+.tab{padding:5px 10px;border-radius:5px;cursor:pointer;font-family:var(--mono);font-size:.61rem;letter-spacing:.07em;text-transform:uppercase;border:none;background:transparent;color:rgba(245,240,228,.52);transition:all .15s;position:relative;}
 .tab.active{background:var(--cream);color:var(--sage-d);font-weight:500;}
 .tab:hover:not(.active){color:var(--cream);background:rgba(255,255,255,.1);}
-.tab .unsaved-dot{display:none;position:absolute;top:3px;right:3px;width:5px;height:5px;background:var(--earth);border-radius:50%;}
-.tab.dirty .unsaved-dot{display:block;}
+.tab .ud{display:none;position:absolute;top:3px;right:3px;width:5px;height:5px;background:var(--earth);border-radius:50%;}
+.tab.dirty .ud{display:block;}
 
 /* ACCOUNT PANEL */
-.account-panel{display:none;position:fixed;top:0;right:0;width:360px;height:100vh;background:var(--white);border-left:1.5px solid var(--border);box-shadow:-8px 0 30px rgba(0,0,0,.12);z-index:300;overflow-y:auto;transition:transform .25s;}
-.account-panel.open{display:block;}
-.ap-header{background:var(--sage-d);color:var(--cream);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;}
-.ap-header h2{font-family:var(--serif);font-size:1.1rem;font-weight:600;}
-.ap-close{background:transparent;border:none;color:var(--cream);font-size:1.2rem;cursor:pointer;opacity:.7;}
+.ap{display:none;position:fixed;top:0;right:0;width:370px;height:100vh;background:var(--white);border-left:1.5px solid var(--border);box-shadow:-8px 0 28px rgba(0,0,0,.12);z-index:300;overflow-y:auto;}
+.ap.open{display:block;}
+.ap-hdr{background:var(--sage-d);color:var(--cream);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;}
+.ap-hdr h2{font-family:var(--serif);font-size:1.05rem;font-weight:600;}
+.ap-close{background:transparent;border:none;color:var(--cream);font-size:1.1rem;cursor:pointer;opacity:.7;}
 .ap-close:hover{opacity:1;}
-.ap-body{padding:20px;}
-.ap-section{margin-bottom:22px;}
-.ap-section h3{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--earth-l);}
+.ap-body{padding:18px;}
+.ap-sec{margin-bottom:20px;}
+.ap-sec h3{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:11px;padding-bottom:5px;border-bottom:1px solid var(--earth-l);}
 
 /* LAYOUT */
-main{max-width:1320px;margin:0 auto;padding:22px 16px;}
+main{max-width:1340px;margin:0 auto;padding:20px 14px;}
 .sec{display:none;}.sec.active{display:block;animation:fi .2s ease;}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
 /* SAVE BAR */
-.save-bar{display:flex;align-items:center;justify-content:space-between;background:var(--earth-l);border:1px solid var(--earth);border-radius:var(--r);padding:10px 16px;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
-.save-bar.dirty{background:#fdecd4;border-color:var(--earth);}
-.save-bar .sb-msg{font-size:.76rem;color:var(--sage-d);}
-.save-bar.dirty .sb-msg{color:#7a4a10;}
+.sbar{display:flex;align-items:center;justify-content:space-between;background:var(--earth-l);border:1px solid var(--earth);border-radius:var(--r);padding:9px 15px;margin-bottom:13px;flex-wrap:wrap;gap:7px;}
+.sbar .sm{font-size:.74rem;color:var(--sage-d);}
+.sbar.dirty{background:#fdecd4;}.sbar.dirty .sm{color:#7a4a10;}
 
 /* CARDS */
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:14px;box-shadow:0 2px 10px var(--sh);}
-.card-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--sage-d);margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--earth-l);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.bdg{font-family:var(--mono);font-size:.6rem;background:var(--earth-l);color:var(--sage-d);padding:2px 7px;border-radius:20px;margin-left:auto;}
-.sbdg{font-family:var(--mono);font-size:.58rem;padding:2px 7px;border-radius:20px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:13px;box-shadow:0 2px 10px var(--sh);}
+.ct-title{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:var(--sage-d);margin-bottom:13px;padding-bottom:8px;border-bottom:1px solid var(--earth-l);display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.bdg{font-family:var(--mono);font-size:.58rem;background:var(--earth-l);color:var(--sage-d);padding:2px 7px;border-radius:20px;margin-left:auto;}
+.sbdg{font-family:var(--mono);font-size:.57rem;padding:2px 6px;border-radius:20px;}
 .sbdg-ok{background:#d4edda;color:#1a5c28;}.sbdg-err{background:#fde8e0;color:var(--rust);}
 
 /* FORM */
-label{display:block;font-size:.63rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:4px;font-weight:500;}
-input[type=text],input[type=number],input[type=email],input[type=password],textarea,select{width:100%;padding:8px 11px;border:1.5px solid var(--border);border-radius:6px;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:.84rem;transition:border-color .15s;outline:none;}
-input:focus,textarea:focus,select:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(107,125,90,.11);background:var(--white);}
-textarea{resize:vertical;min-height:48px;}
-.gr{display:grid;gap:11px;margin-bottom:11px;}
+label{display:block;font-size:.61rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:3px;font-weight:500;}
+input[type=text],input[type=number],input[type=email],input[type=password],textarea,select{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:.82rem;transition:border-color .15s;outline:none;}
+input:focus,textarea:focus,select:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(107,125,90,.10);background:var(--white);}
+textarea{resize:vertical;min-height:46px;}
+.gr{display:grid;gap:10px;margin-bottom:10px;}
 .c2{grid-template-columns:1fr 1fr;}.c3{grid-template-columns:1fr 1fr 1fr;}.c4{grid-template-columns:1fr 1fr 1fr 1fr;}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 15px;border-radius:6px;border:none;cursor:pointer;font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;transition:all .15s;white-space:nowrap;}
-.btn-p{background:var(--sage-d);color:var(--cream);}.btn-p:hover{background:var(--sage);transform:translateY(-1px);box-shadow:0 4px 12px var(--sh);}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;transition:all .14s;white-space:nowrap;}
+.btn-p{background:var(--sage-d);color:var(--cream);}.btn-p:hover{background:var(--sage);transform:translateY(-1px);}
 .btn-s{background:var(--earth-l);color:var(--ink);border:1.5px solid var(--earth);}.btn-s:hover{background:var(--earth);color:var(--white);}
 .btn-d{background:#fde8e0;color:var(--rust);border:1.5px solid #f0c4b0;}.btn-d:hover{background:var(--rust);color:#fff;}
-.btn-g{background:transparent;color:var(--sage);border:1.5px solid var(--border);}.btn-g:hover{border-color:var(--sage);background:rgba(107,125,90,.08);}
+.btn-g{background:transparent;color:var(--sage);border:1.5px solid var(--border);}.btn-g:hover{border-color:var(--sage);background:rgba(107,125,90,.07);}
 .btn-ok{background:#d4edda;color:#1a5c28;border:1.5px solid #a8d8b0;}.btn-ok:hover{background:#1a5c28;color:#fff;}
-.btn-sm{padding:4px 9px;font-size:.6rem;}
-.abar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center;}
-.vsep{width:1px;height:22px;background:var(--border);}
+.btn-blue{background:#e0eaf8;color:#2a4080;border:1.5px solid #b8ccec;}.btn-blue:hover{background:#2a4080;color:#fff;}
+.btn-sm{padding:3px 8px;font-size:.58rem;}
+.abar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px;align-items:center;}
+.vsep{width:1px;height:20px;background:var(--border);}
 
 /* CHANTIERS */
-.chantier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;}
-.cc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:15px;cursor:pointer;transition:all .15s;}
+.chgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px;}
+.cc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .14s;}
 .cc:hover{border-color:var(--sage);box-shadow:0 4px 14px var(--sh);transform:translateY(-1px);}
 .cc.active-c{border-color:var(--sage-d);box-shadow:0 0 0 2px var(--sage-d);}
-.cc-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
-.cc-title{font-family:var(--serif);font-size:.98rem;font-weight:600;color:var(--sage-d);flex:1;}
-.cc-st{font-family:var(--mono);font-size:.57rem;padding:2px 8px;border-radius:20px;text-transform:uppercase;}
+.cc-head{display:flex;align-items:center;gap:7px;margin-bottom:6px;}
+.cc-title{font-family:var(--serif);font-size:.96rem;font-weight:600;color:var(--sage-d);flex:1;}
+.cc-st{font-family:var(--mono);font-size:.55rem;padding:2px 7px;border-radius:20px;text-transform:uppercase;}
 .st-brouillon{background:#f0ede4;color:#7a6a40;}.st-envoyée{background:#e0eaf8;color:#2a4080;}.st-clôturée{background:#d4edda;color:#1a5c28;}
-.cc-meta{font-size:.7rem;color:var(--sage);font-family:var(--mono);}
+.cc-meta{font-size:.68rem;color:var(--sage);font-family:var(--mono);}
 
-/* PEPINIERES */
-.pep-item{display:flex;align-items:center;gap:9px;padding:9px 13px;background:var(--cream);border:1.5px solid var(--border);border-radius:7px;margin-bottom:6px;}
+/* PEPINIEIRES */
+.pep-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--cream);border:1.5px solid var(--border);border-radius:7px;margin-bottom:5px;}
 .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.pep-name{flex:1;font-weight:500;font-size:.84rem;}
-.pep-meta{font-size:.68rem;color:var(--sage);font-family:var(--mono);}
-.db-bdg{font-size:.56rem;font-family:var(--mono);background:var(--sage-d);color:var(--cream);padding:1px 6px;border-radius:20px;opacity:.65;}
-.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px;margin-bottom:11px;}
-.ccard{background:var(--cream);border:1.5px solid var(--border);border-radius:7px;padding:11px 13px;cursor:pointer;transition:all .15s;position:relative;user-select:none;}
+.pep-name{flex:1;font-weight:500;font-size:.82rem;}
+.pep-meta{font-size:.66rem;color:var(--sage);font-family:var(--mono);}
+.db-bdg{font-size:.54rem;font-family:var(--mono);background:var(--sage-d);color:var(--cream);padding:1px 5px;border-radius:20px;opacity:.65;}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:8px;margin-bottom:10px;}
+.ccard{background:var(--cream);border:1.5px solid var(--border);border-radius:7px;padding:10px 12px;cursor:pointer;transition:all .14s;position:relative;user-select:none;}
 .ccard:hover{border-color:var(--sage);}.ccard.sel{border-color:var(--sage-d);background:#e8f0e0;box-shadow:0 0 0 2px var(--sage-d);}
-.ccard .cn{font-family:var(--serif);font-size:.9rem;font-weight:600;color:var(--sage-d);}
-.ccard .cm{font-size:.65rem;color:var(--sage);font-family:var(--mono);margin-top:2px;}
-.ccard .cdel{position:absolute;top:6px;right:7px;background:transparent;border:none;cursor:pointer;color:#bbb;font-size:.72rem;}
+.ccard .cn{font-family:var(--serif);font-size:.88rem;font-weight:600;color:var(--sage-d);}
+.ccard .cm{font-size:.63rem;color:var(--sage);font-family:var(--mono);margin-top:2px;}
+.ccard .cdel{position:absolute;top:5px;right:6px;background:transparent;border:none;cursor:pointer;color:#bbb;font-size:.7rem;}
 .ccard .cdel:hover{color:var(--rust);}
-.ccard .chk{position:absolute;bottom:6px;right:8px;font-size:.84rem;color:var(--sage-d);display:none;}
+.ccard .chk{position:absolute;bottom:5px;right:7px;font-size:.82rem;color:var(--sage-d);display:none;}
 .ccard.sel .chk{display:block;}
-.npanel{display:none;margin-top:13px;background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:15px;}
-.npanel h3{font-family:var(--serif);font-size:.93rem;color:var(--sage-d);margin-bottom:11px;}
+.npanel{display:none;margin-top:12px;background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:14px;}
+.npanel h3{font-family:var(--serif);font-size:.9rem;color:var(--sage-d);margin-bottom:10px;}
 
-/* VÉGÉTAUX */
-.vhdr,.vrow{display:grid;gap:6px;padding:7px 10px;align-items:center;}
-.vg7{grid-template-columns:2fr 1fr 1fr .7fr 1fr 1fr 48px;}
-.vhdr{background:var(--sage-d);color:var(--cream);border-radius:6px 6px 0 0;font-family:var(--mono);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;}
+/* VEGETAUX */
+.vhdr,.vrow{display:grid;gap:5px;padding:6px 9px;align-items:center;}
+.vg8{grid-template-columns:2fr 1fr 1fr .7fr 1fr 1fr 1fr 46px;}
+.vhdr{background:var(--sage-d);color:var(--cream);border-radius:6px 6px 0 0;font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;}
 .vrow{border:1px solid var(--border);border-top:none;background:var(--white);}
 .vrow:last-child{border-radius:0 0 6px 6px;}.vrow:hover{background:var(--cream);}
-.vnum{font-family:var(--mono);font-size:.65rem;color:var(--sage);}
+.vnum{font-family:var(--mono);font-size:.63rem;color:var(--sage);}
 
 /* COMPARAISON */
-.cwrap{overflow-x:auto;margin-top:8px;}
-table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
-.ct th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;position:sticky;top:0;z-index:2;}
+.cwrap{overflow-x:auto;margin-top:7px;}
+table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
+.ct th{background:var(--sage-d);color:var(--cream);padding:6px 7px;font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;position:sticky;top:0;z-index:2;}
 .ct th:first-child{border-radius:6px 0 0 0;}.ct th:last-child{border-radius:0 6px 0 0;}
-.ct td{padding:6px 8px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;}
+.ct td{padding:5px 7px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:top;}
 .ct td:first-child{border-left:1px solid var(--border);}
 .ct tr:nth-child(even) td{background:#faf5e8;}.ct tr:nth-child(odd) td{background:var(--white);}
-/* Variante row */
 .var-row td{background:#fdf5e8!important;}
-.var-row td:first-child{padding-left:20px;border-left:3px solid var(--earth)!important;}
-.var-tree{color:var(--earth);margin-right:3px;}
-/* Inputs comparaison */
-.ci{width:100%;padding:4px 6px;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);font-family:var(--mono);font-size:.74rem;outline:none;transition:border-color .13s;}
+.var-row td:first-child{padding-left:18px;border-left:3px solid var(--earth)!important;}
+.ci{width:100%;padding:3px 5px;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);font-family:var(--mono);font-size:.72rem;outline:none;transition:border-color .12s;}
 .ci:focus{border-color:var(--sage);background:var(--white);}
-.ci::placeholder{color:#b0a888;font-size:.68rem;}
-.ci-price{text-align:right;}
-.ci-sm{width:60px;}
-.ci-md{width:80px;}
+.ci::placeholder{color:#b8a888;font-size:.66rem;}
+.ci-r{text-align:right;}
 .best{background:rgba(46,68,32,.12)!important;font-weight:600;color:var(--sage-d);}
 .psep{border-left:2px solid var(--earth-l)!important;}
 .psep-th{border-left:2px solid rgba(255,255,255,.15)!important;}
-/* Étude compact */
-.etude-cell{background:#f5f0e8!important;border-left:2px solid var(--sage-l)!important;}
-.etude-th{background:#3a5830!important;font-size:.52rem!important;}
-/* Totaux */
-.total-row td{background:#eef3e8!important;font-weight:600;font-family:var(--mono);font-size:.72rem;}
+.etude-c{background:#f5f0e8!important;border-left:2px solid var(--sage-l)!important;}
+.etude-th{background:#3a5830!important;font-size:.50rem!important;}
+.total-row td{background:#eef3e8!important;font-weight:600;font-family:var(--mono);font-size:.7rem;}
 .gtotal-row td{background:var(--sage-d)!important;color:var(--cream)!important;font-weight:600;font-family:var(--mono);}
-.delta-pos{color:#c0392b;font-weight:600;}.delta-neg{color:#1a7a3a;font-weight:600;}.delta-zero{color:var(--sage);}
-/* Confiance */
-.conf-g{background:#d4edda!important;}.conf-o{background:#fdecd4!important;}.conf-r{background:#fde8e0!important;}
+.dp{color:#c0392b;font-weight:600;}.dn{color:#1a7a3a;font-weight:600;}.dz{color:var(--sage);}
+.conf-o{background:#fdecd4!important;}.conf-r{background:#fde8e0!important;}
 
 /* IMPORT */
-.dz{border:2px dashed var(--border);border-radius:10px;padding:28px 16px;text-align:center;cursor:pointer;transition:all .18s;background:var(--cream);}
-.dz:hover,.dz.dragover{border-color:var(--sage);background:rgba(107,125,90,.05);}
-.dzi{font-size:1.8rem;margin-bottom:6px;opacity:.35;}
-.aibox{display:flex;align-items:center;gap:9px;padding:10px 14px;background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;font-size:.76rem;color:var(--sage-d);}
-.spin{width:14px;height:14px;border:2px solid var(--sage-l);border-top-color:var(--sage-d);border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0;}
+.dz-box{border:2px dashed var(--border);border-radius:10px;padding:26px 15px;text-align:center;cursor:pointer;transition:all .17s;background:var(--cream);}
+.dz-box:hover,.dz-box.dragover{border-color:var(--sage);background:rgba(107,125,90,.05);}
+.dzi{font-size:1.7rem;margin-bottom:6px;opacity:.33;}
+.aibox{display:flex;align-items:center;gap:8px;padding:9px 13px;background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;font-size:.74rem;color:var(--sage-d);}
+.spin{width:13px;height:13px;border:2px solid var(--sage-l);border-top-color:var(--sage-d);border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0;}
 @keyframes sp{to{transform:rotate(360deg)}}
-.mtbl{width:100%;border-collapse:collapse;font-size:.76rem;margin-top:10px;}
-.mtbl th{background:var(--earth-l);padding:6px 10px;text-align:left;font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;}
-.mtbl td{padding:5px 10px;border-bottom:1px solid var(--border);}
-.ptbl{width:100%;border-collapse:collapse;font-size:.72rem;}
-.ptbl th{background:var(--sage-d);color:var(--cream);padding:5px 8px;font-family:var(--mono);font-size:.56rem;text-transform:uppercase;}
-.ptbl td{padding:5px 8px;border-bottom:1px solid var(--border);}
+.mtbl{width:100%;border-collapse:collapse;font-size:.74rem;}
+.mtbl th{background:var(--earth-l);padding:5px 9px;text-align:left;font-family:var(--mono);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;}
+.mtbl td{padding:4px 9px;border-bottom:1px solid var(--border);}
+.ptbl{width:100%;border-collapse:collapse;font-size:.7rem;}
+.ptbl th{background:var(--sage-d);color:var(--cream);padding:4px 7px;font-family:var(--mono);font-size:.54rem;text-transform:uppercase;}
+.ptbl td{padding:4px 7px;border-bottom:1px solid var(--border);}
 .ptbl tr:nth-child(even) td{background:#faf5e8;}
 
+/* ENVOI */
+.mail-wrap{border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:11px;}
+.mail-hdr{background:var(--sage-d);color:var(--cream);padding:8px 13px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.mail-body{padding:12px 14px;font-size:.78rem;line-height:1.7;background:var(--white);}
+.mail-subj{font-family:var(--mono);font-size:.68rem;background:var(--earth-l);padding:3px 8px;border-radius:4px;margin-bottom:7px;color:var(--sage-d);}
+
+/* PORT */
+.port-row{background:#eef3e8;border:1px solid var(--sage-l);border-radius:6px;padding:6px 10px;display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+.nego-log{font-size:.61rem;color:var(--sage);font-family:var(--mono);margin-top:2px;max-height:48px;overflow-y:auto;}
+.nego-entry{padding:1px 0;border-bottom:1px dotted var(--border);}
+
 /* MODAL */
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.44);z-index:200;align-items:center;justify-content:center;}
 .overlay.open{display:flex;}
-.modal{background:var(--white);border-radius:var(--r);padding:20px;max-width:540px;width:92%;max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.22);}
-.modal h2{font-family:var(--serif);font-size:1.08rem;color:var(--sage-d);margin-bottom:11px;}
+.modal{background:var(--white);border-radius:var(--r);padding:18px;max-width:560px;width:92%;max-height:88vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.22);}
+.modal h2{font-family:var(--serif);font-size:1.05rem;color:var(--sage-d);margin-bottom:10px;}
 
 /* TOAST */
-.toast{position:fixed;bottom:20px;right:20px;background:var(--sage-d);color:var(--cream);padding:10px 16px;border-radius:7px;font-family:var(--mono);font-size:.66rem;box-shadow:0 4px 18px rgba(0,0,0,.2);z-index:500;transform:translateY(60px);opacity:0;transition:all .3s;}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--sage-d);color:var(--cream);padding:9px 15px;border-radius:7px;font-family:var(--mono);font-size:.64rem;box-shadow:0 4px 18px rgba(0,0,0,.2);z-index:500;transform:translateY(60px);opacity:0;transition:all .3s;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.error{background:var(--rust);}
 
-/* MISC */
-.tip{font-size:.66rem;color:var(--sage);margin-top:5px;font-style:italic;}
-.empty{text-align:center;padding:32px 16px;color:var(--sage);}
-.empty .ei{font-size:2.2rem;margin-bottom:7px;opacity:.33;}
-.empty p{font-size:.78rem;}
-.port-row{background:#eef3e8;border:1px solid var(--sage-l);border-radius:6px;padding:7px 11px;display:flex;align-items:center;gap:9px;margin-bottom:7px;flex-wrap:wrap;}
-.nego-log{font-size:.63rem;color:var(--sage);font-family:var(--mono);margin-top:2px;max-height:50px;overflow-y:auto;}
-.nego-entry{padding:1px 0;border-bottom:1px dotted var(--border);}
+/* BC PREVIEW */
+.bc-preview{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:22px;font-size:.8rem;line-height:1.7;}
+.bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--sage-d);}
+.bc-logo{max-height:50px;max-width:120px;object-fit:contain;}
+.bc-firm{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--sage-d);}
+.bc-num{font-family:var(--mono);font-size:.72rem;background:var(--sage-d);color:var(--cream);padding:4px 12px;border-radius:5px;}
+.bc-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.76rem;}
+.bc-table th{background:var(--sage-d);color:var(--cream);padding:6px 9px;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;text-align:left;}
+.bc-table td{padding:6px 9px;border-bottom:1px solid var(--border);}
+.bc-table tr:nth-child(even) td{background:#faf5e8;}
+.bc-totals{text-align:right;margin-top:10px;}
+.bc-totals .bt{font-family:var(--mono);font-size:.78rem;}
+.bc-totals .btt{font-family:var(--mono);font-size:.92rem;font-weight:600;color:var(--sage-d);}
+.bc-footer{margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-size:.7rem;color:var(--sage);}
 
-@media(max-width:680px){header{padding:11px;}.c3{grid-template-columns:1fr 1fr;}.c4{grid-template-columns:1fr 1fr;}.vg7{grid-template-columns:2fr 1fr 48px;}}
-@media print{header,.tabs,.abar,.btn,.save-bar{display:none!important;}.sec{display:block!important;}}
+/* MISC */
+.tip{font-size:.64rem;color:var(--sage);margin-top:4px;font-style:italic;}
+.empty{text-align:center;padding:30px 14px;color:var(--sage);}
+.empty .ei{font-size:2rem;margin-bottom:6px;opacity:.32;}
+.empty p{font-size:.76rem;}
+
+@media(max-width:680px){header{padding:10px;}.c3{grid-template-columns:1fr 1fr;}.c4{grid-template-columns:1fr 1fr;}.vg8{grid-template-columns:2fr 1fr 46px;}}
+@media print{header,.tabs,.abar,.btn,.sbar{display:none!important;}.sec{display:block!important;}}
 </style>
 </head>
 <body>
@@ -221,24 +234,22 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
     </div>
     <div id="aerr" class="aerr"></div>
     <div id="af-login" class="aform active">
-      <div class="gr" style="margin-bottom:10px;"><div><label>Email</label><input type="email" id="l-email" placeholder="vous@societe.fr" onkeydown="if(event.key==='Enter')doLogin()"></div></div>
-      <div class="gr" style="margin-bottom:14px;"><div><label>Mot de passe</label><input type="password" id="l-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Email</label><input type="email" id="l-email" placeholder="vous@societe.fr" onkeydown="if(event.key==='Enter')doLogin()"></div></div>
+      <div class="gr" style="margin-bottom:13px;"><div><label>Mot de passe</label><input type="password" id="l-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div></div>
       <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doLogin()">Se connecter</button>
     </div>
     <div id="af-register" class="aform">
-      <div class="gr c2" style="margin-bottom:10px;">
+      <div class="gr c2" style="margin-bottom:9px;">
         <div><label>Nom complet *</label><input type="text" id="r-nom" placeholder="Jean Martin"></div>
         <div><label>Société</label><input type="text" id="r-soc" placeholder="Jardins Martin SARL"></div>
       </div>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Email *</label><input type="email" id="r-email" placeholder="vous@societe.fr"></div></div>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Mot de passe (8 car. min.) *</label><input type="password" id="r-pwd" placeholder="••••••••"></div></div>
-      <div class="gr" style="margin-bottom:14px;"><div><label>Langue de l'interface</label>
-        <select id="r-lang">
-          <option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option>
-          <option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option>
-          <option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option>
-          <option value="it">🇮🇹 Italiano</option>
-        </select>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Email *</label><input type="email" id="r-email" placeholder="vous@societe.fr"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Mot de passe (8 car. min.) *</label><input type="password" id="r-pwd" placeholder="••••••••"></div></div>
+      <div class="gr" style="margin-bottom:13px;"><div><label>Langue de l'interface</label>
+        <select id="r-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option>
+        <option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option>
+        <option value="it">🇮🇹 Italiano</option></select>
       </div></div>
       <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doRegister()">Créer mon compte</button>
     </div>
@@ -246,35 +257,45 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
 </div>
 
 <!-- ACCOUNT PANEL -->
-<div class="account-panel" id="account-panel">
-  <div class="ap-header">
-    <h2>⚙️ Mon compte</h2>
-    <button class="ap-close" onclick="closeAccountPanel()">✕</button>
-  </div>
+<div class="ap" id="account-panel">
+  <div class="ap-hdr"><h2>⚙️ Mon compte</h2><button class="ap-close" onclick="closeAP()">✕</button></div>
   <div class="ap-body">
-    <div class="ap-section">
+    <div class="ap-sec">
       <h3>Informations personnelles</h3>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Nom complet</label><input type="text" id="ap-nom" placeholder="Jean Martin"></div></div>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Société</label><input type="text" id="ap-soc" placeholder="Jardins Martin SARL"></div></div>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Email (non modifiable)</label><input type="email" id="ap-email" disabled style="opacity:.6;"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Nom complet</label><input type="text" id="ap-nom"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Société</label><input type="text" id="ap-soc"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Email (non modifiable)</label><input type="email" id="ap-email" disabled style="opacity:.6;"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Langue</label>
+        <select id="ap-lang" onchange="setLang(this.value)">
+          <option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option>
+          <option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option>
+          <option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option>
+          <option value="it">🇮🇹 Italiano</option>
+        </select>
+      </div></div>
       <button class="btn btn-p btn-sm" onclick="saveAccountInfo()">💾 Enregistrer</button>
     </div>
-    <div class="ap-section">
-      <h3>Langue de l'interface</h3>
-      <select id="ap-lang" onchange="setLang(this.value)" style="margin-bottom:10px;">
-        <option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option>
-        <option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option>
-        <option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option>
-        <option value="it">🇮🇹 Italiano</option>
-      </select>
+    <div class="ap-sec">
+      <h3>Informations légales (bons de commande)</h3>
+      <div class="gr" style="margin-bottom:9px;"><div><label>SIRET</label><input type="text" id="ap-siret" placeholder="XXX XXX XXX XXXXX"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>N° TVA intracommunautaire</label><input type="text" id="ap-tva" placeholder="FR XX XXX XXX XXX"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Adresse complète</label><textarea id="ap-adr" rows="2" placeholder="1 rue des Jardins&#10;44000 Nantes"></textarea></div></div>
+      <div class="gr c2" style="margin-bottom:9px;">
+        <div><label>Téléphone</label><input type="text" id="ap-tel" placeholder="02 40 XX XX XX"></div>
+        <div><label>Délai de paiement</label><input type="text" id="ap-delai" placeholder="30 jours fin de mois"></div>
+      </div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Pénalités de retard</label><input type="text" id="ap-penalite" placeholder="3× le taux d'intérêt légal"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>URL du logo (lien image)</label><input type="text" id="ap-logo" placeholder="https://..."></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Mentions légales personnalisées</label><textarea id="ap-mentions" rows="3" placeholder="Tout litige relatif…"></textarea></div></div>
+      <button class="btn btn-p btn-sm" onclick="saveLegalInfo()">💾 Enregistrer infos légales</button>
     </div>
-    <div class="ap-section">
+    <div class="ap-sec">
       <h3>Changer le mot de passe</h3>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Nouveau mot de passe</label><input type="password" id="ap-pwd" placeholder="8 caractères minimum"></div></div>
-      <div class="gr" style="margin-bottom:10px;"><div><label>Confirmer</label><input type="password" id="ap-pwd2" placeholder="Confirmer le mot de passe"></div></div>
-      <button class="btn btn-g btn-sm" onclick="changePwd()">🔑 Changer le mot de passe</button>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Nouveau mot de passe</label><input type="password" id="ap-pwd" placeholder="8 caractères minimum"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Confirmer</label><input type="password" id="ap-pwd2" placeholder="Confirmer"></div></div>
+      <button class="btn btn-g btn-sm" onclick="changePwd()">🔑 Changer</button>
     </div>
-    <div class="ap-section">
+    <div class="ap-sec">
       <h3>Sécurité</h3>
       <button class="btn btn-d btn-sm" onclick="disconnectAll()">🔒 Déconnecter tous mes appareils</button>
     </div>
@@ -284,23 +305,20 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
 <header>
   <div class="brand"><h1>🌿 Consultation Pépinières</h1><p>Gestion · Comparaison · Commande</p></div>
   <div class="tabs">
-    <button class="tab active" onclick="go('chantiers')">🏗 Chantiers<span class="unsaved-dot"></span></button>
-    <button class="tab" onclick="go('setup')">① Paramétrage<span class="unsaved-dot"></span></button>
-    <button class="tab" onclick="go('vegetaux')">② Végétaux<span class="unsaved-dot"></span></button>
-    <button class="tab" onclick="go('envoi')">③ Envoi<span class="unsaved-dot"></span></button>
-    <button class="tab" onclick="go('reponses')">④ Réponses<span class="unsaved-dot"></span></button>
-    <button class="tab" onclick="go('comparaison')">⑤ Comparaison<span class="unsaved-dot"></span></button>
-    <button class="tab" onclick="go('commande')">⑥ Commande<span class="unsaved-dot"></span></button>
+    <button class="tab active" onclick="go('chantiers')">🏗 Chantiers<span class="ud"></span></button>
+    <button class="tab" onclick="go('setup')">① Paramétrage<span class="ud"></span></button>
+    <button class="tab" onclick="go('vegetaux')">② Végétaux<span class="ud"></span></button>
+    <button class="tab" onclick="go('envoi')">③ Envoi<span class="ud"></span></button>
+    <button class="tab" onclick="go('reponses')">④ Réponses<span class="ud"></span></button>
+    <button class="tab" onclick="go('comparaison')">⑤ Comparaison<span class="ud"></span></button>
+    <button class="tab" onclick="go('commande')">⑥ Commande<span class="ud"></span></button>
   </div>
   <div class="hright">
-    <div class="avatar-btn" id="avatar-btn" onclick="toggleAccountPanel()" title="Mon compte">👤</div>
-    <div class="avatar-menu" id="avatar-menu">
-      <div class="avatar-menu-header">
-        <div class="am-name" id="am-name">—</div>
-        <div class="am-email" id="am-email">—</div>
-      </div>
-      <div class="am-item" onclick="openAccountPanel()"><span class="ami">⚙️</span>Paramètres du compte</div>
-      <div class="am-item" onclick="doLogout()"><span class="ami">🚪</span>Déconnexion</div>
+    <div class="av-btn" id="av-btn" onclick="toggleAV()">👤</div>
+    <div class="av-menu" id="av-menu">
+      <div class="av-mh"><div class="mn" id="am-name">—</div><div class="me" id="am-email">—</div></div>
+      <div class="av-mi" onclick="openAP()"><span>⚙️</span>Paramètres du compte</div>
+      <div class="av-mi" onclick="doLogout()"><span>🚪</span>Déconnexion</div>
     </div>
   </div>
 </header>
@@ -312,26 +330,24 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
   <div class="abar">
     <button class="btn btn-p" onclick="newConsult()">＋ Nouvelle consultation</button>
     <div class="vsep"></div>
-    <select id="f-st" onchange="renderChantiers()" style="width:auto;padding:6px 10px;font-family:var(--mono);font-size:.66rem;">
+    <select id="f-st" onchange="renderChantiers()" style="width:auto;padding:5px 9px;font-family:var(--mono);font-size:.64rem;">
       <option value="">Tous les statuts</option>
       <option value="brouillon">Brouillon</option>
       <option value="envoyée">Envoyée</option>
       <option value="clôturée">Clôturée</option>
     </select>
-    <input type="text" id="f-sr" placeholder="Rechercher…" oninput="renderChantiers()" style="width:200px;padding:6px 10px;font-family:var(--mono);font-size:.66rem;">
+    <input type="text" id="f-sr" placeholder="Rechercher…" oninput="renderChantiers()" style="width:190px;padding:5px 9px;font-family:var(--mono);font-size:.64rem;">
     <button class="btn btn-g btn-sm" onclick="loadChantiers()">↻</button>
   </div>
-  <div id="chantiers-con"><div class="empty"><div class="ei">🏗</div><p>Aucune consultation. Cliquez sur "Nouvelle consultation".</p></div></div>
+  <div id="chantiers-con"><div class="empty"><div class="ei">🏗</div><p>Aucune consultation.</p></div></div>
 </div>
 
 <!-- PARAMÉTRAGE -->
 <div class="sec" id="tab-setup">
-  <div class="save-bar" id="sb-setup">
-    <span class="sb-msg" id="sb-setup-msg">💾 N'oubliez pas d'enregistrer vos modifications</span>
-    <button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button>
-  </div>
+  <div class="sbar" id="sb-setup"><span class="sm">💾 N'oubliez pas d'enregistrer</span>
+    <button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button></div>
   <div class="card">
-    <div class="card-title">📋 Informations de la consultation</div>
+    <div class="ct-title">📋 Informations de la consultation</div>
     <div class="gr c3">
       <div><label>Ville</label><input type="text" id="s-ville" placeholder="Nantes" oninput="markDirty('setup')"></div>
       <div><label>Affaire / Projet</label><input type="text" id="s-affaire" placeholder="Jardins du Parc" oninput="markDirty('setup')"></div>
@@ -342,180 +358,114 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
       <div><label>Votre nom / société</label><input type="text" id="s-nom" oninput="markDirty('setup')"></div>
       <div><label>Votre email</label><input type="email" id="s-email" oninput="markDirty('setup')"></div>
     </div>
-    <div class="gr" style="grid-template-columns:1fr 160px;margin-bottom:0;">
+    <div class="gr" style="grid-template-columns:1fr 155px;margin-bottom:0;">
       <div><label>Remarques générales</label><input type="text" id="s-rem" placeholder="Livraison en 2 tranches…" oninput="markDirty('setup')"></div>
-      <div><label>Statut</label>
-        <select id="s-statut" onchange="markDirty('setup')">
-          <option value="brouillon">Brouillon</option>
-          <option value="envoyée">Envoyée</option>
-          <option value="clôturée">Clôturée</option>
-        </select>
-      </div>
+      <div><label>Statut</label><select id="s-statut" onchange="markDirty('setup')">
+        <option value="brouillon">Brouillon</option><option value="envoyée">Envoyée</option><option value="clôturée">Clôturée</option>
+      </select></div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">🏡 Pépinières <span class="bdg" id="pep-bdg">0/6</span>
-      <span class="sbdg sbdg-ok" id="csync" style="margin-left:6px;">● Supabase</span>
-    </div>
+    <div class="ct-title">🏡 Pépinières <span class="bdg" id="pep-bdg">0/6</span>
+      <span class="sbdg sbdg-ok" id="csync" style="margin-left:5px;">● Supabase</span></div>
     <div id="pep-list"></div>
-    <div style="margin-top:13px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:5px;">
-        <span style="font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);">📖 Carnet</span>
-        <div style="display:flex;gap:5px;">
-          <button class="btn btn-sm btn-g" onclick="loadCarnet()">↻</button>
-          <button class="btn btn-sm btn-g" onclick="tglNP()">＋ Nouvelle</button>
-        </div>
+    <div style="margin-top:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-wrap:wrap;gap:5px;">
+        <span style="font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);">📖 Carnet</span>
+        <div style="display:flex;gap:4px;"><button class="btn btn-sm btn-g" onclick="loadCarnet()">↻</button><button class="btn btn-sm btn-g" onclick="tglNP()">＋ Nouvelle</button></div>
       </div>
       <div class="cgrid" id="cgrid"></div>
-      <div id="cempty" style="display:none;padding:8px 0;font-size:.76rem;color:var(--sage);font-style:italic;">Carnet vide.</div>
+      <div id="cempty" style="display:none;padding:7px 0;font-size:.74rem;color:var(--sage);font-style:italic;">Carnet vide.</div>
       <button class="btn btn-ok btn-sm" id="btn-carnet" style="display:none;" onclick="addFromCarnet()">✓ Ajouter</button>
     </div>
     <div class="npanel" id="npanel">
       <h3>Nouvelle pépinière</h3>
-      <div class="gr c3">
-        <div><label>Nom *</label><input type="text" id="np-nom"></div>
-        <div><label>Email</label><input type="email" id="np-email"></div>
-        <div><label>Téléphone</label><input type="text" id="np-tel"></div>
+      <div class="gr c3"><div><label>Nom *</label><input type="text" id="np-nom"></div><div><label>Email</label><input type="email" id="np-email"></div><div><label>Téléphone</label><input type="text" id="np-tel"></div></div>
+      <div class="gr c2"><div><label>Adresse</label><input type="text" id="np-adr"></div><div><label>Notes internes</label><input type="text" id="np-notes"></div></div>
+      <div class="gr c2" style="margin-bottom:10px;">
+        <div><label>Langue préférée</label><select id="np-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option><option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option><option value="it">🇮🇹 Italiano</option></select></div>
+        <div style="display:flex;align-items:end;padding-bottom:2px;"><label style="display:flex;align-items:center;gap:5px;font-family:var(--body);text-transform:none;font-size:.72rem;color:var(--ink);cursor:pointer;margin:0;"><input type="checkbox" id="np-only" style="width:auto;margin:0;"> Carnet uniquement</label></div>
       </div>
-      <div class="gr c2">
-        <div><label>Adresse</label><input type="text" id="np-adr"></div>
-        <div><label>Notes internes</label><input type="text" id="np-notes"></div>
-      </div>
-      <div class="gr c2" style="margin-bottom:11px;">
-        <div><label>Langue préférée</label>
-          <select id="np-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option>
-          <option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option>
-          <option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option>
-          <option value="it">🇮🇹 Italiano</option></select>
-        </div>
-        <div style="display:flex;align-items:end;padding-bottom:2px;">
-          <label style="display:flex;align-items:center;gap:5px;font-family:var(--body);text-transform:none;font-size:.74rem;color:var(--ink);cursor:pointer;margin:0;">
-            <input type="checkbox" id="np-only" style="width:auto;margin:0;"> Carnet uniquement
-          </label>
-        </div>
-      </div>
-      <div style="display:flex;gap:9px;">
-        <button class="btn btn-p" onclick="saveNewPep()">💾 Enregistrer dans Supabase</button>
-        <button class="btn btn-g btn-sm" onclick="tglNP()">Annuler</button>
-      </div>
+      <div style="display:flex;gap:8px;"><button class="btn btn-p" onclick="saveNewPep()">💾 Enregistrer</button><button class="btn btn-g btn-sm" onclick="tglNP()">Annuler</button></div>
     </div>
-    <p class="tip">💡 Le carnet est sauvegardé dans Supabase — accessible depuis tous vos appareils.</p>
+    <p class="tip">💡 Carnet sauvegardé dans Supabase.</p>
   </div>
-  <div style="display:flex;gap:8px;">
-    <button class="btn btn-g" onclick="go('chantiers')">← Chantiers</button>
-    <button class="btn btn-p" onclick="go('vegetaux')">Suivant → Végétaux</button>
-  </div>
+  <div style="display:flex;gap:7px;"><button class="btn btn-g" onclick="go('chantiers')">← Chantiers</button><button class="btn btn-p" onclick="go('vegetaux')">Suivant → Végétaux</button></div>
 </div>
 
 <!-- VÉGÉTAUX -->
 <div class="sec" id="tab-vegetaux">
-  <div class="save-bar" id="sb-veg">
-    <span class="sb-msg">Ajoutez ou importez vos végétaux puis enregistrez</span>
-    <button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button>
-  </div>
+  <div class="sbar" id="sb-veg"><span class="sm">Importez ou saisissez vos végétaux puis enregistrez</span><button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button></div>
   <div class="card">
-    <div class="card-title">🤖 Import depuis un fichier <span class="bdg">Excel · PDF · CSV · Image</span></div>
-    <div class="dz" id="dz" onclick="document.getElementById('finp').click()"
-      ondragover="event.preventDefault();this.classList.add('dragover')"
-      ondragleave="this.classList.remove('dragover')" ondrop="onDrop(event)">
-      <div class="dzi">📂</div>
-      <p style="font-size:.84rem;"><strong>Cliquez ou glissez-déposez</strong></p>
-      <p style="font-size:.68rem;color:var(--sage);margin-top:4px;">.xlsx .xls .ods .csv .txt .pdf .jpg .png .webp .heic</p>
+    <div class="ct-title">🤖 Import depuis un fichier <span class="bdg">Excel · PDF · CSV · Image</span></div>
+    <div class="dz-box" id="dz" onclick="document.getElementById('finp').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="onDrop(event)">
+      <div class="dzi">📂</div><p style="font-size:.82rem;"><strong>Cliquez ou glissez-déposez</strong></p>
+      <p style="font-size:.66rem;color:var(--sage);margin-top:3px;">.xlsx .xls .ods .csv .txt .pdf .jpg .png .webp .heic</p>
       <input type="file" id="finp" accept=".xlsx,.xls,.ods,.csv,.txt,.tsv,.pdf,.jpg,.jpeg,.png,.webp,.bmp,.heic" style="display:none" onchange="onFS(this)">
     </div>
-    <div id="istatus" style="display:none;margin-top:10px;"></div>
-    <div id="msec" style="display:none;margin-top:14px;"></div>
-    <div id="psec" style="display:none;margin-top:14px;">
-      <p style="font-family:var(--serif);font-size:.93rem;color:var(--sage-d);margin-bottom:7px;">Aperçu</p>
-      <div style="overflow-x:auto;"><table class="ptbl" id="ptbl"></table></div>
-    </div>
+    <div id="istatus" style="display:none;margin-top:9px;"></div>
+    <div id="msec" style="display:none;margin-top:13px;"></div>
+    <div id="psec" style="display:none;margin-top:13px;"><p style="font-family:var(--serif);font-size:.9rem;color:var(--sage-d);margin-bottom:6px;">Aperçu</p><div style="overflow-x:auto;"><table class="ptbl" id="ptbl"></table></div></div>
   </div>
   <div class="card">
-    <div class="card-title">🌱 Ajouter manuellement</div>
+    <div class="ct-title">🌱 Ajouter manuellement</div>
     <div class="gr c4">
       <div><label>Nom latin *</label><input type="text" id="v-lat" placeholder="Acer platanoides"></div>
       <div><label>Calibre (taille) *</label><input type="text" id="v-cal" placeholder="12/14 ou 60-80cm"></div>
       <div><label>Contenant</label><input type="text" id="v-cond" placeholder="MG, RN, C35, AP…"></div>
       <div><label>Quantité *</label><input type="number" id="v-qty" placeholder="25" min="1"></div>
     </div>
-    <div class="gr c3" style="margin-bottom:10px;">
+    <div class="gr c3" style="margin-bottom:9px;">
       <div><label>Unité</label><input type="text" id="v-unite" placeholder="U"></div>
       <div><label>Prix étude HT (€)</label><input type="number" step=".01" id="v-pe" placeholder="0.00"></div>
       <div><label>Remarques</label><input type="text" id="v-rem" placeholder="Tige 2m20…"></div>
     </div>
     <button class="btn btn-p" onclick="addVegManual()">＋ Ajouter</button>
   </div>
-  <div class="card">
-    <div class="card-title">📃 Listing <span class="bdg" id="vbdg">0</span></div>
-    <div id="vcon"><div class="empty"><div class="ei">🌿</div><p>Aucun végétal.</p></div></div>
-  </div>
-  <div style="display:flex;gap:8px;">
-    <button class="btn btn-g" onclick="go('setup')">← Retour</button>
-    <button class="btn btn-p" onclick="go('envoi')">Suivant → Envoi</button>
-  </div>
+  <div class="card"><div class="ct-title">📃 Listing <span class="bdg" id="vbdg">0</span></div><div id="vcon"><div class="empty"><div class="ei">🌿</div><p>Aucun végétal.</p></div></div></div>
+  <div style="display:flex;gap:7px;"><button class="btn btn-g" onclick="go('setup')">← Retour</button><button class="btn btn-p" onclick="go('envoi')">Suivant → Envoi</button></div>
 </div>
 
 <!-- ENVOI -->
 <div class="sec" id="tab-envoi">
-  <div class="card">
-    <div class="card-title">📧 Mails de consultation</div>
-    <div id="envoi-con"><div class="empty"><div class="ei">📧</div><p>Ajoutez végétaux &amp; pépinières d'abord.</p></div></div>
-  </div>
-  <div style="display:flex;gap:8px;">
-    <button class="btn btn-g" onclick="go('vegetaux')">← Retour</button>
-    <button class="btn btn-p" onclick="go('reponses')">→ Réponses</button>
-  </div>
+  <div class="card"><div class="ct-title">📧 Mails de consultation</div><div id="envoi-con"><div class="empty"><div class="ei">📧</div><p>Ajoutez végétaux &amp; pépinières d'abord.</p></div></div></div>
+  <div style="display:flex;gap:7px;"><button class="btn btn-g" onclick="go('vegetaux')">← Retour</button><button class="btn btn-p" onclick="go('reponses')">→ Réponses</button></div>
 </div>
 
 <!-- RÉPONSES -->
 <div class="sec" id="tab-reponses">
   <div class="card">
-    <div class="card-title">📥 Importer les réponses</div>
-    <div style="margin-bottom:13px;">
-      <label>Pépinière concernée</label>
-      <select id="rep-pi"><option value="">— Choisir —</option></select>
-    </div>
-    <div class="dz" id="dz2" onclick="document.getElementById('finp2').click()"
-      ondragover="event.preventDefault();this.classList.add('dragover')"
-      ondragleave="this.classList.remove('dragover')" ondrop="onDrop2(event)">
-      <div class="dzi">📨</div>
-      <p style="font-size:.84rem;"><strong>Déposez la réponse</strong> de la pépinière</p>
-      <p style="font-size:.68rem;color:var(--sage);margin-top:4px;">Excel · CSV · PDF · Photo manuscrite</p>
+    <div class="ct-title">📥 Importer les réponses</div>
+    <div style="margin-bottom:12px;"><label>Pépinière concernée</label><select id="rep-pi"><option value="">— Choisir —</option></select></div>
+    <div class="dz-box" id="dz2" onclick="document.getElementById('finp2').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="onDrop2(event)">
+      <div class="dzi">📨</div><p style="font-size:.82rem;"><strong>Déposez la réponse</strong></p>
+      <p style="font-size:.66rem;color:var(--sage);margin-top:3px;">Excel · CSV · PDF · Photo manuscrite</p>
       <input type="file" id="finp2" accept=".xlsx,.xls,.ods,.csv,.txt,.tsv,.pdf,.jpg,.jpeg,.png,.webp,.bmp,.heic" style="display:none" onchange="onRepFS(this)">
     </div>
-    <div id="rep-status" style="display:none;margin-top:10px;"></div>
-    <div id="rep-preview" style="display:none;margin-top:14px;"></div>
+    <div id="rep-status" style="display:none;margin-top:9px;"></div>
+    <div id="rep-preview" style="display:none;margin-top:13px;"></div>
   </div>
-  <div style="display:flex;gap:8px;">
-    <button class="btn btn-g" onclick="go('envoi')">← Retour</button>
-    <button class="btn btn-p" onclick="go('comparaison')">→ Comparaison</button>
-  </div>
+  <div style="display:flex;gap:7px;"><button class="btn btn-g" onclick="go('envoi')">← Retour</button><button class="btn btn-p" onclick="go('comparaison')">→ Comparaison</button></div>
 </div>
 
 <!-- COMPARAISON -->
 <div class="sec" id="tab-comparaison">
-  <div class="save-bar" id="sb-comp">
-    <span class="sb-msg">Saisissez les prix et enregistrez</span>
-    <div style="display:flex;gap:7px;">
+  <div class="sbar" id="sb-comp">
+    <span class="sm">Saisissez les prix — les totaux se mettent à jour en temps réel</span>
+    <div style="display:flex;gap:6px;">
       <button class="btn btn-s btn-sm" onclick="hlBest()">🏆 Meilleur prix</button>
       <button class="btn btn-g btn-sm" onclick="clrHL()">Effacer</button>
-      <button class="btn btn-g btn-sm" onclick="openQtyModal()">✏️ Quantités (%)</button>
-      <button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button>
+      <button class="btn btn-g btn-sm" onclick="openQtyModal()">✏️ Ajuster qtés finales</button>
+      <button class="btn btn-ok btn-sm" onclick="saveComparatif()">💾 Enregistrer</button>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">💶 Tableau comparatif HT</div>
-    <div id="comp-con"><div class="empty"><div class="ei">📊</div><p>Ajoutez végétaux &amp; pépinières.</p></div></div>
-  </div>
+  <div class="card"><div class="ct-title">💶 Tableau comparatif HT</div><div id="comp-con"><div class="empty"><div class="ei">📊</div><p>Ajoutez végétaux &amp; pépinières.</p></div></div></div>
   <button class="btn btn-g" onclick="go('reponses')">← Retour</button>
 </div>
 
 <!-- COMMANDE -->
 <div class="sec" id="tab-commande">
-  <div class="card">
-    <div class="card-title">🛒 Sélection &amp; bons de commande</div>
-    <div id="cmd-con"><div class="empty"><div class="ei">📦</div><p>Complétez la comparaison d'abord.</p></div></div>
-  </div>
+  <div class="card"><div class="ct-title">🛒 Sélection &amp; bons de commande</div><div id="cmd-con"><div class="empty"><div class="ei">📦</div><p>Complétez la comparaison d'abord.</p></div></div></div>
   <button class="btn btn-g" onclick="go('comparaison')">← Retour</button>
 </div>
 
@@ -524,16 +474,21 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
 <!-- MODALS -->
 <div class="overlay" id="qty-modal">
   <div class="modal">
-    <h2>✏️ Ajuster les quantités</h2>
-    <div class="gr c2" style="margin-bottom:10px;">
+    <h2>✏️ Ajuster les quantités finales</h2>
+    <p style="font-size:.76rem;color:var(--sage);margin-bottom:3px;">⚠️ Seules les quantités <strong>finales du comparatif</strong> sont modifiées. La quantité de référence de la consultation reste inchangée.</p>
+    <div class="gr c2" style="margin-bottom:10px;margin-top:10px;">
       <div><label>Pourcentage (ex: -10 ou +15)</label><input type="number" id="qty-pct" placeholder="-10" step="1"></div>
-      <div><label>Appliquer à</label><select id="qty-scope"><option value="all">Tous</option><option value="sel">Sélection</option></select></div>
+      <div><label>Appliquer à</label><select id="qty-scope"><option value="all">Tous les végétaux</option><option value="sel">Sélection</option></select></div>
     </div>
-    <div id="qty-sel-list" style="max-height:170px;overflow-y:auto;margin-bottom:12px;"></div>
-    <div style="display:flex;gap:8px;">
-      <button class="btn btn-p" onclick="applyQtyPct()">Appliquer</button>
-      <button class="btn btn-g btn-sm" onclick="closeModal('qty-modal')">Annuler</button>
-    </div>
+    <div id="qty-sel-list" style="max-height:160px;overflow-y:auto;margin-bottom:11px;"></div>
+    <div style="display:flex;gap:7px;"><button class="btn btn-p" onclick="applyQtyPct()">Appliquer</button><button class="btn btn-g btn-sm" onclick="closeModal('qty-modal')">Annuler</button></div>
+  </div>
+</div>
+
+<div class="overlay" id="var-comp-modal">
+  <div class="modal">
+    <h2>🔀 Ajouter une variante dans le comparatif</h2>
+    <div id="var-comp-con"></div>
   </div>
 </div>
 
@@ -544,11 +499,23 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
 <div class="overlay" id="unsaved-modal">
   <div class="modal">
     <h2>⚠️ Modifications non enregistrées</h2>
-    <p style="font-size:.8rem;color:var(--sage);margin-bottom:16px;">Vous avez des modifications non enregistrées. Que souhaitez-vous faire ?</p>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <p style="font-size:.78rem;color:var(--sage);margin-bottom:14px;">Vous avez des modifications non enregistrées sur cet onglet.</p>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;">
       <button class="btn btn-ok" onclick="saveAndNav()">💾 Enregistrer &amp; continuer</button>
       <button class="btn btn-d" onclick="discardAndNav()">Ignorer &amp; continuer</button>
       <button class="btn btn-g btn-sm" onclick="closeModal('unsaved-modal')">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="bc-modal">
+  <div class="modal" style="max-width:700px;">
+    <h2>📄 Bon de commande</h2>
+    <div id="bc-preview-con"></div>
+    <div style="display:flex;gap:7px;margin-top:14px;flex-wrap:wrap;">
+      <button class="btn btn-s" onclick="dlBCExcel()">⬇ Excel</button>
+      <button class="btn btn-blue" onclick="openBCMailto()">📨 Envoyer par Outlook</button>
+      <button class="btn btn-g btn-sm" onclick="closeModal('bc-modal')">Fermer</button>
     </div>
   </div>
 </div>
@@ -568,120 +535,83 @@ const supa=supabase.createClient(SUPA_URL,SUPA_KEY);
 // ══════════════════════════════════════
 // I18N
 // ══════════════════════════════════════
-const L={
-  fr:{logout:'Déconnexion',save:'Enregistrer',imported:'végétal(ux) importé(s)',noVeg:'Aucun végétal.',
-    mailSubj:'Consultation végétaux',mailHi:'Madame, Monsieur,',mailBody:'Nous vous contactons pour une consultation de prix végétaux.',
-    mailProj:'Projet',mailDel:'Livraison souhaitée',mailFile:'Veuillez compléter le fichier Excel ci-joint et nous le retourner.',
-    mailPortal:'Ou saisissez vos prix directement en ligne',mailReg:'Cordialement',
-    calibre:'Calibre (taille)',contenant:'Contenant',studyP:'Prix étude'},
-  en:{logout:'Sign out',save:'Save',imported:'plant(s) imported',noVeg:'No plants.',
-    mailSubj:'Plant price consultation',mailHi:'Dear Sir/Madam,',mailBody:'We are contacting you regarding a plant price consultation.',
-    mailProj:'Project',mailDel:'Requested delivery',mailFile:'Please complete the attached Excel file and return it.',
-    mailPortal:'Or enter your prices directly online',mailReg:'Best regards',
-    calibre:'Calibre (size)',contenant:'Container',studyP:'Study price'},
-  es:{logout:'Cerrar sesión',save:'Guardar',imported:'vegetal(es) importado(s)',noVeg:'Sin vegetales.',
-    mailSubj:'Consulta de precios de vegetales',mailHi:'Estimado/a señor/a,',mailBody:'Nos ponemos en contacto para una consulta de precios.',
-    mailProj:'Proyecto',mailDel:'Entrega deseada',mailFile:'Por favor, complete el archivo Excel adjunto.',
-    mailPortal:'O introduzca sus precios directamente en línea',mailReg:'Atentamente',
-    calibre:'Calibre (tamaño)',contenant:'Contenedor',studyP:'Precio estudio'},
-  ca:{logout:'Tancar sessió',save:'Desar',imported:'vegetal(s) importat(s)',noVeg:'Cap vegetal.',
-    mailSubj:'Consulta de preus de vegetals',mailHi:'Benvolgut/da,',mailBody:'Ens posem en contacte per a una consulta de preus.',
-    mailProj:'Projecte',mailDel:'Lliurament desitjat',mailFile:'Empleneu el fitxer Excel adjunt.',
-    mailPortal:'O introduïu els vostres preus directament en línia',mailReg:'Cordialment',
-    calibre:'Calibre (mida)',contenant:'Contenidor',studyP:'Preu estudi'},
-  nl:{logout:'Uitloggen',save:'Opslaan',imported:'plant(en) geïmporteerd',noVeg:'Geen planten.',
-    mailSubj:'Plantenprijs consultatie',mailHi:'Geachte heer/mevrouw,',mailBody:'Wij nemen contact op voor een plantenprijs consultatie.',
-    mailProj:'Project',mailDel:'Gewenste levering',mailFile:'Vul het bijgevoegde Excel-bestand in.',
-    mailPortal:'Of voer uw prijzen direct online in',mailReg:'Met vriendelijke groet',
-    calibre:'Caliber (maat)',contenant:'Container',studyP:'Studieprijs'},
-  de:{logout:'Abmelden',save:'Speichern',imported:'Pflanze(n) importiert',noVeg:'Keine Pflanzen.',
-    mailSubj:'Pflanzenpreisanfrage',mailHi:'Sehr geehrte Damen und Herren,',mailBody:'Wir kontaktieren Sie bezüglich einer Pflanzenpreisanfrage.',
-    mailProj:'Projekt',mailDel:'Gewünschte Lieferung',mailFile:'Bitte füllen Sie die beigefügte Excel-Datei aus.',
-    mailPortal:'Oder geben Sie Ihre Preise direkt online ein',mailReg:'Mit freundlichen Grüßen',
-    calibre:'Kaliber (Größe)',contenant:'Behälter',studyP:'Studienpreis'},
-  it:{logout:'Disconnetti',save:'Salva',imported:'vegetale/i importato/i',noVeg:'Nessun vegetale.',
-    mailSubj:'Consultazione prezzi vegetali',mailHi:'Gentile signore/signora,',mailBody:'La contattamo per una consultazione dei prezzi.',
-    mailProj:'Progetto',mailDel:'Consegna desiderata',mailFile:'Compilare il file Excel allegato.',
-    mailPortal:'O inserisca i prezzi direttamente online',mailReg:'Cordialmente',
-    calibre:'Calibro (dimensione)',contenant:'Contenitore',studyP:'Prezzo studio'}
+const LNG={
+  fr:{save:'Enregistrer',imported:'végétal(ux) importé(s)',noVeg:'Aucun végétal.',mailSubj:'Consultation végétaux',mailHi:'Madame, Monsieur,',mailBody:'Nous vous contactons pour une consultation de prix végétaux.',mailProj:'Projet',mailDel:'Livraison souhaitée',mailFile:'Veuillez compléter le fichier Excel ci-joint et nous le retourner par email.',mailPortal:'Ou saisissez vos prix directement en ligne',mailReg:'Cordialement',calibre:'Calibre (taille)',contenant:'Contenant',studyP:'Prix étude',qteRef:'Qté consultée',qteFin:'Qté finale'},
+  en:{save:'Save',imported:'plant(s) imported',noVeg:'No plants.',mailSubj:'Plant price consultation',mailHi:'Dear Sir/Madam,',mailBody:'We are contacting you regarding a plant price consultation.',mailProj:'Project',mailDel:'Requested delivery',mailFile:'Please complete the attached Excel file and return it by email.',mailPortal:'Or enter your prices directly online',mailReg:'Best regards',calibre:'Calibre (size)',contenant:'Container',studyP:'Study price',qteRef:'Consulted qty',qteFin:'Final qty'},
+  es:{save:'Guardar',imported:'vegetal(es) importado(s)',noVeg:'Sin vegetales.',mailSubj:'Consulta de precios',mailHi:'Estimado/a,',mailBody:'Nos ponemos en contacto para una consulta de precios.',mailProj:'Proyecto',mailDel:'Entrega deseada',mailFile:'Complete el archivo Excel adjunto.',mailPortal:'O introduzca sus precios en línea',mailReg:'Atentamente',calibre:'Calibre (tamaño)',contenant:'Contenedor',studyP:'Precio estudio',qteRef:'Ctd consultada',qteFin:'Ctd final'},
+  ca:{save:'Desar',imported:'vegetal(s) importat(s)',noVeg:'Cap vegetal.',mailSubj:'Consulta de preus',mailHi:'Benvolgut/da,',mailBody:'Ens posem en contacte per a una consulta de preus.',mailProj:'Projecte',mailDel:'Lliurament desitjat',mailFile:'Empleneu el fitxer Excel adjunt.',mailPortal:'O introduïu els vostres preus en línia',mailReg:'Cordialment',calibre:'Calibre (mida)',contenant:'Contenidor',studyP:'Preu estudi',qteRef:'Qtt consultada',qteFin:'Qtt final'},
+  nl:{save:'Opslaan',imported:'plant(en) geïmporteerd',noVeg:'Geen planten.',mailSubj:'Plantenprijs consultatie',mailHi:'Geachte heer/mevrouw,',mailBody:'Wij nemen contact op voor een consultatie.',mailProj:'Project',mailDel:'Gewenste levering',mailFile:'Vul het bijgevoegde Excel-bestand in.',mailPortal:'Of voer uw prijzen online in',mailReg:'Met vriendelijke groet',calibre:'Kaliber (maat)',contenant:'Container',studyP:'Studieprijs',qteRef:'Geraadpleegd aantal',qteFin:'Definitief aantal'},
+  de:{save:'Speichern',imported:'Pflanze(n) importiert',noVeg:'Keine Pflanzen.',mailSubj:'Pflanzenpreisanfrage',mailHi:'Sehr geehrte Damen und Herren,',mailBody:'Wir kontaktieren Sie bezüglich einer Preisanfrage.',mailProj:'Projekt',mailDel:'Gewünschte Lieferung',mailFile:'Bitte füllen Sie die Excel-Datei aus.',mailPortal:'Oder geben Sie Ihre Preise online ein',mailReg:'Mit freundlichen Grüßen',calibre:'Kaliber (Größe)',contenant:'Behälter',studyP:'Studienpreis',qteRef:'Angefragte Menge',qteFin:'Endmenge'},
+  it:{save:'Salva',imported:'vegetale/i importato/i',noVeg:'Nessun vegetale.',mailSubj:'Consultazione prezzi',mailHi:'Gentile signore/signora,',mailBody:'La contattamo per una consultazione dei prezzi.',mailProj:'Progetto',mailDel:'Consegna desiderata',mailFile:'Compilare il file Excel allegato.',mailPortal:'O inserisca i prezzi direttamente online',mailReg:'Cordialmente',calibre:'Calibro (dimensione)',contenant:'Contenitore',studyP:'Prezzo studio',qteRef:'Qtà consultata',qteFin:'Qtà finale'}
 };
 let curLang='fr';
-function T(k){return(L[curLang]||L.fr)[k]||(L.fr)[k]||k;}
-function setLang(l){
-  curLang=l;
-  document.querySelectorAll('.btn-logout').forEach(b=>b.textContent=T('logout'));
-  if(document.getElementById('ap-lang'))document.getElementById('ap-lang').value=l;
-  if(currentUser)supa.from('profiles').update({langue:l}).eq('id',currentUser.id);
-}
+function T(k){return(LNG[curLang]||LNG.fr)[k]||(LNG.fr)[k]||k;}
+function setLang(l){curLang=l;if(document.getElementById('ap-lang'))document.getElementById('ap-lang').value=l;if(currentUser)supa.from('profiles').update({langue:l}).eq('id',currentUser.id);}
 
 // ══════════════════════════════════════
 // STATE
 // ══════════════════════════════════════
 const C=['#6b7d5a','#b8945a','#7a5f4e','#4e6878','#886050','#588070'];
 let peps=[],vegs=[],prix={};
+// prix[vi][pi] = {unit, nego, qteF (finale seulement), fraisPort, variantes:[], negoText, log:[]}
+// vegs[vi].qte = quantité de RÉFÉRENCE (consultation) — jamais modifiée par ajustement %
 let carnet=[],cSel=new Set();
 let iRows=[],iCols=[],iMap={};
 let currentUser=null,currentConsultId=null,allChantiers=[];
-let dirtyTabs=new Set();
-let pendingNav=null;
+let dirtyTabs=new Set(),pendingNav=null;
+let legalInfo={};  // infos légales du consultant
+let bcCurrentPi=null; // pépinière pour laquelle on génère le BC
 const TABULAR_EXT=['xlsx','xls','ods','csv','txt','tsv'];
 const IMAGE_EXT=['jpg','jpeg','png','webp','heic','bmp','tiff'];
 
 // ══════════════════════════════════════
-// UNSAVED CHANGES
-// ══════════════════════════════════════
-function markDirty(tab){
-  dirtyTabs.add(tab);
-  const idx=['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].indexOf(tab);
-  if(idx>=0)document.querySelectorAll('.tab')[idx]?.classList.add('dirty');
-}
-function clearDirty(tab){
-  dirtyTabs.delete(tab);
-  const idx=['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].indexOf(tab);
-  if(idx>=0)document.querySelectorAll('.tab')[idx]?.classList.remove('dirty');
-}
-
-// ══════════════════════════════════════
 // ACCOUNT PANEL
 // ══════════════════════════════════════
-function toggleAccountPanel(){
-  const menu=document.getElementById('avatar-menu');
-  menu.classList.toggle('open');
-}
-function openAccountPanel(){
-  document.getElementById('avatar-menu').classList.remove('open');
-  document.getElementById('account-panel').classList.add('open');
-}
-function closeAccountPanel(){document.getElementById('account-panel').classList.remove('open');}
-document.addEventListener('click',e=>{
-  const menu=document.getElementById('avatar-menu');
-  const btn=document.getElementById('avatar-btn');
-  if(!menu.contains(e.target)&&!btn.contains(e.target))menu.classList.remove('open');
-});
+function toggleAV(){document.getElementById('av-menu').classList.toggle('open');}
+function openAP(){document.getElementById('av-menu').classList.remove('open');document.getElementById('account-panel').classList.add('open');}
+function closeAP(){document.getElementById('account-panel').classList.remove('open');}
+document.addEventListener('click',e=>{const m=document.getElementById('av-menu'),b=document.getElementById('av-btn');if(!m.contains(e.target)&&!b.contains(e.target))m.classList.remove('open');});
+
 async function saveAccountInfo(){
   if(!currentUser)return;
   const nom=document.getElementById('ap-nom').value.trim();
   const soc=document.getElementById('ap-soc').value.trim();
-  const{error}=await supa.from('profiles').update({nom,societe:soc}).eq('id',currentUser.id);
+  const{error}=await supa.from('profiles').update({nom,societe:soc,langue:curLang}).eq('id',currentUser.id);
   if(error){toast('Erreur : '+error.message,'error');return;}
   document.getElementById('am-name').textContent=nom+(soc?' — '+soc:'');
   toast('Informations enregistrées ✓');
 }
+
+async function saveLegalInfo(){
+  if(!currentUser)return;
+  const payload={
+    siret:document.getElementById('ap-siret').value.trim(),
+    tva_intra:document.getElementById('ap-tva').value.trim(),
+    adresse_complete:document.getElementById('ap-adr').value.trim(),
+    telephone:document.getElementById('ap-tel').value.trim(),
+    delai_paiement:document.getElementById('ap-delai').value.trim(),
+    penalites_retard:document.getElementById('ap-penalite').value.trim(),
+    logo_url:document.getElementById('ap-logo').value.trim(),
+    mentions_legales:document.getElementById('ap-mentions').value.trim()
+  };
+  const{error}=await supa.from('profiles').update(payload).eq('id',currentUser.id);
+  if(error){toast('Erreur : '+error.message,'error');return;}
+  legalInfo={...legalInfo,...payload};
+  toast('Infos légales enregistrées ✓');
+}
+
 async function changePwd(){
   const pwd=document.getElementById('ap-pwd').value;
   const pwd2=document.getElementById('ap-pwd2').value;
   if(!pwd||pwd.length<8){toast('Mot de passe trop court','error');return;}
-  if(pwd!==pwd2){toast('Les mots de passe ne correspondent pas','error');return;}
+  if(pwd!==pwd2){toast('Mots de passe différents','error');return;}
   const{error}=await supa.auth.updateUser({password:pwd});
   if(error){toast('Erreur : '+error.message,'error');return;}
   document.getElementById('ap-pwd').value='';document.getElementById('ap-pwd2').value='';
   toast('Mot de passe modifié ✓');
 }
-async function disconnectAll(){
-  await supa.auth.signOut({scope:'global'});
-  toast('Déconnecté de tous les appareils.');
-  setTimeout(()=>location.reload(),1500);
-}
+
+async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('Déconnecté de tous les appareils.');setTimeout(()=>location.reload(),1500);}
 
 // ══════════════════════════════════════
 // AUTH
@@ -692,23 +622,20 @@ function swATab(t){
   document.getElementById('aerr').style.display='none';
 }
 async function doLogin(){
-  const email=document.getElementById('l-email').value.trim();
-  const pwd=document.getElementById('l-pwd').value;
+  const email=document.getElementById('l-email').value.trim();const pwd=document.getElementById('l-pwd').value;
   if(!email||!pwd){showAErr('Email et mot de passe requis.');return;}
   const{data,error}=await supa.auth.signInWithPassword({email,password:pwd});
   if(error){showAErr('Erreur : '+error.message);return;}
   afterLogin(data.user);
 }
 async function doRegister(){
-  const nom=document.getElementById('r-nom').value.trim();
-  const email=document.getElementById('r-email').value.trim();
-  const pwd=document.getElementById('r-pwd').value;
-  const lang=document.getElementById('r-lang').value;
+  const nom=document.getElementById('r-nom').value.trim();const email=document.getElementById('r-email').value.trim();
+  const pwd=document.getElementById('r-pwd').value;const lang=document.getElementById('r-lang').value;
   if(!nom||!email||!pwd){showAErr('Champs obligatoires manquants.');return;}
   if(pwd.length<8){showAErr('Mot de passe : 8 caractères minimum.');return;}
   const{data,error}=await supa.auth.signUp({email,password:pwd,options:{data:{nom}}});
   if(error){showAErr('Erreur : '+error.message);return;}
-  if(data.user){await supa.from('profiles').upsert({id:data.user.id,nom,email,societe:document.getElementById('r-soc').value.trim(),langue:lang});}
+  if(data.user)await supa.from('profiles').upsert({id:data.user.id,nom,email,societe:document.getElementById('r-soc').value.trim(),langue:lang});
   showAErr('Compte créé ! Connectez-vous.',false);swATab('login');
 }
 async function afterLogin(user){
@@ -717,8 +644,7 @@ async function afterLogin(user){
   document.getElementById('s-email').value=user.email;
   document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
   document.getElementById('ap-email').value=user.email;
-  // Charger profil
-  const{data}=await supa.from('profiles').select('nom,societe,langue').eq('id',user.id).single();
+  const{data}=await supa.from('profiles').select('*').eq('id',user.id).single();
   if(data){
     const nom=(data.nom||'')+(data.societe?' — '+data.societe:'');
     document.getElementById('am-name').textContent=nom||user.email.split('@')[0];
@@ -727,6 +653,21 @@ async function afterLogin(user){
     document.getElementById('ap-soc').value=data.societe||'';
     document.getElementById('s-nom').value=nom;
     if(data.langue){setLang(data.langue);document.getElementById('ap-lang').value=data.langue;}
+    // Infos légales
+    legalInfo=data;
+    ['siret','tva_intra','adresse_complete','telephone','delai_paiement','penalites_retard','logo_url','mentions_legales'].forEach(k=>{
+      const el=document.getElementById('ap-'+k.replace('_intra','').replace('_complete','').replace('_url','').replace('_retard','').replace('_paiement','').replace('_legales','').replace('tva','tva').replace('adresse','adr').replace('telephone','tel').replace('delai','delai').replace('penalites','penalite').replace('logo','logo').replace('mentions','mentions'));
+      // Map keys to input IDs
+    });
+    // Remplir infos légales manuellement
+    if(data.siret)document.getElementById('ap-siret').value=data.siret;
+    if(data.tva_intra)document.getElementById('ap-tva').value=data.tva_intra;
+    if(data.adresse_complete)document.getElementById('ap-adr').value=data.adresse_complete;
+    if(data.telephone)document.getElementById('ap-tel').value=data.telephone;
+    if(data.delai_paiement)document.getElementById('ap-delai').value=data.delai_paiement;
+    if(data.penalites_retard)document.getElementById('ap-penalite').value=data.penalites_retard;
+    if(data.logo_url)document.getElementById('ap-logo').value=data.logo_url;
+    if(data.mentions_legales)document.getElementById('ap-mentions').value=data.mentions_legales;
   } else {
     document.getElementById('am-name').textContent=user.email.split('@')[0];
     document.getElementById('am-email').textContent=user.email;
@@ -734,45 +675,35 @@ async function afterLogin(user){
   loadCarnet();loadChantiers();
 }
 async function doLogout(){await supa.auth.signOut();location.reload();}
-function showAErr(msg,isErr=true){
-  const el=document.getElementById('aerr');el.textContent=msg;el.style.display='block';
-  el.style.background=isErr?'#fde8e0':'#d4edda';el.style.color=isErr?'#8a3818':'#1a5c28';el.style.borderColor=isErr?'#f0c4b0':'#a8d8b0';
-}
+function showAErr(msg,isErr=true){const el=document.getElementById('aerr');el.textContent=msg;el.style.display='block';el.style.background=isErr?'#fde8e0':'#d4edda';el.style.color=isErr?'#8a3818':'#1a5c28';el.style.borderColor=isErr?'#f0c4b0':'#a8d8b0';}
 supa.auth.getSession().then(({data})=>{if(data.session?.user)afterLogin(data.session.user);});
 
 // ══════════════════════════════════════
-// NAVIGATION avec contrôle unsaved
+// UNSAVED CHANGES
+// ══════════════════════════════════════
+function markDirty(tab){dirtyTabs.add(tab);const idx=['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].indexOf(tab);if(idx>=0)document.querySelectorAll('.tab')[idx]?.classList.add('dirty');}
+function clearDirty(tab){dirtyTabs.delete(tab);const idx=['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].indexOf(tab);if(idx>=0)document.querySelectorAll('.tab')[idx]?.classList.remove('dirty');}
+
+// ══════════════════════════════════════
+// NAVIGATION
 // ══════════════════════════════════════
 function go(name,force=false){
-  const curTab=document.querySelector('.sec.active')?.id?.replace('tab-','');
-  if(!force&&dirtyTabs.has(curTab)&&['setup','vegetaux','comparaison'].includes(curTab)){
-    pendingNav=name;openModal('unsaved-modal');return;
-  }
-  _doNav(name);
+  const cur=document.querySelector('.sec.active')?.id?.replace('tab-','');
+  if(!force&&dirtyTabs.has(cur)&&['setup','vegetaux','comparaison'].includes(cur)){pendingNav=name;openModal('unsaved-modal');return;}
+  _nav(name);
 }
-function _doNav(name){
+function _nav(name){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  ['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].forEach((n,i)=>{
-    if(n===name)document.querySelectorAll('.tab')[i].classList.add('active');
-  });
+  ['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].forEach((n,i)=>{if(n===name)document.querySelectorAll('.tab')[i].classList.add('active');});
   if(name==='envoi')renderEnvoi();
   if(name==='reponses')renderRepSel();
   if(name==='comparaison')renderComp();
   if(name==='commande')renderCmd();
 }
-async function saveAndNav(){
-  closeModal('unsaved-modal');
-  await saveConsultation();
-  if(pendingNav){_doNav(pendingNav);pendingNav=null;}
-}
-function discardAndNav(){
-  closeModal('unsaved-modal');
-  const curTab=document.querySelector('.sec.active')?.id?.replace('tab-','');
-  if(curTab)clearDirty(curTab);
-  if(pendingNav){_doNav(pendingNav);pendingNav=null;}
-}
+async function saveAndNav(){closeModal('unsaved-modal');const cur=document.querySelector('.sec.active')?.id?.replace('tab-','');if(cur==='comparaison')await saveComparatif();else await saveConsultation();if(pendingNav){_nav(pendingNav);pendingNav=null;}}
+function discardAndNav(){closeModal('unsaved-modal');const cur=document.querySelector('.sec.active')?.id?.replace('tab-','');if(cur)clearDirty(cur);if(pendingNav){_nav(pendingNav);pendingNav=null;}}
 
 // ══════════════════════════════════════
 // CHANTIERS
@@ -784,71 +715,67 @@ async function loadChantiers(){
 }
 function renderChantiers(){
   const con=document.getElementById('chantiers-con');
-  const fSt=document.getElementById('f-st')?.value||'';
-  const fSr=(document.getElementById('f-sr')?.value||'').toLowerCase();
-  let list=allChantiers.filter(c=>{
-    if(fSt&&c.statut!==fSt)return false;
-    if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;
-    return true;
-  });
+  const fSt=document.getElementById('f-st')?.value||'';const fSr=(document.getElementById('f-sr')?.value||'').toLowerCase();
+  let list=allChantiers.filter(c=>{if(fSt&&c.statut!==fSt)return false;if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;return true;});
   if(!list.length){con.innerHTML='<div class="empty"><div class="ei">🏗</div><p>Aucune consultation.</p></div>';return;}
-  con.innerHTML=`<div class="chantier-grid">${list.map(c=>`
-    <div class="cc ${currentConsultId===c.id?'active-c':''}">
-      <div class="cc-head"><span class="cc-title">${c.affaire||'Sans nom'}</span>
-        <span class="cc-st st-${c.statut||'brouillon'}">${c.statut||'brouillon'}</span></div>
-      <div class="cc-meta">${c.ville||'—'} · ${c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'—'}</div>
-      <div style="display:flex;gap:6px;margin-top:9px;">
-        <button class="btn btn-p btn-sm" onclick="openChantier('${c.id}')">Ouvrir</button>
-        <button class="btn btn-d btn-sm" onclick="deleteChantier('${c.id}')">✕</button>
-      </div>
-    </div>`).join('')}</div>`;
+  con.innerHTML=`<div class="chgrid">${list.map(c=>`<div class="cc ${currentConsultId===c.id?'active-c':''}">
+    <div class="cc-head"><span class="cc-title">${c.affaire||'Sans nom'}</span><span class="cc-st st-${c.statut||'brouillon'}">${c.statut||'brouillon'}</span></div>
+    <div class="cc-meta">${c.ville||'—'} · ${c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'—'}</div>
+    <div style="display:flex;gap:5px;margin-top:8px;">
+      <button class="btn btn-p btn-sm" onclick="openChantier('${c.id}')">Ouvrir</button>
+      <button class="btn btn-d btn-sm" onclick="deleteChantier('${c.id}')">✕</button>
+    </div></div>`).join('')}</div>`;
 }
 function newConsult(){
   currentConsultId=null;peps=[];vegs=[];prix={};dirtyTabs.clear();
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('dirty'));
   ['s-ville','s-affaire','s-livraison','s-rem'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('s-statut').value='brouillon';
-  document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
-  renderPepList();renderVeg();_doNav('setup');
+  document.getElementById('s-statut').value='brouillon';document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
+  renderPepList();renderVeg();_nav('setup');
 }
 async function openChantier(id){
-  currentConsultId=id;
-  const c=allChantiers.find(x=>x.id===id);
-  if(!c)return;
-  document.getElementById('s-ville').value=c.ville||'';
-  document.getElementById('s-affaire').value=c.affaire||'';
+  currentConsultId=id;const c=allChantiers.find(x=>x.id===id);if(!c)return;
+  document.getElementById('s-ville').value=c.ville||'';document.getElementById('s-affaire').value=c.affaire||'';
   document.getElementById('s-date').value=c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'';
   document.getElementById('s-livraison').value=c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'';
-  document.getElementById('s-rem').value=c.remarques||'';
-  document.getElementById('s-statut').value=c.statut||'brouillon';
+  document.getElementById('s-rem').value=c.remarques||'';document.getElementById('s-statut').value=c.statut||'brouillon';
+  // Charger végétaux
   const{data:vd}=await supa.from('vegetaux').select('*').eq('consultation_id',id).order('ordre');
-  vegs=(vd||[]).map(v=>({...v,variantes:v.variantes||[],prixEtude:v.prix_etude||null}));
+  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude||null,qte:vg.qte}));
+  // Charger prix comparatif depuis Supabase
   prix={};
-  renderVeg();renderPepList();
-  dirtyTabs.clear();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('dirty'));
-  toast('Consultation chargée ✓');_doNav('setup');
+  const{data:cp}=await supa.from('comparatif_prix').select('*,vegetaux(id)').eq('consultation_id',id);
+  const{data:fp}=await supa.from('frais_port').select('*').eq('consultation_id',id);
+  if(fp&&fp.length){prix['port']={};fp.forEach(r=>{const pi=peps.findIndex(p=>p.id===r.pepiniere_id);if(pi>=0)prix['port'][pi]=r.montant;});}
+  if(cp&&cp.length){
+    cp.forEach(r=>{
+      const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
+      const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
+      if(vi<0||pi<0)return;
+      if(!prix[vi])prix[vi]={};
+      prix[vi][pi]={unit:r.prix_unit_ht,nego:r.prix_negocie,qteF:r.qte_finale,variantes:r.variantes||[],log:r.nego_log||[],negoText:r.nego_log?.slice(-1)[0]?.msg||''};
+    });
+  }
+  renderVeg();renderPepList();dirtyTabs.clear();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('dirty'));
+  toast('Consultation chargée ✓');_nav('setup');
 }
 async function deleteChantier(id){
   if(!confirm('Supprimer cette consultation ?'))return;
   await supa.from('consultations').delete().eq('id',id);
-  allChantiers=allChantiers.filter(c=>c.id!==id);
-  if(currentConsultId===id){currentConsultId=null;}
+  allChantiers=allChantiers.filter(c=>c.id!==id);if(currentConsultId===id)currentConsultId=null;
   renderChantiers();toast('Supprimée.');
 }
 
 // ══════════════════════════════════════
-// SAUVEGARDE SUPABASE
+// SAUVEGARDE CONSULTATION
 // ══════════════════════════════════════
 async function saveConsultation(){
   if(!currentUser){toast('Connectez-vous.','error');return;}
   const dl=v('s-livraison');
-  const payload={consultant_id:currentUser.id,ville:v('s-ville'),affaire:v('s-affaire'),
-    date_consult:new Date().toISOString().split('T')[0],
-    date_livraison:dl?parseDate(dl):null,
-    remarques:v('s-rem'),statut:v('s-statut')};
+  const payload={consultant_id:currentUser.id,ville:v('s-ville'),affaire:v('s-affaire'),date_consult:new Date().toISOString().split('T')[0],date_livraison:dl?parseDate(dl):null,remarques:v('s-rem'),statut:v('s-statut')};
   let res;
-  if(currentConsultId){res=await supa.from('consultations').update(payload).eq('id',currentConsultId).select().single();}
-  else{res=await supa.from('consultations').insert(payload).select().single();}
+  if(currentConsultId)res=await supa.from('consultations').update(payload).eq('id',currentConsultId).select().single();
+  else res=await supa.from('consultations').insert(payload).select().single();
   if(res.error){toast('Erreur sauvegarde : '+res.error.message,'error');return;}
   currentConsultId=res.data.id;
   if(vegs.length){
@@ -856,9 +783,41 @@ async function saveConsultation(){
     const vRows=vegs.map((vg,i)=>({consultation_id:currentConsultId,ordre:i,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.conditionnement||null,qte:vg.qte,unite:vg.unite||'U',remarques:vg.remarques||null,variantes:vg.variantes||[],prix_etude:vg.prixEtude||null}));
     await supa.from('vegetaux').insert(vRows);
   }
-  dirtyTabs.clear();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('dirty'));
-  await loadChantiers();toast('Enregistré ✓');
+  clearDirty('setup');clearDirty('vegetaux');await loadChantiers();toast('Enregistré ✓');
 }
+
+// SAUVEGARDE COMPARATIF
+async function saveComparatif(){
+  if(!currentConsultId){toast('Enregistrez d\'abord la consultation (onglet ①)','error');return;}
+  // Recharger les IDs des végétaux depuis Supabase
+  const{data:vd}=await supa.from('vegetaux').select('id,ordre').eq('consultation_id',currentConsultId).order('ordre');
+  if(!vd||!vd.length){toast('Enregistrez d\'abord les végétaux.','error');return;}
+  const vegIds=vd.map(v=>v.id);
+
+  // Sauvegarder frais de port
+  const portData=prix['port']||{};
+  const portRows=peps.map((p,pi)=>({consultation_id:currentConsultId,pepiniere_id:p.id,montant:portData[pi]||0}));
+  if(portRows.length){
+    await supa.from('frais_port').delete().eq('consultation_id',currentConsultId);
+    await supa.from('frais_port').insert(portRows);
+  }
+
+  // Sauvegarder prix
+  const cpRows=[];
+  vegs.forEach((_,vi)=>{
+    if(!vegIds[vi])return;
+    peps.forEach((p,pi)=>{
+      const e=prix[vi]&&prix[vi][pi];if(!e)return;
+      cpRows.push({consultation_id:currentConsultId,vegetal_id:vegIds[vi],pepiniere_id:p.id,prix_unit_ht:e.unit||null,prix_negocie:e.nego||null,qte_finale:e.qteF||null,variantes:e.variantes||[],nego_log:e.log||[]});
+    });
+  });
+  if(cpRows.length){
+    await supa.from('comparatif_prix').delete().eq('consultation_id',currentConsultId);
+    await supa.from('comparatif_prix').insert(cpRows);
+  }
+  clearDirty('comparaison');toast('Comparatif enregistré ✓');
+}
+
 function parseDate(s){const p=s.split('/');if(p.length===3)return`${p[2]}-${p[1]}-${p[0]}`;return s;}
 
 // ══════════════════════════════════════
@@ -868,73 +827,46 @@ async function loadCarnet(){
   if(!currentUser)return;
   document.getElementById('csync').textContent='● Chargement…';document.getElementById('csync').className='sbdg';
   const{data,error}=await supa.from('pepinieres').select('*').eq('consultant_id',currentUser.id).order('nom');
-  if(error){document.getElementById('csync').className='sbdg sbdg-err';document.getElementById('csync').textContent='● Erreur';toast('Erreur carnet','error');return;}
-  carnet=data||[];
-  document.getElementById('csync').className='sbdg sbdg-ok';
-  document.getElementById('csync').textContent='● '+carnet.length+' pépinière(s)';
-  renderCgrid();
+  if(error){document.getElementById('csync').className='sbdg sbdg-err';document.getElementById('csync').textContent='● Erreur';return;}
+  carnet=data||[];document.getElementById('csync').className='sbdg sbdg-ok';document.getElementById('csync').textContent='● '+carnet.length+' pépinière(s)';renderCgrid();
 }
 async function saveNewPep(){
   if(!currentUser){toast('Connectez-vous.','error');return;}
-  const nom=document.getElementById('np-nom').value.trim();
-  if(!nom){alert('Nom requis.');return;}
-  // Déduplication : chercher si cette pépinière existe déjà
+  const nom=document.getElementById('np-nom').value.trim();if(!nom){alert('Nom requis.');return;}
   const email=document.getElementById('np-email').value.trim();
-  if(email){
-    const{data:exist}=await supa.from('pepinieres').select('*').eq('email',email).neq('consultant_id',currentUser.id).limit(1);
-    if(exist&&exist.length>0){
-      const p=exist[0];
-      if(confirm(`Une pépinière "${p.nom}" avec cet email existe déjà dans la base.\nVoulez-vous lier cette pépinière existante plutôt qu'en créer une nouvelle ?`)){
-        peps.push({...p});renderPepList();
-        document.getElementById('npanel').style.display='none';
-        ['np-nom','np-email','np-tel','np-adr','np-notes'].forEach(id=>document.getElementById(id).value='');
-        return;
-      }
-    }
+  if(email){const{data:ex}=await supa.from('pepinieres').select('*').eq('email',email).neq('consultant_id',currentUser.id).limit(1);
+    if(ex&&ex.length>0){if(confirm(`Une pépinière "${ex[0].nom}" avec cet email existe déjà.\nVoulez-vous lier cette pépinière existante ?`)){peps.push({...ex[0]});renderPepList();document.getElementById('npanel').style.display='none';['np-nom','np-email','np-tel','np-adr','np-notes'].forEach(id=>document.getElementById(id).value='');return;}}
   }
   const payload={consultant_id:currentUser.id,nom,email,tel:document.getElementById('np-tel').value.trim(),adresse:document.getElementById('np-adr').value.trim(),notes:document.getElementById('np-notes').value.trim(),langue:document.getElementById('np-lang').value};
   const{data,error}=await supa.from('pepinieres').insert(payload).select().single();
   if(error){toast('Erreur : '+error.message,'error');return;}
-  carnet.push(data);
-  if(!document.getElementById('np-only').checked&&peps.length<6)peps.push({...data});
+  carnet.push(data);if(!document.getElementById('np-only').checked&&peps.length<6)peps.push({...data});
   ['np-nom','np-email','np-tel','np-adr','np-notes'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('np-only').checked=false;
-  document.getElementById('npanel').style.display='none';
+  document.getElementById('np-only').checked=false;document.getElementById('npanel').style.display='none';
   renderPepList();renderCgrid();toast('Pépinière enregistrée ✓');
 }
-async function delFromCarnet(e,id){
-  e.stopPropagation();if(!confirm('Supprimer du carnet ?'))return;
-  const{error}=await supa.from('pepinieres').delete().eq('id',id);
-  if(error){toast('Erreur','error');return;}
-  carnet=carnet.filter(c=>c.id!==id);cSel.clear();renderCgrid();
-}
+async function delFromCarnet(e,id){e.stopPropagation();if(!confirm('Supprimer du carnet ?'))return;const{error}=await supa.from('pepinieres').delete().eq('id',id);if(error){toast('Erreur','error');return;}carnet=carnet.filter(c=>c.id!==id);cSel.clear();renderCgrid();}
 function renderCgrid(){
   const g=document.getElementById('cgrid'),e=document.getElementById('cempty'),b=document.getElementById('btn-carnet');
   const usedIds=peps.map(p=>p.id);const avail=carnet.filter(c=>!usedIds.includes(c.id));
   if(!avail.length){g.innerHTML='';e.style.display='block';b.style.display='none';return;}
   e.style.display='none';
+  const flags={'fr':'🇫🇷','en':'🇬🇧','es':'🇪🇸','ca':'🏴','nl':'🇳🇱','de':'🇩🇪','it':'🇮🇹'};
   g.innerHTML=avail.map((c,ai)=>`<div class="ccard ${cSel.has(ai)?'sel':''}" onclick="tglSel(${ai})">
     <button class="cdel" onclick="delFromCarnet(event,'${c.id}')">✕</button>
-    <div class="cn">${c.nom}</div>
-    <div class="cm">${c.email||''}${c.tel?' · '+c.tel:''}</div>
-    ${c.langue?`<div class="cm">${{'fr':'🇫🇷','en':'🇬🇧','es':'🇪🇸','ca':'🏴','nl':'🇳🇱','de':'🇩🇪','it':'🇮🇹'}[c.langue]||''} ${c.langue.toUpperCase()}</div>`:''}
-    ${c.notes?`<div style="font-size:.62rem;color:var(--earth);margin-top:2px;font-style:italic;">${c.notes}</div>`:''}
+    <div class="cn">${c.nom}</div><div class="cm">${c.email||''}${c.tel?' · '+c.tel:''}</div>
+    ${c.langue?`<div class="cm">${flags[c.langue]||''}</div>`:''}
+    ${c.notes?`<div style="font-size:.6rem;color:var(--earth);margin-top:2px;font-style:italic;">${c.notes}</div>`:''}
     <div class="chk">✓</div></div>`).join('');
   b.style.display=cSel.size>0?'inline-flex':'none';
 }
 function tglSel(ai){if(cSel.has(ai))cSel.delete(ai);else cSel.add(ai);renderCgrid();}
 function tglNP(){const p=document.getElementById('npanel');p.style.display=p.style.display==='block'?'none':'block';}
-function addFromCarnet(){
-  const usedIds=peps.map(p=>p.id);const avail=carnet.filter(c=>!usedIds.includes(c.id));
-  cSel.forEach(ai=>{if(peps.length<6&&avail[ai])peps.push({...avail[ai]});});
-  cSel.clear();renderPepList();renderCgrid();
-}
+function addFromCarnet(){const usedIds=peps.map(p=>p.id);const avail=carnet.filter(c=>!usedIds.includes(c.id));cSel.forEach(ai=>{if(peps.length<6&&avail[ai])peps.push({...avail[ai]});});cSel.clear();renderPepList();renderCgrid();}
 function renderPepList(){
   document.getElementById('pep-bdg').textContent=peps.length+'/6';
-  document.getElementById('pep-list').innerHTML=peps.map((p,i)=>`
-    <div class="pep-item"><span class="dot" style="background:${C[i]}"></span>
-    <span class="pep-name">${p.nom}</span>
-    <span class="pep-meta">${p.email||''}${p.tel?' · '+p.tel:''}</span>
+  document.getElementById('pep-list').innerHTML=peps.map((p,i)=>`<div class="pep-item"><span class="dot" style="background:${C[i]}"></span>
+    <span class="pep-name">${p.nom}</span><span class="pep-meta">${p.email||''}${p.tel?' · '+p.tel:''}</span>
     <span class="db-bdg">supabase</span>
     <button class="btn btn-d btn-sm" onclick="rmPep(${i})" style="margin-left:auto;">✕</button></div>`).join('');
   renderCgrid();
@@ -944,61 +876,46 @@ function rmPep(i){peps.splice(i,1);renderPepList();}
 // ══════════════════════════════════════
 // VÉGÉTAUX
 // ══════════════════════════════════════
+function normCond(s){if(!s)return'';const t=s.toUpperCase().trim();if(t==='MG'||t.includes('MOTTE GRILL'))return'MG';if(t==='RN'||t.includes('RACINE NUE'))return'RN';if(t==='AP'||t.includes('AIRPOT'))return'AP';if(/^CT$|^CONTENEUR$|^CONT$/.test(t))return'CT';if(/^C(\d+)L?$/.test(t)){const m=t.match(/^C(\d+)/);return m?`C${m[1]}`:'CT';}return s.trim();}
 function addVegManual(){
-  const lat=v('v-lat'),qty=parseInt(v('v-qty'))||0;
-  if(!lat||!qty){alert('Nom latin et quantité requis.');return;}
+  const lat=v('v-lat'),qty=parseInt(v('v-qty'))||0;if(!lat||!qty){alert('Nom latin et quantité requis.');return;}
   vegs.push({latin:lat,calibre:v('v-cal'),conditionnement:normCond(v('v-cond')),qte:qty,unite:v('v-unite')||'U',remarques:v('v-rem'),variantes:[],prixEtude:parseFloat(v('v-pe'))||null});
   ['v-lat','v-cal','v-cond','v-qty','v-unite','v-pe','v-rem'].forEach(id=>document.getElementById(id).value='');
   renderVeg();markDirty('vegetaux');
 }
-function rmVeg(i){
-  vegs.splice(i,1);
-  const np={};Object.keys(prix).forEach(k=>{const ik=parseInt(k);if(ik!==i)np[ik>i?ik-1:ik]=prix[k];});
-  prix=np;renderVeg();markDirty('vegetaux');
-}
-function normCond(s){
-  if(!s)return'';const t=s.toUpperCase().trim();
-  if(t==='MG'||t.includes('MOTTE GRILL'))return'MG';
-  if(t==='RN'||t.includes('RACINE NUE'))return'RN';
-  if(t==='AP'||t.includes('AIRPOT'))return'AP';
-  if(/^CT$|^CONTENEUR$|^CONT$/.test(t))return'CT';
-  if(/^C(\d+)L?$/.test(t)){const m=t.match(/^C(\d+)/);return m?`C${m[1]}`:'CT';}
-  return s.trim();
-}
+function rmVeg(i){vegs.splice(i,1);const np={};Object.keys(prix).forEach(k=>{const ik=parseInt(k);if(ik!==i)np[ik>i?ik-1:ik]=prix[k];});prix=np;renderVeg();markDirty('vegetaux');}
 function renderVeg(){
   document.getElementById('vbdg').textContent=vegs.length+' végétal(ux)';
   const c=document.getElementById('vcon');
   if(!vegs.length){c.innerHTML=`<div class="empty"><div class="ei">🌿</div><p>${T('noVeg')}</p></div>`;return;}
-  c.innerHTML=`<div class="vhdr vg7"><div>Nom latin</div><div>${T('calibre')}</div><div>${T('contenant')}</div><div>Qté</div><div>Unité</div><div>${T('studyP')}</div><div></div></div>
-    ${vegs.map((vg,i)=>`<div class="vrow vg7">
-      <div><span class="vnum">${String(i+1).padStart(2,'0')}.</span> <em>${vg.latin}</em>${vg.variantes?.length?`<span style="font-size:.6rem;background:var(--earth-l);padding:1px 5px;border-radius:20px;margin-left:4px;">${vg.variantes.length}v</span>`:''}</div>
-      <div style="font-family:var(--mono);font-size:.72rem;">${vg.calibre||'—'}</div>
-      <div style="font-size:.72rem;">${vg.conditionnement||'—'}</div>
+  c.innerHTML=`<div class="vhdr vg8"><div>Nom latin</div><div>${T('calibre')}</div><div>${T('contenant')}</div><div>Qté</div><div>Unité</div><div>${T('studyP')}</div><div>Rem.</div><div></div></div>
+    ${vegs.map((vg,i)=>`<div class="vrow vg8">
+      <div><span class="vnum">${String(i+1).padStart(2,'0')}.</span> <em>${vg.latin}</em>${vg.variantes?.length?`<span style="font-size:.58rem;background:var(--earth-l);padding:1px 4px;border-radius:20px;margin-left:3px;">${vg.variantes.length}v</span>`:''}</div>
+      <div style="font-family:var(--mono);font-size:.7rem;">${vg.calibre||'—'}</div>
+      <div style="font-size:.7rem;">${vg.conditionnement||'—'}</div>
       <div style="font-family:var(--mono);font-weight:500;">${vg.qte}</div>
-      <div style="font-size:.72rem;">${vg.unite||'U'}</div>
-      <div style="font-family:var(--mono);font-size:.72rem;">${vg.prixEtude?fmt(vg.prixEtude)+' €':'—'}</div>
-      <div style="display:flex;gap:3px;">
-        <button class="btn btn-g btn-sm" onclick="openVarModal(${i})">🔀</button>
-        <button class="btn btn-d btn-sm" onclick="rmVeg(${i})">✕</button>
-      </div></div>`).join('')}`;
+      <div style="font-size:.7rem;">${vg.unite||'U'}</div>
+      <div style="font-family:var(--mono);font-size:.7rem;">${vg.prixEtude?fmt(vg.prixEtude)+' €':'—'}</div>
+      <div style="font-size:.68rem;color:var(--sage);">${vg.remarques||'—'}</div>
+      <div style="display:flex;gap:2px;"><button class="btn btn-g btn-sm" onclick="openVarModal(${i})">🔀</button><button class="btn btn-d btn-sm" onclick="rmVeg(${i})">✕</button></div>
+    </div>`).join('')}`;
 }
-
 function openVarModal(vi){
   const vg=vegs[vi];
   document.getElementById('var-modal-con').innerHTML=`
-    <p style="font-size:.76rem;color:var(--sage);margin-bottom:10px;"><em>${vg.latin}</em> — Calibre: ${vg.calibre||'?'} — Contenant: ${vg.conditionnement||'?'} — Qté ${vg.qte}</p>
-    ${(vg.variantes||[]).map((vr,ri)=>`<div style="background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:8px 10px;margin-top:6px;">
-      <div style="font-family:var(--mono);font-size:.58rem;color:var(--sage);margin-bottom:5px;">↳ Variante ${ri+1}</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px;">
-        <div><label>Nom latin alt.</label><input type="text" value="${vr.latin||''}" placeholder="${vg.latin}" onchange="vegs[${vi}].variantes[${ri}].latin=this.value;markDirty('vegetaux')"></div>
-        <div><label>Calibre alt.</label><input type="text" value="${vr.calibre||''}" placeholder="${vg.calibre||'?'}" onchange="vegs[${vi}].variantes[${ri}].calibre=this.value;markDirty('vegetaux')"></div>
-        <div><label>Contenant alt.</label><input type="text" value="${vr.conditionnement||''}" placeholder="${vg.conditionnement||'?'}" onchange="vegs[${vi}].variantes[${ri}].conditionnement=normCond(this.value);markDirty('vegetaux')"></div>
+    <p style="font-size:.74rem;color:var(--sage);margin-bottom:9px;"><em>${vg.latin}</em> — Cal: ${vg.calibre||'?'} — Cont: ${vg.conditionnement||'?'} — Qté ${vg.qte}</p>
+    ${(vg.variantes||[]).map((vr,ri)=>`<div style="background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:7px 9px;margin-top:5px;">
+      <div style="font-family:var(--mono);font-size:.56rem;color:var(--sage);margin-bottom:4px;">↳ Variante ${ri+1}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;">
+        <div><label>Nom latin alt.</label><input type="text" value="${vr.latin||''}" placeholder="${vg.latin}" onchange="vegs[${vi}].variantes[${ri}].latin=this.value"></div>
+        <div><label>Calibre alt.</label><input type="text" value="${vr.calibre||''}" placeholder="${vg.calibre||'?'}" onchange="vegs[${vi}].variantes[${ri}].calibre=this.value"></div>
+        <div><label>Contenant alt.</label><input type="text" value="${vr.conditionnement||''}" placeholder="${vg.conditionnement||'?'}" onchange="vegs[${vi}].variantes[${ri}].conditionnement=normCond(this.value)"></div>
         <div><label>Unité alt.</label><input type="text" value="${vr.unite||''}" placeholder="${vg.unite||'U'}" onchange="vegs[${vi}].variantes[${ri}].unite=this.value"></div>
       </div>
-      <button class="btn btn-d btn-sm" style="margin-top:5px;" onclick="rmVar(${vi},${ri})">Supprimer</button>
+      <button class="btn btn-d btn-sm" style="margin-top:4px;" onclick="rmVar(${vi},${ri})">Supprimer</button>
     </div>`).join('')}
-    <button class="btn btn-p btn-sm" style="margin-top:8px;" onclick="addVar(${vi})">＋ Ajouter variante</button>
-    <div style="margin-top:13px;"><button class="btn btn-ok btn-sm" onclick="closeModal('var-modal');renderVeg();">Fermer</button></div>`;
+    <button class="btn btn-p btn-sm" style="margin-top:7px;" onclick="addVar(${vi})">＋ Ajouter variante</button>
+    <div style="margin-top:12px;"><button class="btn btn-ok btn-sm" onclick="closeModal('var-modal');renderVeg();markDirty('vegetaux');">Fermer &amp; enregistrer</button></div>`;
   openModal('var-modal');
 }
 function addVar(vi){vegs[vi].variantes=vegs[vi].variantes||[];vegs[vi].variantes.push({latin:'',calibre:'',conditionnement:'',unite:''});openVarModal(vi);}
@@ -1009,148 +926,70 @@ function rmVar(vi,ri){vegs[vi].variantes.splice(ri,1);openVarModal(vi);}
 // ══════════════════════════════════════
 function onDrop(ev){ev.preventDefault();document.getElementById('dz').classList.remove('dragover');const f=ev.dataTransfer.files[0];if(f)procFile(f);}
 function onFS(inp){if(inp.files[0])procFile(inp.files[0]);inp.value='';}
-
 async function procFile(file){
-  const ext=file.name.split('.').pop().toLowerCase();
-  showSt('<div class="aibox"><div class="spin"></div>Lecture du fichier…</div>');
-  try{
-    if(ext==='pdf')await impPDF(file);
-    else if(IMAGE_EXT.includes(ext))await impImg(file,ext);
-    else await impTabular(file,ext);
-  }catch(e){showSt(`<div style="color:var(--rust);padding:10px;font-size:.78rem;border:1px solid #f0c4b0;border-radius:7px;background:#fde8e0;">⚠️ ${e.message}</div>`);}
+  const ext=file.name.split('.').pop().toLowerCase();showSt('<div class="aibox"><div class="spin"></div>Lecture…</div>');
+  try{if(ext==='pdf')await impPDF(file);else if(IMAGE_EXT.includes(ext))await impImg(file,ext);else await impTabular(file,ext);}
+  catch(e){showSt(`<div style="color:var(--rust);padding:9px;font-size:.76rem;border:1px solid #f0c4b0;border-radius:7px;background:#fde8e0;">⚠️ ${e.message}</div>`);}
 }
-
 async function impTabular(file,ext){
   let rows=[];
   if(['csv','txt','tsv'].includes(ext)){rows=parseCSVAuto(await file.text());}
   else{const buf=await file.arrayBuffer();const wb=XLSX.read(buf,{type:'array',cellDates:true});const ws=wb.Sheets[wb.SheetNames[0]];rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false});}
   rows=rows.map(r=>r.map(c=>String(c??'').trim())).filter(r=>r.some(c=>c!==''));
-  if(!rows.length)throw new Error('Fichier vide ou illisible.');
+  if(!rows.length)throw new Error('Fichier vide.');
   const{hi,hasH}=detectHdr(rows);
   iCols=hasH?rows[hi].map(c=>String(c).trim()):Array.from({length:Math.max(...rows.map(r=>r.length))},(_,i)=>`Col_${String.fromCharCode(65+i)}`);
   iRows=(hasH?rows.slice(hi+1):rows).filter(r=>r.some(c=>c!==''));
-  showSt('<div class="aibox"><div class="spin"></div>Analyse IA des colonnes…</div>');
-  await detectCols();
+  showSt('<div class="aibox"><div class="spin"></div>Analyse IA…</div>');await detectCols();
 }
 async function impPDF(file){
-  const b64=await toB64(file);
-  showSt('<div class="aibox"><div class="spin"></div>Extraction IA du PDF…</div>');
-  const res=await callClaude([{role:'user',content:[{type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},{type:'text',text:`Extrais le tableau de végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}`}]}],2500);
+  const b64=await toB64(file);showSt('<div class="aibox"><div class="spin"></div>Extraction PDF…</div>');
+  const res=await callClaude([{role:'user',content:[{type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},{type:'text',text:'Extrais le tableau de végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}'  }]}],2500);
   let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Tableau illisible dans ce PDF.');}
-  if(!p.lignes?.length)throw new Error('Aucune donnée trouvée.');
-  iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));
-  await detectCols();
+  if(!p.lignes?.length)throw new Error('Aucune donnée.');
+  iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));showSt('<div class="aibox"><div class="spin"></div>Analyse…</div>');await detectCols();
 }
 async function impImg(file,ext){
   const b64=await toB64(file);const mt=ext==='jpg'?'image/jpeg':`image/${ext}`;
-  showSt('<div class="aibox"><div class="spin"></div>Lecture OCR…</div>');
-  const res=await callClaude([{role:'user',content:[{type:'image',source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:`Extrais la liste de végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}`}]}],2500);
+  showSt('<div class="aibox"><div class="spin"></div>OCR…</div>');
+  const res=await callClaude([{role:'user',content:[{type:'image',source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:'Extrais la liste de végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}'  }]}],2500);
   let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Données illisibles.');}
   if(!p.lignes?.length)throw new Error('Aucune donnée lisible.');
-  iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));
-  await detectCols();
+  iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));showSt('<div class="aibox"><div class="spin"></div>Analyse…</div>');await detectCols();
 }
-function parseCSVAuto(text){
-  const lines=text.split(/\r?\n/).filter(l=>l.trim());if(!lines.length)return[];
-  const seps=[';',',','\t'];const counts=seps.map(s=>lines[0].split(s).length);
-  const sep=seps[counts.indexOf(Math.max(...counts))];
-  return lines.map(l=>{const cells=[];let cur='',inQ=false;for(let i=0;i<l.length;i++){if(l[i]==='"'){inQ=!inQ;}else if(l[i]===sep&&!inQ){cells.push(cur.trim());cur='';}else cur+=l[i];}cells.push(cur.trim());return cells;});
-}
-function detectHdr(rows){
-  let bi=0,bs=-1;
-  rows.slice(0,8).forEach((r,i)=>{const ne=r.filter(c=>c!=='');if(!ne.length)return;const sc=(ne.filter(c=>isNaN(parseFloat(c))).length/ne.length)*10+ne.length;if(sc>bs){bs=sc;bi=i;}});
-  const nr=rows[bi].filter(c=>c!==''&&!isNaN(parseFloat(c))).length/Math.max(rows[bi].filter(c=>c!=='').length,1);
-  return{hi:bi,hasH:nr<0.5};
-}
-
+function parseCSVAuto(text){const lines=text.split(/\r?\n/).filter(l=>l.trim());if(!lines.length)return[];const seps=[';',',','\t'];const counts=seps.map(s=>lines[0].split(s).length);const sep=seps[counts.indexOf(Math.max(...counts))];return lines.map(l=>{const cells=[];let cur='',inQ=false;for(let i=0;i<l.length;i++){if(l[i]==='"'){inQ=!inQ;}else if(l[i]===sep&&!inQ){cells.push(cur.trim());cur='';}else cur+=l[i];}cells.push(cur.trim());return cells;});}
+function detectHdr(rows){let bi=0,bs=-1;rows.slice(0,8).forEach((r,i)=>{const ne=r.filter(c=>c!=='');if(!ne.length)return;const sc=(ne.filter(c=>isNaN(parseFloat(c))).length/ne.length)*10+ne.length;if(sc>bs){bs=sc;bi=i;}});const nr=rows[bi].filter(c=>c!==''&&!isNaN(parseFloat(c))).length/Math.max(rows[bi].filter(c=>c!=='').length,1);return{hi:bi,hasH:nr<0.5};}
 async function detectCols(){
-  const res=await callClaude([{role:'user',content:`Tu analyses un tableau de végétaux pour paysagiste/bureau d'études.
-Colonnes: ${JSON.stringify(iCols)}
-Données exemples (5 lignes): ${JSON.stringify(iRows.slice(0,5))}
-
-RÈGLES IMPORTANTES:
-- "calibre" = TAILLE de la plante: 12/14, 16/18, 30/35, 60-80cm, H150, Tour 6/8. Format: chiffre/chiffre ou chiffre-chiffrecm
-- "contenant" = MODE DE CULTURE: MG (Motte Grillagée), RN (Racine Nue), AP (Airpot), CT (Conteneur), C2/C3/C35 (Conteneur en litres). Commence souvent par C suivi d'un nombre
-- Ne JAMAIS confondre calibre et contenant. C35 = contenant 35L, PAS un calibre.
-- Si une colonne contient les deux mélangés, mettre "mixed":true
-
-Donne l'index (0-based) ou null pour: latin, calibre, contenant, qte, unite, prixEtude, remarques.
-JSON uniquement: {"latin":X,"calibre":X,"contenant":X,"qte":X,"unite":X,"prixEtude":X,"remarques":X,"mixed":false}`}],400);
+  const res=await callClaude([{role:'user',content:`Tableau végétaux paysagiste. Colonnes: ${JSON.stringify(iCols)}\nDonnées (5 lignes): ${JSON.stringify(iRows.slice(0,5))}\nRÈGLES: calibre=taille (12/14, 16/18, 60-80cm, H150). contenant=mode culture (MG, RN, AP, CT, C2, C3, C35). C+nombre=contenant JAMAIS calibre.\nJSON: {"latin":X,"calibre":X,"contenant":X,"qte":X,"unite":X,"prixEtude":X,"remarques":X,"mixed":false}`}],350);
   try{iMap=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){iMap={};}
   clearSt();renderMapping();renderPreview();
 }
-
 function renderMapping(){
-  const fields=[
-    {k:'latin',l:'Désignation (nom latin) *'},
-    {k:'calibre',l:'Calibre / Taille (12/14, 60-80cm…)'},
-    {k:'contenant',l:'Contenant (MG, RN, C35, AP…)'},
-    {k:'qte',l:'Quantité *'},
-    {k:'unite',l:'Unité'},
-    {k:'prixEtude',l:'Prix étude HT (€)'},
-    {k:'remarques',l:'Remarques'}
-  ];
-  const opts='<option value="">— Ignorer —</option>'+iCols.map((c,i)=>`<option value="${i}">${i} — ${c}</option>`).join('');
-  const mixWarn=iMap.mixed?`<div style="background:#fdecd4;border:1px solid #f0cc90;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:.74rem;color:#7a4a10;">
-    ⚠️ Colonne mixte détectée — L'IA va séparer automatiquement désignation / calibre / contenant.</div>`:'';
-  document.getElementById('msec').innerHTML=mixWarn+`<p style="font-family:var(--serif);font-size:.96rem;color:var(--sage-d);margin-bottom:3px;">Correspondance des colonnes</p>
-    <p style="font-size:.72rem;color:var(--sage);margin-bottom:8px;">Vérifiez et ajustez si besoin.</p>
+  const fields=[{k:'latin',l:'Désignation *'},{k:'calibre',l:'Calibre/Taille'},{k:'contenant',l:'Contenant (MG,RN,C35…)'},{k:'qte',l:'Quantité *'},{k:'unite',l:'Unité'},{k:'prixEtude',l:'Prix étude HT'},{k:'remarques',l:'Remarques'}];
+  const opts='<option value="">— Ignorer —</option>'+iCols.map((c,i)=>`<option value="${i}">${i}—${c}</option>`).join('');
+  const mw=iMap.mixed?`<div style="background:#fdecd4;border:1px solid #f0cc90;border-radius:6px;padding:7px 11px;margin-bottom:9px;font-size:.72rem;color:#7a4a10;">⚠️ Colonne mixte — séparation IA automatique.</div>`:'';
+  document.getElementById('msec').innerHTML=mw+`<p style="font-family:var(--serif);font-size:.94rem;color:var(--sage-d);margin-bottom:3px;">Correspondance</p>
     <table class="mtbl"><thead><tr><th>Champ</th><th>Colonne IA</th><th>Corriger</th></tr></thead><tbody>
-    ${fields.map(f=>`<tr><td style="font-family:var(--mono);font-size:.65rem;">${f.l}</td>
+    ${fields.map(f=>`<tr><td style="font-family:var(--mono);font-size:.63rem;">${f.l}</td>
     <td style="color:var(--sage-d);font-weight:500;">${iMap[f.k]!=null?(iCols[iMap[f.k]]||`Col.${iMap[f.k]}`):'<span style="color:#aaa">—</span>'}</td>
     <td><select id="mp-${f.k}" onchange="iMap['${f.k}']=this.value===''?null:parseInt(this.value)">${opts}</select></td></tr>`).join('')}
     </tbody></table>
-    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn-p" onclick="applyImport()">✓ Importer</button>
-      <button class="btn btn-g btn-sm" onclick="cancelImport()">Annuler</button>
-    </div>`;
+    <div style="margin-top:9px;display:flex;gap:7px;"><button class="btn btn-p" onclick="applyImport()">✓ Importer</button><button class="btn btn-g btn-sm" onclick="cancelImport()">Annuler</button></div>`;
   document.getElementById('msec').style.display='block';
   fields.forEach(f=>{const s=document.getElementById('mp-'+f.k);if(s&&iMap[f.k]!=null)s.value=String(iMap[f.k]);});
 }
-function renderPreview(){
-  const max=Math.min(iRows.length,8);
-  document.getElementById('ptbl').innerHTML=`<thead><tr>${iCols.map((c,i)=>`<th>${i}—${c}</th>`).join('')}</tr></thead><tbody>${iRows.slice(0,max).map(r=>`<tr>${iCols.map((_,i)=>`<td>${r[i]??''}</td>`).join('')}</tr>`).join('')}</tbody>`;
-  document.getElementById('psec').style.display='block';
-}
-
+function renderPreview(){const max=Math.min(iRows.length,8);document.getElementById('ptbl').innerHTML=`<thead><tr>${iCols.map((c,i)=>`<th>${i}—${c}</th>`).join('')}</tr></thead><tbody>${iRows.slice(0,max).map(r=>`<tr>${iCols.map((_,i)=>`<td>${r[i]??''}</td>`).join('')}</tr>`).join('')}</tbody>`;document.getElementById('psec').style.display='block';}
 async function parseDesigMixte(rows){
-  showSt('<div class="aibox"><div class="spin"></div>Séparation désignation / calibre / contenant…</div>');
-  const parseB=async(batch)=>{
-    const res=await callClaude([{role:'user',content:`Expert végétaux paysagiste. Sépare chaque désignation en 3 parties.
-
-RÈGLES STRICTES:
-- "d" = nom latin + cultivar UNIQUEMENT (ex: "Acer platanoides 'Crimson King'", "Betula pendula")
-- "t" = calibre/taille UNIQUEMENT: chiffre/chiffre (ex: 12/14, 16/18), ou chiffre-chiffrecm, ou H+chiffre, ou Tour+chiffre/chiffre. JAMAIS C+chiffre.
-- "c" = contenant NORMALISÉ: MG, RN, AP, CT, C2, C3, C35, C40... (C+nombre = conteneur en litres). JAMAIS un calibre.
-
-EXEMPLES:
-"Acer platanoides 12/14 MG" → {"d":"Acer platanoides","t":"12/14","c":"MG"}
-"Betula pendula 'Youngii' 60-80 RN" → {"d":"Betula pendula 'Youngii'","t":"60-80","c":"RN"}
-"Rosa 'The Fairy' C35" → {"d":"Rosa 'The Fairy'","t":"","c":"C35"}
-"Taxus baccata 40/60cm Airpot" → {"d":"Taxus baccata","t":"40/60cm","c":"AP"}
-"Quercus robur 16/18 C40L" → {"d":"Quercus robur","t":"16/18","c":"C40"}
-"Prunus laurocerasus 60/80 CT" → {"d":"Prunus laurocerasus","t":"60/80","c":"CT"}
-
-DONNÉES: ${JSON.stringify(batch)}
-JSON uniquement, même longueur: [{"d":"...","t":"...","c":"..."},...]`}],2000);
-    let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){return batch.map(s=>({d:String(s),t:'',c:''}));}
-    return p;
-  };
-  let all=[];
-  for(let i=0;i<rows.length;i+=60){all=[...all,...(await parseB(rows.slice(i,i+60)))];}
-  return all;
+  showSt('<div class="aibox"><div class="spin"></div>Séparation désignation/calibre/contenant…</div>');
+  const parseB=async(b)=>{const res=await callClaude([{role:'user',content:`Expert végétaux. Sépare chaque désignation. RÈGLES: d=nom latin+cultivar uniquement. t=calibre/taille (chiffre/chiffre, chiffre-chiffrecm, H+nb). c=contenant normalisé (MG,RN,AP,CT,C2,C3,C35...). JAMAIS confondre: C35=contenant, 12/14=calibre.\nEX: "Acer platanoides 12/14 MG"→{"d":"Acer platanoides","t":"12/14","c":"MG"}\n"Rosa 'Fairy' C35"→{"d":"Rosa 'Fairy'","t":"","c":"C35"}\n"Quercus 16/18 C40L"→{"d":"Quercus robur","t":"16/18","c":"C40"}\nDATAS: ${JSON.stringify(b)}\nJSON uniquement: [{"d":"...","t":"...","c":"..."},...]`}],1800);let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){return b.map(s=>({d:String(s),t:'',c:''}));}return p;};
+  let all=[];for(let i=0;i<rows.length;i+=60)all=[...all,...(await parseB(rows.slice(i,i+60)))];return all;
 }
-
 async function applyImport(){
   if(iMap['latin']==null){alert('Colonne Désignation obligatoire.');return;}
-  showSt('<div class="aibox"><div class="spin"></div>Import en cours…</div>');
-  let n=0,sk=0;
+  showSt('<div class="aibox"><div class="spin"></div>Import…</div>');
   const rawDesig=iRows.map(r=>String(r[iMap['latin']]??'').trim());
-  let parsed=null;
-  if(iMap.mixed||(iMap['calibre']==null&&iMap['contenant']==null)){
-    try{parsed=await parseDesigMixte(rawDesig);}catch(e){parsed=null;}
-  }
-  let pi=0;
+  let parsed=null;if(iMap.mixed||(iMap['calibre']==null&&iMap['contenant']==null)){try{parsed=await parseDesigMixte(rawDesig);}catch(e){parsed=null;}}
+  let n=0,sk=0,pi=0;
   iRows.forEach(r=>{
     const raw=String(r[iMap['latin']]??'').trim();
     if(!raw||raw.toLowerCase().startsWith('total')||(!isNaN(parseFloat(raw))&&raw.length<5)){sk++;pi++;return;}
@@ -1158,14 +997,12 @@ async function applyImport(){
     if(parsed&&parsed[pi]){lat=parsed[pi].d||raw;cal=parsed[pi].t||'';cond=normCond(parsed[pi].c||'');}
     else{cal=iMap['calibre']!=null?String(r[iMap['calibre']]??'').trim():'';cond=normCond(iMap['contenant']!=null?String(r[iMap['contenant']]??'').trim():'');}
     const qty=iMap['qte']!=null?parseInt(String(r[iMap['qte']]).replace(/\s/g,''))||1:1;
-    const unite=iMap['unite']!=null?String(r[iMap['unite']]??'').trim()||'U':'U';
     const pe=iMap['prixEtude']!=null?parseFloat(String(r[iMap['prixEtude']]).replace(',','.'))||null:null;
-    const rem=iMap['remarques']!=null?String(r[iMap['remarques']]??'').trim():'';
-    vegs.push({latin:lat,calibre:cal,conditionnement:cond,qte:qty,unite,remarques:rem,variantes:[],prixEtude:pe});
+    vegs.push({latin:lat,calibre:cal,conditionnement:cond,qte:qty,unite:iMap['unite']!=null?String(r[iMap['unite']]??'').trim()||'U':'U',remarques:iMap['remarques']!=null?String(r[iMap['remarques']]??'').trim():'',variantes:[],prixEtude:pe});
     n++;pi++;
   });
   cancelImport();renderVeg();markDirty('vegetaux');
-  showSt(`<div style="background:#d4edda;border:1px solid #a8d8b0;border-radius:7px;padding:9px 13px;color:#1a5c28;font-size:.78rem;">✓ ${n} ${T('imported')}${sk?` (${sk} ignorée(s))`:''}</div>`);
+  showSt(`<div style="background:#d4edda;border:1px solid #a8d8b0;border-radius:7px;padding:8px 12px;color:#1a5c28;font-size:.76rem;">✓ ${n} ${T('imported')}${sk?` (${sk} ignorée(s))`:''}</div>`);
   setTimeout(clearSt,6000);
 }
 function cancelImport(){iRows=[];iCols=[];iMap={};document.getElementById('msec').style.display='none';document.getElementById('psec').style.display='none';}
@@ -1177,83 +1014,61 @@ function clearSt(){document.getElementById('istatus').style.display='none';}
 // ══════════════════════════════════════
 function renderEnvoi(){
   const con=document.getElementById('envoi-con');
-  if(!vegs.length||!peps.length){con.innerHTML='<div class="empty"><div class="ei">📧</div><p>Ajoutez végétaux &amp; pépinières d\'abord.</p></div>';return;}
+  if(!vegs.length||!peps.length){con.innerHTML='<div class="empty"><div class="ei">📧</div><p>Ajoutez végétaux &amp; pépinières.</p></div>';return;}
   const ville=v('s-ville'),affaire=v('s-affaire'),dateC=v('s-date');
-  con.innerHTML=`<div style="margin-bottom:13px;"><button class="btn btn-s" onclick="dlConsultXLSX()">⬇ Fichier Excel de consultation</button></div>
+  con.innerHTML=`<div style="margin-bottom:12px;"><button class="btn btn-s" onclick="dlConsultXLSX()">⬇ Fichier Excel de consultation</button></div>
     ${peps.map((p,pi)=>{
-      const lang=p.langue||'fr';const Lp=L[lang]||L.fr;
+      const lang=p.langue||'fr';const Lp=LNG[lang]||LNG.fr;
       const subj=`${Lp.mailSubj}${ville?' — '+ville:''}${affaire?' — '+affaire:''} — ${dateC}`;
-      const portalLink=buildPortalLink(pi);
-      return`<div style="border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px;">
-        <div style="background:var(--sage-d);color:var(--cream);padding:9px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="dot" style="background:${C[pi]}"></span>
-          <strong style="font-family:var(--serif);font-size:.98rem;">${p.nom}</strong>
+      const link=`${PORTAL_URL}?consultation=${currentConsultId||''}&code=${p.code_acces||''}`;
+      return`<div class="mail-wrap">
+        <div class="mail-hdr"><span class="dot" style="background:${C[pi]}"></span>
+          <strong style="font-family:var(--serif);font-size:.96rem;">${p.nom}</strong>
           <button class="btn btn-sm" style="margin-left:auto;background:rgba(255,255,255,.15);color:var(--cream);border:none;" onclick="openMailto(${pi})">📨 Outlook</button>
         </div>
-        <div style="padding:13px 15px;font-size:.8rem;line-height:1.75;background:var(--white);">
-          <div style="font-family:var(--mono);font-size:.7rem;background:var(--earth-l);padding:4px 9px;border-radius:4px;margin-bottom:7px;color:var(--sage-d);">Objet : ${subj}</div>
-          <div style="font-family:var(--mono);font-size:.68rem;color:var(--sage);margin-bottom:9px;">À : ${p.email||'(non renseigné)'}</div>
+        <div class="mail-body">
+          <div class="mail-subj">Objet : ${subj}</div>
+          <div class="mail-subj" style="margin-top:3px;">À : ${p.email||'(non renseigné)'}</div>
           ${Lp.mailHi}<br><br>${Lp.mailBody}<br><br>
           <strong>${Lp.mailProj} :</strong> ${affaire||'—'} — ${ville||'—'}<br>
           <strong>${Lp.mailDel} :</strong> ${v('s-livraison')||'À préciser'}<br><br>
           ${Lp.mailFile}<br><br>
-          ${Lp.mailPortal} :<br>
-          <a href="${portalLink}" style="color:var(--sage-d);font-weight:500;word-break:break-all;">${portalLink}</a><br><br>
+          <strong>${Lp.mailPortal} :</strong><br>
+          <a href="${link}" style="color:var(--sage-d);font-weight:500;word-break:break-all;">${link}</a><br><br>
           ${Lp.mailReg},<br>${v('s-nom')||'[Votre nom]'}
         </div>
       </div>`;
     }).join('')}`;
 }
-
-function buildPortalLink(pi){
-  const p=peps[pi];
-  const params=new URLSearchParams({'consultation':currentConsultId||'','code':p.code_acces||''});
-  return`${PORTAL_URL}?${params.toString()}`;
-}
-
 function openMailto(pi){
-  const p=peps[pi];const lang=p.langue||'fr';const Lp=L[lang]||L.fr;
+  const p=peps[pi];const lang=p.langue||'fr';const Lp=LNG[lang]||LNG.fr;
   const ville=v('s-ville'),affaire=v('s-affaire'),dateC=v('s-date');
   const subj=encodeURIComponent(`${Lp.mailSubj}${ville?' — '+ville:''}${affaire?' — '+affaire:''} — ${dateC}`);
-  const portalLink=buildPortalLink(pi);
-  const body=encodeURIComponent(`${Lp.mailHi}\n\n${Lp.mailBody}\n\n${Lp.mailProj} : ${affaire||'—'} — ${ville||'—'}\n${Lp.mailDel} : ${v('s-livraison')||'?'}\n\n${Lp.mailFile}\n\n${Lp.mailPortal} :\n${portalLink}\n\n${Lp.mailReg},\n${v('s-nom')||''}`);
+  const link=`${PORTAL_URL}?consultation=${currentConsultId||''}&code=${p.code_acces||''}`;
+  const body=encodeURIComponent(`${Lp.mailHi}\n\n${Lp.mailBody}\n\n${Lp.mailProj} : ${affaire||'—'} — ${ville||'—'}\n${Lp.mailDel} : ${v('s-livraison')||'?'}\n\n${Lp.mailFile}\n\n${Lp.mailPortal} :\n${link}\n\n${Lp.mailReg},\n${v('s-nom')||''}`);
   window.location.href=`mailto:${p.email||''}?subject=${subj}&body=${body}`;
 }
-
 function dlConsultXLSX(){
   const wb=XLSX.utils.book_new();
   const hdr=['N°','Nom latin','Calibre / Taille','Contenant','Quantité','Unité','Prix unitaire HT (€)','Variante proposée','Commentaire'];
   const rows=[hdr,...vegs.map((vg,i)=>[i+1,vg.latin,vg.calibre||'',vg.conditionnement||'',vg.qte,vg.unite||'U','','',''])];
-  const ws=XLSX.utils.aoa_to_sheet(rows);
-  ws['!cols']=[{wch:4},{wch:28},{wch:12},{wch:10},{wch:7},{wch:6},{wch:18},{wch:24},{wch:28}];
-  XLSX.utils.book_append_sheet(wb,ws,'Consultation');
-  XLSX.writeFile(wb,`Consultation_${v('s-ville')||'projet'}.xlsx`);
+  const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[{wch:4},{wch:28},{wch:12},{wch:10},{wch:7},{wch:5},{wch:18},{wch:24},{wch:28}];
+  XLSX.utils.book_append_sheet(wb,ws,'Consultation');XLSX.writeFile(wb,`Consultation_${v('s-ville')||'projet'}.xlsx`);
 }
 
 // ══════════════════════════════════════
 // RÉPONSES
 // ══════════════════════════════════════
-function renderRepSel(){
-  const sel=document.getElementById('rep-pi');
-  sel.innerHTML='<option value="">— Choisir —</option>'+peps.map((p,i)=>`<option value="${i}">${p.nom}</option>`).join('');
-}
+function renderRepSel(){const sel=document.getElementById('rep-pi');sel.innerHTML='<option value="">— Choisir —</option>'+peps.map((p,i)=>`<option value="${i}">${p.nom}</option>`).join('');}
 function onDrop2(ev){ev.preventDefault();document.getElementById('dz2').classList.remove('dragover');const f=ev.dataTransfer.files[0];if(f)procRepFile(f);}
 function onRepFS(inp){if(inp.files[0])procRepFile(inp.files[0]);inp.value='';}
-
 async function procRepFile(file){
-  const piStr=document.getElementById('rep-pi').value;
-  if(piStr===''){alert('Sélectionnez la pépinière.');return;}
-  const pi=parseInt(piStr);
-  const ext=file.name.split('.').pop().toLowerCase();
-  showRepSt('<div class="aibox"><div class="spin"></div>Lecture de la réponse…</div>');
-  try{
-    if(TABULAR_EXT.includes(ext))await procRepTab(file,ext,pi);
-    else if(ext==='pdf')await procRepVis(file,'application/pdf','document',pi);
-    else if(IMAGE_EXT.includes(ext)){const mt=ext==='jpg'?'image/jpeg':`image/${ext}`;await procRepVis(file,mt,'image',pi);}
-    else throw new Error(`Format non supporté : .${ext}`);
-  }catch(e){showRepSt(`<div style="color:var(--rust);padding:10px;font-size:.78rem;border:1px solid #f0c4b0;border-radius:7px;background:#fde8e0;">⚠️ ${e.message}</div>`);}
+  const piStr=document.getElementById('rep-pi').value;if(piStr===''){alert('Sélectionnez la pépinière.');return;}
+  const pi=parseInt(piStr);const ext=file.name.split('.').pop().toLowerCase();
+  showRepSt('<div class="aibox"><div class="spin"></div>Lecture…</div>');
+  try{if(TABULAR_EXT.includes(ext))await procRepTab(file,ext,pi);else if(ext==='pdf')await procRepVis(file,'application/pdf','document',pi);else if(IMAGE_EXT.includes(ext)){const mt=ext==='jpg'?'image/jpeg':`image/${ext}`;await procRepVis(file,mt,'image',pi);}else throw new Error(`Format non supporté : .${ext}`);}
+  catch(e){showRepSt(`<div style="color:var(--rust);padding:9px;font-size:.76rem;border:1px solid #f0c4b0;border-radius:7px;background:#fde8e0;">⚠️ ${e.message}</div>`);}
 }
-
 async function procRepTab(file,ext,pi){
   let rows=[];
   if(['csv','txt','tsv'].includes(ext)){rows=parseCSVAuto(await file.text());}
@@ -1264,113 +1079,73 @@ async function procRepTab(file,ext,pi){
   const cols=hasH?rows[hi].map(c=>String(c).trim()):Array.from({length:Math.max(...rows.map(r=>r.length))},(_,i)=>`Col${i}`);
   const data=(hasH?rows.slice(hi+1):rows).filter(r=>r.some(c=>c!==''));
   showRepSt('<div class="aibox"><div class="spin"></div>Correspondance IA…</div>');
-  const vegList=vegs.map((vg,i)=>`idx:${i}|${vg.latin}|calibre:${vg.calibre||'?'}|contenant:${vg.conditionnement||'?'}|qté:${vg.qte}`).join('\n');
-  const res=await callClaude([{role:'user',content:`VÉGÉTAUX CONSULTÉS:\n${vegList}\n\nCOLONNES: ${JSON.stringify(cols)}\nDONNÉES: ${JSON.stringify(data.slice(0,8))}\n\nRÈGLES CONFIANCE:
-- "exact": nom latin + calibre + contenant identiques
-- "probable": même latin MAIS calibre OU contenant différent → TOUJOURS mettre en variante avec les vraies caractéristiques
-- "incertain": espèce différente ou correspondance douteuse
-ATTENTION: quantité identique seule = "probable" maximum, jamais "exact"
-
-JSON uniquement: {"resultats":[{"vi":INDEX,"prix":VAL_ou_null,"calibreReponse":"","contenantReponse":"","variante":"description complète si différent","commentaire":"","confiance":"exact|probable|incertain"}]}`}],1000);
+  const vegList=vegs.map((vg,i)=>`idx:${i}|${vg.latin}|cal:${vg.calibre||'?'}|cont:${vg.conditionnement||'?'}|qté:${vg.qte}`).join('\n');
+  const res=await callClaude([{role:'user',content:`VÉGÉTAUX: ${vegList}\nCOLONNES: ${JSON.stringify(cols)}\nDATAS: ${JSON.stringify(data.slice(0,8))}\nConfiance: "exact"=nom+calibre+contenant identiques, "probable"=même latin MAIS calibre OU contenant différent→variante avec vraies caract., "incertain"=espèce douteuse. Quantité identique seule="probable" max.\nJSON: {"resultats":[{"vi":IDX,"prix":VAL,"calibreRep":"","contenantRep":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"}]}`}],900);
   let parsed;try{parsed=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){parsed={resultats:[]};}
   applyRepResults(parsed.resultats||[],pi);
 }
-
 async function procRepVis(file,mt,dtype,pi){
   const b64=await toB64(file);
-  const vegList=vegs.map((vg,i)=>`idx:${i}|${vg.latin}|calibre:${vg.calibre||'?'}|contenant:${vg.conditionnement||'?'}|qté:${vg.qte}`).join('\n');
-  showRepSt('<div class="aibox"><div class="spin"></div>Lecture OCR et correspondance…</div>');
-  const res=await callClaude([{role:'user',content:[
-    {type:dtype,source:{type:'base64',media_type:mt,data:b64}},
-    {type:'text',text:`Liste référence:\n${vegList}\n\nExtrait les prix. Confiance: "exact" si tout identique, "probable" si calibre OU contenant différent (→variante avec vraies caractéristiques), "incertain" si espèce douteuse. Quantité identique = "probable" max.
-JSON: [{"vi":INDEX,"prix":VAL,"calibreReponse":"","contenantReponse":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"},...]`}
-  ]}],1200);
+  const vegList=vegs.map((vg,i)=>`idx:${i}|${vg.latin}|cal:${vg.calibre||'?'}|cont:${vg.conditionnement||'?'}|qté:${vg.qte}`).join('\n');
+  showRepSt('<div class="aibox"><div class="spin"></div>OCR + correspondance…</div>');
+  const res=await callClaude([{role:'user',content:[{type:dtype,source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:`Liste référence:\n${vegList}\nExtrait les prix. "exact"=tout identique, "probable"=calibre OU contenant différent→variante avec vraies caract., "incertain"=espèce douteuse. Qté identique="probable" max.\nJSON: [{"vi":IDX,"prix":VAL,"calibreRep":"","contenantRep":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"},...]`}]}],1100);
   let arr;try{arr=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Impossible d\'extraire les prix.');}
   applyRepResults(arr,pi);
 }
-
 function applyRepResults(resultats,pi){
   let matched=0;
-  resultats.forEach(({vi,prix:pVal,calibreReponse,contenantReponse,variante,commentaire,confiance})=>{
+  resultats.forEach(({vi,prix:pVal,calibreRep,contenantRep,variante,commentaire,confiance})=>{
     if(vi==null||vi<0||vi>=vegs.length)return;
     if(!prix[vi])prix[vi]={};
     const isVar=confiance==='probable'||(variante&&variante.trim());
     if(isVar){
-      if(!prix[vi].variantes)prix[vi].variantes={};
-      if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];
-      prix[vi].variantes[pi].push({
-        unit:pVal!=null?parseFloat(pVal):null,
-        calibre:calibreReponse||'',
-        conditionnement:contenantReponse||'',
-        variante:variante||'',
-        comment:commentaire||'',
-        confiance:confiance||'probable',
-        qteF:0
-      });
+      if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];
+      prix[vi].variantes[pi].push({unit:pVal!=null?parseFloat(pVal):null,calibre:calibreRep||'',conditionnement:contenantRep||'',variante:variante||'',comment:commentaire||'',confiance:confiance||'probable',qteF:0});
       if(pVal!=null)matched++;
     } else {
       if(!prix[vi][pi])prix[vi][pi]={};
       if(pVal!=null&&!isNaN(parseFloat(pVal))&&pVal>0){prix[vi][pi].unit=parseFloat(pVal);matched++;}
-      if(variante?.trim())prix[vi][pi].variante=variante.trim();
-      if(commentaire?.trim())prix[vi][pi].comment=commentaire.trim();
-      if(calibreReponse)prix[vi][pi].calibreRep=calibreReponse;
-      if(contenantReponse)prix[vi][pi].contenantRep=contenantReponse;
+      if(variante?.trim())prix[vi][pi].variante=variante.trim();if(commentaire?.trim())prix[vi][pi].comment=commentaire.trim();
+      if(calibreRep)prix[vi][pi].calibreRep=calibreRep;if(contenantRep)prix[vi][pi].contenantRep=contenantRep;
       prix[vi][pi].confiance=confiance||'exact';
     }
   });
   clearRepSt();showRepPreview(pi,matched,resultats);
 }
-
 function showRepPreview(pi,matched,resultats){
   const p=peps[pi];
-  const exact=(resultats||[]).filter(r=>r.confiance==='exact').length;
-  const probable=(resultats||[]).filter(r=>r.confiance==='probable').length;
-  const incertain=(resultats||[]).filter(r=>r.confiance==='incertain').length;
-  const color=matched>=vegs.length*.7?'#d4edda':matched>0?'#fdecd4':'#fde8e0';
-  const tc=matched>=vegs.length*.7?'#1a5c28':matched>0?'#7a4a10':'#8a3818';
-  let html=`<div style="background:${color};border-radius:7px;padding:10px 13px;font-size:.78rem;margin-bottom:12px;color:${tc};">
-    <strong>${matched} prix importés</strong> sur ${vegs.length} — <strong>${p.nom}</strong>
-    <span style="margin-left:10px;font-family:var(--mono);font-size:.7rem;">🟢 ${exact} exact · 🟠 ${probable} variante · 🔴 ${incertain} incertain</span>
-  </div>
-  <div style="overflow-x:auto;"><table class="ptbl">
-    <thead><tr><th>#</th><th>Végétal consulté</th><th>Calibre consul.</th><th>Contenant consul.</th><th>Confiance</th><th>Prix</th><th>Calibre réponse</th><th>Contenant réponse</th><th>Corriger prix</th></tr></thead><tbody>`;
+  const ex=(resultats||[]).filter(r=>r.confiance==='exact').length;
+  const pr=(resultats||[]).filter(r=>r.confiance==='probable').length;
+  const ic=(resultats||[]).filter(r=>r.confiance==='incertain').length;
+  const color=matched>=vegs.length*.7?'#d4edda':matched>0?'#fdecd4':'#fde8e0';const tc=matched>=vegs.length*.7?'#1a5c28':matched>0?'#7a4a10':'#8a3818';
+  let html=`<div style="background:${color};border-radius:7px;padding:9px 12px;font-size:.76rem;margin-bottom:11px;color:${tc};">
+    <strong>${matched} prix importés / ${vegs.length}</strong> — ${p.nom}
+    <span style="margin-left:9px;font-family:var(--mono);font-size:.68rem;">🟢 ${ex} exact · 🟠 ${pr} variante · 🔴 ${ic} incertain</span>
+  </div><div style="overflow-x:auto;"><table class="ptbl">
+    <thead><tr><th>#</th><th>Végétal</th><th>Cal.</th><th>Cont.</th><th>Conf.</th><th>Prix</th><th>Cal. réponse</th><th>Cont. réponse</th><th>Corriger</th></tr></thead><tbody>`;
   vegs.forEach((vg,vi)=>{
-    const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:null;
-    const varPep=(prix[vi]?.variantes||{})[pi]||[];
+    const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:null;const varPep=(prix[vi]?.variantes||{})[pi]||[];
     const ci=e?.confiance==='exact'?'🟢':e?.confiance==='probable'?'🟠':e?.confiance==='incertain'?'🔴':'⚪';
     html+=`<tr style="${!e?.unit&&!varPep.length?'background:#fff8f0;':''}">
-      <td style="font-family:var(--mono);font-size:.62rem;color:var(--sage);">${vi+1}</td>
-      <td><em style="font-size:.76rem;">${vg.latin}</em></td>
-      <td style="font-family:var(--mono);font-size:.7rem;">${vg.calibre||'—'}</td>
-      <td style="font-size:.7rem;">${vg.conditionnement||'—'}</td>
+      <td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">${vi+1}</td>
+      <td><em style="font-size:.74rem;">${vg.latin}</em></td>
+      <td style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</td>
+      <td style="font-size:.68rem;">${vg.conditionnement||'—'}</td>
       <td style="text-align:center;">${ci}</td>
       <td style="font-family:var(--mono);font-weight:${e?.unit?'600':'300'};color:${e?.unit?'var(--sage-d)':'#bbb'};">${e?.unit?fmt(e.unit)+' €':'—'}</td>
-      <td style="font-family:var(--mono);font-size:.7rem;">${e?.calibreRep||'—'}</td>
-      <td style="font-size:.7rem;">${e?.contenantRep||'—'}</td>
-      <td><div style="display:flex;align-items:center;gap:3px;">
-        <input type="number" step=".01" min="0" placeholder="Saisir" value="${e?.unit||''}"
-          onchange="manualRep(${vi},${pi},this.value)" style="width:70px;padding:3px 6px;font-family:var(--mono);font-size:.72rem;">
-        <span style="font-size:.6rem;color:var(--sage);">€</span>
-      </div></td>
+      <td style="font-family:var(--mono);font-size:.68rem;">${e?.calibreRep||'—'}</td>
+      <td style="font-size:.68rem;">${e?.contenantRep||'—'}</td>
+      <td><div style="display:flex;align-items:center;gap:2px;"><input type="number" step=".01" min="0" placeholder="€" value="${e?.unit||''}" onchange="manualRep(${vi},${pi},this.value)" style="width:66px;padding:3px 5px;font-family:var(--mono);font-size:.7rem;"><span style="font-size:.58rem;color:var(--sage);">€</span></div></td>
     </tr>
     ${varPep.map((vr,ri)=>`<tr style="background:#fdf5e8;">
-      <td></td>
-      <td colspan="2" style="font-size:.72rem;color:var(--earth);padding-left:16px;">
-        ↳ <strong>Variante ${ri+1}</strong>${vr.variante?' — '+vr.variante:''}
-        ${vr.calibre&&vr.calibre!==vg.calibre?`<span style="font-family:var(--mono);font-size:.68rem;"> | Cal: ${vr.calibre}</span>`:''}
-        ${vr.conditionnement&&vr.conditionnement!==vg.conditionnement?`<span style="font-size:.68rem;"> | Cont: ${vr.conditionnement}</span>`:''}
-      </td>
+      <td></td><td colspan="2" style="font-size:.7rem;color:var(--earth);padding-left:14px;">↳ Cal: <strong>${vr.calibre||'?'}</strong> / Cont: <strong>${vr.conditionnement||'?'}</strong>${vr.variante?' — '+vr.variante:''}</td>
       <td></td><td style="text-align:center;">🟠</td>
       <td style="font-family:var(--mono);font-weight:600;color:var(--earth);">${vr.unit?fmt(vr.unit)+' €':'—'}</td>
-      <td style="font-family:var(--mono);font-size:.7rem;">${vr.calibre||'—'}</td>
-      <td style="font-size:.7rem;">${vr.conditionnement||'—'}</td>
-      <td></td>
+      <td style="font-family:var(--mono);font-size:.68rem;">${vr.calibre||'—'}</td>
+      <td style="font-size:.68rem;">${vr.conditionnement||'—'}</td><td></td>
     </tr>`).join('')}`;
   });
-  html+=`</tbody></table></div>
-  <div style="margin-top:10px;display:flex;gap:8px;">
-    <button class="btn btn-ok btn-sm" onclick="confirmRep(${pi})">✓ Valider → Comparaison</button>
-  </div>`;
+  html+=`</tbody></table></div><div style="margin-top:9px;display:flex;gap:7px;"><button class="btn btn-ok btn-sm" onclick="confirmRep(${pi})">✓ Valider → Comparaison</button></div>`;
   const d=document.getElementById('rep-preview');d.style.display='block';d.innerHTML=html;
 }
 function manualRep(vi,pi,val){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};const n=parseFloat(val);if(!isNaN(n)&&n>0)prix[vi][pi].unit=n;else delete prix[vi][pi].unit;}
@@ -1379,42 +1154,35 @@ function showRepSt(h){const e=document.getElementById('rep-status');e.style.disp
 function clearRepSt(){document.getElementById('rep-status').style.display='none';}
 
 // ══════════════════════════════════════
-// COMPARAISON
+// COMPARAISON — Temps réel + Qté référence séparée
 // ══════════════════════════════════════
 function renderComp(){
   const c=document.getElementById('comp-con');
   if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📊</div><p>Ajoutez végétaux &amp; pépinières.</p></div>';return;}
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
 
-  // FRAIS DE PORT
-  let portHtml=`<div style="margin-bottom:12px;"><div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;">Frais de port par pépinière</div>
-    <div style="display:flex;flex-wrap:wrap;gap:7px;">${peps.map((p,pi)=>`
-      <div class="port-row"><span style="display:inline-flex;align-items:center;gap:5px;font-size:.76rem;font-weight:500;">
-        <span style="width:7px;height:7px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
-        <input type="number" step=".01" min="0" placeholder="0.00 €" value="${(prix['port']&&prix['port'][pi])||''}"
-          onchange="setPort(${pi},this.value);markDirty('comparaison')" style="width:80px;font-family:var(--mono);">
-        <span style="font-size:.62rem;color:var(--sage);">€ HT</span></div>`).join('')}
+  let portHtml=`<div style="margin-bottom:11px;"><div style="font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);margin-bottom:5px;">Frais de port par pépinière</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">${peps.map((p,pi)=>`
+      <div class="port-row"><span style="display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:500;"><span style="width:7px;height:7px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
+        <input type="number" step=".01" min="0" placeholder="0.00 €" value="${portT[pi]||''}"
+          onchange="setPort(${pi},this.value);markDirty('comparaison')" style="width:76px;font-family:var(--mono);padding:3px 6px;">
+        <span style="font-size:.6rem;color:var(--sage);">€ HT</span></div>`).join('')}
     </div></div>`;
 
-  // EN-TÊTES
-  const pepThs=peps.map((p,pi)=>`<th class="psep-th" style="min-width:300px;">
-    <span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:7px;height:7px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
-  </th>`).join('');
-  const subThs=peps.map(()=>`<th class="psep-th" style="background:rgba(0,0,0,.08);font-size:.52rem;font-weight:300;padding:3px 7px;">
-    <span style="display:grid;grid-template-columns:75px 70px 55px 1fr;gap:3px;text-align:center;">
-      <span>Prix unit. HT</span><span>Prix négocié</span><span>Qté finale</span><span>Notes</span>
-    </span></th>`).join('');
+  const pepThs=peps.map((p,pi)=>`<th class="psep-th" style="min-width:290px;"><span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
+    <button class="btn btn-sm" style="margin-left:6px;font-size:.54rem;padding:2px 5px;background:rgba(255,255,255,.15);color:var(--cream);border:none;" onclick="openVarCompModal(${pi})">＋ variante</button></th>`).join('');
+  const subThs=peps.map(()=>`<th class="psep-th" style="background:rgba(0,0,0,.08);font-size:.50rem;font-weight:300;padding:3px 6px;"><span style="display:grid;grid-template-columns:72px 68px 52px 1fr;gap:2px;text-align:center;"><span>Prix unit. HT</span><span>Prix négocié</span><span>${T('qteFin')}</span><span>Notes</span></span></th>`).join('');
 
-  let tbl=`<div class="cwrap"><table class="ct"><thead>
+  let tbl=`<div class="cwrap"><table class="ct" id="comp-table"><thead>
     <tr>
-      <th style="min-width:150px;">Végétal</th><th>Calibre</th><th>Contenant</th><th style="text-align:center;">Qté</th>
-      <th class="etude-th psep-th" style="min-width:80px;">${T('studyP')}</th>
-      <th class="etude-th" style="min-width:75px;">Tot. étude</th>
+      <th style="min-width:140px;">Végétal</th><th>${T('calibre')}</th><th>${T('contenant')}</th>
+      <th style="text-align:center;">${T('qteRef')}</th>
+      <th class="etude-th psep-th">${T('studyP')}</th><th class="etude-th">Tot. étude</th>
       ${pepThs}
-      <th style="min-width:80px;">Tot. retenu</th><th style="min-width:90px;">Delta</th>
+      <th style="min-width:78px;" id="th-ret">Tot. retenu</th><th style="min-width:88px;">Delta</th>
     </tr>
     <tr><th colspan="6" style="background:rgba(0,0,0,.1);"></th>${subThs}<th colspan="2" style="background:rgba(0,0,0,.1);"></th></tr>
-  </thead><tbody>`;
+  </thead><tbody id="comp-tbody">`;
 
   vegs.forEach((vg,vi)=>{
     if(!prix[vi])prix[vi]={};
@@ -1422,160 +1190,176 @@ function renderComp(){
     const bv=getBest(vi);const bpi=getBestPi(vi);
     const rt=bv!=null?bv*(getQteF(vi,bpi)||vg.qte):null;
     const delta=et!=null&&rt!=null?rt-et:null;
-    const dc=delta===null?'delta-zero':delta<0?'delta-neg':'delta-pos';
+    const dc=delta===null?'dz':delta<0?'dn':'dp';
     const ds=delta===null?'—':`${delta>=0?'+':''}${fmt(delta)}€ (${delta>=0?'+':''}${et?Math.round(delta/et*100):0}%)`;
 
-    tbl+=`<tr>
-      <td><em style="font-size:.76rem;">${vg.latin}</em>
-        <button class="btn btn-g btn-sm" style="margin-top:3px;font-size:.56rem;padding:2px 6px;" onclick="addVarComp(${vi})">＋ variante</button>
+    tbl+=`<tr id="row-${vi}">
+      <td><em style="font-size:.74rem;">${vg.latin}</em></td>
+      <td style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</td>
+      <td style="font-size:.68rem;">${vg.conditionnement||'—'}</td>
+      <td style="font-family:var(--mono);text-align:center;font-weight:500;color:var(--sage-d);">${vg.qte}</td>
+      <td class="etude-c psep">
+        <input type="number" step=".01" min="0" class="ci ci-r" placeholder="${T('studyP')} €" value="${eu||''}"
+          onchange="vegs[${vi}].prixEtude=parseFloat(this.value)||null;updateRowTotals(${vi});markDirty('comparaison')">
       </td>
-      <td style="font-family:var(--mono);font-size:.7rem;">${vg.calibre||'—'}</td>
-      <td style="font-size:.7rem;">${vg.conditionnement||'—'}</td>
-      <td><input type="number" min="0" value="${vg.qte}" placeholder="Qté"
-        onchange="vegs[${vi}].qte=parseInt(this.value)||0;markDirty('comparaison')"
-        class="ci ci-sm" style="text-align:center;"></td>
-      <td class="etude-cell psep">
-        <input type="number" step=".01" min="0" class="ci ci-price" placeholder="Prix étude €"
-          value="${eu||''}" onchange="vegs[${vi}].prixEtude=parseFloat(this.value)||null;renderComp()">
-      </td>
-      <td class="etude-cell" style="font-family:var(--mono);font-size:.72rem;text-align:right;">${et?fmt(et)+'€':'—'}</td>
+      <td class="etude-c" id="et-${vi}" style="font-family:var(--mono);font-size:.7rem;text-align:right;">${et?fmt(et)+'€':'—'}</td>
       ${peps.map((_,pi)=>{
-        const e=prix[vi][pi]||{};
-        const conf=e.confiance==='exact'?'':e.confiance==='probable'?'conf-o ':e.confiance==='incertain'?'conf-r ':'';
+        const e=prix[vi][pi]||{};const conf=e.confiance==='incertain'?'conf-r ':e.confiance==='probable'?'conf-o ':'';
         return`<td class="px-cell ${conf}psep" data-vi="${vi}" data-pi="${pi}">
-          <div style="display:grid;grid-template-columns:75px 70px 55px 1fr;gap:3px;align-items:start;">
+          <div style="display:grid;grid-template-columns:72px 68px 52px 1fr;gap:2px;align-items:start;">
             <div>
-              <input type="number" step=".01" min="0" class="ci ci-price" placeholder="Prix unit. HT €"
-                value="${e.unit!=null?e.unit:''}" onchange="setPrix(${vi},${pi},'unit',this.value);markDirty('comparaison')">
-              ${e.variante?`<div style="font-size:.58rem;color:var(--sage);margin-top:1px;">↪ ${e.variante}</div>`:''}
-              ${e.comment?`<div style="font-size:.56rem;color:var(--earth);font-style:italic;">${e.comment}</div>`:''}
+              <input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix unit. HT €" value="${e.unit!=null?e.unit:''}"
+                onchange="setPrix(${vi},${pi},'unit',this.value);updateRowTotals(${vi});markDirty('comparaison')">
+              ${e.variante?`<div style="font-size:.56rem;color:var(--sage);">↪ ${e.variante}</div>`:''}
+              ${e.comment?`<div style="font-size:.54rem;color:var(--earth);font-style:italic;">${e.comment}</div>`:''}
             </div>
+            <div><input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix négocié €" value="${e.nego!=null?e.nego:''}"
+              onchange="setPrix(${vi},${pi},'nego',this.value);updateRowTotals(${vi});markDirty('comparaison')"></div>
+            <div><input type="number" min="0" class="ci" placeholder="${vg.qte}" style="text-align:center;" value="${e.qteF!=null?e.qteF:''}"
+              onchange="setPrix(${vi},${pi},'qteF',this.value);updateRowTotals(${vi});markDirty('comparaison')"></div>
             <div>
-              <input type="number" step=".01" min="0" class="ci ci-price" placeholder="Prix négocié €"
-                value="${e.nego!=null?e.nego:''}" onchange="setPrix(${vi},${pi},'nego',this.value);markDirty('comparaison')">
-            </div>
-            <div>
-              <input type="number" min="0" class="ci" placeholder="Qté fin." style="text-align:center;"
-                value="${e.qteF!=null?e.qteF:''}" onchange="setPrix(${vi},${pi},'qteF',this.value);markDirty('comparaison')">
-            </div>
-            <div>
-              <textarea class="ci" placeholder="Notes négociation…" rows="2" style="min-height:34px;font-size:.65rem;padding:3px 5px;"
+              <textarea class="ci" placeholder="Notes négociation…" rows="2" style="min-height:32px;font-size:.63rem;padding:2px 4px;"
                 onchange="addNegoLog(${vi},${pi},this.value);markDirty('comparaison')">${e.negoText||''}</textarea>
               <div class="nego-log" id="nl-${vi}-${pi}">${renderNegoLog(vi,pi)}</div>
             </div>
           </div>
-          ${((prix[vi].variantes||{})[pi]||[]).map((vr,ri)=>`
-            <div style="margin-top:4px;padding:4px 6px;background:#fdf0e0;border-radius:4px;border-left:3px solid var(--earth);">
-              <div style="font-size:.6rem;color:var(--earth);margin-bottom:3px;">
-                ↳ <strong>${vr.calibre||vg.calibre||'?'}</strong> / <strong>${vr.conditionnement||vg.conditionnement||'?'}</strong>
-                ${vr.variante?' — '+vr.variante:''}
-              </div>
-              <div style="display:flex;align-items:center;gap:4px;">
-                <input type="number" step=".01" min="0" class="ci ci-price" placeholder="Prix var. €"
-                  value="${vr.unit!=null?vr.unit:''}" style="width:70px;" onchange="setVarPrix(${vi},${pi},${ri},this.value);markDirty('comparaison')">
-                <input type="number" min="0" class="ci" placeholder="Qté (0=non)" style="width:50px;text-align:center;"
-                  value="${vr.qteF||0}" onchange="setVarQte(${vi},${pi},${ri},this.value)">
-                <span style="font-size:.62rem;color:var(--sage);">€ / qté</span>
-              </div>
-            </div>`).join('')}
+          ${((prix[vi].variantes||{})[pi]||[]).map((vr,ri)=>`<div style="margin-top:3px;padding:3px 5px;background:#fdf0e0;border-radius:4px;border-left:3px solid var(--earth);">
+            <div style="font-size:.58rem;color:var(--earth);margin-bottom:2px;">↳ <strong>${vr.calibre||vg.calibre||'?'}</strong> / <strong>${vr.conditionnement||vg.conditionnement||'?'}</strong>${vr.variante?' — '+vr.variante:''}</div>
+            <div style="display:flex;align-items:center;gap:3px;">
+              <input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix var. €" value="${vr.unit!=null?vr.unit:''}" style="width:68px;"
+                onchange="setVarPrix(${vi},${pi},${ri},this.value);updateRowTotals(${vi});markDirty('comparaison')">
+              <input type="number" min="0" class="ci" placeholder="Qté" style="width:46px;text-align:center;" value="${vr.qteF||0}"
+                onchange="setVarQte(${vi},${pi},${ri},this.value)">
+              <span style="font-size:.6rem;color:var(--sage);">€/qté</span>
+            </div>
+          </div>`).join('')}
         </td>`;
       }).join('')}
-      <td style="font-family:var(--mono);font-size:.72rem;text-align:right;font-weight:600;color:var(--sage-d);">${rt?fmt(rt)+'€':'—'}</td>
-      <td class="${dc}" style="text-align:right;font-family:var(--mono);font-size:.7rem;">${ds}</td>
+      <td id="rt-${vi}" style="font-family:var(--mono);font-size:.7rem;text-align:right;font-weight:600;color:var(--sage-d);">${rt?fmt(rt)+'€':'—'}</td>
+      <td id="d-${vi}" class="${dc}" style="text-align:right;font-family:var(--mono);font-size:.68rem;">${ds}</td>
     </tr>`;
   });
 
-  // LIGNE TOTAUX
-  const totEt=vegs.reduce((s,vg)=>s+(vg.prixEtude?vg.prixEtude*vg.qte:0),0);
-  const totRt=vegs.reduce((s,_,vi)=>{const bv=getBest(vi);const bpi=getBestPi(vi);return s+(bv!=null?bv*(getQteF(vi,bpi)||vegs[vi].qte):0);},0)+portT.reduce((a,b)=>a+b,0);
-  const totD=totEt&&totRt?totRt-totEt:null;
-  const tdc=totD===null?'delta-zero':totD<0?'delta-neg':'delta-pos';
-
-  tbl+=`<tr class="total-row">
+  // TOTAUX
+  const totEt=calcTotEt();const totRt=calcTotRt(portT);const totD=totEt&&totRt?totRt-totEt:null;
+  const tdc=totD===null?'dz':totD<0?'dn':'dp';
+  tbl+=`<tr class="total-row" id="total-row">
     <td colspan="4" style="text-align:right;color:var(--sage-d);">TOTAUX</td>
-    <td class="etude-cell psep" style="text-align:right;">${totEt?fmt(totEt)+'€':'—'}</td><td class="etude-cell"></td>
-    ${peps.map((_,pi)=>{
-      const tp=vegs.reduce((s,_,vi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?(e.nego!=null?e.nego:e.unit):null;return s+(up!=null?up*(e?.qteF||vegs[vi].qte):0);},0)+portT[pi];
-      return`<td class="psep" style="text-align:right;">${tp>0?fmt(tp)+'€':'—'}</td>`;
-    }).join('')}
-    <td style="text-align:right;color:var(--sage-d);">${totRt>0?fmt(totRt)+'€':'—'}</td>
-    <td class="${tdc}">${totD!==null?`${totD>=0?'+':''}${fmt(totD)}€ (${totEt?Math.round(totD/totEt*100):0}%)`:'—'}</td>
+    <td class="etude-c psep" style="text-align:right;" id="tot-et">${totEt?fmt(totEt)+'€':'—'}</td><td class="etude-c"></td>
+    ${peps.map((_,pi)=>{const tp=calcTotPep(pi,portT);return`<td class="psep" id="tot-pep-${pi}" style="text-align:right;">${tp>0?fmt(tp)+'€':'—'}</td>`;}).join('')}
+    <td style="text-align:right;color:var(--sage-d);" id="tot-rt">${totRt>0?fmt(totRt)+'€':'—'}</td>
+    <td class="${tdc}" id="tot-d">${totD!==null?`${totD>=0?'+':''}${fmt(totD)}€ (${totEt?Math.round(totD/totEt*100):0}%)`:'—'}</td>
   </tr></tbody></table></div>`;
 
   c.innerHTML=portHtml+tbl;
 }
 
-// Ajouter une variante manuellement depuis le comparatif
-function addVarComp(vi){
-  if(!peps.length){toast('Ajoutez d\'abord des pépinières.','error');return;}
-  openVarModal(vi);
+// Mise à jour en temps réel d'une ligne
+function updateRowTotals(vi){
+  const bv=getBest(vi);const bpi=getBestPi(vi);
+  const vg=vegs[vi];const eu=vg.prixEtude;const et=eu?eu*vg.qte:null;
+  const rt=bv!=null?bv*(getQteF(vi,bpi)||vg.qte):null;
+  const delta=et!=null&&rt!=null?rt-et:null;
+  const dc=delta===null?'dz':delta<0?'dn':'dp';
+  const ds=delta===null?'—':`${delta>=0?'+':''}${fmt(delta)}€ (${delta>=0?'+':''}${et?Math.round(delta/et*100):0}%)`;
+  const etEl=document.getElementById(`et-${vi}`);if(etEl)etEl.textContent=et?fmt(et)+'€':'—';
+  const rtEl=document.getElementById(`rt-${vi}`);if(rtEl)rtEl.textContent=rt?fmt(rt)+'€':'—';
+  const dEl=document.getElementById(`d-${vi}`);if(dEl){dEl.textContent=ds;dEl.className=dc;}
+  // Mettre à jour totaux globaux
+  updateGlobalTotals();
+}
+function updateGlobalTotals(){
+  const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
+  const totEt=calcTotEt();const totRt=calcTotRt(portT);const totD=totEt&&totRt?totRt-totEt:null;
+  const tdc=totD===null?'dz':totD<0?'dn':'dp';
+  const etEl=document.getElementById('tot-et');if(etEl)etEl.textContent=totEt?fmt(totEt)+'€':'—';
+  const rtEl=document.getElementById('tot-rt');if(rtEl)rtEl.textContent=totRt>0?fmt(totRt)+'€':'—';
+  const dEl=document.getElementById('tot-d');if(dEl){dEl.textContent=totD!==null?`${totD>=0?'+':''}${fmt(totD)}€ (${totEt?Math.round(totD/totEt*100):0}%)`:'—';dEl.className=tdc;}
+  peps.forEach((_,pi)=>{const tp=calcTotPep(pi,portT);const el=document.getElementById(`tot-pep-${pi}`);if(el)el.textContent=tp>0?fmt(tp)+'€':'—';});
+}
+function calcTotEt(){return vegs.reduce((s,vg)=>s+(vg.prixEtude?vg.prixEtude*vg.qte:0),0);}
+function calcTotRt(portT){return vegs.reduce((s,_,vi)=>{const bv=getBest(vi);const bpi=getBestPi(vi);return s+(bv!=null?bv*(getQteF(vi,bpi)||vegs[vi].qte):0);},0)+(portT||[]).reduce((a,b)=>a+b,0);}
+function calcTotPep(pi,portT){return vegs.reduce((s,_,vi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?(e.nego!=null?e.nego:e.unit):null;return s+(up!=null?up*(e?.qteF||vegs[vi].qte):0);},0)+(portT?portT[pi]||0:0);}
+
+// Variante directement dans le comparatif
+function openVarCompModal(pi){
+  if(!vegs.length){toast('Aucun végétal.','error');return;}
+  const p=peps[pi];
+  document.getElementById('var-comp-con').innerHTML=`
+    <p style="font-size:.76rem;color:var(--sage);margin-bottom:11px;">Ajouter une variante pour <strong>${p.nom}</strong></p>
+    <div class="gr c2" style="margin-bottom:9px;">
+      <div><label>Végétal concerné</label><select id="vc-vi">${vegs.map((vg,vi)=>`<option value="${vi}">${vg.latin} — ${vg.calibre||'?'}</option>`).join('')}</select></div>
+      <div><label>Prix unitaire HT (€)</label><input type="number" step=".01" min="0" id="vc-prix" placeholder="Prix de la variante"></div>
+    </div>
+    <div class="gr c3" style="margin-bottom:9px;">
+      <div><label>Calibre réel</label><input type="text" id="vc-cal" placeholder="Ex: 14/16"></div>
+      <div><label>Contenant réel</label><input type="text" id="vc-cont" placeholder="Ex: C40"></div>
+      <div><label>Qté proposée</label><input type="number" min="0" id="vc-qte" placeholder="0"></div>
+    </div>
+    <div class="gr" style="margin-bottom:11px;"><div><label>Description variante</label><input type="text" id="vc-desc" placeholder="Description de la variante…"></div></div>
+    <div style="display:flex;gap:7px;">
+      <button class="btn btn-p" onclick="saveVarComp(${pi})">✓ Ajouter cette variante</button>
+      <button class="btn btn-g btn-sm" onclick="closeModal('var-comp-modal')">Annuler</button>
+    </div>`;
+  openModal('var-comp-modal');
+}
+function saveVarComp(pi){
+  const vi=parseInt(document.getElementById('vc-vi').value);
+  const prix_val=parseFloat(document.getElementById('vc-prix').value)||null;
+  const cal=document.getElementById('vc-cal').value.trim();
+  const cont=normCond(document.getElementById('vc-cont').value.trim());
+  const qteF=parseInt(document.getElementById('vc-qte').value)||0;
+  const desc=document.getElementById('vc-desc').value.trim();
+  if(!prix[vi])prix[vi]={};if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];
+  prix[vi].variantes[pi].push({unit:prix_val,calibre:cal,conditionnement:cont,variante:desc,comment:'',confiance:'probable',qteF});
+  closeModal('var-comp-modal');renderComp();markDirty('comparaison');toast('Variante ajoutée ✓');
 }
 
-function getBest(vi){
-  const row=prix[vi]||{};
-  const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));
-  if(!vals.length)return null;return Math.min(...vals.map(e=>e.val));
-}
-function getBestPi(vi){
-  const row=prix[vi]||{};
-  const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));
-  if(!vals.length)return null;return vals.reduce((a,b)=>b.val<a.val?b:a).pi;
-}
+function getBest(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));if(!vals.length)return null;return Math.min(...vals.map(e=>e.val));}
+function getBestPi(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));if(!vals.length)return null;return vals.reduce((a,b)=>b.val<a.val?b:a).pi;}
 function getQteF(vi,pi){if(pi==null)return null;const e=prix[vi]&&prix[vi][pi];return e?.qteF||null;}
-function setPort(pi,val){if(!prix['port'])prix['port']={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix['port'][pi]=n;else delete prix['port'][pi];}
+function setPort(pi,val){if(!prix['port'])prix['port']={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix['port'][pi]=n;else delete prix['port'][pi];updateGlobalTotals();}
 function setPrix(vi,pi,f,val){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix[vi][pi][f]=n;else delete prix[vi][pi][f];}
 function setVarPrix(vi,pi,ri,val){const n=parseFloat(val);if(!isNaN(n)&&n>=0){if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];if(!prix[vi].variantes[pi][ri])prix[vi].variantes[pi][ri]={};prix[vi].variantes[pi][ri].unit=n;}}
 function setVarQte(vi,pi,ri,val){if(prix[vi]?.variantes?.[pi]?.[ri])prix[vi].variantes[pi][ri].qteF=parseInt(val)||0;}
-function addNegoLog(vi,pi,text){
-  if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};
-  prix[vi][pi].negoText=text;
-  if(!prix[vi][pi].log)prix[vi][pi].log=[];
-  if(text.trim()){prix[vi][pi].log.push({ts:new Date().toLocaleString('fr-FR'),msg:text.trim()});
-    const el=document.getElementById(`nl-${vi}-${pi}`);if(el)el.innerHTML=renderNegoLog(vi,pi);}
-}
+function addNegoLog(vi,pi,text){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};prix[vi][pi].negoText=text;if(!prix[vi][pi].log)prix[vi][pi].log=[];if(text.trim()){prix[vi][pi].log.push({ts:new Date().toLocaleString('fr-FR'),msg:text.trim()});const el=document.getElementById(`nl-${vi}-${pi}`);if(el)el.innerHTML=renderNegoLog(vi,pi);}}
 function renderNegoLog(vi,pi){const e=prix[vi]&&prix[vi][pi];if(!e?.log?.length)return '';return e.log.map(l=>`<div class="nego-entry"><span style="opacity:.6;">${l.ts}</span> — ${l.msg}</div>`).join('');}
-function hlBest(){
-  clrHL();
-  vegs.forEach((_,vi)=>{
-    const row=prix[vi]||{};
-    const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));
-    if(!vals.length)return;const mn=Math.min(...vals.map(e=>e.val));
-    vals.forEach(e=>{if(e.val===mn)document.querySelectorAll(`.px-cell[data-vi="${vi}"][data-pi="${e.pi}"]`).forEach(c=>c.classList.add('best'));});
-  });
-}
+function hlBest(){clrHL();vegs.forEach((_,vi)=>{const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));if(!vals.length)return;const mn=Math.min(...vals.map(e=>e.val));vals.forEach(e=>{if(e.val===mn)document.querySelectorAll(`.px-cell[data-vi="${vi}"][data-pi="${e.pi}"]`).forEach(c=>c.classList.add('best'));});});}
 function clrHL(){document.querySelectorAll('.best').forEach(c=>c.classList.remove('best'));}
+
 function openQtyModal(){
-  document.getElementById('qty-sel-list').innerHTML=vegs.map((vg,i)=>`
-    <label style="display:flex;align-items:center;gap:6px;padding:3px 0;font-size:.76rem;cursor:pointer;">
-      <input type="checkbox" class="qty-chk" value="${i}" style="width:auto;"> <em>${vg.latin}</em> ${vg.calibre||''} — qté: ${vg.qte}
-    </label>`).join('');
+  document.getElementById('qty-sel-list').innerHTML=vegs.map((vg,i)=>`<label style="display:flex;align-items:center;gap:5px;padding:3px 0;font-size:.74rem;cursor:pointer;"><input type="checkbox" class="qty-chk" value="${i}" style="width:auto;"> <em>${vg.latin}</em> ${vg.calibre||''} — Qté consultée: <strong>${vg.qte}</strong></label>`).join('');
   openModal('qty-modal');
 }
 function applyQtyPct(){
   const pct=parseFloat(document.getElementById('qty-pct').value);if(isNaN(pct)){alert('Pourcentage invalide.');return;}
   const scope=document.getElementById('qty-scope').value;
   const targets=scope==='all'?vegs.map((_,i)=>i):[...document.querySelectorAll('.qty-chk:checked')].map(cb=>parseInt(cb.value));
-  targets.forEach(i=>{vegs[i].qte=Math.max(1,Math.round(vegs[i].qte*(1+pct/100)));});
-  closeModal('qty-modal');renderVeg();renderComp();
+  // Modifier uniquement la qteF (finale) de chaque pépinière — PAS vegs[i].qte
+  targets.forEach(vi=>{
+    peps.forEach((_,pi)=>{
+      if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};
+      const qteBase=prix[vi][pi].qteF||vegs[vi].qte;
+      prix[vi][pi].qteF=Math.max(1,Math.round(qteBase*(1+pct/100)));
+    });
+  });
+  closeModal('qty-modal');renderComp();toast(`Quantités finales ajustées de ${pct>0?'+':''}${pct}%`);
 }
 
 // ══════════════════════════════════════
-// COMMANDE — avec variantes réelles
+// COMMANDE — avec bons de commande légaux
 // ══════════════════════════════════════
 function renderCmd(){
   const c=document.getElementById('cmd-con');
-  if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📦</div><p>Complétez la comparaison d\'abord.</p></div>';return;}
+  if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📦</div><p>Complétez la comparaison.</p></div>';return;}
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
   const totQ=vegs.reduce((s,vg)=>s+vg.qte,0);
-  let html=`<div style="margin-bottom:12px;background:var(--earth-l);border-radius:7px;padding:10px 13px;font-size:.76rem;">
-    💡 Suggestion basée sur le meilleur prix port inclus. Sélectionnez aussi les variantes souhaitées (qté > 0 dans le comparatif).
+  let html=`<div style="margin-bottom:11px;background:var(--earth-l);border-radius:7px;padding:9px 12px;font-size:.74rem;">
+    💡 Suggestion automatique basée sur le meilleur prix port inclus. Sélectionnez manuellement si besoin.
   </div>
   <div class="cwrap"><table class="ct"><thead><tr>
-    <th>Végétal</th><th>Calibre</th><th>Contenant</th><th style="text-align:center;">Qté</th>
-    ${peps.map((p,pi)=>`<th class="psep-th" style="text-align:center;">
-      <span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:7px;height:7px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
-      ${portT[pi]?`<div style="font-size:.56rem;opacity:.7;">port: ${fmt(portT[pi])} €</div>`:''}
-    </th>`).join('')}
+    <th>Végétal</th><th>${T('calibre')}</th><th>${T('contenant')}</th><th style="text-align:center;">Qté cons.</th>
+    ${peps.map((p,pi)=>`<th class="psep-th" style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>${portT[pi]?`<div style="font-size:.54rem;opacity:.7;">port: ${fmt(portT[pi])} €</div>`:''}</th>`).join('')}
     <th>Retenu</th>
   </tr></thead><tbody>`;
 
@@ -1584,107 +1368,141 @@ function renderCmd(){
     const valid=eff.map((val,i)=>val!=null?i:-1).filter(i=>i>=0);
     const sug=valid.length?valid.reduce((a,b)=>eff[a]<=eff[b]?a:b):-1;
     html+=`<tr>
-      <td><em style="font-size:.76rem;">${vg.latin}</em></td>
-      <td style="font-family:var(--mono);font-size:.7rem;">${vg.calibre||'—'}</td>
-      <td style="font-size:.7rem;">${vg.conditionnement||'—'}</td>
+      <td><em style="font-size:.74rem;">${vg.latin}</em></td>
+      <td style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</td>
+      <td style="font-size:.68rem;">${vg.conditionnement||'—'}</td>
       <td style="font-family:var(--mono);text-align:center;">${vg.qte}</td>
       ${peps.map((_,pi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?(e.nego!=null?e.nego:e.unit):null;
-        return`<td class="psep" style="text-align:center;">
-          <label style="cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:2px;">
-            <input type="radio" name="sel-${vi}" value="${pi}" ${sug===pi?'checked':''} onchange="updSel(${vi},${pi})">
-            <span style="font-family:var(--mono);font-size:.72rem;font-weight:${sug===pi?'600':'300'};">${up!=null?fmt(up)+' €':'—'}</span>
-          </label>
-        </td>`;}
+        return`<td class="psep" style="text-align:center;"><label style="cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:2px;">
+          <input type="radio" name="sel-${vi}" value="${pi}" ${sug===pi?'checked':''} onchange="updSel(${vi},${pi})">
+          <span style="font-family:var(--mono);font-size:.7rem;font-weight:${sug===pi?'600':'300'};">${up!=null?fmt(up)+' €':'—'}</span>
+        </label></td>`;}
       ).join('')}
-      <td id="sn-${vi}" style="font-family:var(--mono);font-size:.7rem;color:var(--sage-d);">${sug>=0?peps[sug].nom:'—'}</td>
+      <td id="sn-${vi}" style="font-family:var(--mono);font-size:.68rem;color:var(--sage-d);">${sug>=0?peps[sug].nom:'—'}</td>
     </tr>`;
-    // Afficher les variantes avec qteF > 0
     peps.forEach((_,pi)=>{
       ((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach((vr,ri)=>{
-        html+=`<tr class="var-row">
-          <td style="padding-left:20px;font-size:.74rem;color:var(--earth);font-style:italic;">
-            <span class="var-tree">↳</span>${vr.calibre||vg.calibre||'?'} / ${vr.conditionnement||vg.conditionnement||'?'}
-            ${vr.variante?' — '+vr.variante:''}
-          </td>
-          <td style="font-family:var(--mono);font-size:.7rem;">${vr.calibre||vg.calibre||'—'}</td>
-          <td style="font-size:.7rem;">${vr.conditionnement||vg.conditionnement||'—'}</td>
-          <td style="font-family:var(--mono);text-align:center;">${vr.qteF}</td>
-          ${peps.map((_2,pi2)=>`<td class="psep" style="text-align:center;font-family:var(--mono);font-size:.72rem;">${pi2===pi&&vr.unit?fmt(vr.unit)+' €':'—'}</td>`).join('')}
-          <td style="font-family:var(--mono);font-size:.7rem;color:var(--earth);">${peps[pi].nom}</td>
+        html+=`<tr class="var-row"><td style="font-size:.72rem;color:var(--earth);"><span style="margin-right:3px;">↳</span>${vr.calibre||vg.calibre||'?'} / ${vr.conditionnement||vg.conditionnement||'?'}${vr.variante?' — '+vr.variante:''}</td>
+          <td style="font-family:var(--mono);font-size:.68rem;">${vr.calibre||vg.calibre||'—'}</td><td style="font-size:.68rem;">${vr.conditionnement||vg.conditionnement||'—'}</td><td style="font-family:var(--mono);text-align:center;">${vr.qteF}</td>
+          ${peps.map((_2,pi2)=>`<td class="psep" style="text-align:center;font-family:var(--mono);font-size:.68rem;">${pi2===pi&&vr.unit?fmt(vr.unit)+' €':'—'}</td>`).join('')}
+          <td style="font-family:var(--mono);font-size:.68rem;color:var(--earth);">${peps[pi].nom}</td>
         </tr>`;
       });
     });
   });
 
   html+=`</tbody></table></div>
-    <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:14px;">
-      <div style="font-family:var(--serif);font-size:.98rem;color:var(--sage-d);margin-bottom:10px;">📄 Générer les bons de commande</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <select id="cmd-fmt" style="width:auto;"><option value="xlsx">Excel (.xlsx)</option><option value="csv">CSV (.csv)</option></select>
-        <button class="btn btn-p" onclick="genBons()">⬇ Télécharger</button>
+    <div style="margin-top:15px;border-top:1px solid var(--border);padding-top:13px;">
+      <div style="font-family:var(--serif);font-size:.96rem;color:var(--sage-d);margin-bottom:9px;">📄 Générer les bons de commande</div>
+      ${!legalInfo.siret?`<div style="background:#fdecd4;border:1px solid #f0cc90;border-radius:6px;padding:8px 11px;font-size:.74rem;color:#7a4a10;margin-bottom:10px;">⚠️ Complétez vos infos légales dans <button class="btn btn-g btn-sm" onclick="openAP()">Mon compte</button> pour des bons de commande complets.</div>`:''}
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
+        <button class="btn btn-p" onclick="genBons('preview')">👁 Aperçu &amp; Outlook</button>
+        <button class="btn btn-s" onclick="genBons('xlsx')">⬇ Excel</button>
+        <button class="btn btn-g" onclick="genBons('csv')">⬇ CSV</button>
       </div>
-      <p class="tip">Un fichier par pépinière sélectionnée. Les variantes retenues (qté > 0) sont incluses avec leurs vraies caractéristiques.</p>
+      <p class="tip">Un bon de commande par pépinière sélectionnée. Les variantes retenues (qté > 0) sont incluses avec leurs vraies caractéristiques.</p>
     </div>`;
   c.innerHTML=html;
 }
 
 function updSel(vi,pi){const el=document.getElementById(`sn-${vi}`);if(el)el.textContent=pi>=0?peps[pi].nom:'—';}
 
-function genBons(){
-  const fmtF=document.getElementById('cmd-fmt').value;
-  const sels=vegs.map((_,vi)=>{const r=document.querySelector(`input[name="sel-${vi}"]:checked`);return r?{vi,pi:parseInt(r.value)}:null;}).filter(Boolean);
-  if(!sels.length){alert('Aucune sélection.');return;}
-  const byPep={};sels.forEach(({vi,pi})=>{if(!byPep[pi])byPep[pi]=[];byPep[pi].push(vi);});
-  // Ajouter aussi les variantes sélectionnées (qteF > 0)
-  peps.forEach((_,pi)=>{
-    vegs.forEach((_,vi)=>{
-      ((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(()=>{
-        if(!byPep[pi])byPep[pi]=[];
-        if(!byPep[pi].includes(vi))byPep[pi].push(vi);
-      });
+function getSelsByPep(){
+  const byPep={};
+  vegs.forEach((_,vi)=>{const r=document.querySelector(`input[name="sel-${vi}"]:checked`);if(r){const pi=parseInt(r.value);if(!byPep[pi])byPep[pi]=[];byPep[pi].push(vi);}});
+  // Ajouter variantes
+  peps.forEach((_,pi)=>{vegs.forEach((_,vi)=>{((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(()=>{if(!byPep[pi])byPep[pi]=[];if(!byPep[pi].includes(vi))byPep[pi].push(vi);});});});
+  return byPep;
+}
+
+function buildBCRows(pi,viList){
+  const rows=[];let totalHT=0;
+  viList.forEach(vi=>{
+    const vg=vegs[vi];const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:{};
+    const up=e.nego!=null?e.nego:(e.unit!=null?e.unit:0);
+    const qty=e.qteF!=null?e.qteF:vg.qte;
+    if(up>0){const tot=up*qty;totalHT+=tot;rows.push({desig:vg.latin,calibre:vg.calibre||'',contenant:vg.conditionnement||'',unite:vg.unite||'U',qty,up,tot,note:''});}
+    ((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(vr=>{
+      const vtot=(vr.unit||0)*vr.qteF;totalHT+=vtot;
+      rows.push({desig:vg.latin,calibre:vr.calibre||vg.calibre||'',contenant:vr.conditionnement||vg.conditionnement||'',unite:vg.unite||'U',qty:vr.qteF,up:vr.unit||0,tot:vtot,note:`Variante — consulté: ${vg.calibre||'?'} / ${vg.conditionnement||'?'}`});
     });
   });
+  const port=parseFloat((prix['port']&&prix['port'][pi])||0);
+  if(port>0){rows.push({desig:'Frais de port',calibre:'',contenant:'',unite:'',qty:1,up:port,tot:port,note:''});totalHT+=port;}
+  return{rows,totalHT};
+}
 
+function genBons(mode){
+  const byPep=getSelsByPep();if(!Object.keys(byPep).length){alert('Aucune sélection.');return;}
+  if(mode==='preview'){
+    const pi=parseInt(Object.keys(byPep)[0]);bcCurrentPi=pi;
+    showBCPreview(pi,byPep[pi]);return;
+  }
   Object.entries(byPep).forEach(([piStr,viList])=>{
-    const pi=parseInt(piStr);const p=peps[pi];
-    const hdr=['Désignation','Calibre','Contenant','Unité','Quantité','Prix unitaire HT (€)','Prix total HT (€)','Note'];
-    const rows=[hdr];let total=0;
-    viList.forEach(vi=>{
-      const vg=vegs[vi];const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:{};
-      const up=e.nego!=null?e.nego:(e.unit!=null?e.unit:0);
-      const qty=e.qteF!=null?e.qteF:vg.qte;const tot=up*qty;
-      if(up>0){
-        total+=tot;
-        rows.push([vg.latin, vg.calibre||'', vg.conditionnement||'', vg.unite||'U', qty, up, tot, '']);
-      }
-      // Variantes avec qteF > 0 — caractéristiques RÉELLES de la variante
-      ((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(vr=>{
-        const vtot=(vr.unit||0)*vr.qteF;total+=vtot;
-        rows.push([
-          vg.latin,
-          vr.calibre||vg.calibre||'',      // calibre RÉEL de la variante
-          vr.conditionnement||vg.conditionnement||'', // contenant RÉEL de la variante
-          vg.unite||'U',
-          vr.qteF,
-          vr.unit||0,
-          vtot,
-          `Variante acceptée — consulté: ${vg.calibre||'?'} / ${vg.conditionnement||'?'}` // traçabilité
-        ]);
-      });
-    });
-    const port=parseFloat((prix['port']&&prix['port'][pi])||0);
-    if(port>0){rows.push(['Frais de port','','','',1,port,port,'']);total+=port;}
-    rows.push(['','','','','','TOTAL HT',total,'']);
-    const fname=`Commande_${p.nom.replace(/\s+/g,'_')}_${v('s-ville')||'projet'}.${fmtF}`;
-    if(fmtF==='csv'){
-      dlBlob(new Blob(['\uFEFF'+rows.map(r=>r.map(c=>`"${c}"`).join(';')).join('\n')],{type:'text/csv;charset=utf-8;'}),fname);
-    } else {
-      const wb=XLSX.utils.book_new();const ws=XLSX.utils.aoa_to_sheet(rows);
-      ws['!cols']=[{wch:28},{wch:10},{wch:10},{wch:6},{wch:8},{wch:18},{wch:18},{wch:40}];
-      XLSX.utils.book_append_sheet(wb,ws,'Commande');XLSX.writeFile(wb,fname);
-    }
+    const pi=parseInt(piStr);const p=peps[pi];const{rows,totalHT}=buildBCRows(pi,viList);
+    const tva=0.20;const tvaAmt=totalHT*tva;const ttc=totalHT+tvaAmt;
+    const hdr=['Désignation','Calibre','Contenant','Unité','Quantité','Prix unit. HT (€)','Prix total HT (€)','Note'];
+    const xlsRows=[
+      [`SOCIÉTÉ : ${legalInfo.nom||v('s-nom')||''}`,'','','','','','',''],
+      [`SIRET : ${legalInfo.siret||'—'}`,'','','','','','NUMÉRO BC :',`BC-${new Date().getFullYear()}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`],
+      [`TVA : ${legalInfo.tva_intra||'—'}`,'','','','','','DATE :',new Date().toLocaleDateString('fr-FR')],
+      [`Adresse : ${legalInfo.adresse_complete||'—'}`,'','','','','','CHANTIER :',`${v('s-affaire')||'—'} — ${v('s-ville')||'—'}`],
+      ['','','','','','','FOURNISSEUR :',p.nom],
+      [],hdr,
+      ...rows.map(r=>[r.desig,r.calibre,r.contenant,r.unite,r.qty,r.up,r.tot,r.note]),
+      [],['','','','','','Sous-total HT',totalHT,''],
+      ['','','','','','TVA 20%',tvaAmt,''],
+      ['','','','','','TOTAL TTC',ttc,''],
+      [],
+      [`Délai de paiement : ${legalInfo.delai_paiement||'30 jours'}`],
+      [`Pénalités de retard : ${legalInfo.penalites_retard||'3× taux légal'}`],
+      [legalInfo.mentions_legales||''],
+    ];
+    const fname=`BC_${p.nom.replace(/\s+/g,'_')}_${v('s-ville')||'projet'}.${mode}`;
+    if(mode==='csv'){dlBlob(new Blob(['\uFEFF'+xlsRows.map(r=>r.map(c=>`"${c||''}"`).join(';')).join('\n')],{type:'text/csv;charset=utf-8;'}),fname);}
+    else{const wb=XLSX.utils.book_new();const ws=XLSX.utils.aoa_to_sheet(xlsRows);ws['!cols']=[{wch:32},{wch:10},{wch:10},{wch:5},{wch:8},{wch:16},{wch:16},{wch:40}];XLSX.utils.book_append_sheet(wb,ws,'Bon de commande');XLSX.writeFile(wb,fname);}
   });
 }
+
+function showBCPreview(pi,viList){
+  const p=peps[pi];const{rows,totalHT}=buildBCRows(pi,viList);
+  const tva=0.20;const tvaAmt=totalHT*tva;const ttc=totalHT+tvaAmt;
+  const bcNum=`BC-${new Date().getFullYear()}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`;
+  const logo=legalInfo.logo_url?`<img src="${legalInfo.logo_url}" class="bc-logo" onerror="this.style.display='none'">`:'🌿';
+  document.getElementById('bc-preview-con').innerHTML=`<div class="bc-preview">
+    <div class="bc-header">
+      <div>${logo}<div class="bc-firm" style="margin-top:5px;">${legalInfo.nom||v('s-nom')||'Votre société'}</div>
+        <div style="font-size:.72rem;color:var(--sage);line-height:1.6;">${legalInfo.adresse_complete||''}<br>${legalInfo.telephone||''} · ${document.getElementById('ap-email')?.value||''}<br>SIRET: ${legalInfo.siret||'—'} · TVA: ${legalInfo.tva_intra||'—'}</div>
+      </div>
+      <div style="text-align:right;"><div class="bc-num">${bcNum}</div>
+        <div style="font-size:.74rem;color:var(--sage);margin-top:6px;line-height:1.7;">Date : ${new Date().toLocaleDateString('fr-FR')}<br>Chantier : ${v('s-affaire')||'—'} — ${v('s-ville')||'—'}<br><strong>Fournisseur : ${p.nom}</strong></div>
+      </div>
+    </div>
+    <table class="bc-table"><thead><tr><th>Désignation</th><th>Calibre</th><th>Contenant</th><th>Unité</th><th>Qté</th><th>P.U. HT</th><th>Total HT</th></tr></thead><tbody>
+      ${rows.map((r,i)=>`<tr ${i%2?'style="background:#faf5e8;"':''}><td>${r.desig}${r.note?`<div style="font-size:.64rem;color:var(--sage);font-style:italic;">${r.note}</div>`:''}</td><td>${r.calibre}</td><td>${r.contenant}</td><td>${r.unite}</td><td style="text-align:right;">${r.qty}</td><td style="text-align:right;font-family:var(--mono);">${fmt(r.up)} €</td><td style="text-align:right;font-family:var(--mono);font-weight:600;">${fmt(r.tot)} €</td></tr>`).join('')}
+    </tbody></table>
+    <div class="bc-totals">
+      <div class="bt">Sous-total HT : ${fmt(totalHT)} €</div>
+      <div class="bt">TVA 20% : ${fmt(tvaAmt)} €</div>
+      <div class="btt">TOTAL TTC : ${fmt(ttc)} €</div>
+    </div>
+    <div class="bc-footer">
+      Délai de paiement : ${legalInfo.delai_paiement||'30 jours'} · Pénalités de retard : ${legalInfo.penalites_retard||'3× taux légal'}<br>
+      ${legalInfo.mentions_legales||''}
+    </div>
+  </div>`;
+  document.getElementById('bc-modal')._pi=pi;document.getElementById('bc-modal')._viList=viList;document.getElementById('bc-modal')._bcNum=bcNum;
+  openModal('bc-modal');
+}
+
+window.dlBCExcel=function(){
+  const modal=document.getElementById('bc-modal');genBons('xlsx');closeModal('bc-modal');};
+window.openBCMailto=function(){
+  const pi=bcCurrentPi;if(pi==null)return;const p=peps[pi];
+  const subj=encodeURIComponent(`Bon de commande — ${v('s-affaire')||'—'} — ${v('s-ville')||'—'}`);
+  const body=encodeURIComponent(`Madame, Monsieur,\n\nVeuillez trouver ci-joint notre bon de commande pour le chantier ${v('s-affaire')||'—'}.\n\nCordialement,\n${v('s-nom')||''}`);
+  window.location.href=`mailto:${p.email||''}?subject=${subj}&body=${body}`;
+};
 
 // ══════════════════════════════════════
 // UTILS
@@ -1700,19 +1518,15 @@ function toast(msg,type=''){const t=document.getElementById('toast');t.textConte
 async function callClaude(messages,maxTokens=1000){
   let res;
   try{res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTokens,messages})});}
-  catch(netErr){throw new Error('Proxy injoignable — vérifiez que votre Worker Cloudflare est actif. Détail: '+netErr.message);}
+  catch(e){throw new Error('Proxy injoignable — vérifiez votre Worker Cloudflare. Détail: '+e.message);}
   if(!res.ok){let d='';try{d=(await res.text()).substring(0,300);}catch(_){}throw new Error('Erreur proxy HTTP '+res.status+' — '+(d||'réponse vide'));}
   let data;try{data=await res.json();}catch(e){throw new Error('Réponse proxy illisible.');}
   if(data.error)throw new Error('Erreur API Claude : '+(data.error.message||JSON.stringify(data.error)));
-  if(!data.content)throw new Error('Réponse inattendue : '+JSON.stringify(data).substring(0,200));
+  if(!data.content)throw new Error('Réponse inattendue.');
   return data.content.map(b=>b.text||'').join('');
 }
 
-async function testProxy(){
-  try{const res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'ping'}]})});
-    if(res.ok){console.log('%c✅ Proxy Cloudflare OK','color:green;font-weight:bold');return true;}
-    console.warn('⚠️ Proxy anormal:',res.status);return false;
-  }catch(e){console.error('❌ Proxy injoignable:',e.message);return false;}}
+async function testProxy(){try{const r=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'ping'}]})});if(r.ok)console.log('%c✅ Proxy Cloudflare OK','color:green;font-weight:bold');else console.warn('⚠️ Proxy:',r.status);}catch(e){console.error('❌ Proxy injoignable:',e.message);}}
 
 document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
 document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
