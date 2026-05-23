@@ -35,7 +35,7 @@ header{background:var(--sage-d);color:var(--cream);padding:12px 20px;display:fle
 .brand h1{font-family:var(--serif);font-size:1.32rem;font-weight:600;}
 .brand p{font-size:.58rem;opacity:.5;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;}
 .hright{display:flex;align-items:center;gap:7px;flex-wrap:wrap;position:relative;}
-.av-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;transition:all .15s;flex-shrink:0;}
+.av-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;flex-shrink:0;}
 .av-btn:hover{background:rgba(255,255,255,.22);}
 .av-menu{display:none;position:absolute;top:42px;right:0;background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);min-width:210px;box-shadow:0 8px 28px rgba(0,0,0,.15);z-index:200;overflow:hidden;}
 .av-menu.open{display:block;}
@@ -70,14 +70,13 @@ main{max-width:1340px;margin:0 auto;padding:20px 14px;}
 /* SAVE BAR */
 .sbar{display:flex;align-items:center;justify-content:space-between;background:var(--earth-l);border:1px solid var(--earth);border-radius:var(--r);padding:9px 15px;margin-bottom:13px;flex-wrap:wrap;gap:7px;}
 .sbar .sm{font-size:.74rem;color:var(--sage-d);}
-.sbar.dirty{background:#fdecd4;}.sbar.dirty .sm{color:#7a4a10;}
 
 /* CARDS */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:13px;box-shadow:0 2px 10px var(--sh);}
 .ct-title{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:var(--sage-d);margin-bottom:13px;padding-bottom:8px;border-bottom:1px solid var(--earth-l);display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
 .bdg{font-family:var(--mono);font-size:.58rem;background:var(--earth-l);color:var(--sage-d);padding:2px 7px;border-radius:20px;margin-left:auto;}
-.sbdg{font-family:var(--mono);font-size:.57rem;padding:2px 6px;border-radius:20px;}
-.sbdg-ok{background:#d4edda;color:#1a5c28;}.sbdg-err{background:#fde8e0;color:var(--rust);}
+.sbdg{font-family:var(--mono);font-size:.57px;padding:2px 6px;border-radius:20px;}
+.sbdg-ok{background:#d4edda;color:#1a5c28;font-size:.57rem;}.sbdg-err{background:#fde8e0;color:var(--rust);font-size:.57rem;}
 
 /* FORM */
 label{display:block;font-size:.61rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:3px;font-weight:500;}
@@ -101,7 +100,7 @@ textarea{resize:vertical;min-height:46px;}
 
 /* CHANTIERS */
 .chgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px;}
-.cc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .14s;}
+.cc{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:14px;transition:all .14s;}
 .cc:hover{border-color:var(--sage);box-shadow:0 4px 14px var(--sh);transform:translateY(-1px);}
 .cc.active-c{border-color:var(--sage-d);box-shadow:0 0 0 2px var(--sage-d);}
 .cc-head{display:flex;align-items:center;gap:7px;margin-bottom:6px;}
@@ -110,15 +109,17 @@ textarea{resize:vertical;min-height:46px;}
 .st-brouillon{background:#f0ede4;color:#7a6a40;}.st-envoyée{background:#e0eaf8;color:#2a4080;}.st-clôturée{background:#d4edda;color:#1a5c28;}
 .cc-meta{font-size:.68rem;color:var(--sage);font-family:var(--mono);}
 
-/* PEPINIEIRES */
+/* PEPINIERES */
 .pep-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--cream);border:1.5px solid var(--border);border-radius:7px;margin-bottom:5px;}
 .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .pep-name{flex:1;font-weight:500;font-size:.82rem;}
 .pep-meta{font-size:.66rem;color:var(--sage);font-family:var(--mono);}
 .db-bdg{font-size:.54rem;font-family:var(--mono);background:var(--sage-d);color:var(--cream);padding:1px 5px;border-radius:20px;opacity:.65;}
+.has-account-bdg{font-size:.54rem;font-family:var(--mono);background:#e0eaf8;color:#2a4080;padding:1px 5px;border-radius:20px;}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:8px;margin-bottom:10px;}
 .ccard{background:var(--cream);border:1.5px solid var(--border);border-radius:7px;padding:10px 12px;cursor:pointer;transition:all .14s;position:relative;user-select:none;}
 .ccard:hover{border-color:var(--sage);}.ccard.sel{border-color:var(--sage-d);background:#e8f0e0;box-shadow:0 0 0 2px var(--sage-d);}
+.ccard.has-acct{border-color:var(--sage-l);}
 .ccard .cn{font-family:var(--serif);font-size:.88rem;font-weight:600;color:var(--sage-d);}
 .ccard .cm{font-size:.63rem;color:var(--sage);font-family:var(--mono);margin-top:2px;}
 .ccard .cdel{position:absolute;top:5px;right:6px;background:transparent;border:none;cursor:pointer;color:#bbb;font-size:.7rem;}
@@ -127,16 +128,20 @@ textarea{resize:vertical;min-height:46px;}
 .ccard.sel .chk{display:block;}
 .npanel{display:none;margin-top:12px;background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:14px;}
 .npanel h3{font-family:var(--serif);font-size:.9rem;color:var(--sage-d);margin-bottom:10px;}
+/* Pépinières avec compte */
+.acct-search{background:#e8f0e4;border:1.5px solid var(--sage-l);border-radius:7px;padding:12px;margin-bottom:10px;}
+.acct-result{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--white);border:1px solid var(--border);border-radius:5px;margin-top:5px;cursor:pointer;transition:all .14s;}
+.acct-result:hover{border-color:var(--sage-d);background:#f0f8e8;}
 
 /* VEGETAUX */
 .vhdr,.vrow{display:grid;gap:5px;padding:6px 9px;align-items:center;}
-.vg8{grid-template-columns:2fr 1fr 1fr .7fr 1fr 1fr 1fr 46px;}
+.vg8{grid-template-columns:2fr 1fr 1fr .7fr .9fr 1fr .9fr 46px;}
 .vhdr{background:var(--sage-d);color:var(--cream);border-radius:6px 6px 0 0;font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;}
 .vrow{border:1px solid var(--border);border-top:none;background:var(--white);}
 .vrow:last-child{border-radius:0 0 6px 6px;}.vrow:hover{background:var(--cream);}
 .vnum{font-family:var(--mono);font-size:.63rem;color:var(--sage);}
 
-/* COMPARAISON */
+/* COMPARAISON — allégé */
 .cwrap{overflow-x:auto;margin-top:7px;}
 table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 .ct th{background:var(--sage-d);color:var(--cream);padding:6px 7px;font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;position:sticky;top:0;z-index:2;}
@@ -158,7 +163,7 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 .total-row td{background:#eef3e8!important;font-weight:600;font-family:var(--mono);font-size:.7rem;}
 .gtotal-row td{background:var(--sage-d)!important;color:var(--cream)!important;font-weight:600;font-family:var(--mono);}
 .dp{color:#c0392b;font-weight:600;}.dn{color:#1a7a3a;font-weight:600;}.dz{color:var(--sage);}
-.conf-o{background:#fdecd4!important;}.conf-r{background:#fde8e0!important;}
+.notif-badge{display:inline-flex;align-items:center;justify-content:center;background:var(--earth);color:var(--white);border-radius:50%;width:16px;height:16px;font-size:.6rem;font-family:var(--mono);font-weight:600;margin-left:4px;}
 
 /* IMPORT */
 .dz-box{border:2px dashed var(--border);border-radius:10px;padding:26px 15px;text-align:center;cursor:pointer;transition:all .17s;background:var(--cream);}
@@ -168,23 +173,29 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 .spin{width:13px;height:13px;border:2px solid var(--sage-l);border-top-color:var(--sage-d);border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0;}
 @keyframes sp{to{transform:rotate(360deg)}}
 .mtbl{width:100%;border-collapse:collapse;font-size:.74rem;}
-.mtbl th{background:var(--earth-l);padding:5px 9px;text-align:left;font-family:var(--mono);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;}
+.mtbl th{background:var(--earth-l);padding:5px 9px;text-align:left;font-family:var(--mono);font-size:.57rem;text-transform:uppercase;}
 .mtbl td{padding:4px 9px;border-bottom:1px solid var(--border);}
 .ptbl{width:100%;border-collapse:collapse;font-size:.7rem;}
 .ptbl th{background:var(--sage-d);color:var(--cream);padding:4px 7px;font-family:var(--mono);font-size:.54rem;text-transform:uppercase;}
 .ptbl td{padding:4px 7px;border-bottom:1px solid var(--border);}
 .ptbl tr:nth-child(even) td{background:#faf5e8;}
 
-/* ENVOI */
-.mail-wrap{border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:11px;}
-.mail-hdr{background:var(--sage-d);color:var(--cream);padding:8px 13px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
-.mail-body{padding:12px 14px;font-size:.78rem;line-height:1.7;background:var(--white);}
-.mail-subj{font-family:var(--mono);font-size:.68rem;background:var(--earth-l);padding:3px 8px;border-radius:4px;margin-bottom:7px;color:var(--sage-d);}
-
 /* PORT */
 .port-row{background:#eef3e8;border:1px solid var(--sage-l);border-radius:6px;padding:6px 10px;display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
-.nego-log{font-size:.61rem;color:var(--sage);font-family:var(--mono);margin-top:2px;max-height:48px;overflow-y:auto;}
-.nego-entry{padding:1px 0;border-bottom:1px dotted var(--border);}
+
+/* BC PREVIEW */
+.bc-preview{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:20px;font-size:.78rem;line-height:1.7;}
+.bc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--sage-d);}
+.bc-firm{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--sage-d);}
+.bc-num{font-family:var(--mono);font-size:.7rem;background:var(--sage-d);color:var(--cream);padding:3px 10px;border-radius:5px;}
+.bc-tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:.74rem;}
+.bc-tbl th{background:var(--sage-d);color:var(--cream);padding:5px 8px;font-family:var(--mono);font-size:.58rem;text-transform:uppercase;text-align:left;}
+.bc-tbl td{padding:5px 8px;border-bottom:1px solid var(--border);}
+.bc-tbl tr:nth-child(even) td{background:#faf5e8;}
+.bc-totals{text-align:right;margin-top:9px;}
+.bc-totals .bt{font-family:var(--mono);font-size:.76rem;}
+.bc-totals .btt{font-family:var(--mono);font-size:.9rem;font-weight:600;color:var(--sage-d);}
+.bc-footer{margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:.68rem;color:var(--sage);}
 
 /* MODAL */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.44);z-index:200;align-items:center;justify-content:center;}
@@ -197,26 +208,14 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.error{background:var(--rust);}
 
-/* BC PREVIEW */
-.bc-preview{background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:22px;font-size:.8rem;line-height:1.7;}
-.bc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--sage-d);}
-.bc-logo{max-height:50px;max-width:120px;object-fit:contain;}
-.bc-firm{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--sage-d);}
-.bc-num{font-family:var(--mono);font-size:.72rem;background:var(--sage-d);color:var(--cream);padding:4px 12px;border-radius:5px;}
-.bc-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.76rem;}
-.bc-table th{background:var(--sage-d);color:var(--cream);padding:6px 9px;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;text-align:left;}
-.bc-table td{padding:6px 9px;border-bottom:1px solid var(--border);}
-.bc-table tr:nth-child(even) td{background:#faf5e8;}
-.bc-totals{text-align:right;margin-top:10px;}
-.bc-totals .bt{font-family:var(--mono);font-size:.78rem;}
-.bc-totals .btt{font-family:var(--mono);font-size:.92rem;font-weight:600;color:var(--sage-d);}
-.bc-footer{margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-size:.7rem;color:var(--sage);}
-
 /* MISC */
-.tip{font-size:.64rem;color:var(--sage);margin-top:4px;font-style:italic;}
+.tip{font-size:.63rem;color:var(--sage);margin-top:4px;font-style:italic;}
 .empty{text-align:center;padding:30px 14px;color:var(--sage);}
 .empty .ei{font-size:2rem;margin-bottom:6px;opacity:.32;}
 .empty p{font-size:.76rem;}
+.notice{border-radius:7px;padding:9px 12px;font-size:.76rem;margin-bottom:11px;}
+.notice-warn{background:#fdecd4;border:1px solid #f0cc90;color:#7a4a10;}
+.notice-ok{background:#d4edda;border:1px solid #a8d8b0;color:#1a5c28;}
 
 @media(max-width:680px){header{padding:10px;}.c3{grid-template-columns:1fr 1fr;}.c4{grid-template-columns:1fr 1fr;}.vg8{grid-template-columns:2fr 1fr 46px;}}
 @media print{header,.tabs,.abar,.btn,.sbar{display:none!important;}.sec{display:block!important;}}
@@ -246,10 +245,7 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
       <div class="gr" style="margin-bottom:9px;"><div><label>Email *</label><input type="email" id="r-email" placeholder="vous@societe.fr"></div></div>
       <div class="gr" style="margin-bottom:9px;"><div><label>Mot de passe (8 car. min.) *</label><input type="password" id="r-pwd" placeholder="••••••••"></div></div>
       <div class="gr" style="margin-bottom:13px;"><div><label>Langue de l'interface</label>
-        <select id="r-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option>
-        <option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option>
-        <option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option>
-        <option value="it">🇮🇹 Italiano</option></select>
+        <select id="r-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option><option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option><option value="it">🇮🇹 Italiano</option></select>
       </div></div>
       <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doRegister()">Créer mon compte</button>
     </div>
@@ -281,23 +277,28 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
       <div class="gr" style="margin-bottom:9px;"><div><label>N° TVA intracommunautaire</label><input type="text" id="ap-tva" placeholder="FR XX XXX XXX XXX"></div></div>
       <div class="gr" style="margin-bottom:9px;"><div><label>Adresse complète</label><textarea id="ap-adr" rows="2" placeholder="1 rue des Jardins&#10;44000 Nantes"></textarea></div></div>
       <div class="gr c2" style="margin-bottom:9px;">
-        <div><label>Téléphone</label><input type="text" id="ap-tel" placeholder="02 40 XX XX XX"></div>
+        <div><label>Téléphone</label><input type="text" id="ap-tel"></div>
         <div><label>Délai de paiement</label><input type="text" id="ap-delai" placeholder="30 jours fin de mois"></div>
       </div>
       <div class="gr" style="margin-bottom:9px;"><div><label>Pénalités de retard</label><input type="text" id="ap-penalite" placeholder="3× le taux d'intérêt légal"></div></div>
-      <div class="gr" style="margin-bottom:9px;"><div><label>URL du logo (lien image)</label><input type="text" id="ap-logo" placeholder="https://..."></div></div>
-      <div class="gr" style="margin-bottom:9px;"><div><label>Mentions légales personnalisées</label><textarea id="ap-mentions" rows="3" placeholder="Tout litige relatif…"></textarea></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>URL du logo</label><input type="text" id="ap-logo" placeholder="https://..."></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Mentions légales</label><textarea id="ap-mentions" rows="3"></textarea></div></div>
       <button class="btn btn-p btn-sm" onclick="saveLegalInfo()">💾 Enregistrer infos légales</button>
     </div>
     <div class="ap-sec">
       <h3>Changer le mot de passe</h3>
       <div class="gr" style="margin-bottom:9px;"><div><label>Nouveau mot de passe</label><input type="password" id="ap-pwd" placeholder="8 caractères minimum"></div></div>
-      <div class="gr" style="margin-bottom:9px;"><div><label>Confirmer</label><input type="password" id="ap-pwd2" placeholder="Confirmer"></div></div>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Confirmer</label><input type="password" id="ap-pwd2"></div></div>
       <button class="btn btn-g btn-sm" onclick="changePwd()">🔑 Changer</button>
     </div>
     <div class="ap-sec">
       <h3>Sécurité</h3>
       <button class="btn btn-d btn-sm" onclick="disconnectAll()">🔒 Déconnecter tous mes appareils</button>
+    </div>
+    <div class="ap-sec">
+      <h3>Notifications</h3>
+      <div id="notif-list" style="max-height:200px;overflow-y:auto;"></div>
+      <button class="btn btn-g btn-sm" style="margin-top:8px;" onclick="markAllRead()">✓ Tout marquer comme lu</button>
     </div>
   </div>
 </div>
@@ -314,10 +315,10 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
     <button class="tab" onclick="go('commande')">⑥ Commande<span class="ud"></span></button>
   </div>
   <div class="hright">
-    <div class="av-btn" id="av-btn" onclick="toggleAV()">👤</div>
+    <div class="av-btn" id="av-btn" onclick="toggleAV()">👤<span id="notif-dot" style="display:none;position:absolute;top:1px;right:1px;width:7px;height:7px;background:var(--earth);border-radius:50%;"></span></div>
     <div class="av-menu" id="av-menu">
       <div class="av-mh"><div class="mn" id="am-name">—</div><div class="me" id="am-email">—</div></div>
-      <div class="av-mi" onclick="openAP()"><span>⚙️</span>Paramètres du compte</div>
+      <div class="av-mi" onclick="openAP()"><span>⚙️</span>Paramètres &amp; Notifications</div>
       <div class="av-mi" onclick="doLogout()"><span>🚪</span>Déconnexion</div>
     </div>
   </div>
@@ -331,10 +332,7 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
     <button class="btn btn-p" onclick="newConsult()">＋ Nouvelle consultation</button>
     <div class="vsep"></div>
     <select id="f-st" onchange="renderChantiers()" style="width:auto;padding:5px 9px;font-family:var(--mono);font-size:.64rem;">
-      <option value="">Tous les statuts</option>
-      <option value="brouillon">Brouillon</option>
-      <option value="envoyée">Envoyée</option>
-      <option value="clôturée">Clôturée</option>
+      <option value="">Tous les statuts</option><option value="brouillon">Brouillon</option><option value="envoyée">Envoyée</option><option value="clôturée">Clôturée</option>
     </select>
     <input type="text" id="f-sr" placeholder="Rechercher…" oninput="renderChantiers()" style="width:190px;padding:5px 9px;font-family:var(--mono);font-size:.64rem;">
     <button class="btn btn-g btn-sm" onclick="loadChantiers()">↻</button>
@@ -344,8 +342,7 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 
 <!-- PARAMÉTRAGE -->
 <div class="sec" id="tab-setup">
-  <div class="sbar" id="sb-setup"><span class="sm">💾 N'oubliez pas d'enregistrer</span>
-    <button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button></div>
+  <div class="sbar"><span class="sm">💾 N'oubliez pas d'enregistrer</span><button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button></div>
   <div class="card">
     <div class="ct-title">📋 Informations de la consultation</div>
     <div class="gr c3">
@@ -359,10 +356,8 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
       <div><label>Votre email</label><input type="email" id="s-email" oninput="markDirty('setup')"></div>
     </div>
     <div class="gr" style="grid-template-columns:1fr 155px;margin-bottom:0;">
-      <div><label>Remarques générales</label><input type="text" id="s-rem" placeholder="Livraison en 2 tranches…" oninput="markDirty('setup')"></div>
-      <div><label>Statut</label><select id="s-statut" onchange="markDirty('setup')">
-        <option value="brouillon">Brouillon</option><option value="envoyée">Envoyée</option><option value="clôturée">Clôturée</option>
-      </select></div>
+      <div><label>Remarques générales</label><input type="text" id="s-rem" oninput="markDirty('setup')"></div>
+      <div><label>Statut</label><select id="s-statut" onchange="markDirty('setup')"><option value="brouillon">Brouillon</option><option value="envoyée">Envoyée</option><option value="clôturée">Clôturée</option></select></div>
     </div>
   </div>
   <div class="card">
@@ -370,7 +365,13 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
       <span class="sbdg sbdg-ok" id="csync" style="margin-left:5px;">● Supabase</span></div>
     <div id="pep-list"></div>
     <div style="margin-top:12px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-wrap:wrap;gap:5px;">
+      <!-- Recherche pépinières avec compte -->
+      <div class="acct-search">
+        <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-d);margin-bottom:7px;">🔍 Rechercher une pépinière avec un compte</div>
+        <input type="text" id="acct-search-inp" placeholder="Nom ou email de la pépinière…" oninput="searchAcctPeps(this.value)" style="margin-bottom:0;">
+        <div id="acct-results"></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;flex-wrap:wrap;gap:5px;margin-top:11px;">
         <span style="font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);">📖 Carnet</span>
         <div style="display:flex;gap:4px;"><button class="btn btn-sm btn-g" onclick="loadCarnet()">↻</button><button class="btn btn-sm btn-g" onclick="tglNP()">＋ Nouvelle</button></div>
       </div>
@@ -388,14 +389,14 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
       </div>
       <div style="display:flex;gap:8px;"><button class="btn btn-p" onclick="saveNewPep()">💾 Enregistrer</button><button class="btn btn-g btn-sm" onclick="tglNP()">Annuler</button></div>
     </div>
-    <p class="tip">💡 Carnet sauvegardé dans Supabase.</p>
+    <p class="tip">💡 Les pépinières avec un compte 🔵 reçoivent les consultations directement dans leur portail.</p>
   </div>
   <div style="display:flex;gap:7px;"><button class="btn btn-g" onclick="go('chantiers')">← Chantiers</button><button class="btn btn-p" onclick="go('vegetaux')">Suivant → Végétaux</button></div>
 </div>
 
 <!-- VÉGÉTAUX -->
 <div class="sec" id="tab-vegetaux">
-  <div class="sbar" id="sb-veg"><span class="sm">Importez ou saisissez vos végétaux puis enregistrez</span><button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button></div>
+  <div class="sbar"><span class="sm">Importez ou saisissez vos végétaux puis enregistrez</span><button class="btn btn-ok btn-sm" onclick="saveConsultation()">💾 Enregistrer</button></div>
   <div class="card">
     <div class="ct-title">🤖 Import depuis un fichier <span class="bdg">Excel · PDF · CSV · Image</span></div>
     <div class="dz-box" id="dz" onclick="document.getElementById('finp').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="onDrop(event)">
@@ -436,6 +437,7 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 <div class="sec" id="tab-reponses">
   <div class="card">
     <div class="ct-title">📥 Importer les réponses</div>
+    <div class="notice notice-ok" id="notif-rep" style="display:none;">🔔 Des réponses ont été reçues via le portail pépinière — elles sont déjà intégrées dans le comparatif.</div>
     <div style="margin-bottom:12px;"><label>Pépinière concernée</label><select id="rep-pi"><option value="">— Choisir —</option></select></div>
     <div class="dz-box" id="dz2" onclick="document.getElementById('finp2').click()" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="onDrop2(event)">
       <div class="dzi">📨</div><p style="font-size:.82rem;"><strong>Déposez la réponse</strong></p>
@@ -450,12 +452,12 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 
 <!-- COMPARAISON -->
 <div class="sec" id="tab-comparaison">
-  <div class="sbar" id="sb-comp">
-    <span class="sm">Saisissez les prix — les totaux se mettent à jour en temps réel</span>
+  <div class="sbar">
+    <span class="sm">Saisissez les prix — totaux mis à jour en temps réel</span>
     <div style="display:flex;gap:6px;">
       <button class="btn btn-s btn-sm" onclick="hlBest()">🏆 Meilleur prix</button>
       <button class="btn btn-g btn-sm" onclick="clrHL()">Effacer</button>
-      <button class="btn btn-g btn-sm" onclick="openQtyModal()">✏️ Ajuster qtés finales</button>
+      <button class="btn btn-g btn-sm" onclick="openQtyModal()">✏️ Qtés finales</button>
       <button class="btn btn-ok btn-sm" onclick="saveComparatif()">💾 Enregistrer</button>
     </div>
   </div>
@@ -475,10 +477,10 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 <div class="overlay" id="qty-modal">
   <div class="modal">
     <h2>✏️ Ajuster les quantités finales</h2>
-    <p style="font-size:.76rem;color:var(--sage);margin-bottom:3px;">⚠️ Seules les quantités <strong>finales du comparatif</strong> sont modifiées. La quantité de référence de la consultation reste inchangée.</p>
-    <div class="gr c2" style="margin-bottom:10px;margin-top:10px;">
-      <div><label>Pourcentage (ex: -10 ou +15)</label><input type="number" id="qty-pct" placeholder="-10" step="1"></div>
-      <div><label>Appliquer à</label><select id="qty-scope"><option value="all">Tous les végétaux</option><option value="sel">Sélection</option></select></div>
+    <p style="font-size:.74rem;color:var(--sage);margin-bottom:10px;">⚠️ Seules les quantités <strong>finales</strong> sont modifiées. La quantité consultée reste inchangée.</p>
+    <div class="gr c2" style="margin-bottom:10px;">
+      <div><label>Pourcentage (ex: -10)</label><input type="number" id="qty-pct" placeholder="-10" step="1"></div>
+      <div><label>Appliquer à</label><select id="qty-scope"><option value="all">Tous</option><option value="sel">Sélection</option></select></div>
     </div>
     <div id="qty-sel-list" style="max-height:160px;overflow-y:auto;margin-bottom:11px;"></div>
     <div style="display:flex;gap:7px;"><button class="btn btn-p" onclick="applyQtyPct()">Appliquer</button><button class="btn btn-g btn-sm" onclick="closeModal('qty-modal')">Annuler</button></div>
@@ -486,20 +488,17 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
 </div>
 
 <div class="overlay" id="var-comp-modal">
-  <div class="modal">
-    <h2>🔀 Ajouter une variante dans le comparatif</h2>
-    <div id="var-comp-con"></div>
-  </div>
+  <div class="modal"><h2>🔀 Ajouter une variante</h2><div id="var-comp-con"></div></div>
 </div>
 
 <div class="overlay" id="var-modal">
-  <div class="modal"><h2>🔀 Variantes</h2><div id="var-modal-con"></div></div>
+  <div class="modal"><h2>🔀 Variantes végétal</h2><div id="var-modal-con"></div></div>
 </div>
 
 <div class="overlay" id="unsaved-modal">
   <div class="modal">
     <h2>⚠️ Modifications non enregistrées</h2>
-    <p style="font-size:.78rem;color:var(--sage);margin-bottom:14px;">Vous avez des modifications non enregistrées sur cet onglet.</p>
+    <p style="font-size:.78rem;color:var(--sage);margin-bottom:14px;">Des modifications n'ont pas été enregistrées.</p>
     <div style="display:flex;gap:7px;flex-wrap:wrap;">
       <button class="btn btn-ok" onclick="saveAndNav()">💾 Enregistrer &amp; continuer</button>
       <button class="btn btn-d" onclick="discardAndNav()">Ignorer &amp; continuer</button>
@@ -512,8 +511,8 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;}
   <div class="modal" style="max-width:700px;">
     <h2>📄 Bon de commande</h2>
     <div id="bc-preview-con"></div>
-    <div style="display:flex;gap:7px;margin-top:14px;flex-wrap:wrap;">
-      <button class="btn btn-s" onclick="dlBCExcel()">⬇ Excel</button>
+    <div style="display:flex;gap:7px;margin-top:13px;flex-wrap:wrap;">
+      <button class="btn btn-s" onclick="genBons('xlsx')">⬇ Excel</button>
       <button class="btn btn-blue" onclick="openBCMailto()">📨 Envoyer par Outlook</button>
       <button class="btn btn-g btn-sm" onclick="closeModal('bc-modal')">Fermer</button>
     </div>
@@ -536,13 +535,13 @@ const supa=supabase.createClient(SUPA_URL,SUPA_KEY);
 // I18N
 // ══════════════════════════════════════
 const LNG={
-  fr:{save:'Enregistrer',imported:'végétal(ux) importé(s)',noVeg:'Aucun végétal.',mailSubj:'Consultation végétaux',mailHi:'Madame, Monsieur,',mailBody:'Nous vous contactons pour une consultation de prix végétaux.',mailProj:'Projet',mailDel:'Livraison souhaitée',mailFile:'Veuillez compléter le fichier Excel ci-joint et nous le retourner par email.',mailPortal:'Ou saisissez vos prix directement en ligne',mailReg:'Cordialement',calibre:'Calibre (taille)',contenant:'Contenant',studyP:'Prix étude',qteRef:'Qté consultée',qteFin:'Qté finale'},
-  en:{save:'Save',imported:'plant(s) imported',noVeg:'No plants.',mailSubj:'Plant price consultation',mailHi:'Dear Sir/Madam,',mailBody:'We are contacting you regarding a plant price consultation.',mailProj:'Project',mailDel:'Requested delivery',mailFile:'Please complete the attached Excel file and return it by email.',mailPortal:'Or enter your prices directly online',mailReg:'Best regards',calibre:'Calibre (size)',contenant:'Container',studyP:'Study price',qteRef:'Consulted qty',qteFin:'Final qty'},
-  es:{save:'Guardar',imported:'vegetal(es) importado(s)',noVeg:'Sin vegetales.',mailSubj:'Consulta de precios',mailHi:'Estimado/a,',mailBody:'Nos ponemos en contacto para una consulta de precios.',mailProj:'Proyecto',mailDel:'Entrega deseada',mailFile:'Complete el archivo Excel adjunto.',mailPortal:'O introduzca sus precios en línea',mailReg:'Atentamente',calibre:'Calibre (tamaño)',contenant:'Contenedor',studyP:'Precio estudio',qteRef:'Ctd consultada',qteFin:'Ctd final'},
-  ca:{save:'Desar',imported:'vegetal(s) importat(s)',noVeg:'Cap vegetal.',mailSubj:'Consulta de preus',mailHi:'Benvolgut/da,',mailBody:'Ens posem en contacte per a una consulta de preus.',mailProj:'Projecte',mailDel:'Lliurament desitjat',mailFile:'Empleneu el fitxer Excel adjunt.',mailPortal:'O introduïu els vostres preus en línia',mailReg:'Cordialment',calibre:'Calibre (mida)',contenant:'Contenidor',studyP:'Preu estudi',qteRef:'Qtt consultada',qteFin:'Qtt final'},
-  nl:{save:'Opslaan',imported:'plant(en) geïmporteerd',noVeg:'Geen planten.',mailSubj:'Plantenprijs consultatie',mailHi:'Geachte heer/mevrouw,',mailBody:'Wij nemen contact op voor een consultatie.',mailProj:'Project',mailDel:'Gewenste levering',mailFile:'Vul het bijgevoegde Excel-bestand in.',mailPortal:'Of voer uw prijzen online in',mailReg:'Met vriendelijke groet',calibre:'Kaliber (maat)',contenant:'Container',studyP:'Studieprijs',qteRef:'Geraadpleegd aantal',qteFin:'Definitief aantal'},
-  de:{save:'Speichern',imported:'Pflanze(n) importiert',noVeg:'Keine Pflanzen.',mailSubj:'Pflanzenpreisanfrage',mailHi:'Sehr geehrte Damen und Herren,',mailBody:'Wir kontaktieren Sie bezüglich einer Preisanfrage.',mailProj:'Projekt',mailDel:'Gewünschte Lieferung',mailFile:'Bitte füllen Sie die Excel-Datei aus.',mailPortal:'Oder geben Sie Ihre Preise online ein',mailReg:'Mit freundlichen Grüßen',calibre:'Kaliber (Größe)',contenant:'Behälter',studyP:'Studienpreis',qteRef:'Angefragte Menge',qteFin:'Endmenge'},
-  it:{save:'Salva',imported:'vegetale/i importato/i',noVeg:'Nessun vegetale.',mailSubj:'Consultazione prezzi',mailHi:'Gentile signore/signora,',mailBody:'La contattamo per una consultazione dei prezzi.',mailProj:'Progetto',mailDel:'Consegna desiderata',mailFile:'Compilare il file Excel allegato.',mailPortal:'O inserisca i prezzi direttamente online',mailReg:'Cordialmente',calibre:'Calibro (dimensione)',contenant:'Contenitore',studyP:'Prezzo studio',qteRef:'Qtà consultata',qteFin:'Qtà finale'}
+  fr:{save:'Enregistrer',imported:'végétal(ux) importé(s)',noVeg:'Aucun végétal.',mailSubj:'Consultation végétaux',mailHi:'Madame, Monsieur,',mailBody:'Nous vous contactons pour une consultation de prix végétaux.',mailProj:'Projet',mailDel:'Livraison souhaitée',mailFile:'Veuillez compléter le fichier Excel ci-joint et nous le retourner.',mailPortal:'Ou saisissez vos prix directement en ligne (accès sécurisé)',mailReg:'Cordialement',calibre:'Calibre (taille)',contenant:'Contenant',studyP:'Prix étude',qteRef:'Qté cons.',qteFin:'Qté finale'},
+  en:{save:'Save',imported:'plant(s) imported',noVeg:'No plants.',mailSubj:'Plant price consultation',mailHi:'Dear Sir/Madam,',mailBody:'We are contacting you regarding a plant price consultation.',mailProj:'Project',mailDel:'Requested delivery',mailFile:'Please complete the attached Excel file and return it.',mailPortal:'Or enter your prices directly online (secure access)',mailReg:'Best regards',calibre:'Calibre (size)',contenant:'Container',studyP:'Study price',qteRef:'Consulted qty',qteFin:'Final qty'},
+  es:{save:'Guardar',imported:'vegetal(es) importado(s)',noVeg:'Sin vegetales.',mailSubj:'Consulta de precios',mailHi:'Estimado/a,',mailBody:'Nos ponemos en contacto para una consulta de precios.',mailProj:'Proyecto',mailDel:'Entrega deseada',mailFile:'Complete el archivo Excel adjunto.',mailPortal:'O introduzca sus precios en línea (acceso seguro)',mailReg:'Atentamente',calibre:'Calibre',contenant:'Contenedor',studyP:'Precio estudio',qteRef:'Ctd cons.',qteFin:'Ctd final'},
+  ca:{save:'Desar',imported:'vegetal(s) importat(s)',noVeg:'Cap vegetal.',mailSubj:'Consulta de preus',mailHi:'Benvolgut/da,',mailBody:'Ens posem en contacte per a una consulta de preus.',mailProj:'Projecte',mailDel:'Lliurament desitjat',mailFile:'Empleneu el fitxer Excel adjunt.',mailPortal:'O introduïu els vostres preus en línia (accés segur)',mailReg:'Cordialment',calibre:'Calibre',contenant:'Contenidor',studyP:'Preu estudi',qteRef:'Qtt cons.',qteFin:'Qtt final'},
+  nl:{save:'Opslaan',imported:'plant(en) geïmporteerd',noVeg:'Geen planten.',mailSubj:'Plantenprijs consultatie',mailHi:'Geachte heer/mevrouw,',mailBody:'Wij nemen contact op voor een consultatie.',mailProj:'Project',mailDel:'Gewenste levering',mailFile:'Vul het bijgevoegde Excel-bestand in.',mailPortal:'Of voer uw prijzen online in (beveiligde toegang)',mailReg:'Met vriendelijke groet',calibre:'Kaliber',contenant:'Container',studyP:'Studieprijs',qteRef:'Gevraagd',qteFin:'Definitief'},
+  de:{save:'Speichern',imported:'Pflanze(n) importiert',noVeg:'Keine Pflanzen.',mailSubj:'Pflanzenpreisanfrage',mailHi:'Sehr geehrte Damen und Herren,',mailBody:'Wir kontaktieren Sie bezüglich einer Preisanfrage.',mailProj:'Projekt',mailDel:'Gewünschte Lieferung',mailFile:'Bitte füllen Sie die Excel-Datei aus.',mailPortal:'Oder geben Sie Ihre Preise online ein (sicherer Zugang)',mailReg:'Mit freundlichen Grüßen',calibre:'Kaliber',contenant:'Behälter',studyP:'Studienpreis',qteRef:'Angefragt',qteFin:'Endmenge'},
+  it:{save:'Salva',imported:'vegetale/i importato/i',noVeg:'Nessun vegetale.',mailSubj:'Consultazione prezzi',mailHi:'Gentile signore/signora,',mailBody:'La contattamo per una consultazione dei prezzi.',mailProj:'Progetto',mailDel:'Consegna desiderata',mailFile:'Compilare il file Excel allegato.',mailPortal:'O inserisca i prezzi direttamente online (accesso sicuro)',mailReg:'Cordialmente',calibre:'Calibro',contenant:'Contenitore',studyP:'Prezzo studio',qteRef:'Qtà richiesta',qteFin:'Qtà finale'}
 };
 let curLang='fr';
 function T(k){return(LNG[curLang]||LNG.fr)[k]||(LNG.fr)[k]||k;}
@@ -553,14 +552,11 @@ function setLang(l){curLang=l;if(document.getElementById('ap-lang'))document.get
 // ══════════════════════════════════════
 const C=['#6b7d5a','#b8945a','#7a5f4e','#4e6878','#886050','#588070'];
 let peps=[],vegs=[],prix={};
-// prix[vi][pi] = {unit, nego, qteF (finale seulement), fraisPort, variantes:[], negoText, log:[]}
-// vegs[vi].qte = quantité de RÉFÉRENCE (consultation) — jamais modifiée par ajustement %
 let carnet=[],cSel=new Set();
 let iRows=[],iCols=[],iMap={};
 let currentUser=null,currentConsultId=null,allChantiers=[];
 let dirtyTabs=new Set(),pendingNav=null;
-let legalInfo={};  // infos légales du consultant
-let bcCurrentPi=null; // pépinière pour laquelle on génère le BC
+let legalInfo={},bcCurrentPi=null;
 const TABULAR_EXT=['xlsx','xls','ods','csv','txt','tsv'];
 const IMAGE_EXT=['jpg','jpeg','png','webp','heic','bmp','tiff'];
 
@@ -568,59 +564,56 @@ const IMAGE_EXT=['jpg','jpeg','png','webp','heic','bmp','tiff'];
 // ACCOUNT PANEL
 // ══════════════════════════════════════
 function toggleAV(){document.getElementById('av-menu').classList.toggle('open');}
-function openAP(){document.getElementById('av-menu').classList.remove('open');document.getElementById('account-panel').classList.add('open');}
+function openAP(){document.getElementById('av-menu').classList.remove('open');document.getElementById('account-panel').classList.add('open');loadNotifications();}
 function closeAP(){document.getElementById('account-panel').classList.remove('open');}
 document.addEventListener('click',e=>{const m=document.getElementById('av-menu'),b=document.getElementById('av-btn');if(!m.contains(e.target)&&!b.contains(e.target))m.classList.remove('open');});
 
 async function saveAccountInfo(){
   if(!currentUser)return;
-  const nom=document.getElementById('ap-nom').value.trim();
-  const soc=document.getElementById('ap-soc').value.trim();
+  const nom=document.getElementById('ap-nom').value.trim();const soc=document.getElementById('ap-soc').value.trim();
   const{error}=await supa.from('profiles').update({nom,societe:soc,langue:curLang}).eq('id',currentUser.id);
   if(error){toast('Erreur : '+error.message,'error');return;}
-  document.getElementById('am-name').textContent=nom+(soc?' — '+soc:'');
-  toast('Informations enregistrées ✓');
+  document.getElementById('am-name').textContent=nom+(soc?' — '+soc:'');toast('Enregistré ✓');
 }
-
 async function saveLegalInfo(){
   if(!currentUser)return;
-  const payload={
-    siret:document.getElementById('ap-siret').value.trim(),
-    tva_intra:document.getElementById('ap-tva').value.trim(),
-    adresse_complete:document.getElementById('ap-adr').value.trim(),
-    telephone:document.getElementById('ap-tel').value.trim(),
-    delai_paiement:document.getElementById('ap-delai').value.trim(),
-    penalites_retard:document.getElementById('ap-penalite').value.trim(),
-    logo_url:document.getElementById('ap-logo').value.trim(),
-    mentions_legales:document.getElementById('ap-mentions').value.trim()
-  };
+  const payload={siret:document.getElementById('ap-siret').value.trim(),tva_intra:document.getElementById('ap-tva').value.trim(),adresse_complete:document.getElementById('ap-adr').value.trim(),telephone:document.getElementById('ap-tel').value.trim(),delai_paiement:document.getElementById('ap-delai').value.trim(),penalites_retard:document.getElementById('ap-penalite').value.trim(),logo_url:document.getElementById('ap-logo').value.trim(),mentions_legales:document.getElementById('ap-mentions').value.trim()};
   const{error}=await supa.from('profiles').update(payload).eq('id',currentUser.id);
   if(error){toast('Erreur : '+error.message,'error');return;}
-  legalInfo={...legalInfo,...payload};
-  toast('Infos légales enregistrées ✓');
+  legalInfo={...legalInfo,...payload};toast('Infos légales enregistrées ✓');
 }
-
 async function changePwd(){
-  const pwd=document.getElementById('ap-pwd').value;
-  const pwd2=document.getElementById('ap-pwd2').value;
+  const pwd=document.getElementById('ap-pwd').value;const pwd2=document.getElementById('ap-pwd2').value;
   if(!pwd||pwd.length<8){toast('Mot de passe trop court','error');return;}
   if(pwd!==pwd2){toast('Mots de passe différents','error');return;}
   const{error}=await supa.auth.updateUser({password:pwd});
   if(error){toast('Erreur : '+error.message,'error');return;}
-  document.getElementById('ap-pwd').value='';document.getElementById('ap-pwd2').value='';
-  toast('Mot de passe modifié ✓');
+  document.getElementById('ap-pwd').value='';document.getElementById('ap-pwd2').value='';toast('Mot de passe modifié ✓');
 }
-
 async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('Déconnecté de tous les appareils.');setTimeout(()=>location.reload(),1500);}
+
+// Notifications
+async function loadNotifications(){
+  if(!currentUser)return;
+  const{data}=await supa.from('notifications').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(20);
+  const unread=(data||[]).filter(n=>!n.read).length;
+  document.getElementById('notif-dot').style.display=unread>0?'block':'none';
+  const el=document.getElementById('notif-list');
+  if(!data||!data.length){el.innerHTML='<p style="font-size:.74rem;color:var(--sage);">Aucune notification.</p>';return;}
+  el.innerHTML=data.map(n=>`<div style="padding:7px 9px;border-bottom:1px solid var(--border);font-size:.76rem;${!n.read?'background:#faf5e8;font-weight:500;':'opacity:.7;'}">
+    <div>${n.message||'Notification'}</div>
+    <div style="font-family:var(--mono);font-size:.6rem;color:var(--sage);margin-top:2px;">${new Date(n.created_at).toLocaleDateString('fr-FR')} ${new Date(n.created_at).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</div>
+  </div>`).join('');
+  // Marquer comme lus
+  if(unread>0){await supa.from('notifications').update({read:true}).eq('user_id',currentUser.id).eq('read',false);}
+  document.getElementById('notif-dot').style.display='none';
+}
+async function markAllRead(){await supa.from('notifications').update({read:true}).eq('user_id',currentUser.id);document.getElementById('notif-dot').style.display='none';loadNotifications();}
 
 // ══════════════════════════════════════
 // AUTH
 // ══════════════════════════════════════
-function swATab(t){
-  document.querySelectorAll('.atab').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));
-  document.querySelectorAll('.aform').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));
-  document.getElementById('aerr').style.display='none';
-}
+function swATab(t){document.querySelectorAll('.atab').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));document.querySelectorAll('.aform').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));document.getElementById('aerr').style.display='none';}
 async function doLogin(){
   const email=document.getElementById('l-email').value.trim();const pwd=document.getElementById('l-pwd').value;
   if(!email||!pwd){showAErr('Email et mot de passe requis.');return;}
@@ -653,13 +646,7 @@ async function afterLogin(user){
     document.getElementById('ap-soc').value=data.societe||'';
     document.getElementById('s-nom').value=nom;
     if(data.langue){setLang(data.langue);document.getElementById('ap-lang').value=data.langue;}
-    // Infos légales
     legalInfo=data;
-    ['siret','tva_intra','adresse_complete','telephone','delai_paiement','penalites_retard','logo_url','mentions_legales'].forEach(k=>{
-      const el=document.getElementById('ap-'+k.replace('_intra','').replace('_complete','').replace('_url','').replace('_retard','').replace('_paiement','').replace('_legales','').replace('tva','tva').replace('adresse','adr').replace('telephone','tel').replace('delai','delai').replace('penalites','penalite').replace('logo','logo').replace('mentions','mentions'));
-      // Map keys to input IDs
-    });
-    // Remplir infos légales manuellement
     if(data.siret)document.getElementById('ap-siret').value=data.siret;
     if(data.tva_intra)document.getElementById('ap-tva').value=data.tva_intra;
     if(data.adresse_complete)document.getElementById('ap-adr').value=data.adresse_complete;
@@ -672,7 +659,7 @@ async function afterLogin(user){
     document.getElementById('am-name').textContent=user.email.split('@')[0];
     document.getElementById('am-email').textContent=user.email;
   }
-  loadCarnet();loadChantiers();
+  loadCarnet();loadChantiers();loadNotifications();
 }
 async function doLogout(){await supa.auth.signOut();location.reload();}
 function showAErr(msg,isErr=true){const el=document.getElementById('aerr');el.textContent=msg;el.style.display='block';el.style.background=isErr?'#fde8e0':'#d4edda';el.style.color=isErr?'#8a3818':'#1a5c28';el.style.borderColor=isErr?'#f0c4b0':'#a8d8b0';}
@@ -698,7 +685,7 @@ function _nav(name){
   document.getElementById('tab-'+name).classList.add('active');
   ['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].forEach((n,i)=>{if(n===name)document.querySelectorAll('.tab')[i].classList.add('active');});
   if(name==='envoi')renderEnvoi();
-  if(name==='reponses')renderRepSel();
+  if(name==='reponses'){renderRepSel();checkPortalReplies();}
   if(name==='comparaison')renderComp();
   if(name==='commande')renderCmd();
 }
@@ -716,7 +703,7 @@ async function loadChantiers(){
 function renderChantiers(){
   const con=document.getElementById('chantiers-con');
   const fSt=document.getElementById('f-st')?.value||'';const fSr=(document.getElementById('f-sr')?.value||'').toLowerCase();
-  let list=allChantiers.filter(c=>{if(fSt&&c.statut!==fSt)return false;if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;return true;});
+  const list=allChantiers.filter(c=>{if(fSt&&c.statut!==fSt)return false;if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;return true;});
   if(!list.length){con.innerHTML='<div class="empty"><div class="ei">🏗</div><p>Aucune consultation.</p></div>';return;}
   con.innerHTML=`<div class="chgrid">${list.map(c=>`<div class="cc ${currentConsultId===c.id?'active-c':''}">
     <div class="cc-head"><span class="cc-title">${c.affaire||'Sans nom'}</span><span class="cc-st st-${c.statut||'brouillon'}">${c.statut||'brouillon'}</span></div>
@@ -739,21 +726,28 @@ async function openChantier(id){
   document.getElementById('s-date').value=c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'';
   document.getElementById('s-livraison').value=c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'';
   document.getElementById('s-rem').value=c.remarques||'';document.getElementById('s-statut').value=c.statut||'brouillon';
-  // Charger végétaux
+  // Charger végétaux depuis Supabase — PERSISTANT
   const{data:vd}=await supa.from('vegetaux').select('*').eq('consultation_id',id).order('ordre');
-  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude||null,qte:vg.qte}));
-  // Charger prix comparatif depuis Supabase
-  prix={};
-  const{data:cp}=await supa.from('comparatif_prix').select('*,vegetaux(id)').eq('consultation_id',id);
+  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude||null,conditionnement:vg.contenant||vg.conditionnement||''}));
+  // Charger pépinières liées à cette consultation
+  const{data:cp}=await supa.from('comparatif_prix').select('pepiniere_id').eq('consultation_id',id);
   const{data:fp}=await supa.from('frais_port').select('*').eq('consultation_id',id);
+  const{data:inv}=await supa.from('invitations_consultation').select('pepiniere_id').eq('consultation_id',id);
+  const pepIds=[...new Set([...(cp||[]).map(r=>r.pepiniere_id),...(inv||[]).map(r=>r.pepiniere_id)])].filter(Boolean);
+  if(pepIds.length&&peps.length===0){
+    const{data:pepD}=await supa.from('pepinieres').select('*').in('id',pepIds);
+    if(pepD&&pepD.length)peps=pepD;
+  }
+  // Charger prix du comparatif
+  prix={};
+  const{data:cpAll}=await supa.from('comparatif_prix').select('*').eq('consultation_id',id);
   if(fp&&fp.length){prix['port']={};fp.forEach(r=>{const pi=peps.findIndex(p=>p.id===r.pepiniere_id);if(pi>=0)prix['port'][pi]=r.montant;});}
-  if(cp&&cp.length){
-    cp.forEach(r=>{
-      const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
-      const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
+  if(cpAll&&cpAll.length){
+    cpAll.forEach(r=>{
+      const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
       if(vi<0||pi<0)return;
       if(!prix[vi])prix[vi]={};
-      prix[vi][pi]={unit:r.prix_unit_ht,nego:r.prix_negocie,qteF:r.qte_finale,variantes:r.variantes||[],log:r.nego_log||[],negoText:r.nego_log?.slice(-1)[0]?.msg||''};
+      prix[vi][pi]={unit:r.prix_unit_ht,qteF:r.qte_finale,variantes:r.variantes||[],log:r.nego_log||[],negoText:''};
     });
   }
   renderVeg();renderPepList();dirtyTabs.clear();document.querySelectorAll('.tab').forEach(t=>t.classList.remove('dirty'));
@@ -767,7 +761,7 @@ async function deleteChantier(id){
 }
 
 // ══════════════════════════════════════
-// SAUVEGARDE CONSULTATION
+// SAUVEGARDE — persistante
 // ══════════════════════════════════════
 async function saveConsultation(){
   if(!currentUser){toast('Connectez-vous.','error');return;}
@@ -776,49 +770,71 @@ async function saveConsultation(){
   let res;
   if(currentConsultId)res=await supa.from('consultations').update(payload).eq('id',currentConsultId).select().single();
   else res=await supa.from('consultations').insert(payload).select().single();
-  if(res.error){toast('Erreur sauvegarde : '+res.error.message,'error');return;}
+  if(res.error){toast('Erreur : '+res.error.message,'error');return;}
   currentConsultId=res.data.id;
+  // Sauvegarder végétaux — TOUJOURS
+  await supa.from('vegetaux').delete().eq('consultation_id',currentConsultId);
   if(vegs.length){
-    await supa.from('vegetaux').delete().eq('consultation_id',currentConsultId);
     const vRows=vegs.map((vg,i)=>({consultation_id:currentConsultId,ordre:i,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.conditionnement||null,qte:vg.qte,unite:vg.unite||'U',remarques:vg.remarques||null,variantes:vg.variantes||[],prix_etude:vg.prixEtude||null}));
-    await supa.from('vegetaux').insert(vRows);
+    const{error}=await supa.from('vegetaux').insert(vRows);
+    if(error)toast('Attention : erreur sauvegarde végétaux : '+error.message,'error');
   }
   clearDirty('setup');clearDirty('vegetaux');await loadChantiers();toast('Enregistré ✓');
 }
 
-// SAUVEGARDE COMPARATIF
 async function saveComparatif(){
   if(!currentConsultId){toast('Enregistrez d\'abord la consultation (onglet ①)','error');return;}
-  // Recharger les IDs des végétaux depuis Supabase
   const{data:vd}=await supa.from('vegetaux').select('id,ordre').eq('consultation_id',currentConsultId).order('ordre');
-  if(!vd||!vd.length){toast('Enregistrez d\'abord les végétaux.','error');return;}
+  if(!vd||!vd.length){toast('Sauvegardez d\'abord les végétaux.','error');return;}
   const vegIds=vd.map(v=>v.id);
-
-  // Sauvegarder frais de port
+  // Frais de port
   const portData=prix['port']||{};
   const portRows=peps.map((p,pi)=>({consultation_id:currentConsultId,pepiniere_id:p.id,montant:portData[pi]||0}));
-  if(portRows.length){
-    await supa.from('frais_port').delete().eq('consultation_id',currentConsultId);
-    await supa.from('frais_port').insert(portRows);
-  }
-
-  // Sauvegarder prix
+  if(portRows.length){await supa.from('frais_port').delete().eq('consultation_id',currentConsultId);await supa.from('frais_port').insert(portRows);}
+  // Prix
   const cpRows=[];
-  vegs.forEach((_,vi)=>{
-    if(!vegIds[vi])return;
-    peps.forEach((p,pi)=>{
-      const e=prix[vi]&&prix[vi][pi];if(!e)return;
-      cpRows.push({consultation_id:currentConsultId,vegetal_id:vegIds[vi],pepiniere_id:p.id,prix_unit_ht:e.unit||null,prix_negocie:e.nego||null,qte_finale:e.qteF||null,variantes:e.variantes||[],nego_log:e.log||[]});
-    });
-  });
-  if(cpRows.length){
-    await supa.from('comparatif_prix').delete().eq('consultation_id',currentConsultId);
-    await supa.from('comparatif_prix').insert(cpRows);
-  }
+  vegs.forEach((_,vi)=>{if(!vegIds[vi])return;peps.forEach((p,pi)=>{const e=prix[vi]&&prix[vi][pi];if(!e)return;cpRows.push({consultation_id:currentConsultId,vegetal_id:vegIds[vi],pepiniere_id:p.id,prix_unit_ht:e.unit||null,prix_negocie:null,qte_finale:e.qteF||null,variantes:e.variantes||[],nego_log:e.log||[]});});});
+  if(cpRows.length){await supa.from('comparatif_prix').delete().eq('consultation_id',currentConsultId);await supa.from('comparatif_prix').insert(cpRows);}
   clearDirty('comparaison');toast('Comparatif enregistré ✓');
 }
 
 function parseDate(s){const p=s.split('/');if(p.length===3)return`${p[2]}-${p[1]}-${p[0]}`;return s;}
+
+// ══════════════════════════════════════
+// RECHERCHE PÉPINIÈRES AVEC COMPTE
+// ══════════════════════════════════════
+let acctSearchTimeout=null;
+async function searchAcctPeps(query){
+  clearTimeout(acctSearchTimeout);
+  const res=document.getElementById('acct-results');
+  if(!query||query.length<2){res.innerHTML='';return;}
+  acctSearchTimeout=setTimeout(async()=>{
+    const{data}=await supa.from('comptes_pepinieres').select('id,nom,email,pepnom').ilike('nom','%'+query+'%').limit(5);
+    if(!data||!data.length){res.innerHTML='<p style="font-size:.72rem;color:var(--sage);padding:5px 0;">Aucune pépinière trouvée avec ce nom.</p>';return;}
+    res.innerHTML=data.map(d=>`<div class="acct-result" onclick="addAcctPep('${d.id}','${(d.pepnom||d.nom).replace(/'/g,"\\'")}','${(d.email||'').replace(/'/g,"\\'")}')">
+      <span style="font-size:.84rem;font-weight:500;">${d.pepnom||d.nom}</span>
+      <span style="font-size:.66rem;color:var(--sage);font-family:var(--mono);">${d.email||''}</span>
+      <span class="has-account-bdg" style="margin-left:auto;">🔵 Compte portail</span>
+    </div>`).join('');
+  },300);
+}
+
+async function addAcctPep(userId,nom,email){
+  if(peps.length>=6){toast('Maximum 6 pépinières','error');return;}
+  // Trouver ou créer la fiche pépinière
+  let pepId=null;
+  const{data:existing}=await supa.from('comptes_pepinieres').select('pepiniere_id').eq('id',userId).single();
+  if(existing?.pepiniere_id){pepId=existing.pepiniere_id;}
+  else{
+    const{data:newPep}=await supa.from('pepinieres').insert({consultant_id:currentUser.id,nom,email}).select().single();
+    if(newPep){pepId=newPep.id;await supa.from('comptes_pepinieres').update({pepiniere_id:pepId}).eq('id',userId);}
+  }
+  if(!pepId){toast('Erreur lors de l\'ajout','error');return;}
+  const{data:pepData}=await supa.from('pepinieres').select('*').eq('id',pepId).single();
+  if(pepData)peps.push({...pepData,hasAccount:true});
+  document.getElementById('acct-results').innerHTML='';document.getElementById('acct-search-inp').value='';
+  renderPepList();toast(nom+' ajouté(e) ✓');
+}
 
 // ══════════════════════════════════════
 // CARNET PÉPINIÈRES
@@ -828,15 +844,13 @@ async function loadCarnet(){
   document.getElementById('csync').textContent='● Chargement…';document.getElementById('csync').className='sbdg';
   const{data,error}=await supa.from('pepinieres').select('*').eq('consultant_id',currentUser.id).order('nom');
   if(error){document.getElementById('csync').className='sbdg sbdg-err';document.getElementById('csync').textContent='● Erreur';return;}
-  carnet=data||[];document.getElementById('csync').className='sbdg sbdg-ok';document.getElementById('csync').textContent='● '+carnet.length+' pépinière(s)';renderCgrid();
+  carnet=data||[];document.getElementById('csync').className='sbdg sbdg-ok';document.getElementById('csync').textContent='● '+carnet.length;renderCgrid();
 }
 async function saveNewPep(){
   if(!currentUser){toast('Connectez-vous.','error');return;}
   const nom=document.getElementById('np-nom').value.trim();if(!nom){alert('Nom requis.');return;}
   const email=document.getElementById('np-email').value.trim();
-  if(email){const{data:ex}=await supa.from('pepinieres').select('*').eq('email',email).neq('consultant_id',currentUser.id).limit(1);
-    if(ex&&ex.length>0){if(confirm(`Une pépinière "${ex[0].nom}" avec cet email existe déjà.\nVoulez-vous lier cette pépinière existante ?`)){peps.push({...ex[0]});renderPepList();document.getElementById('npanel').style.display='none';['np-nom','np-email','np-tel','np-adr','np-notes'].forEach(id=>document.getElementById(id).value='');return;}}
-  }
+  if(email){const{data:ex}=await supa.from('pepinieres').select('*').eq('email',email).neq('consultant_id',currentUser.id).limit(1);if(ex&&ex.length>0){if(confirm(`"${ex[0].nom}" avec cet email existe déjà. Lier cette pépinière existante ?`)){peps.push({...ex[0]});renderPepList();document.getElementById('npanel').style.display='none';['np-nom','np-email','np-tel','np-adr','np-notes'].forEach(id=>document.getElementById(id).value='');return;}}}
   const payload={consultant_id:currentUser.id,nom,email,tel:document.getElementById('np-tel').value.trim(),adresse:document.getElementById('np-adr').value.trim(),notes:document.getElementById('np-notes').value.trim(),langue:document.getElementById('np-lang').value};
   const{data,error}=await supa.from('pepinieres').insert(payload).select().single();
   if(error){toast('Erreur : '+error.message,'error');return;}
@@ -852,9 +866,10 @@ function renderCgrid(){
   if(!avail.length){g.innerHTML='';e.style.display='block';b.style.display='none';return;}
   e.style.display='none';
   const flags={'fr':'🇫🇷','en':'🇬🇧','es':'🇪🇸','ca':'🏴','nl':'🇳🇱','de':'🇩🇪','it':'🇮🇹'};
-  g.innerHTML=avail.map((c,ai)=>`<div class="ccard ${cSel.has(ai)?'sel':''}" onclick="tglSel(${ai})">
+  g.innerHTML=avail.map((c,ai)=>`<div class="ccard ${cSel.has(ai)?'sel':''} ${c.hasAccount?'has-acct':''}" onclick="tglSel(${ai})">
     <button class="cdel" onclick="delFromCarnet(event,'${c.id}')">✕</button>
-    <div class="cn">${c.nom}</div><div class="cm">${c.email||''}${c.tel?' · '+c.tel:''}</div>
+    <div class="cn">${c.nom}${c.hasAccount?'<span class="has-account-bdg" style="margin-left:4px;font-size:.5rem;">🔵</span>':''}</div>
+    <div class="cm">${c.email||''}${c.tel?' · '+c.tel:''}</div>
     ${c.langue?`<div class="cm">${flags[c.langue]||''}</div>`:''}
     ${c.notes?`<div style="font-size:.6rem;color:var(--earth);margin-top:2px;font-style:italic;">${c.notes}</div>`:''}
     <div class="chk">✓</div></div>`).join('');
@@ -865,9 +880,11 @@ function tglNP(){const p=document.getElementById('npanel');p.style.display=p.sty
 function addFromCarnet(){const usedIds=peps.map(p=>p.id);const avail=carnet.filter(c=>!usedIds.includes(c.id));cSel.forEach(ai=>{if(peps.length<6&&avail[ai])peps.push({...avail[ai]});});cSel.clear();renderPepList();renderCgrid();}
 function renderPepList(){
   document.getElementById('pep-bdg').textContent=peps.length+'/6';
-  document.getElementById('pep-list').innerHTML=peps.map((p,i)=>`<div class="pep-item"><span class="dot" style="background:${C[i]}"></span>
-    <span class="pep-name">${p.nom}</span><span class="pep-meta">${p.email||''}${p.tel?' · '+p.tel:''}</span>
-    <span class="db-bdg">supabase</span>
+  document.getElementById('pep-list').innerHTML=peps.map((p,i)=>`<div class="pep-item">
+    <span class="dot" style="background:${C[i]}"></span>
+    <span class="pep-name">${p.nom}</span>
+    <span class="pep-meta">${p.email||''}</span>
+    ${p.hasAccount?'<span class="has-account-bdg">🔵 Portail</span>':'<span class="db-bdg">carnet</span>'}
     <button class="btn btn-d btn-sm" onclick="rmPep(${i})" style="margin-left:auto;">✕</button></div>`).join('');
   renderCgrid();
 }
@@ -876,7 +893,7 @@ function rmPep(i){peps.splice(i,1);renderPepList();}
 // ══════════════════════════════════════
 // VÉGÉTAUX
 // ══════════════════════════════════════
-function normCond(s){if(!s)return'';const t=s.toUpperCase().trim();if(t==='MG'||t.includes('MOTTE GRILL'))return'MG';if(t==='RN'||t.includes('RACINE NUE'))return'RN';if(t==='AP'||t.includes('AIRPOT'))return'AP';if(/^CT$|^CONTENEUR$|^CONT$/.test(t))return'CT';if(/^C(\d+)L?$/.test(t)){const m=t.match(/^C(\d+)/);return m?`C${m[1]}`:'CT';}return s.trim();}
+function normCond(s){if(!s)return'';const t=s.toUpperCase().trim();if(t==='MG'||t.includes('MOTTE GRILL'))return'MG';if(t==='RN'||t.includes('RACINE NUE'))return'RN';if(t==='AP'||t.includes('AIRPOT'))return'AP';if(/^CT$|^CONTENEUR$/.test(t))return'CT';if(/^C(\d+)L?$/.test(t)){const m=t.match(/^C(\d+)/);return m?`C${m[1]}`:'CT';}return s.trim();}
 function addVegManual(){
   const lat=v('v-lat'),qty=parseInt(v('v-qty'))||0;if(!lat||!qty){alert('Nom latin et quantité requis.');return;}
   vegs.push({latin:lat,calibre:v('v-cal'),conditionnement:normCond(v('v-cond')),qte:qty,unite:v('v-unite')||'U',remarques:v('v-rem'),variantes:[],prixEtude:parseFloat(v('v-pe'))||null});
@@ -890,39 +907,39 @@ function renderVeg(){
   if(!vegs.length){c.innerHTML=`<div class="empty"><div class="ei">🌿</div><p>${T('noVeg')}</p></div>`;return;}
   c.innerHTML=`<div class="vhdr vg8"><div>Nom latin</div><div>${T('calibre')}</div><div>${T('contenant')}</div><div>Qté</div><div>Unité</div><div>${T('studyP')}</div><div>Rem.</div><div></div></div>
     ${vegs.map((vg,i)=>`<div class="vrow vg8">
-      <div><span class="vnum">${String(i+1).padStart(2,'0')}.</span> <em>${vg.latin}</em>${vg.variantes?.length?`<span style="font-size:.58rem;background:var(--earth-l);padding:1px 4px;border-radius:20px;margin-left:3px;">${vg.variantes.length}v</span>`:''}</div>
-      <div style="font-family:var(--mono);font-size:.7rem;">${vg.calibre||'—'}</div>
-      <div style="font-size:.7rem;">${vg.conditionnement||'—'}</div>
+      <div><span class="vnum">${String(i+1).padStart(2,'0')}.</span> <em>${vg.latin}</em>${vg.variantes?.length?`<span style="font-size:.57rem;background:var(--earth-l);padding:1px 4px;border-radius:20px;margin-left:3px;">${vg.variantes.length}v</span>`:''}</div>
+      <div style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</div>
+      <div style="font-size:.68rem;">${vg.conditionnement||'—'}</div>
       <div style="font-family:var(--mono);font-weight:500;">${vg.qte}</div>
-      <div style="font-size:.7rem;">${vg.unite||'U'}</div>
-      <div style="font-family:var(--mono);font-size:.7rem;">${vg.prixEtude?fmt(vg.prixEtude)+' €':'—'}</div>
-      <div style="font-size:.68rem;color:var(--sage);">${vg.remarques||'—'}</div>
+      <div style="font-size:.68rem;">${vg.unite||'U'}</div>
+      <div style="font-family:var(--mono);font-size:.68rem;">${vg.prixEtude?fmt(vg.prixEtude)+' €':'—'}</div>
+      <div style="font-size:.66rem;color:var(--sage);">${vg.remarques||'—'}</div>
       <div style="display:flex;gap:2px;"><button class="btn btn-g btn-sm" onclick="openVarModal(${i})">🔀</button><button class="btn btn-d btn-sm" onclick="rmVeg(${i})">✕</button></div>
     </div>`).join('')}`;
 }
 function openVarModal(vi){
   const vg=vegs[vi];
   document.getElementById('var-modal-con').innerHTML=`
-    <p style="font-size:.74rem;color:var(--sage);margin-bottom:9px;"><em>${vg.latin}</em> — Cal: ${vg.calibre||'?'} — Cont: ${vg.conditionnement||'?'} — Qté ${vg.qte}</p>
+    <p style="font-size:.74rem;color:var(--sage);margin-bottom:9px;"><em>${vg.latin}</em> — Cal: ${vg.calibre||'?'} — Cont: ${vg.conditionnement||'?'}</p>
     ${(vg.variantes||[]).map((vr,ri)=>`<div style="background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:7px 9px;margin-top:5px;">
       <div style="font-family:var(--mono);font-size:.56rem;color:var(--sage);margin-bottom:4px;">↳ Variante ${ri+1}</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;">
         <div><label>Nom latin alt.</label><input type="text" value="${vr.latin||''}" placeholder="${vg.latin}" onchange="vegs[${vi}].variantes[${ri}].latin=this.value"></div>
         <div><label>Calibre alt.</label><input type="text" value="${vr.calibre||''}" placeholder="${vg.calibre||'?'}" onchange="vegs[${vi}].variantes[${ri}].calibre=this.value"></div>
         <div><label>Contenant alt.</label><input type="text" value="${vr.conditionnement||''}" placeholder="${vg.conditionnement||'?'}" onchange="vegs[${vi}].variantes[${ri}].conditionnement=normCond(this.value)"></div>
-        <div><label>Unité alt.</label><input type="text" value="${vr.unite||''}" placeholder="${vg.unite||'U'}" onchange="vegs[${vi}].variantes[${ri}].unite=this.value"></div>
+        <div><label>Unité</label><input type="text" value="${vr.unite||''}" placeholder="${vg.unite||'U'}" onchange="vegs[${vi}].variantes[${ri}].unite=this.value"></div>
       </div>
       <button class="btn btn-d btn-sm" style="margin-top:4px;" onclick="rmVar(${vi},${ri})">Supprimer</button>
     </div>`).join('')}
     <button class="btn btn-p btn-sm" style="margin-top:7px;" onclick="addVar(${vi})">＋ Ajouter variante</button>
-    <div style="margin-top:12px;"><button class="btn btn-ok btn-sm" onclick="closeModal('var-modal');renderVeg();markDirty('vegetaux');">Fermer &amp; enregistrer</button></div>`;
+    <div style="margin-top:12px;"><button class="btn btn-ok btn-sm" onclick="closeModal('var-modal');renderVeg();markDirty('vegetaux');">Fermer &amp; sauvegarder</button></div>`;
   openModal('var-modal');
 }
 function addVar(vi){vegs[vi].variantes=vegs[vi].variantes||[];vegs[vi].variantes.push({latin:'',calibre:'',conditionnement:'',unite:''});openVarModal(vi);}
 function rmVar(vi,ri){vegs[vi].variantes.splice(ri,1);openVarModal(vi);}
 
 // ══════════════════════════════════════
-// IMPORT INTELLIGENT
+// IMPORT
 // ══════════════════════════════════════
 function onDrop(ev){ev.preventDefault();document.getElementById('dz').classList.remove('dragover');const f=ev.dataTransfer.files[0];if(f)procFile(f);}
 function onFS(inp){if(inp.files[0])procFile(inp.files[0]);inp.value='';}
@@ -945,7 +962,7 @@ async function impTabular(file,ext){
 async function impPDF(file){
   const b64=await toB64(file);showSt('<div class="aibox"><div class="spin"></div>Extraction PDF…</div>');
   const res=await callClaude([{role:'user',content:[{type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},{type:'text',text:'Extrais le tableau de végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}'  }]}],2500);
-  let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Tableau illisible dans ce PDF.');}
+  let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('PDF illisible.');}
   if(!p.lignes?.length)throw new Error('Aucune donnée.');
   iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));showSt('<div class="aibox"><div class="spin"></div>Analyse…</div>');await detectCols();
 }
@@ -954,22 +971,22 @@ async function impImg(file,ext){
   showSt('<div class="aibox"><div class="spin"></div>OCR…</div>');
   const res=await callClaude([{role:'user',content:[{type:'image',source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:'Extrais la liste de végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}'  }]}],2500);
   let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Données illisibles.');}
-  if(!p.lignes?.length)throw new Error('Aucune donnée lisible.');
-  iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));showSt('<div class="aibox"><div class="spin"></div>Analyse…</div>');await detectCols();
+  if(!p.lignes?.length)throw new Error('Aucune donnée.');
+  iCols=p.colonnes||[];iRows=p.lignes.map(r=>r.map(c=>String(c??'').trim()));await detectCols();
 }
 function parseCSVAuto(text){const lines=text.split(/\r?\n/).filter(l=>l.trim());if(!lines.length)return[];const seps=[';',',','\t'];const counts=seps.map(s=>lines[0].split(s).length);const sep=seps[counts.indexOf(Math.max(...counts))];return lines.map(l=>{const cells=[];let cur='',inQ=false;for(let i=0;i<l.length;i++){if(l[i]==='"'){inQ=!inQ;}else if(l[i]===sep&&!inQ){cells.push(cur.trim());cur='';}else cur+=l[i];}cells.push(cur.trim());return cells;});}
 function detectHdr(rows){let bi=0,bs=-1;rows.slice(0,8).forEach((r,i)=>{const ne=r.filter(c=>c!=='');if(!ne.length)return;const sc=(ne.filter(c=>isNaN(parseFloat(c))).length/ne.length)*10+ne.length;if(sc>bs){bs=sc;bi=i;}});const nr=rows[bi].filter(c=>c!==''&&!isNaN(parseFloat(c))).length/Math.max(rows[bi].filter(c=>c!=='').length,1);return{hi:bi,hasH:nr<0.5};}
 async function detectCols(){
-  const res=await callClaude([{role:'user',content:`Tableau végétaux paysagiste. Colonnes: ${JSON.stringify(iCols)}\nDonnées (5 lignes): ${JSON.stringify(iRows.slice(0,5))}\nRÈGLES: calibre=taille (12/14, 16/18, 60-80cm, H150). contenant=mode culture (MG, RN, AP, CT, C2, C3, C35). C+nombre=contenant JAMAIS calibre.\nJSON: {"latin":X,"calibre":X,"contenant":X,"qte":X,"unite":X,"prixEtude":X,"remarques":X,"mixed":false}`}],350);
+  const res=await callClaude([{role:'user',content:`Tableau végétaux paysagiste. Colonnes: ${JSON.stringify(iCols)}\nDonnées (5): ${JSON.stringify(iRows.slice(0,5))}\nRÈGLES: calibre=taille (12/14, 16/18, 60-80cm). contenant=mode (MG,RN,AP,CT,C2,C35). Ne pas confondre.\nJSON: {"latin":X,"calibre":X,"contenant":X,"qte":X,"unite":X,"prixEtude":X,"remarques":X,"mixed":false}`}],350);
   try{iMap=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){iMap={};}
   clearSt();renderMapping();renderPreview();
 }
 function renderMapping(){
   const fields=[{k:'latin',l:'Désignation *'},{k:'calibre',l:'Calibre/Taille'},{k:'contenant',l:'Contenant (MG,RN,C35…)'},{k:'qte',l:'Quantité *'},{k:'unite',l:'Unité'},{k:'prixEtude',l:'Prix étude HT'},{k:'remarques',l:'Remarques'}];
   const opts='<option value="">— Ignorer —</option>'+iCols.map((c,i)=>`<option value="${i}">${i}—${c}</option>`).join('');
-  const mw=iMap.mixed?`<div style="background:#fdecd4;border:1px solid #f0cc90;border-radius:6px;padding:7px 11px;margin-bottom:9px;font-size:.72rem;color:#7a4a10;">⚠️ Colonne mixte — séparation IA automatique.</div>`:'';
-  document.getElementById('msec').innerHTML=mw+`<p style="font-family:var(--serif);font-size:.94rem;color:var(--sage-d);margin-bottom:3px;">Correspondance</p>
-    <table class="mtbl"><thead><tr><th>Champ</th><th>Colonne IA</th><th>Corriger</th></tr></thead><tbody>
+  const mw=iMap.mixed?`<div class="notice notice-warn" style="margin-bottom:9px;">⚠️ Colonne mixte — séparation IA automatique.</div>`:'';
+  document.getElementById('msec').innerHTML=mw+`<p style="font-family:var(--serif);font-size:.94rem;color:var(--sage-d);margin-bottom:3px;">Correspondance des colonnes</p>
+    <table class="mtbl"><thead><tr><th>Champ</th><th>Détecté</th><th>Corriger</th></tr></thead><tbody>
     ${fields.map(f=>`<tr><td style="font-family:var(--mono);font-size:.63rem;">${f.l}</td>
     <td style="color:var(--sage-d);font-weight:500;">${iMap[f.k]!=null?(iCols[iMap[f.k]]||`Col.${iMap[f.k]}`):'<span style="color:#aaa">—</span>'}</td>
     <td><select id="mp-${f.k}" onchange="iMap['${f.k}']=this.value===''?null:parseInt(this.value)">${opts}</select></td></tr>`).join('')}
@@ -981,8 +998,8 @@ function renderMapping(){
 function renderPreview(){const max=Math.min(iRows.length,8);document.getElementById('ptbl').innerHTML=`<thead><tr>${iCols.map((c,i)=>`<th>${i}—${c}</th>`).join('')}</tr></thead><tbody>${iRows.slice(0,max).map(r=>`<tr>${iCols.map((_,i)=>`<td>${r[i]??''}</td>`).join('')}</tr>`).join('')}</tbody>`;document.getElementById('psec').style.display='block';}
 async function parseDesigMixte(rows){
   showSt('<div class="aibox"><div class="spin"></div>Séparation désignation/calibre/contenant…</div>');
-  const parseB=async(b)=>{const res=await callClaude([{role:'user',content:`Expert végétaux. Sépare chaque désignation. RÈGLES: d=nom latin+cultivar uniquement. t=calibre/taille (chiffre/chiffre, chiffre-chiffrecm, H+nb). c=contenant normalisé (MG,RN,AP,CT,C2,C3,C35...). JAMAIS confondre: C35=contenant, 12/14=calibre.\nEX: "Acer platanoides 12/14 MG"→{"d":"Acer platanoides","t":"12/14","c":"MG"}\n"Rosa 'Fairy' C35"→{"d":"Rosa 'Fairy'","t":"","c":"C35"}\n"Quercus 16/18 C40L"→{"d":"Quercus robur","t":"16/18","c":"C40"}\nDATAS: ${JSON.stringify(b)}\nJSON uniquement: [{"d":"...","t":"...","c":"..."},...]`}],1800);let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){return b.map(s=>({d:String(s),t:'',c:''}));}return p;};
-  let all=[];for(let i=0;i<rows.length;i+=60)all=[...all,...(await parseB(rows.slice(i,i+60)))];return all;
+  const pB=async(b)=>{const res=await callClaude([{role:'user',content:`Expert végétaux. Sépare: d=nom latin+cultivar, t=calibre (chiffre/chiffre ou cm), c=contenant normalisé (MG,RN,AP,CT,C2,C35). JAMAIS confondre C35=contenant et 12/14=calibre.\nEX: "Acer plat 12/14 MG"→{"d":"Acer platanoides","t":"12/14","c":"MG"}\n"Rosa C35"→{"d":"Rosa","t":"","c":"C35"}\nDATAS: ${JSON.stringify(b)}\nJSON: [{"d":"","t":"","c":""},...]`}],1800);let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){return b.map(s=>({d:String(s),t:'',c:''}));}return p;};
+  let all=[];for(let i=0;i<rows.length;i+=60)all=[...all,...(await pB(rows.slice(i,i+60)))];return all;
 }
 async function applyImport(){
   if(iMap['latin']==null){alert('Colonne Désignation obligatoire.');return;}
@@ -1002,15 +1019,14 @@ async function applyImport(){
     n++;pi++;
   });
   cancelImport();renderVeg();markDirty('vegetaux');
-  showSt(`<div style="background:#d4edda;border:1px solid #a8d8b0;border-radius:7px;padding:8px 12px;color:#1a5c28;font-size:.76rem;">✓ ${n} ${T('imported')}${sk?` (${sk} ignorée(s))`:''}</div>`);
-  setTimeout(clearSt,6000);
+  showSt(`<div class="notice notice-ok">✓ ${n} ${T('imported')}${sk?` (${sk} ignorée(s))`:''}</div>`);setTimeout(clearSt,6000);
 }
 function cancelImport(){iRows=[];iCols=[];iMap={};document.getElementById('msec').style.display='none';document.getElementById('psec').style.display='none';}
 function showSt(h){const e=document.getElementById('istatus');e.style.display='block';e.innerHTML=h;}
 function clearSt(){document.getElementById('istatus').style.display='none';}
 
 // ══════════════════════════════════════
-// ENVOI
+// ENVOI — avec tokens d'invitation
 // ══════════════════════════════════════
 function renderEnvoi(){
   const con=document.getElementById('envoi-con');
@@ -1020,34 +1036,59 @@ function renderEnvoi(){
     ${peps.map((p,pi)=>{
       const lang=p.langue||'fr';const Lp=LNG[lang]||LNG.fr;
       const subj=`${Lp.mailSubj}${ville?' — '+ville:''}${affaire?' — '+affaire:''} — ${dateC}`;
-      const link=`${PORTAL_URL}?consultation=${currentConsultId||''}&code=${p.code_acces||''}`;
-      return`<div class="mail-wrap">
-        <div class="mail-hdr"><span class="dot" style="background:${C[pi]}"></span>
+      return`<div style="border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:11px;">
+        <div style="background:var(--sage-d);color:var(--cream);padding:8px 13px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;">
+          <span class="dot" style="background:${C[pi]}"></span>
           <strong style="font-family:var(--serif);font-size:.96rem;">${p.nom}</strong>
-          <button class="btn btn-sm" style="margin-left:auto;background:rgba(255,255,255,.15);color:var(--cream);border:none;" onclick="openMailto(${pi})">📨 Outlook</button>
+          ${p.hasAccount?'<span class="has-account-bdg">🔵 Portail</span>':''}
+          <button class="btn btn-sm" style="margin-left:auto;background:rgba(255,255,255,.15);color:var(--cream);border:none;" onclick="openMailtoWithToken(${pi})">📨 Outlook</button>
         </div>
-        <div class="mail-body">
-          <div class="mail-subj">Objet : ${subj}</div>
-          <div class="mail-subj" style="margin-top:3px;">À : ${p.email||'(non renseigné)'}</div>
-          ${Lp.mailHi}<br><br>${Lp.mailBody}<br><br>
-          <strong>${Lp.mailProj} :</strong> ${affaire||'—'} — ${ville||'—'}<br>
-          <strong>${Lp.mailDel} :</strong> ${v('s-livraison')||'À préciser'}<br><br>
-          ${Lp.mailFile}<br><br>
-          <strong>${Lp.mailPortal} :</strong><br>
-          <a href="${link}" style="color:var(--sage-d);font-weight:500;word-break:break-all;">${link}</a><br><br>
-          ${Lp.mailReg},<br>${v('s-nom')||'[Votre nom]'}
+        <div style="padding:12px 14px;font-size:.78rem;line-height:1.75;background:var(--white);">
+          <div style="font-family:var(--mono);font-size:.68rem;background:var(--earth-l);padding:3px 8px;border-radius:4px;margin-bottom:7px;color:var(--sage-d);">Objet : ${subj}</div>
+          <div style="font-family:var(--mono);font-size:.66rem;color:var(--sage);margin-bottom:9px;">À : ${p.email||'(non renseigné)'}</div>
+          <em id="mail-preview-${pi}" style="color:var(--sage);font-size:.72rem;">Chargement du lien sécurisé…</em>
         </div>
       </div>`;
     }).join('')}`;
+  // Générer les tokens pour chaque pépinière
+  peps.forEach((_,pi)=>generateInvitationToken(pi));
 }
-function openMailto(pi){
+
+async function generateInvitationToken(pi){
+  if(!currentConsultId)return;
+  const p=peps[pi];const lang=p.langue||'fr';const Lp=LNG[lang]||LNG.fr;
+  const ville=v('s-ville'),affaire=v('s-affaire');
+  // Créer ou récupérer le token
+  const{data:existing}=await supa.from('invitations_consultation').select('token').eq('consultation_id',currentConsultId).eq('pepiniere_id',p.id).single();
+  let token=existing?.token;
+  if(!token){
+    const{data:newInv}=await supa.from('invitations_consultation').insert({consultation_id:currentConsultId,pepiniere_id:p.id,expires_at:new Date(Date.now()+30*24*3600*1000).toISOString()}).select('token').single();
+    token=newInv?.token;
+  }
+  const link=token?`${PORTAL_URL}?token=${token}`:PORTAL_URL;
+  const el=document.getElementById(`mail-preview-${pi}`);
+  if(el)el.outerHTML=`<div style="font-size:.78rem;line-height:1.75;">
+    ${Lp.mailHi}<br><br>${Lp.mailBody}<br><br>
+    <strong>${Lp.mailProj} :</strong> ${affaire||'—'} — ${ville||'—'}<br>
+    <strong>${Lp.mailDel} :</strong> ${v('s-livraison')||'À préciser'}<br><br>
+    ${Lp.mailFile}<br><br>
+    <strong>${Lp.mailPortal} :</strong><br>
+    <a href="${link}" style="color:var(--sage-d);font-weight:500;word-break:break-all;">${link}</a><br><br>
+    ${Lp.mailReg},<br>${v('s-nom')||'[Votre nom]'}
+  </div>`;
+}
+
+async function openMailtoWithToken(pi){
+  if(!currentConsultId){toast('Enregistrez d\'abord la consultation.','error');return;}
   const p=peps[pi];const lang=p.langue||'fr';const Lp=LNG[lang]||LNG.fr;
   const ville=v('s-ville'),affaire=v('s-affaire'),dateC=v('s-date');
   const subj=encodeURIComponent(`${Lp.mailSubj}${ville?' — '+ville:''}${affaire?' — '+affaire:''} — ${dateC}`);
-  const link=`${PORTAL_URL}?consultation=${currentConsultId||''}&code=${p.code_acces||''}`;
+  const{data:inv}=await supa.from('invitations_consultation').select('token').eq('consultation_id',currentConsultId).eq('pepiniere_id',p.id).single();
+  const token=inv?.token;const link=token?`${PORTAL_URL}?token=${token}`:PORTAL_URL;
   const body=encodeURIComponent(`${Lp.mailHi}\n\n${Lp.mailBody}\n\n${Lp.mailProj} : ${affaire||'—'} — ${ville||'—'}\n${Lp.mailDel} : ${v('s-livraison')||'?'}\n\n${Lp.mailFile}\n\n${Lp.mailPortal} :\n${link}\n\n${Lp.mailReg},\n${v('s-nom')||''}`);
   window.location.href=`mailto:${p.email||''}?subject=${subj}&body=${body}`;
 }
+
 function dlConsultXLSX(){
   const wb=XLSX.utils.book_new();
   const hdr=['N°','Nom latin','Calibre / Taille','Contenant','Quantité','Unité','Prix unitaire HT (€)','Variante proposée','Commentaire'];
@@ -1057,9 +1098,34 @@ function dlConsultXLSX(){
 }
 
 // ══════════════════════════════════════
-// RÉPONSES
+// RÉPONSES — détection réponses portail
 // ══════════════════════════════════════
 function renderRepSel(){const sel=document.getElementById('rep-pi');sel.innerHTML='<option value="">— Choisir —</option>'+peps.map((p,i)=>`<option value="${i}">${p.nom}</option>`).join('');}
+
+async function checkPortalReplies(){
+  if(!currentConsultId)return;
+  const{data}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',currentConsultId);
+  if(!data||!data.length)return;
+  let hasNew=false;
+  data.forEach(r=>{
+    const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
+    if(vi<0||pi<0)return;
+    if(!prix[vi])prix[vi]={};
+    if(!prix[vi][pi])prix[vi][pi]={};
+    if(r.prix_unit_ht!=null&&!prix[vi][pi].unit){prix[vi][pi].unit=r.prix_unit_ht;hasNew=true;}
+    if(r.variante)prix[vi][pi].variante=r.variante;if(r.commentaire)prix[vi][pi].comment=r.commentaire;
+    if(r.frais_port&&pi>=0){if(!prix['port'])prix['port']={};prix['port'][pi]=r.frais_port;}
+    prix[vi][pi].confiance='exact';
+    // Variantes depuis le portail
+    if(r.historique&&r.historique.length>1){
+      const lastHist=r.historique[r.historique.length-1];
+      if(lastHist.variante){if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];
+        if(!prix[vi].variantes[pi].find(x=>x.variante===lastHist.variante))prix[vi].variantes[pi].push({unit:lastHist.prix,variante:lastHist.variante,calibre:'',conditionnement:'',qteF:0,confiance:'probable'});}
+    }
+  });
+  if(hasNew)document.getElementById('notif-rep').style.display='block';
+}
+
 function onDrop2(ev){ev.preventDefault();document.getElementById('dz2').classList.remove('dragover');const f=ev.dataTransfer.files[0];if(f)procRepFile(f);}
 function onRepFS(inp){if(inp.files[0])procRepFile(inp.files[0]);inp.value='';}
 async function procRepFile(file){
@@ -1080,7 +1146,7 @@ async function procRepTab(file,ext,pi){
   const data=(hasH?rows.slice(hi+1):rows).filter(r=>r.some(c=>c!==''));
   showRepSt('<div class="aibox"><div class="spin"></div>Correspondance IA…</div>');
   const vegList=vegs.map((vg,i)=>`idx:${i}|${vg.latin}|cal:${vg.calibre||'?'}|cont:${vg.conditionnement||'?'}|qté:${vg.qte}`).join('\n');
-  const res=await callClaude([{role:'user',content:`VÉGÉTAUX: ${vegList}\nCOLONNES: ${JSON.stringify(cols)}\nDATAS: ${JSON.stringify(data.slice(0,8))}\nConfiance: "exact"=nom+calibre+contenant identiques, "probable"=même latin MAIS calibre OU contenant différent→variante avec vraies caract., "incertain"=espèce douteuse. Quantité identique seule="probable" max.\nJSON: {"resultats":[{"vi":IDX,"prix":VAL,"calibreRep":"","contenantRep":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"}]}`}],900);
+  const res=await callClaude([{role:'user',content:`VÉGÉTAUX: ${vegList}\nCOLONNES: ${JSON.stringify(cols)}\nDATAS: ${JSON.stringify(data.slice(0,8))}\nConfiance: "exact"=nom+calibre+contenant identiques, "probable"=même latin mais calibre/contenant différent→variante, "incertain"=espèce douteuse. Qté identique="probable" max.\nJSON: {"resultats":[{"vi":IDX,"prix":VAL,"calibreRep":"","contenantRep":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"}]}`}],900);
   let parsed;try{parsed=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){parsed={resultats:[]};}
   applyRepResults(parsed.resultats||[],pi);
 }
@@ -1088,7 +1154,7 @@ async function procRepVis(file,mt,dtype,pi){
   const b64=await toB64(file);
   const vegList=vegs.map((vg,i)=>`idx:${i}|${vg.latin}|cal:${vg.calibre||'?'}|cont:${vg.conditionnement||'?'}|qté:${vg.qte}`).join('\n');
   showRepSt('<div class="aibox"><div class="spin"></div>OCR + correspondance…</div>');
-  const res=await callClaude([{role:'user',content:[{type:dtype,source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:`Liste référence:\n${vegList}\nExtrait les prix. "exact"=tout identique, "probable"=calibre OU contenant différent→variante avec vraies caract., "incertain"=espèce douteuse. Qté identique="probable" max.\nJSON: [{"vi":IDX,"prix":VAL,"calibreRep":"","contenantRep":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"},...]`}]}],1100);
+  const res=await callClaude([{role:'user',content:[{type:dtype,source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:`Référence:\n${vegList}\nConfiance: "exact"=tout identique, "probable"=calibre/contenant différent→variante, "incertain"=espèce douteuse.\nJSON: [{"vi":IDX,"prix":VAL,"calibreRep":"","contenantRep":"","variante":"","commentaire":"","confiance":"exact|probable|incertain"},...]`}]}],1100);
   let arr;try{arr=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Impossible d\'extraire les prix.');}
   applyRepResults(arr,pi);
 }
@@ -1098,29 +1164,17 @@ function applyRepResults(resultats,pi){
     if(vi==null||vi<0||vi>=vegs.length)return;
     if(!prix[vi])prix[vi]={};
     const isVar=confiance==='probable'||(variante&&variante.trim());
-    if(isVar){
-      if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];
-      prix[vi].variantes[pi].push({unit:pVal!=null?parseFloat(pVal):null,calibre:calibreRep||'',conditionnement:contenantRep||'',variante:variante||'',comment:commentaire||'',confiance:confiance||'probable',qteF:0});
-      if(pVal!=null)matched++;
-    } else {
-      if(!prix[vi][pi])prix[vi][pi]={};
-      if(pVal!=null&&!isNaN(parseFloat(pVal))&&pVal>0){prix[vi][pi].unit=parseFloat(pVal);matched++;}
-      if(variante?.trim())prix[vi][pi].variante=variante.trim();if(commentaire?.trim())prix[vi][pi].comment=commentaire.trim();
-      if(calibreRep)prix[vi][pi].calibreRep=calibreRep;if(contenantRep)prix[vi][pi].contenantRep=contenantRep;
-      prix[vi][pi].confiance=confiance||'exact';
-    }
+    if(isVar){if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];prix[vi].variantes[pi].push({unit:pVal!=null?parseFloat(pVal):null,calibre:calibreRep||'',conditionnement:contenantRep||'',variante:variante||'',comment:commentaire||'',confiance:confiance||'probable',qteF:0});if(pVal!=null)matched++;}
+    else{if(!prix[vi][pi])prix[vi][pi]={};if(pVal!=null&&!isNaN(parseFloat(pVal))&&pVal>0){prix[vi][pi].unit=parseFloat(pVal);matched++;}if(variante?.trim())prix[vi][pi].variante=variante.trim();if(commentaire?.trim())prix[vi][pi].comment=commentaire.trim();if(calibreRep)prix[vi][pi].calibreRep=calibreRep;if(contenantRep)prix[vi][pi].contenantRep=contenantRep;prix[vi][pi].confiance=confiance||'exact';}
   });
   clearRepSt();showRepPreview(pi,matched,resultats);
 }
 function showRepPreview(pi,matched,resultats){
-  const p=peps[pi];
-  const ex=(resultats||[]).filter(r=>r.confiance==='exact').length;
-  const pr=(resultats||[]).filter(r=>r.confiance==='probable').length;
-  const ic=(resultats||[]).filter(r=>r.confiance==='incertain').length;
+  const p=peps[pi];const ex=(resultats||[]).filter(r=>r.confiance==='exact').length;const pr=(resultats||[]).filter(r=>r.confiance==='probable').length;const ic=(resultats||[]).filter(r=>r.confiance==='incertain').length;
   const color=matched>=vegs.length*.7?'#d4edda':matched>0?'#fdecd4':'#fde8e0';const tc=matched>=vegs.length*.7?'#1a5c28':matched>0?'#7a4a10':'#8a3818';
   let html=`<div style="background:${color};border-radius:7px;padding:9px 12px;font-size:.76rem;margin-bottom:11px;color:${tc};">
     <strong>${matched} prix importés / ${vegs.length}</strong> — ${p.nom}
-    <span style="margin-left:9px;font-family:var(--mono);font-size:.68rem;">🟢 ${ex} exact · 🟠 ${pr} variante · 🔴 ${ic} incertain</span>
+    <span style="margin-left:9px;font-family:var(--mono);font-size:.68rem;">🟢 ${ex} · 🟠 ${pr} variante · 🔴 ${ic}</span>
   </div><div style="overflow-x:auto;"><table class="ptbl">
     <thead><tr><th>#</th><th>Végétal</th><th>Cal.</th><th>Cont.</th><th>Conf.</th><th>Prix</th><th>Cal. réponse</th><th>Cont. réponse</th><th>Corriger</th></tr></thead><tbody>`;
   vegs.forEach((vg,vi)=>{
@@ -1135,17 +1189,16 @@ function showRepPreview(pi,matched,resultats){
       <td style="font-family:var(--mono);font-weight:${e?.unit?'600':'300'};color:${e?.unit?'var(--sage-d)':'#bbb'};">${e?.unit?fmt(e.unit)+' €':'—'}</td>
       <td style="font-family:var(--mono);font-size:.68rem;">${e?.calibreRep||'—'}</td>
       <td style="font-size:.68rem;">${e?.contenantRep||'—'}</td>
-      <td><div style="display:flex;align-items:center;gap:2px;"><input type="number" step=".01" min="0" placeholder="€" value="${e?.unit||''}" onchange="manualRep(${vi},${pi},this.value)" style="width:66px;padding:3px 5px;font-family:var(--mono);font-size:.7rem;"><span style="font-size:.58rem;color:var(--sage);">€</span></div></td>
+      <td><div style="display:flex;align-items:center;gap:2px;"><input type="number" step=".01" min="0" placeholder="€" value="${e?.unit||''}" onchange="manualRep(${vi},${pi},this.value)" style="width:66px;padding:3px 5px;font-family:var(--mono);font-size:.7rem;border:1.5px solid var(--border);border-radius:4px;"></div></td>
     </tr>
     ${varPep.map((vr,ri)=>`<tr style="background:#fdf5e8;">
       <td></td><td colspan="2" style="font-size:.7rem;color:var(--earth);padding-left:14px;">↳ Cal: <strong>${vr.calibre||'?'}</strong> / Cont: <strong>${vr.conditionnement||'?'}</strong>${vr.variante?' — '+vr.variante:''}</td>
       <td></td><td style="text-align:center;">🟠</td>
       <td style="font-family:var(--mono);font-weight:600;color:var(--earth);">${vr.unit?fmt(vr.unit)+' €':'—'}</td>
-      <td style="font-family:var(--mono);font-size:.68rem;">${vr.calibre||'—'}</td>
-      <td style="font-size:.68rem;">${vr.conditionnement||'—'}</td><td></td>
+      <td colspan="3"></td>
     </tr>`).join('')}`;
   });
-  html+=`</tbody></table></div><div style="margin-top:9px;display:flex;gap:7px;"><button class="btn btn-ok btn-sm" onclick="confirmRep(${pi})">✓ Valider → Comparaison</button></div>`;
+  html+=`</tbody></table></div><div style="margin-top:9px;"><button class="btn btn-ok btn-sm" onclick="confirmRep(${pi})">✓ Valider → Comparaison</button></div>`;
   const d=document.getElementById('rep-preview');d.style.display='block';d.innerHTML=html;
 }
 function manualRep(vi,pi,val){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};const n=parseFloat(val);if(!isNaN(n)&&n>0)prix[vi][pi].unit=n;else delete prix[vi][pi].unit;}
@@ -1154,7 +1207,7 @@ function showRepSt(h){const e=document.getElementById('rep-status');e.style.disp
 function clearRepSt(){document.getElementById('rep-status').style.display='none';}
 
 // ══════════════════════════════════════
-// COMPARAISON — Temps réel + Qté référence séparée
+// COMPARAISON — allégé (sans prix négocié ni notes)
 // ══════════════════════════════════════
 function renderComp(){
   const c=document.getElementById('comp-con');
@@ -1165,36 +1218,37 @@ function renderComp(){
     <div style="display:flex;flex-wrap:wrap;gap:6px;">${peps.map((p,pi)=>`
       <div class="port-row"><span style="display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:500;"><span style="width:7px;height:7px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
         <input type="number" step=".01" min="0" placeholder="0.00 €" value="${portT[pi]||''}"
-          onchange="setPort(${pi},this.value);markDirty('comparaison')" style="width:76px;font-family:var(--mono);padding:3px 6px;">
+          onchange="setPort(${pi},this.value);markDirty('comparaison')" style="width:76px;font-family:var(--mono);padding:3px 6px;border:1.5px solid var(--border);border-radius:4px;">
         <span style="font-size:.6rem;color:var(--sage);">€ HT</span></div>`).join('')}
     </div></div>`;
 
-  const pepThs=peps.map((p,pi)=>`<th class="psep-th" style="min-width:290px;"><span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>
-    <button class="btn btn-sm" style="margin-left:6px;font-size:.54rem;padding:2px 5px;background:rgba(255,255,255,.15);color:var(--cream);border:none;" onclick="openVarCompModal(${pi})">＋ variante</button></th>`).join('');
-  const subThs=peps.map(()=>`<th class="psep-th" style="background:rgba(0,0,0,.08);font-size:.50rem;font-weight:300;padding:3px 6px;"><span style="display:grid;grid-template-columns:72px 68px 52px 1fr;gap:2px;text-align:center;"><span>Prix unit. HT</span><span>Prix négocié</span><span>${T('qteFin')}</span><span>Notes</span></span></th>`).join('');
+  const pepThs=peps.map((p,pi)=>`<th class="psep-th" style="min-width:200px;"><span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span></th>`).join('');
+  const subThs=peps.map(()=>`<th class="psep-th" style="background:rgba(0,0,0,.08);font-size:.50rem;font-weight:300;padding:3px 6px;"><span style="display:grid;grid-template-columns:80px 60px;gap:2px;text-align:center;"><span>Prix unit. HT</span><span>${T('qteFin')}</span></span></th>`).join('');
 
-  let tbl=`<div class="cwrap"><table class="ct" id="comp-table"><thead>
+  let tbl=`<div class="cwrap"><table class="ct"><thead>
     <tr>
       <th style="min-width:140px;">Végétal</th><th>${T('calibre')}</th><th>${T('contenant')}</th>
       <th style="text-align:center;">${T('qteRef')}</th>
       <th class="etude-th psep-th">${T('studyP')}</th><th class="etude-th">Tot. étude</th>
       ${pepThs}
-      <th style="min-width:78px;" id="th-ret">Tot. retenu</th><th style="min-width:88px;">Delta</th>
+      <th style="min-width:80px;">Tot. retenu</th><th style="min-width:90px;">Delta</th>
     </tr>
     <tr><th colspan="6" style="background:rgba(0,0,0,.1);"></th>${subThs}<th colspan="2" style="background:rgba(0,0,0,.1);"></th></tr>
-  </thead><tbody id="comp-tbody">`;
+  </thead><tbody>`;
 
   vegs.forEach((vg,vi)=>{
     if(!prix[vi])prix[vi]={};
     const eu=vg.prixEtude;const et=eu?eu*vg.qte:null;
     const bv=getBest(vi);const bpi=getBestPi(vi);
-    const rt=bv!=null?bv*(getQteF(vi,bpi)||vg.qte):null;
+    const qt=getQteF(vi,bpi)||vg.qte;const rt=bv!=null?bv*qt:null;
     const delta=et!=null&&rt!=null?rt-et:null;
     const dc=delta===null?'dz':delta<0?'dn':'dp';
     const ds=delta===null?'—':`${delta>=0?'+':''}${fmt(delta)}€ (${delta>=0?'+':''}${et?Math.round(delta/et*100):0}%)`;
 
     tbl+=`<tr id="row-${vi}">
-      <td><em style="font-size:.74rem;">${vg.latin}</em></td>
+      <td><em style="font-size:.74rem;">${vg.latin}</em>
+        <button class="btn btn-g btn-sm" style="margin-top:3px;font-size:.54rem;padding:2px 5px;" onclick="openVarCompModal(${vi})" title="Ajouter une variante">＋ var.</button>
+      </td>
       <td style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</td>
       <td style="font-size:.68rem;">${vg.conditionnement||'—'}</td>
       <td style="font-family:var(--mono);text-align:center;font-weight:500;color:var(--sage-d);">${vg.qte}</td>
@@ -1204,33 +1258,27 @@ function renderComp(){
       </td>
       <td class="etude-c" id="et-${vi}" style="font-family:var(--mono);font-size:.7rem;text-align:right;">${et?fmt(et)+'€':'—'}</td>
       ${peps.map((_,pi)=>{
-        const e=prix[vi][pi]||{};const conf=e.confiance==='incertain'?'conf-r ':e.confiance==='probable'?'conf-o ':'';
-        return`<td class="px-cell ${conf}psep" data-vi="${vi}" data-pi="${pi}">
-          <div style="display:grid;grid-template-columns:72px 68px 52px 1fr;gap:2px;align-items:start;">
+        const e=prix[vi][pi]||{};
+        return`<td class="px-cell psep" data-vi="${vi}" data-pi="${pi}">
+          <div style="display:grid;grid-template-columns:80px 60px;gap:3px;align-items:start;">
             <div>
-              <input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix unit. HT €" value="${e.unit!=null?e.unit:''}"
+              <input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix HT €" value="${e.unit!=null?e.unit:''}"
                 onchange="setPrix(${vi},${pi},'unit',this.value);updateRowTotals(${vi});markDirty('comparaison')">
               ${e.variante?`<div style="font-size:.56rem;color:var(--sage);">↪ ${e.variante}</div>`:''}
               ${e.comment?`<div style="font-size:.54rem;color:var(--earth);font-style:italic;">${e.comment}</div>`:''}
             </div>
-            <div><input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix négocié €" value="${e.nego!=null?e.nego:''}"
-              onchange="setPrix(${vi},${pi},'nego',this.value);updateRowTotals(${vi});markDirty('comparaison')"></div>
-            <div><input type="number" min="0" class="ci" placeholder="${vg.qte}" style="text-align:center;" value="${e.qteF!=null?e.qteF:''}"
-              onchange="setPrix(${vi},${pi},'qteF',this.value);updateRowTotals(${vi});markDirty('comparaison')"></div>
             <div>
-              <textarea class="ci" placeholder="Notes négociation…" rows="2" style="min-height:32px;font-size:.63rem;padding:2px 4px;"
-                onchange="addNegoLog(${vi},${pi},this.value);markDirty('comparaison')">${e.negoText||''}</textarea>
-              <div class="nego-log" id="nl-${vi}-${pi}">${renderNegoLog(vi,pi)}</div>
+              <input type="number" min="0" class="ci" placeholder="${vg.qte}" style="text-align:center;" value="${e.qteF!=null?e.qteF:''}"
+                onchange="setPrix(${vi},${pi},'qteF',this.value);updateRowTotals(${vi});markDirty('comparaison')">
             </div>
           </div>
           ${((prix[vi].variantes||{})[pi]||[]).map((vr,ri)=>`<div style="margin-top:3px;padding:3px 5px;background:#fdf0e0;border-radius:4px;border-left:3px solid var(--earth);">
-            <div style="font-size:.58rem;color:var(--earth);margin-bottom:2px;">↳ <strong>${vr.calibre||vg.calibre||'?'}</strong> / <strong>${vr.conditionnement||vg.conditionnement||'?'}</strong>${vr.variante?' — '+vr.variante:''}</div>
+            <div style="font-size:.58rem;color:var(--earth);margin-bottom:2px;">↳ <strong>${vr.calibre||vg.calibre||'?'}</strong>/<strong>${vr.conditionnement||vg.conditionnement||'?'}</strong>${vr.variante?' — '+vr.variante:''}</div>
             <div style="display:flex;align-items:center;gap:3px;">
               <input type="number" step=".01" min="0" class="ci ci-r" placeholder="Prix var. €" value="${vr.unit!=null?vr.unit:''}" style="width:68px;"
                 onchange="setVarPrix(${vi},${pi},${ri},this.value);updateRowTotals(${vi});markDirty('comparaison')">
               <input type="number" min="0" class="ci" placeholder="Qté" style="width:46px;text-align:center;" value="${vr.qteF||0}"
                 onchange="setVarQte(${vi},${pi},${ri},this.value)">
-              <span style="font-size:.6rem;color:var(--sage);">€/qté</span>
             </div>
           </div>`).join('')}
         </td>`;
@@ -1250,14 +1298,13 @@ function renderComp(){
     <td style="text-align:right;color:var(--sage-d);" id="tot-rt">${totRt>0?fmt(totRt)+'€':'—'}</td>
     <td class="${tdc}" id="tot-d">${totD!==null?`${totD>=0?'+':''}${fmt(totD)}€ (${totEt?Math.round(totD/totEt*100):0}%)`:'—'}</td>
   </tr></tbody></table></div>`;
-
   c.innerHTML=portHtml+tbl;
 }
 
-// Mise à jour en temps réel d'une ligne
+// Mise à jour temps réel
 function updateRowTotals(vi){
-  const bv=getBest(vi);const bpi=getBestPi(vi);
-  const vg=vegs[vi];const eu=vg.prixEtude;const et=eu?eu*vg.qte:null;
+  const bv=getBest(vi);const bpi=getBestPi(vi);const vg=vegs[vi];
+  const eu=vg.prixEtude;const et=eu?eu*vg.qte:null;
   const rt=bv!=null?bv*(getQteF(vi,bpi)||vg.qte):null;
   const delta=et!=null&&rt!=null?rt-et:null;
   const dc=delta===null?'dz':delta<0?'dn':'dp';
@@ -1265,7 +1312,6 @@ function updateRowTotals(vi){
   const etEl=document.getElementById(`et-${vi}`);if(etEl)etEl.textContent=et?fmt(et)+'€':'—';
   const rtEl=document.getElementById(`rt-${vi}`);if(rtEl)rtEl.textContent=rt?fmt(rt)+'€':'—';
   const dEl=document.getElementById(`d-${vi}`);if(dEl){dEl.textContent=ds;dEl.className=dc;}
-  // Mettre à jour totaux globaux
   updateGlobalTotals();
 }
 function updateGlobalTotals(){
@@ -1279,186 +1325,129 @@ function updateGlobalTotals(){
 }
 function calcTotEt(){return vegs.reduce((s,vg)=>s+(vg.prixEtude?vg.prixEtude*vg.qte:0),0);}
 function calcTotRt(portT){return vegs.reduce((s,_,vi)=>{const bv=getBest(vi);const bpi=getBestPi(vi);return s+(bv!=null?bv*(getQteF(vi,bpi)||vegs[vi].qte):0);},0)+(portT||[]).reduce((a,b)=>a+b,0);}
-function calcTotPep(pi,portT){return vegs.reduce((s,_,vi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?(e.nego!=null?e.nego:e.unit):null;return s+(up!=null?up*(e?.qteF||vegs[vi].qte):0);},0)+(portT?portT[pi]||0:0);}
+function calcTotPep(pi,portT){return vegs.reduce((s,_,vi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?(e.unit!=null?e.unit:null):null;return s+(up!=null?up*(e?.qteF||vegs[vi].qte):0);},0)+(portT?portT[pi]||0:0);}
 
-// Variante directement dans le comparatif
-function openVarCompModal(pi){
-  if(!vegs.length){toast('Aucun végétal.','error');return;}
-  const p=peps[pi];
+// Variante dans le comparatif
+function openVarCompModal(vi){
+  if(!peps.length){toast('Aucune pépinière.','error');return;}
+  const vg=vegs[vi];
   document.getElementById('var-comp-con').innerHTML=`
-    <p style="font-size:.76rem;color:var(--sage);margin-bottom:11px;">Ajouter une variante pour <strong>${p.nom}</strong></p>
+    <p style="font-size:.74rem;color:var(--sage);margin-bottom:10px;">Végétal : <em>${vg.latin}</em> — ${vg.calibre||'?'} / ${vg.conditionnement||'?'}</p>
     <div class="gr c2" style="margin-bottom:9px;">
-      <div><label>Végétal concerné</label><select id="vc-vi">${vegs.map((vg,vi)=>`<option value="${vi}">${vg.latin} — ${vg.calibre||'?'}</option>`).join('')}</select></div>
+      <div><label>Pépinière</label><select id="vc-pi">${peps.map((p,pi)=>`<option value="${pi}">${p.nom}</option>`).join('')}</select></div>
       <div><label>Prix unitaire HT (€)</label><input type="number" step=".01" min="0" id="vc-prix" placeholder="Prix de la variante"></div>
     </div>
     <div class="gr c3" style="margin-bottom:9px;">
       <div><label>Calibre réel</label><input type="text" id="vc-cal" placeholder="Ex: 14/16"></div>
       <div><label>Contenant réel</label><input type="text" id="vc-cont" placeholder="Ex: C40"></div>
-      <div><label>Qté proposée</label><input type="number" min="0" id="vc-qte" placeholder="0"></div>
+      <div><label>Qté (0=non retenu)</label><input type="number" min="0" id="vc-qte" placeholder="0"></div>
     </div>
-    <div class="gr" style="margin-bottom:11px;"><div><label>Description variante</label><input type="text" id="vc-desc" placeholder="Description de la variante…"></div></div>
+    <div class="gr" style="margin-bottom:11px;"><div><label>Description variante</label><input type="text" id="vc-desc" placeholder="Description…"></div></div>
     <div style="display:flex;gap:7px;">
-      <button class="btn btn-p" onclick="saveVarComp(${pi})">✓ Ajouter cette variante</button>
+      <button class="btn btn-p" onclick="saveVarComp(${vi})">✓ Ajouter</button>
       <button class="btn btn-g btn-sm" onclick="closeModal('var-comp-modal')">Annuler</button>
     </div>`;
   openModal('var-comp-modal');
 }
-function saveVarComp(pi){
-  const vi=parseInt(document.getElementById('vc-vi').value);
-  const prix_val=parseFloat(document.getElementById('vc-prix').value)||null;
+function saveVarComp(vi){
+  const pi=parseInt(document.getElementById('vc-pi').value);
+  const pv=parseFloat(document.getElementById('vc-prix').value)||null;
   const cal=document.getElementById('vc-cal').value.trim();
   const cont=normCond(document.getElementById('vc-cont').value.trim());
   const qteF=parseInt(document.getElementById('vc-qte').value)||0;
   const desc=document.getElementById('vc-desc').value.trim();
   if(!prix[vi])prix[vi]={};if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];
-  prix[vi].variantes[pi].push({unit:prix_val,calibre:cal,conditionnement:cont,variante:desc,comment:'',confiance:'probable',qteF});
+  prix[vi].variantes[pi].push({unit:pv,calibre:cal,conditionnement:cont,variante:desc,comment:'',confiance:'probable',qteF});
   closeModal('var-comp-modal');renderComp();markDirty('comparaison');toast('Variante ajoutée ✓');
 }
 
-function getBest(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));if(!vals.length)return null;return Math.min(...vals.map(e=>e.val));}
-function getBestPi(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));if(!vals.length)return null;return vals.reduce((a,b)=>b.val<a.val?b:a).pi;}
+function getBest(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.unit}));if(!vals.length)return null;return Math.min(...vals.map(e=>e.val));}
+function getBestPi(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.unit}));if(!vals.length)return null;return vals.reduce((a,b)=>b.val<a.val?b:a).pi;}
 function getQteF(vi,pi){if(pi==null)return null;const e=prix[vi]&&prix[vi][pi];return e?.qteF||null;}
 function setPort(pi,val){if(!prix['port'])prix['port']={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix['port'][pi]=n;else delete prix['port'][pi];updateGlobalTotals();}
 function setPrix(vi,pi,f,val){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix[vi][pi][f]=n;else delete prix[vi][pi][f];}
 function setVarPrix(vi,pi,ri,val){const n=parseFloat(val);if(!isNaN(n)&&n>=0){if(!prix[vi].variantes)prix[vi].variantes={};if(!prix[vi].variantes[pi])prix[vi].variantes[pi]=[];if(!prix[vi].variantes[pi][ri])prix[vi].variantes[pi][ri]={};prix[vi].variantes[pi][ri].unit=n;}}
 function setVarQte(vi,pi,ri,val){if(prix[vi]?.variantes?.[pi]?.[ri])prix[vi].variantes[pi][ri].qteF=parseInt(val)||0;}
-function addNegoLog(vi,pi,text){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};prix[vi][pi].negoText=text;if(!prix[vi][pi].log)prix[vi][pi].log=[];if(text.trim()){prix[vi][pi].log.push({ts:new Date().toLocaleString('fr-FR'),msg:text.trim()});const el=document.getElementById(`nl-${vi}-${pi}`);if(el)el.innerHTML=renderNegoLog(vi,pi);}}
-function renderNegoLog(vi,pi){const e=prix[vi]&&prix[vi][pi];if(!e?.log?.length)return '';return e.log.map(l=>`<div class="nego-entry"><span style="opacity:.6;">${l.ts}</span> — ${l.msg}</div>`).join('');}
-function hlBest(){clrHL();vegs.forEach((_,vi)=>{const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.nego!=null?e.nego:e.unit}));if(!vals.length)return;const mn=Math.min(...vals.map(e=>e.val));vals.forEach(e=>{if(e.val===mn)document.querySelectorAll(`.px-cell[data-vi="${vi}"][data-pi="${e.pi}"]`).forEach(c=>c.classList.add('best'));});});}
+function hlBest(){clrHL();vegs.forEach((_,vi)=>{const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&k!=='variantes'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.unit}));if(!vals.length)return;const mn=Math.min(...vals.map(e=>e.val));vals.forEach(e=>{if(e.val===mn)document.querySelectorAll(`.px-cell[data-vi="${vi}"][data-pi="${e.pi}"]`).forEach(c=>c.classList.add('best'));});});}
 function clrHL(){document.querySelectorAll('.best').forEach(c=>c.classList.remove('best'));}
-
 function openQtyModal(){
-  document.getElementById('qty-sel-list').innerHTML=vegs.map((vg,i)=>`<label style="display:flex;align-items:center;gap:5px;padding:3px 0;font-size:.74rem;cursor:pointer;"><input type="checkbox" class="qty-chk" value="${i}" style="width:auto;"> <em>${vg.latin}</em> ${vg.calibre||''} — Qté consultée: <strong>${vg.qte}</strong></label>`).join('');
+  document.getElementById('qty-sel-list').innerHTML=vegs.map((vg,i)=>`<label style="display:flex;align-items:center;gap:5px;padding:3px 0;font-size:.74rem;cursor:pointer;"><input type="checkbox" class="qty-chk" value="${i}" style="width:auto;"> <em>${vg.latin}</em> ${vg.calibre||''} — Qté consul.: <strong>${vg.qte}</strong></label>`).join('');
   openModal('qty-modal');
 }
 function applyQtyPct(){
   const pct=parseFloat(document.getElementById('qty-pct').value);if(isNaN(pct)){alert('Pourcentage invalide.');return;}
   const scope=document.getElementById('qty-scope').value;
   const targets=scope==='all'?vegs.map((_,i)=>i):[...document.querySelectorAll('.qty-chk:checked')].map(cb=>parseInt(cb.value));
-  // Modifier uniquement la qteF (finale) de chaque pépinière — PAS vegs[i].qte
-  targets.forEach(vi=>{
-    peps.forEach((_,pi)=>{
-      if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};
-      const qteBase=prix[vi][pi].qteF||vegs[vi].qte;
-      prix[vi][pi].qteF=Math.max(1,Math.round(qteBase*(1+pct/100)));
-    });
-  });
+  targets.forEach(vi=>{peps.forEach((_,pi)=>{if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};const qteBase=prix[vi][pi].qteF||vegs[vi].qte;prix[vi][pi].qteF=Math.max(1,Math.round(qteBase*(1+pct/100)));});});
   closeModal('qty-modal');renderComp();toast(`Quantités finales ajustées de ${pct>0?'+':''}${pct}%`);
 }
 
 // ══════════════════════════════════════
-// COMMANDE — avec bons de commande légaux
+// COMMANDE
 // ══════════════════════════════════════
 function renderCmd(){
   const c=document.getElementById('cmd-con');
   if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📦</div><p>Complétez la comparaison.</p></div>';return;}
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
   const totQ=vegs.reduce((s,vg)=>s+vg.qte,0);
-  let html=`<div style="margin-bottom:11px;background:var(--earth-l);border-radius:7px;padding:9px 12px;font-size:.74rem;">
-    💡 Suggestion automatique basée sur le meilleur prix port inclus. Sélectionnez manuellement si besoin.
-  </div>
+  let html=`<div class="notice notice-warn" style="margin-bottom:11px;">💡 Suggestion basée sur le meilleur prix port inclus.${!legalInfo.siret?` <button class="btn btn-g btn-sm" onclick="openAP()">⚙️ Compléter mes infos légales</button>`:''}</div>
   <div class="cwrap"><table class="ct"><thead><tr>
-    <th>Végétal</th><th>${T('calibre')}</th><th>${T('contenant')}</th><th style="text-align:center;">Qté cons.</th>
+    <th>Végétal</th><th>Cal.</th><th>Cont.</th><th style="text-align:center;">Qté</th>
     ${peps.map((p,pi)=>`<th class="psep-th" style="text-align:center;"><span style="display:inline-flex;align-items:center;gap:4px;"><span style="width:6px;height:6px;border-radius:50%;background:${C[pi]};display:inline-block;"></span>${p.nom}</span>${portT[pi]?`<div style="font-size:.54rem;opacity:.7;">port: ${fmt(portT[pi])} €</div>`:''}</th>`).join('')}
     <th>Retenu</th>
   </tr></thead><tbody>`;
-
   vegs.forEach((vg,vi)=>{
-    const eff=peps.map((_,pi)=>{const e=prix[vi]&&prix[vi][pi];if(!e)return null;const up=e.nego!=null?e.nego:e.unit;if(up==null)return null;return up+(portT[pi]/Math.max(totQ,1));});
+    const eff=peps.map((_,pi)=>{const e=prix[vi]&&prix[vi][pi];if(!e)return null;const up=e.unit;if(up==null)return null;return up+(portT[pi]/Math.max(totQ,1));});
     const valid=eff.map((val,i)=>val!=null?i:-1).filter(i=>i>=0);
     const sug=valid.length?valid.reduce((a,b)=>eff[a]<=eff[b]?a:b):-1;
-    html+=`<tr>
-      <td><em style="font-size:.74rem;">${vg.latin}</em></td>
+    html+=`<tr><td><em style="font-size:.74rem;">${vg.latin}</em></td>
       <td style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</td>
       <td style="font-size:.68rem;">${vg.conditionnement||'—'}</td>
       <td style="font-family:var(--mono);text-align:center;">${vg.qte}</td>
-      ${peps.map((_,pi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?(e.nego!=null?e.nego:e.unit):null;
-        return`<td class="psep" style="text-align:center;"><label style="cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:2px;">
-          <input type="radio" name="sel-${vi}" value="${pi}" ${sug===pi?'checked':''} onchange="updSel(${vi},${pi})">
-          <span style="font-family:var(--mono);font-size:.7rem;font-weight:${sug===pi?'600':'300'};">${up!=null?fmt(up)+' €':'—'}</span>
-        </label></td>`;}
-      ).join('')}
+      ${peps.map((_,pi)=>{const e=prix[vi]&&prix[vi][pi];const up=e?.unit;return`<td class="psep" style="text-align:center;"><label style="cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;gap:2px;"><input type="radio" name="sel-${vi}" value="${pi}" ${sug===pi?'checked':''}><span style="font-family:var(--mono);font-size:.7rem;font-weight:${sug===pi?'600':'300'};">${up!=null?fmt(up)+' €':'—'}</span></label></td>`;}).join('')}
       <td id="sn-${vi}" style="font-family:var(--mono);font-size:.68rem;color:var(--sage-d);">${sug>=0?peps[sug].nom:'—'}</td>
     </tr>`;
-    peps.forEach((_,pi)=>{
-      ((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach((vr,ri)=>{
-        html+=`<tr class="var-row"><td style="font-size:.72rem;color:var(--earth);"><span style="margin-right:3px;">↳</span>${vr.calibre||vg.calibre||'?'} / ${vr.conditionnement||vg.conditionnement||'?'}${vr.variante?' — '+vr.variante:''}</td>
-          <td style="font-family:var(--mono);font-size:.68rem;">${vr.calibre||vg.calibre||'—'}</td><td style="font-size:.68rem;">${vr.conditionnement||vg.conditionnement||'—'}</td><td style="font-family:var(--mono);text-align:center;">${vr.qteF}</td>
-          ${peps.map((_2,pi2)=>`<td class="psep" style="text-align:center;font-family:var(--mono);font-size:.68rem;">${pi2===pi&&vr.unit?fmt(vr.unit)+' €':'—'}</td>`).join('')}
-          <td style="font-family:var(--mono);font-size:.68rem;color:var(--earth);">${peps[pi].nom}</td>
-        </tr>`;
-      });
-    });
+    peps.forEach((_,pi)=>{((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(vr=>{html+=`<tr class="var-row"><td style="font-size:.72rem;color:var(--earth);">↳ ${vr.calibre||vg.calibre||'?'} / ${vr.conditionnement||vg.conditionnement||'?'}${vr.variante?' — '+vr.variante:''}</td><td style="font-family:var(--mono);font-size:.68rem;">${vr.calibre||vg.calibre||'—'}</td><td style="font-size:.68rem;">${vr.conditionnement||vg.conditionnement||'—'}</td><td style="font-family:var(--mono);text-align:center;">${vr.qteF}</td>${peps.map((_2,pi2)=>`<td class="psep" style="text-align:center;font-family:var(--mono);font-size:.68rem;">${pi2===pi&&vr.unit?fmt(vr.unit)+' €':'—'}</td>`).join('')}<td style="font-family:var(--mono);font-size:.68rem;color:var(--earth);">${peps[pi].nom}</td></tr>`;});});
   });
-
   html+=`</tbody></table></div>
-    <div style="margin-top:15px;border-top:1px solid var(--border);padding-top:13px;">
+    <div style="margin-top:14px;border-top:1px solid var(--border);padding-top:12px;">
       <div style="font-family:var(--serif);font-size:.96rem;color:var(--sage-d);margin-bottom:9px;">📄 Générer les bons de commande</div>
-      ${!legalInfo.siret?`<div style="background:#fdecd4;border:1px solid #f0cc90;border-radius:6px;padding:8px 11px;font-size:.74rem;color:#7a4a10;margin-bottom:10px;">⚠️ Complétez vos infos légales dans <button class="btn btn-g btn-sm" onclick="openAP()">Mon compte</button> pour des bons de commande complets.</div>`:''}
       <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center;">
         <button class="btn btn-p" onclick="genBons('preview')">👁 Aperçu &amp; Outlook</button>
         <button class="btn btn-s" onclick="genBons('xlsx')">⬇ Excel</button>
         <button class="btn btn-g" onclick="genBons('csv')">⬇ CSV</button>
       </div>
-      <p class="tip">Un bon de commande par pépinière sélectionnée. Les variantes retenues (qté > 0) sont incluses avec leurs vraies caractéristiques.</p>
+      <p class="tip">Les variantes retenues sont incluses avec leurs caractéristiques réelles et une note de traçabilité.</p>
     </div>`;
   c.innerHTML=html;
 }
 
-function updSel(vi,pi){const el=document.getElementById(`sn-${vi}`);if(el)el.textContent=pi>=0?peps[pi].nom:'—';}
-
-function getSelsByPep(){
-  const byPep={};
-  vegs.forEach((_,vi)=>{const r=document.querySelector(`input[name="sel-${vi}"]:checked`);if(r){const pi=parseInt(r.value);if(!byPep[pi])byPep[pi]=[];byPep[pi].push(vi);}});
-  // Ajouter variantes
-  peps.forEach((_,pi)=>{vegs.forEach((_,vi)=>{((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(()=>{if(!byPep[pi])byPep[pi]=[];if(!byPep[pi].includes(vi))byPep[pi].push(vi);});});});
-  return byPep;
-}
-
 function buildBCRows(pi,viList){
   const rows=[];let totalHT=0;
-  viList.forEach(vi=>{
-    const vg=vegs[vi];const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:{};
-    const up=e.nego!=null?e.nego:(e.unit!=null?e.unit:0);
-    const qty=e.qteF!=null?e.qteF:vg.qte;
-    if(up>0){const tot=up*qty;totalHT+=tot;rows.push({desig:vg.latin,calibre:vg.calibre||'',contenant:vg.conditionnement||'',unite:vg.unite||'U',qty,up,tot,note:''});}
-    ((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(vr=>{
-      const vtot=(vr.unit||0)*vr.qteF;totalHT+=vtot;
-      rows.push({desig:vg.latin,calibre:vr.calibre||vg.calibre||'',contenant:vr.conditionnement||vg.conditionnement||'',unite:vg.unite||'U',qty:vr.qteF,up:vr.unit||0,tot:vtot,note:`Variante — consulté: ${vg.calibre||'?'} / ${vg.conditionnement||'?'}`});
-    });
-  });
-  const port=parseFloat((prix['port']&&prix['port'][pi])||0);
-  if(port>0){rows.push({desig:'Frais de port',calibre:'',contenant:'',unite:'',qty:1,up:port,tot:port,note:''});totalHT+=port;}
+  viList.forEach(vi=>{const vg=vegs[vi];const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:{};const up=e.unit!=null?e.unit:0;const qty=e.qteF!=null?e.qteF:vg.qte;if(up>0){const tot=up*qty;totalHT+=tot;rows.push({desig:vg.latin,calibre:vg.calibre||'',contenant:vg.conditionnement||'',unite:vg.unite||'U',qty,up,tot,note:''});}((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(vr=>{const vtot=(vr.unit||0)*vr.qteF;totalHT+=vtot;rows.push({desig:vg.latin,calibre:vr.calibre||vg.calibre||'',contenant:vr.conditionnement||vg.conditionnement||'',unite:vg.unite||'U',qty:vr.qteF,up:vr.unit||0,tot:vtot,note:`Variante — consulté: ${vg.calibre||'?'} / ${vg.conditionnement||'?'}`});});});
+  const port=parseFloat((prix['port']&&prix['port'][pi])||0);if(port>0){rows.push({desig:'Frais de port',calibre:'',contenant:'',unite:'',qty:1,up:port,tot:port,note:''});totalHT+=port;}
   return{rows,totalHT};
 }
 
 function genBons(mode){
-  const byPep=getSelsByPep();if(!Object.keys(byPep).length){alert('Aucune sélection.');return;}
-  if(mode==='preview'){
-    const pi=parseInt(Object.keys(byPep)[0]);bcCurrentPi=pi;
-    showBCPreview(pi,byPep[pi]);return;
-  }
+  const byPep={};vegs.forEach((_,vi)=>{const r=document.querySelector(`input[name="sel-${vi}"]:checked`);if(r){const pi=parseInt(r.value);if(!byPep[pi])byPep[pi]=[];byPep[pi].push(vi);}});
+  peps.forEach((_,pi)=>{vegs.forEach((_,vi)=>{((prix[vi]?.variantes||{})[pi]||[]).filter(vr=>(vr.qteF||0)>0).forEach(()=>{if(!byPep[pi])byPep[pi]=[];if(!byPep[pi].includes(vi))byPep[pi].push(vi);});});});
+  if(!Object.keys(byPep).length){alert('Aucune sélection.');return;}
+  if(mode==='preview'){const pi=parseInt(Object.keys(byPep)[0]);bcCurrentPi=pi;showBCPreview(pi,byPep[pi]);return;}
   Object.entries(byPep).forEach(([piStr,viList])=>{
     const pi=parseInt(piStr);const p=peps[pi];const{rows,totalHT}=buildBCRows(pi,viList);
     const tva=0.20;const tvaAmt=totalHT*tva;const ttc=totalHT+tvaAmt;
-    const hdr=['Désignation','Calibre','Contenant','Unité','Quantité','Prix unit. HT (€)','Prix total HT (€)','Note'];
-    const xlsRows=[
-      [`SOCIÉTÉ : ${legalInfo.nom||v('s-nom')||''}`,'','','','','','',''],
-      [`SIRET : ${legalInfo.siret||'—'}`,'','','','','','NUMÉRO BC :',`BC-${new Date().getFullYear()}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`],
-      [`TVA : ${legalInfo.tva_intra||'—'}`,'','','','','','DATE :',new Date().toLocaleDateString('fr-FR')],
-      [`Adresse : ${legalInfo.adresse_complete||'—'}`,'','','','','','CHANTIER :',`${v('s-affaire')||'—'} — ${v('s-ville')||'—'}`],
-      ['','','','','','','FOURNISSEUR :',p.nom],
-      [],hdr,
+    const nomSoc=v('s-nom')||legalInfo.nom||'';
+    const xlsRows=[[`SOCIÉTÉ : ${nomSoc}`,'','','','','','',''],
+      [`SIRET : ${legalInfo.siret||'—'}`,'','','','','NUMÉRO BC :',`BC-${new Date().getFullYear()}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`,''],
+      [`TVA : ${legalInfo.tva_intra||'—'}`,'','','','','DATE :',new Date().toLocaleDateString('fr-FR'),''],
+      [`Adresse : ${legalInfo.adresse_complete||'—'}`,'','','','','CHANTIER :',`${v('s-affaire')||'—'} — ${v('s-ville')||'—'}`,''],
+      ['','','','','','FOURNISSEUR :',p.nom,''],
+      [],['Désignation','Calibre','Contenant','Unité','Quantité','Prix unit. HT (€)','Prix total HT (€)','Note'],
       ...rows.map(r=>[r.desig,r.calibre,r.contenant,r.unite,r.qty,r.up,r.tot,r.note]),
-      [],['','','','','','Sous-total HT',totalHT,''],
-      ['','','','','','TVA 20%',tvaAmt,''],
-      ['','','','','','TOTAL TTC',ttc,''],
-      [],
-      [`Délai de paiement : ${legalInfo.delai_paiement||'30 jours'}`],
-      [`Pénalités de retard : ${legalInfo.penalites_retard||'3× taux légal'}`],
-      [legalInfo.mentions_legales||''],
-    ];
-    const fname=`BC_${p.nom.replace(/\s+/g,'_')}_${v('s-ville')||'projet'}.${mode}`;
+      [],['','','','','','Sous-total HT',totalHT,''],['','','','','','TVA 20%',tvaAmt,''],['','','','','','TOTAL TTC',ttc,''],
+      [],[ `Délai : ${legalInfo.delai_paiement||'30 jours'}` ],[ `Pénalités : ${legalInfo.penalites_retard||'3× taux légal'}` ],[legalInfo.mentions_legales||'']];
+    const fname=`BC_${p.nom.replace(/\s+/g,'_')}.${mode}`;
     if(mode==='csv'){dlBlob(new Blob(['\uFEFF'+xlsRows.map(r=>r.map(c=>`"${c||''}"`).join(';')).join('\n')],{type:'text/csv;charset=utf-8;'}),fname);}
     else{const wb=XLSX.utils.book_new();const ws=XLSX.utils.aoa_to_sheet(xlsRows);ws['!cols']=[{wch:32},{wch:10},{wch:10},{wch:5},{wch:8},{wch:16},{wch:16},{wch:40}];XLSX.utils.book_append_sheet(wb,ws,'Bon de commande');XLSX.writeFile(wb,fname);}
   });
@@ -1468,37 +1457,26 @@ function showBCPreview(pi,viList){
   const p=peps[pi];const{rows,totalHT}=buildBCRows(pi,viList);
   const tva=0.20;const tvaAmt=totalHT*tva;const ttc=totalHT+tvaAmt;
   const bcNum=`BC-${new Date().getFullYear()}-${String(Math.floor(Math.random()*9999)).padStart(4,'0')}`;
-  const logo=legalInfo.logo_url?`<img src="${legalInfo.logo_url}" class="bc-logo" onerror="this.style.display='none'">`:'🌿';
+  const nomSoc=v('s-nom')||legalInfo.nom||'Votre société';
   document.getElementById('bc-preview-con').innerHTML=`<div class="bc-preview">
-    <div class="bc-header">
-      <div>${logo}<div class="bc-firm" style="margin-top:5px;">${legalInfo.nom||v('s-nom')||'Votre société'}</div>
-        <div style="font-size:.72rem;color:var(--sage);line-height:1.6;">${legalInfo.adresse_complete||''}<br>${legalInfo.telephone||''} · ${document.getElementById('ap-email')?.value||''}<br>SIRET: ${legalInfo.siret||'—'} · TVA: ${legalInfo.tva_intra||'—'}</div>
+    <div class="bc-hdr">
+      <div>${legalInfo.logo_url?`<img src="${legalInfo.logo_url}" style="max-height:44px;max-width:110px;object-fit:contain;margin-bottom:6px;" onerror="this.style.display='none'">`:''}<div class="bc-firm">${nomSoc}</div>
+        <div style="font-size:.7rem;color:var(--sage);line-height:1.6;">${legalInfo.adresse_complete||''}<br>${legalInfo.telephone||''} · ${document.getElementById('ap-email')?.value||''}<br>SIRET: ${legalInfo.siret||'—'} · TVA: ${legalInfo.tva_intra||'—'}</div>
       </div>
       <div style="text-align:right;"><div class="bc-num">${bcNum}</div>
-        <div style="font-size:.74rem;color:var(--sage);margin-top:6px;line-height:1.7;">Date : ${new Date().toLocaleDateString('fr-FR')}<br>Chantier : ${v('s-affaire')||'—'} — ${v('s-ville')||'—'}<br><strong>Fournisseur : ${p.nom}</strong></div>
+        <div style="font-size:.72rem;color:var(--sage);margin-top:5px;line-height:1.7;">Date : ${new Date().toLocaleDateString('fr-FR')}<br>Chantier : ${v('s-affaire')||'—'} — ${v('s-ville')||'—'}<br><strong>Fournisseur : ${p.nom}</strong></div>
       </div>
     </div>
-    <table class="bc-table"><thead><tr><th>Désignation</th><th>Calibre</th><th>Contenant</th><th>Unité</th><th>Qté</th><th>P.U. HT</th><th>Total HT</th></tr></thead><tbody>
-      ${rows.map((r,i)=>`<tr ${i%2?'style="background:#faf5e8;"':''}><td>${r.desig}${r.note?`<div style="font-size:.64rem;color:var(--sage);font-style:italic;">${r.note}</div>`:''}</td><td>${r.calibre}</td><td>${r.contenant}</td><td>${r.unite}</td><td style="text-align:right;">${r.qty}</td><td style="text-align:right;font-family:var(--mono);">${fmt(r.up)} €</td><td style="text-align:right;font-family:var(--mono);font-weight:600;">${fmt(r.tot)} €</td></tr>`).join('')}
+    <table class="bc-tbl"><thead><tr><th>Désignation</th><th>Calibre</th><th>Contenant</th><th>Unité</th><th style="text-align:right;">Qté</th><th style="text-align:right;">P.U. HT</th><th style="text-align:right;">Total HT</th></tr></thead><tbody>
+      ${rows.map((r,i)=>`<tr ${i%2?'style="background:#faf5e8;"':''}><td>${r.desig}${r.note?`<div style="font-size:.62rem;color:var(--sage);font-style:italic;">${r.note}</div>`:''}</td><td>${r.calibre}</td><td>${r.contenant}</td><td>${r.unite}</td><td style="text-align:right;">${r.qty}</td><td style="text-align:right;font-family:var(--mono);">${fmt(r.up)} €</td><td style="text-align:right;font-family:var(--mono);font-weight:600;">${fmt(r.tot)} €</td></tr>`).join('')}
     </tbody></table>
-    <div class="bc-totals">
-      <div class="bt">Sous-total HT : ${fmt(totalHT)} €</div>
-      <div class="bt">TVA 20% : ${fmt(tvaAmt)} €</div>
-      <div class="btt">TOTAL TTC : ${fmt(ttc)} €</div>
-    </div>
-    <div class="bc-footer">
-      Délai de paiement : ${legalInfo.delai_paiement||'30 jours'} · Pénalités de retard : ${legalInfo.penalites_retard||'3× taux légal'}<br>
-      ${legalInfo.mentions_legales||''}
-    </div>
+    <div class="bc-totals"><div class="bt">Sous-total HT : ${fmt(totalHT)} €</div><div class="bt">TVA 20% : ${fmt(tvaAmt)} €</div><div class="btt">TOTAL TTC : ${fmt(ttc)} €</div></div>
+    <div class="bc-footer">Délai : ${legalInfo.delai_paiement||'30 jours'} · Pénalités : ${legalInfo.penalites_retard||'3× taux légal'}<br>${legalInfo.mentions_legales||''}</div>
   </div>`;
-  document.getElementById('bc-modal')._pi=pi;document.getElementById('bc-modal')._viList=viList;document.getElementById('bc-modal')._bcNum=bcNum;
   openModal('bc-modal');
 }
-
-window.dlBCExcel=function(){
-  const modal=document.getElementById('bc-modal');genBons('xlsx');closeModal('bc-modal');};
 window.openBCMailto=function(){
-  const pi=bcCurrentPi;if(pi==null)return;const p=peps[pi];
+  if(bcCurrentPi==null)return;const p=peps[bcCurrentPi];
   const subj=encodeURIComponent(`Bon de commande — ${v('s-affaire')||'—'} — ${v('s-ville')||'—'}`);
   const body=encodeURIComponent(`Madame, Monsieur,\n\nVeuillez trouver ci-joint notre bon de commande pour le chantier ${v('s-affaire')||'—'}.\n\nCordialement,\n${v('s-nom')||''}`);
   window.location.href=`mailto:${p.email||''}?subject=${subj}&body=${body}`;
@@ -1518,7 +1496,7 @@ function toast(msg,type=''){const t=document.getElementById('toast');t.textConte
 async function callClaude(messages,maxTokens=1000){
   let res;
   try{res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTokens,messages})});}
-  catch(e){throw new Error('Proxy injoignable — vérifiez votre Worker Cloudflare. Détail: '+e.message);}
+  catch(e){throw new Error('Proxy injoignable. Détail: '+e.message);}
   if(!res.ok){let d='';try{d=(await res.text()).substring(0,300);}catch(_){}throw new Error('Erreur proxy HTTP '+res.status+' — '+(d||'réponse vide'));}
   let data;try{data=await res.json();}catch(e){throw new Error('Réponse proxy illisible.');}
   if(data.error)throw new Error('Erreur API Claude : '+(data.error.message||JSON.stringify(data.error)));
@@ -1526,7 +1504,7 @@ async function callClaude(messages,maxTokens=1000){
   return data.content.map(b=>b.text||'').join('');
 }
 
-async function testProxy(){try{const r=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'ping'}]})});if(r.ok)console.log('%c✅ Proxy Cloudflare OK','color:green;font-weight:bold');else console.warn('⚠️ Proxy:',r.status);}catch(e){console.error('❌ Proxy injoignable:',e.message);}}
+async function testProxy(){try{const r=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:10,messages:[{role:'user',content:'ping'}]})});if(r.ok)console.log('%c✅ Proxy OK','color:green;font-weight:bold');else console.warn('⚠️ Proxy:',r.status);}catch(e){console.error('❌ Proxy injoignable:',e.message);}}
 
 document.querySelectorAll('.overlay').forEach(el=>el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');}));
 document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
