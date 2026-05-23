@@ -809,13 +809,38 @@ async function searchAcctPeps(query){
   const res=document.getElementById('acct-results');
   if(!query||query.length<2){res.innerHTML='';return;}
   acctSearchTimeout=setTimeout(async()=>{
-    const{data}=await supa.from('comptes_pepinieres').select('id,nom,email,pepnom').ilike('nom','%'+query+'%').limit(5);
-    if(!data||!data.length){res.innerHTML='<p style="font-size:.72rem;color:var(--sage);padding:5px 0;">Aucune pépinière trouvée avec ce nom.</p>';return;}
-    res.innerHTML=data.map(d=>`<div class="acct-result" onclick="addAcctPep('${d.id}','${(d.pepnom||d.nom).replace(/'/g,"\\'")}','${(d.email||'').replace(/'/g,"\\'")}')">
-      <span style="font-size:.84rem;font-weight:500;">${d.pepnom||d.nom}</span>
-      <span style="font-size:.66rem;color:var(--sage);font-family:var(--mono);">${d.email||''}</span>
-      <span class="has-account-bdg" style="margin-left:auto;">🔵 Compte portail</span>
-    </div>`).join('');
+    // Recherche dans tous les champs : nom contact, nom pépinière, email, tel, adresse, siret
+    const q='%'+query+'%';
+    const{data}=await supa.from('comptes_pepinieres')
+      .select('id,nom,email,pepnom,tel,adresse,siret,langue')
+      .or(`nom.ilike.${q},pepnom.ilike.${q},email.ilike.${q},tel.ilike.${q},adresse.ilike.${q},siret.ilike.${q}`)
+      .limit(8);
+    if(!data||!data.length){
+      res.innerHTML='<p style="font-size:.72rem;color:var(--sage);padding:6px 0;">Aucune pépinière trouvée — essayez un autre terme (email, téléphone, ville…)</p>';return;
+    }
+    const flags={'fr':'🇫🇷','en':'🇬🇧','es':'🇪🇸','ca':'🏴','nl':'🇳🇱','de':'🇩🇪','it':'🇮🇹'};
+    res.innerHTML=data.map(d=>{
+      const pepNom=d.pepnom||d.nom||'—';
+      const contact=d.pepnom&&d.nom&&d.pepnom!==d.nom?d.nom:'';
+      const safeNom=pepNom.replace(/'/g,"\\'");
+      const safeEmail=(d.email||'').replace(/'/g,"\\'");
+      return`<div class="acct-result" onclick="addAcctPep('${d.id}','${safeNom}','${safeEmail}')">
+        <div style="flex:1;min-width:0;">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+            <span style="font-size:.84rem;font-weight:600;color:var(--sage-d);">${pepNom}</span>
+            ${contact?`<span style="font-size:.68rem;color:var(--sage);font-family:var(--mono);">Contact : ${contact}</span>`:''}
+            <span class="has-account-bdg" style="margin-left:auto;">🔵 Compte portail</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:3px;">
+            ${d.email?`<span style="font-size:.66rem;color:var(--sage);font-family:var(--mono);">✉ ${d.email}</span>`:''}
+            ${d.tel?`<span style="font-size:.66rem;color:var(--sage);font-family:var(--mono);">📞 ${d.tel}</span>`:''}
+            ${d.adresse?`<span style="font-size:.66rem;color:var(--sage);font-family:var(--mono);">📍 ${d.adresse}</span>`:''}
+            ${d.siret?`<span style="font-size:.66rem;color:var(--sage);font-family:var(--mono);">SIRET ${d.siret}</span>`:''}
+            ${d.langue?`<span style="font-size:.66rem;">${flags[d.langue]||''}</span>`:''}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
   },300);
 }
 
