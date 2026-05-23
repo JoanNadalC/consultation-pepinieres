@@ -16,11 +16,10 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:300;min-height:100vh;}
-
 /* WELCOME */
 #welcome{position:fixed;inset:0;background:var(--sage-d);display:flex;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s;padding:16px;overflow-y:auto;}
 #welcome.hidden{opacity:0;pointer-events:none;}
-.wbox{background:var(--white);border-radius:16px;padding:38px 34px;width:100%;max-width:480px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.wbox{background:var(--white);border-radius:16px;padding:38px 34px;width:100%;max-width:490px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
 .wlogo{text-align:center;margin-bottom:20px;}
 .wlogo h1{font-family:var(--serif);font-size:1.85rem;color:var(--sage-d);}
 .wlogo p{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-top:3px;}
@@ -32,12 +31,11 @@ body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weigh
 .werr-e{background:#fde8e0;border:1px solid #f0c4b0;color:var(--rust);}
 .werr-ok{background:#d4edda;border:1px solid #a8d8b0;color:#1a5c28;}
 .atabs2{display:flex;gap:2px;background:var(--cream);padding:3px;border-radius:6px;margin-bottom:13px;}
-.atab2{flex:1;text-align:center;padding:6px;border-radius:5px;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--sage);transition:all .14s;}
+.atab2{flex:1;text-align:center;padding:6px;border-radius:5px;font-family:var(--mono);font-size:.6rem;cursor:pointer;border:none;background:transparent;color:var(--sage);transition:all .14s;}
 .atab2.active{background:var(--sage-d);color:var(--white);}
-.cgu-box{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:12px;max-height:160px;overflow-y:auto;font-size:.72rem;line-height:1.6;margin-bottom:11px;color:var(--ink);}
+.cgu-box{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:12px;max-height:150px;overflow-y:auto;font-size:.72rem;line-height:1.6;margin-bottom:10px;color:var(--ink);}
 .cgu-box h4{font-family:var(--serif);font-size:.88rem;color:var(--sage-d);margin-bottom:6px;}
-.cgu-box h5{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sage);margin:8px 0 4px;}
-
+.cgu-box h5{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sage);margin:8px 0 4px;}
 /* HEADER */
 header{background:var(--sage-d);color:var(--cream);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--earth);gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
 .brand h1{font-family:var(--serif);font-size:1.25rem;font-weight:600;}
@@ -49,17 +47,14 @@ header{background:var(--sage-d);color:var(--cream);padding:12px 20px;display:fle
 .hright{display:flex;align-items:center;gap:7px;}
 .uchip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--cream);}
 .mode-chip{background:var(--earth);border-radius:20px;padding:3px 8px;font-family:var(--mono);font-size:.56rem;color:var(--white);}
-
 /* LAYOUT */
 main{max-width:1100px;margin:0 auto;padding:18px 14px;}
 .sec{display:none;}.sec.active{display:block;animation:fi .2s ease;}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-
 /* CARDS */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:13px;box-shadow:0 2px 10px var(--sh);}
 .ct{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--sage-d);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--earth-l);display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
 .bdg{font-family:var(--mono);font-size:.57rem;background:var(--earth-l);color:var(--sage-d);padding:2px 7px;border-radius:20px;margin-left:auto;}
-
 /* FORM */
 label{display:block;font-size:.6rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:3px;font-weight:500;}
 input[type=text],input[type=number],input[type=email],input[type=password],textarea,select{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:.82rem;transition:border-color .15s;outline:none;}
@@ -67,7 +62,6 @@ input:focus,textarea:focus,select:focus{border-color:var(--sage);box-shadow:0 0 
 textarea{resize:vertical;min-height:54px;}
 .gr{display:grid;gap:10px;margin-bottom:10px;}
 .c2{grid-template-columns:1fr 1fr;}.c3{grid-template-columns:1fr 1fr 1fr;}
-
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-family:var(--mono);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;transition:all .14s;white-space:nowrap;}
 .btn-p{background:var(--sage-d);color:var(--cream);}.btn-p:hover{background:var(--sage);transform:translateY(-1px);}
@@ -77,12 +71,10 @@ textarea{resize:vertical;min-height:54px;}
 .btn-d{background:#fde8e0;color:var(--rust);border:1.5px solid #f0c4b0;}.btn-d:hover{background:var(--rust);color:#fff;}
 .btn-sm{padding:3px 8px;font-size:.57rem;}
 .abar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
-
 /* CONSULTATIONS */
 .clist{display:grid;gap:8px;}
-.cc{background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all .14s;}
+.cc{background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;transition:all .14s;}
 .cc:hover{border-color:var(--sage);box-shadow:0 3px 10px var(--sh);}
-.cc.active-c{border-color:var(--sage-d);box-shadow:0 0 0 2px var(--sage-d);}
 .cc-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .cc-firm{font-family:var(--serif);font-size:.94rem;font-weight:600;color:var(--sage-d);flex:1;}
 .cc-st{font-family:var(--mono);font-size:.54rem;padding:2px 7px;border-radius:20px;text-transform:uppercase;}
@@ -90,31 +82,35 @@ textarea{resize:vertical;min-height:54px;}
 .st-répondu{background:#d4edda;color:#1a5c28;}
 .st-clôturé{background:#f0ede4;color:#7a6a40;}
 .cc-meta{font-size:.67rem;color:var(--sage);font-family:var(--mono);margin-top:3px;}
-
-/* SAISIE PRIX */
+/* SAISIE */
 .ptable{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
 .ptable th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;position:sticky;top:60px;z-index:2;}
 .ptable th:first-child{border-radius:6px 0 0 0;}.ptable th:last-child{border-radius:0 6px 0 0;}
 .ptable td{padding:6px 8px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle;}
 .ptable td:first-child{border-left:1px solid var(--border);}
 .ptable tr:nth-child(even) td{background:#faf5e8;}.ptable tr:nth-child(odd) td{background:var(--white);}
-.pinp{width:88px;padding:4px 6px;font-family:var(--mono);font-size:.74rem;text-align:right;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);outline:none;}
+.ptable tr:last-child td:first-child{border-radius:0 0 0 6px;}.ptable tr:last-child td:last-child{border-radius:0 0 6px 0;}
+.pinp{width:90px;padding:4px 6px;font-family:var(--mono);font-size:.74rem;text-align:right;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);outline:none;}
 .pinp:focus{border-color:var(--sage);background:var(--white);}
 .pinp::placeholder{color:#b8a888;font-size:.66rem;}
 .prefill{background:#eef3e8!important;border-color:var(--sage-l)!important;}
 .prefill-tip{font-size:.54rem;color:var(--sage);font-family:var(--mono);margin-top:2px;font-style:italic;}
-/* Validation ligne */
 .row-validated td{background:#f0f8f0!important;}
-.row-pending td{background:#fff8f0!important;}
+.row-pending td{background:var(--white)!important;}
 .val-btn{font-size:.56rem;padding:2px 6px;}
-
 /* CATALOGUE */
-.cat-table{width:100%;border-collapse:collapse;font-size:.76rem;}
-.cat-table th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;text-transform:uppercase;}
-.cat-table td{padding:5px 8px;border-bottom:1px solid var(--border);}
-.cat-table tr:nth-child(even) td{background:#faf5e8;}
-.pct-inp{width:60px;padding:3px 5px;font-family:var(--mono);font-size:.72rem;text-align:right;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);outline:none;}
-
+.cat-tbl{width:100%;border-collapse:collapse;font-size:.74rem;}
+.cat-tbl th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;text-transform:uppercase;text-align:left;}
+.cat-tbl td{padding:5px 8px;border-bottom:1px solid var(--border);}
+.cat-tbl tr:nth-child(even) td{background:#faf5e8;}
+.pct-inp{width:58px;padding:3px 5px;font-family:var(--mono);font-size:.7rem;text-align:right;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);outline:none;}
+/* IMPORT */
+.dz-box{border:2px dashed var(--border);border-radius:10px;padding:24px 15px;text-align:center;cursor:pointer;transition:all .17s;background:var(--cream);}
+.dz-box:hover,.dz-box.dragover{border-color:var(--sage);background:rgba(107,125,90,.05);}
+.dzi{font-size:1.6rem;margin-bottom:5px;opacity:.33;}
+.aibox{display:flex;align-items:center;gap:8px;padding:9px 13px;background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;font-size:.74rem;color:var(--sage-d);}
+.spin{width:13px;height:13px;border:2px solid var(--sage-l);border-top-color:var(--sage-d);border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0;}
+@keyframes sp{to{transform:rotate(360deg)}}
 /* HISTORIQUE */
 .hist-group{background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:10px 13px;margin-bottom:7px;}
 .hist-hdr{font-family:var(--serif);font-size:.86rem;font-weight:600;color:var(--sage-d);margin-bottom:3px;}
@@ -123,49 +119,35 @@ textarea{resize:vertical;min-height:54px;}
 .hist-row:last-child{border:none;}
 .hist-p{font-family:var(--mono);font-weight:600;color:var(--sage-d);}
 .hist-prev{font-size:.6rem;color:var(--sage);font-family:var(--mono);}
-
-/* IMPORT */
-.dz-box{border:2px dashed var(--border);border-radius:10px;padding:26px 15px;text-align:center;cursor:pointer;transition:all .17s;background:var(--cream);}
-.dz-box:hover,.dz-box.dragover{border-color:var(--sage);background:rgba(107,125,90,.05);}
-.dzi{font-size:1.6rem;margin-bottom:5px;opacity:.33;}
-.aibox{display:flex;align-items:center;gap:8px;padding:9px 13px;background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;font-size:.74rem;color:var(--sage-d);}
-.spin{width:13px;height:13px;border:2px solid var(--sage-l);border-top-color:var(--sage-d);border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0;}
-@keyframes sp{to{transform:rotate(360deg)}}
-
 /* FBAR */
 .fbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px;align-items:center;}
 .fbar select,.fbar input{width:auto;padding:5px 8px;font-family:var(--mono);font-size:.62rem;}
-
 /* TOAST */
 .toast{position:fixed;bottom:18px;right:18px;background:var(--sage-d);color:var(--cream);padding:9px 15px;border-radius:7px;font-family:var(--mono);font-size:.62rem;box-shadow:0 4px 18px rgba(0,0,0,.2);z-index:500;transform:translateY(60px);opacity:0;transition:all .3s;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.error{background:var(--rust);}
-
 /* MISC */
 .tip{font-size:.63rem;color:var(--sage);margin-top:4px;font-style:italic;}
 .empty{text-align:center;padding:28px 14px;color:var(--sage);}
 .empty .ei{font-size:1.9rem;margin-bottom:6px;opacity:.32;}
 .empty p{font-size:.74rem;}
-.notice{border-radius:7px;padding:10px 13px;font-size:.76rem;margin-bottom:12px;}
+.notice{border-radius:7px;padding:9px 12px;font-size:.76rem;margin-bottom:11px;}
 .notice-warn{background:#fdecd4;border:1px solid #f0cc90;color:#7a4a10;}
 .notice-info{background:#e0eaf8;border:1px solid #b8ccec;color:#2a4080;}
 .notice-ok{background:#d4edda;border:1px solid #a8d8b0;color:#1a5c28;}
-
 @media(max-width:640px){header{padding:10px;}.c2,.c3{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- WELCOME / AUTH -->
+<!-- WELCOME -->
 <div id="welcome">
   <div class="wbox">
     <div class="wlogo"><h1>🌿 Portail Pépinière</h1><p>Répondez à vos consultations de prix</p></div>
-
     <div class="wtabs">
       <button class="wtab active" id="wt-account" onclick="swWTab('account')">Avec un compte</button>
       <button class="wtab" id="wt-guest" onclick="swWTab('guest')">En invité</button>
     </div>
-
     <div id="werr" class="werr"></div>
 
     <!-- COMPTE -->
@@ -175,13 +157,13 @@ textarea{resize:vertical;min-height:54px;}
         <button class="atab2" id="at-reg" onclick="swATab('reg')">Créer un compte</button>
         <button class="atab2" id="at-magic" onclick="swATab('magic')">Lien magique</button>
       </div>
-
+      <!-- Connexion -->
       <div id="af-login">
         <div class="gr" style="margin-bottom:9px;"><div><label>Email</label><input type="email" id="a-email" placeholder="contact@pepiniere.fr" onkeydown="if(event.key==='Enter')doALogin()"></div></div>
         <div class="gr" style="margin-bottom:12px;"><div><label>Mot de passe</label><input type="password" id="a-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doALogin()"></div></div>
         <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doALogin()">Se connecter</button>
       </div>
-
+      <!-- Inscription -->
       <div id="af-reg" style="display:none;">
         <div class="gr c2" style="margin-bottom:9px;">
           <div><label>Nom de la pépinière *</label><input type="text" id="r-pepnom" placeholder="Pépinière Durand"></div>
@@ -194,52 +176,47 @@ textarea{resize:vertical;min-height:54px;}
           <div><label>Langue préférée</label>
             <select id="r-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option><option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option><option value="it">🇮🇹 Italiano</option></select>
           </div>
-          <div><label>Notifications consultations</label>
-            <select id="r-notif"><option value="each">Chaque consultation</option><option value="daily">Récap journalier</option><option value="weekly">Récap hebdo</option><option value="none">Aucune notification</option></select>
+          <div><label>Notifications</label>
+            <select id="r-notif"><option value="each">À chaque consultation</option><option value="daily">Récap journalier</option><option value="weekly">Récap hebdo</option><option value="none">Aucune</option></select>
           </div>
         </div>
-        <!-- CGU -->
-        <div class="cgu-box" id="cgu-box">
+        <div class="cgu-box">
           <h4>Conditions Générales d'Utilisation — Consultation Pépinières</h4>
           <p><em>Version 1.0 — Mai 2026</em></p>
           <h5>1. Objet du service</h5>
-          <p>La plateforme Consultation Pépinières (ci-après « le Service ») est un outil professionnel permettant aux bureaux d'études paysagers et aux pépinières de gérer leurs consultations de prix végétaux. L'accès au Service est réservé aux professionnels.</p>
+          <p>La plateforme Consultation Pépinières est un outil professionnel permettant aux bureaux d'études paysagers et aux pépinières de gérer leurs consultations de prix végétaux. L'accès est réservé aux professionnels.</p>
           <h5>2. Données personnelles et confidentialité (RGPD)</h5>
-          <p>Les données collectées (nom, email, prix commerciaux, historique de consultations) sont traitées conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679). Les prix commerciaux des pépinières sont des données confidentielles à caractère professionnel. Ils ne sont accessibles qu'au consultant ayant émis la consultation et à la pépinière concernée. Durée de conservation : 3 ans à compter de la dernière activité du compte.</p>
+          <p>Les données collectées (nom, email, prix commerciaux, historique) sont traitées conformément au RGPD (Règlement UE 2016/679). Les prix commerciaux des pépinières sont des données confidentielles, accessibles uniquement au consultant ayant émis la consultation et à la pépinière concernée. Durée de conservation : 3 ans.</p>
           <h5>3. Droits des utilisateurs</h5>
-          <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Pour exercer ces droits, contactez le responsable de traitement via l'adresse email de votre compte.</p>
-          <h5>4. Hébergement des données</h5>
-          <p>Les données sont hébergées par Supabase (infrastructure AWS Europe — Ireland) et GitHub Pages (Microsoft Ireland Operations Ltd). Ces hébergeurs sont conformes au RGPD.</p>
+          <p>Vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Contactez-nous via l'email de votre compte.</p>
+          <h5>4. Hébergement</h5>
+          <p>Données hébergées par Supabase (AWS Europe — Ireland) et GitHub Pages (Microsoft Ireland), tous deux conformes au RGPD.</p>
           <h5>5. Responsabilité</h5>
-          <p>Le Service est fourni « en l'état ». Les utilisateurs sont seuls responsables de l'exactitude des données saisies. Le prestataire ne saurait être tenu responsable des décisions commerciales prises sur la base des informations contenues dans le Service.</p>
-          <h5>6. Propriété intellectuelle</h5>
-          <p>Les données saisies par les utilisateurs leur appartiennent. Le Service ne revendique aucun droit sur les prix commerciaux ou les listes de végétaux importées.</p>
-          <h5>7. Droit applicable</h5>
-          <p>Les présentes CGU sont soumises au droit français. En cas de litige, les tribunaux français sont compétents.</p>
+          <p>Le Service est fourni "en l'état". Les utilisateurs sont seuls responsables de l'exactitude des données saisies.</p>
+          <h5>6. Droit applicable</h5>
+          <p>Droit français — Tribunaux français compétents.</p>
         </div>
-        <label style="display:flex;align-items:center;gap:8px;font-family:var(--body);text-transform:none;font-size:.76rem;color:var(--ink);cursor:pointer;margin-bottom:12px;">
-          <input type="checkbox" id="r-cgu" style="width:auto;margin:0;"> J'ai lu et j'accepte les Conditions Générales d'Utilisation
+        <label style="display:flex;align-items:center;gap:8px;font-family:var(--body);text-transform:none;font-size:.74rem;color:var(--ink);cursor:pointer;margin-bottom:12px;">
+          <input type="checkbox" id="r-cgu" style="width:auto;margin:0;"> J'ai lu et j'accepte les CGU
         </label>
         <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doAReg()">Créer mon compte</button>
       </div>
-
+      <!-- Lien magique -->
       <div id="af-magic" style="display:none;">
-        <div class="notice notice-warn" style="margin-bottom:11px;">⚠️ Le lien magique permet de répondre à une consultation mais ne donne pas accès à l'historique de vos réponses précédentes.</div>
+        <div class="notice notice-warn" style="margin-bottom:10px;">⚠️ Le lien magique ne donne pas accès à l'historique complet de vos réponses.</div>
         <div class="gr" style="margin-bottom:12px;"><div><label>Votre email</label><input type="email" id="m-email" placeholder="contact@pepiniere.fr"></div></div>
         <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doMagic()">📧 Envoyer le lien de connexion</button>
-        <p class="tip" style="text-align:center;margin-top:7px;">Vous recevrez un email avec un lien valable 24h.</p>
+        <p class="tip" style="text-align:center;margin-top:7px;">Lien valable 24h — aucun mot de passe requis.</p>
       </div>
     </div>
 
     <!-- INVITÉ -->
     <div id="wf-guest" class="wf">
-      <div class="notice notice-info" style="margin-bottom:11px;">En mode invité, vous pouvez répondre à une consultation sans créer de compte. Aucun historique ne sera sauvegardé.</div>
-      <div id="guest-token-section">
-        <div class="gr" style="margin-bottom:9px;"><div><label>Votre email ou nom *</label><input type="text" id="g-nom" placeholder="Pépinière Durand"></div></div>
-        <p style="font-size:.76rem;color:var(--sage);margin-bottom:9px;">Si vous avez reçu un lien de consultation par email, cliquez simplement sur ce lien — il vous amènera directement ici.</p>
-        <div class="gr" style="margin-bottom:12px;"><div><label>Code d'accès (depuis votre email)</label><input type="text" id="g-token" placeholder="Collez le code ici"></div></div>
-        <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doGuest()">Accéder à la consultation</button>
-      </div>
+      <div class="notice notice-info" style="margin-bottom:10px;">En mode invité, vous répondez directement sans créer de compte. Aucun historique ne sera sauvegardé.</div>
+      <p style="font-size:.76rem;color:var(--sage);margin-bottom:10px;">Si vous avez reçu un lien de consultation par email, cliquez simplement dessus — il vous amène directement ici avec le code pré-rempli.</p>
+      <div class="gr" style="margin-bottom:9px;"><div><label>Votre nom ou pépinière *</label><input type="text" id="g-nom" placeholder="Pépinière Durand"></div></div>
+      <div class="gr" style="margin-bottom:12px;"><div><label>Code d'accès (depuis votre email) *</label><input type="text" id="g-token" placeholder="Collez le code reçu par email"></div></div>
+      <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doGuest()">Accéder à la consultation</button>
     </div>
   </div>
 </div>
@@ -261,20 +238,14 @@ textarea{resize:vertical;min-height:54px;}
 </header>
 
 <main>
-
 <!-- DASHBOARD -->
 <div class="sec active" id="tab-dashboard">
   <div class="card">
     <div class="ct">🏠 Mes consultations <span class="bdg" id="dash-bdg">0</span></div>
     <div class="fbar">
-      <select id="f-st" onchange="renderDash()">
-        <option value="">Tous les statuts</option>
-        <option value="en-cours">En cours</option>
-        <option value="répondu">Répondu</option>
-        <option value="clôturé">Clôturé</option>
-      </select>
+      <select id="f-st" onchange="renderDash()"><option value="">Tous les statuts</option><option value="en-cours">En cours</option><option value="répondu">Répondu</option><option value="clôturé">Clôturé</option></select>
       <input type="text" id="f-sr" placeholder="Rechercher…" oninput="renderDash()">
-      <button class="btn btn-g btn-sm" onclick="loadDash()">↻ Actualiser</button>
+      <button class="btn btn-g btn-sm" onclick="loadDash()">↻</button>
     </div>
     <div id="dash-list"><div class="empty"><div class="ei">📋</div><p>Aucune consultation.</p></div></div>
   </div>
@@ -290,25 +261,19 @@ textarea{resize:vertical;min-height:54px;}
     <div class="ct">💶 Vos prix unitaires HT
       <button class="btn btn-ok btn-sm" onclick="submitPrix()" style="margin-left:auto;">💾 Valider &amp; envoyer</button>
     </div>
-    <p style="font-size:.7rem;color:var(--sage);margin-bottom:10px;">
-      Cases vertes = pré-remplies depuis votre historique ou catalogue. Modifiez si besoin, puis validez chaque ligne ✓ avant envoi.
-    </p>
-    <div style="overflow-x:auto;"><table class="ptable" id="price-table">
-      <thead><tr>
-        <th>#</th><th>Nom latin</th><th>Calibre</th><th>Contenant</th>
-        <th style="text-align:center;">Qté</th>
-        <th>Prix unit. HT (€)</th><th>Variante proposée</th><th>Commentaire</th><th>✓</th>
-      </tr></thead>
+    <p style="font-size:.7rem;color:var(--sage);margin-bottom:10px;">Cases vertes = pré-remplies depuis votre catalogue ou historique. Validez chaque ligne ✓ avant envoi.</p>
+    <div style="overflow-x:auto;"><table class="ptable">
+      <thead><tr><th>#</th><th>Nom latin</th><th>Calibre</th><th>Contenant</th><th style="text-align:center;">Qté</th><th>Prix unit. HT (€)</th><th>Variante proposée</th><th>Commentaire</th><th>✓</th></tr></thead>
       <tbody id="price-tbody"></tbody>
     </table></div>
     <div style="margin-top:12px;">
       <div class="gr c2">
         <div><label>Frais de port HT (€)</label><input type="number" step=".01" min="0" id="frais-port" placeholder="0.00"></div>
-        <div><label>Commentaire général</label><input type="text" id="comment-gen" placeholder="Délai, conditions particulières…"></div>
+        <div><label>Commentaire général</label><input type="text" id="comment-gen" placeholder="Délai, conditions…"></div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
         <button class="btn btn-p" onclick="submitPrix()">💾 Valider &amp; envoyer mes prix</button>
-        <span id="submit-progress" style="font-family:var(--mono);font-size:.68rem;color:var(--sage);"></span>
+        <span id="submit-progress" style="font-family:var(--mono);font-size:.66rem;color:var(--sage);"></span>
       </div>
       <p class="tip">Vous pouvez revenir modifier vos prix avant la clôture de la consultation.</p>
     </div>
@@ -319,30 +284,25 @@ textarea{resize:vertical;min-height:54px;}
 <div class="sec" id="tab-catalogue">
   <div class="card">
     <div class="ct">📦 Mon catalogue de prix</div>
-    <p style="font-size:.76rem;color:var(--sage);margin-bottom:13px;">Importez votre catalogue de prix ou laissez-le se construire automatiquement au fil de vos consultations. Il sera utilisé pour pré-remplir vos futures réponses.</p>
-
+    <p style="font-size:.74rem;color:var(--sage);margin-bottom:12px;">Importez votre catalogue ou laissez-le se construire au fil de vos consultations. Il sera utilisé pour pré-remplir vos futures réponses.</p>
     <div class="abar">
       <button class="btn btn-s" onclick="document.getElementById('cat-file').click()">⬆ Importer un catalogue</button>
       <input type="file" id="cat-file" accept=".xlsx,.xls,.csv,.pdf" style="display:none" onchange="importCatalogue(this)">
       <button class="btn btn-g btn-sm" onclick="loadCatalogue()">↻ Actualiser</button>
-      <span id="cat-count" style="font-family:var(--mono);font-size:.68rem;color:var(--sage);"></span>
+      <span id="cat-count" style="font-family:var(--mono);font-size:.66rem;color:var(--sage);"></span>
     </div>
-
-    <div id="cat-status" style="display:none;margin-bottom:11px;"></div>
-
-    <!-- Filtre et réduction globale -->
-    <div id="cat-controls" style="display:none;margin-bottom:11px;">
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 13px;background:var(--earth-l);border-radius:7px;">
-        <span style="font-family:var(--mono);font-size:.64rem;color:var(--sage-d);">Appliquer une remise globale :</span>
-        <input type="number" step=".1" id="cat-pct" placeholder="-10" style="width:70px;padding:4px 7px;font-family:var(--mono);">
-        <span style="font-size:.68rem;color:var(--sage);">%</span>
-        <button class="btn btn-p btn-sm" onclick="applyCatPct()">Appliquer</button>
-        <div class="vsep" style="width:1px;height:20px;background:var(--border);"></div>
-        <input type="text" id="cat-search" placeholder="Rechercher…" oninput="renderCatalogue()" style="width:160px;padding:4px 8px;font-family:var(--mono);font-size:.68rem;">
+    <div id="cat-status" style="display:none;margin-bottom:10px;"></div>
+    <div id="cat-controls" style="display:none;margin-bottom:10px;">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:9px 12px;background:var(--earth-l);border-radius:7px;">
+        <span style="font-family:var(--mono);font-size:.62rem;color:var(--sage-d);">Remise globale :</span>
+        <input type="number" step=".1" id="cat-pct" placeholder="-10" style="width:68px;padding:4px 7px;font-family:var(--mono);">
+        <span style="font-size:.66rem;color:var(--sage);">%</span>
+        <button class="btn btn-p btn-sm" onclick="applyCatPct()">Appliquer à tout</button>
+        <div style="width:1px;height:20px;background:var(--border);"></div>
+        <input type="text" id="cat-search" placeholder="Rechercher…" oninput="renderCatalogue()" style="width:150px;padding:4px 7px;font-family:var(--mono);font-size:.66rem;">
       </div>
     </div>
-
-    <div id="cat-container"><div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.<br>Importez un fichier ou répondez à des consultations pour l'alimenter.</p></div></div>
+    <div id="cat-container"><div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.<br>Importez un fichier ou répondez à des consultations.</p></div></div>
   </div>
 </div>
 
@@ -372,13 +332,12 @@ textarea{resize:vertical;min-height:54px;}
       <div><label>Téléphone</label><input type="text" id="p-tel"></div>
     </div>
     <div class="gr c2">
-      <div><label>Adresse</label><input type="text" id="p-adr"></div>
       <div><label>SIRET (optionnel)</label><input type="text" id="p-siret" placeholder="XXX XXX XXX XXXXX"></div>
-    </div>
-    <div class="gr c2" style="margin-bottom:12px;">
       <div><label>Langue préférée</label>
         <select id="p-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option><option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option><option value="it">🇮🇹 Italiano</option></select>
       </div>
+    </div>
+    <div class="gr" style="margin-bottom:12px;">
       <div><label>Notifications de consultation</label>
         <select id="p-notif">
           <option value="each">À chaque consultation reçue</option>
@@ -401,68 +360,37 @@ textarea{resize:vertical;min-height:54px;}
   </div>
   <div class="card">
     <div class="ct">📋 Mentions légales</div>
-    <p style="font-size:.76rem;line-height:1.7;color:var(--sage);">
-      <strong style="color:var(--sage-d);">Hébergement</strong> : GitHub Pages (Microsoft Ireland Operations Ltd) · Supabase (AWS Europe — Ireland)<br>
-      <strong style="color:var(--sage-d);">Données personnelles</strong> : Traitées conformément au RGPD (Règlement UE 2016/679). Durée de conservation : 3 ans.<br>
-      <strong style="color:var(--sage-d);">Contact RGPD</strong> : Utilisez l'email de votre compte pour exercer vos droits (accès, rectification, suppression).<br>
+    <p style="font-size:.74rem;line-height:1.7;color:var(--sage);">
+      <strong style="color:var(--sage-d);">Hébergement</strong> : GitHub Pages (Microsoft Ireland) · Supabase (AWS Europe — Ireland)<br>
+      <strong style="color:var(--sage-d);">Données personnelles</strong> : Traitées conformément au RGPD. Durée de conservation : 3 ans.<br>
       <strong style="color:var(--sage-d);">Droit applicable</strong> : Droit français — Tribunaux français compétents.
     </p>
-    <button class="btn btn-d btn-sm" style="margin-top:11px;" onclick="deleteAccount()">🗑 Supprimer mon compte et mes données</button>
+    <button class="btn btn-d btn-sm" style="margin-top:10px;" onclick="if(confirm('Supprimer définitivement votre compte et toutes vos données ?'))deleteAccount()">🗑 Supprimer mon compte (RGPD)</button>
   </div>
 </div>
-
 </main>
 <div id="toast" class="toast"></div>
 
 <script>
-// ══════════════════════════════════════
-// CONFIG
-// ══════════════════════════════════════
 const SUPA_URL='https://xdbgmedtwqxbfijkoqnj.supabase.co';
 const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkYmdtZWR0d3F4YmZpamtvcW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NDEyODIsImV4cCI6MjA5NDQxNzI4Mn0.WPArcadGokK06BXNoO8NF8D0ceMqIgeZDIjveIz2zXk';
 const PROXY_URL='https://claude-proxy.jncoutier.workers.dev/';
-const CONSULTANT_APP='https://joannadalc.github.io/consultation-pepinieres/consultation-pepinieres.html';
 const supa=supabase.createClient(SUPA_URL,SUPA_KEY);
 
-// ══════════════════════════════════════
 // I18N
-// ══════════════════════════════════════
-const L={
-  fr:{logout:'Déconnexion',submitOk:'Prix envoyés ✓',noConsult:'Aucune consultation.',prefillTip:'Depuis votre historique',prefillCat:'Depuis votre catalogue',dashboard:'Consultations',history:'Historique',profile:'Mon profil',catalogue:'Catalogue'},
-  en:{logout:'Sign out',submitOk:'Prices sent ✓',noConsult:'No consultations.',prefillTip:'From your history',prefillCat:'From your catalogue',dashboard:'Consultations',history:'History',profile:'My profile',catalogue:'Catalogue'},
-  es:{logout:'Cerrar sesión',submitOk:'Precios enviados ✓',noConsult:'Sin consultas.',prefillTip:'De su historial',prefillCat:'De su catálogo',dashboard:'Consultas',history:'Historial',profile:'Mi perfil',catalogue:'Catálogo'},
-  ca:{logout:'Tancar sessió',submitOk:'Preus enviats ✓',noConsult:'Cap consulta.',prefillTip:'Del vostre historial',prefillCat:'Del vostre catàleg',dashboard:'Consultes',history:'Historial',profile:'El meu perfil',catalogue:'Catàleg'},
-  nl:{logout:'Uitloggen',submitOk:'Prijzen verzonden ✓',noConsult:'Geen aanvragen.',prefillTip:'Uit uw geschiedenis',prefillCat:'Uit uw catalogus',dashboard:'Aanvragen',history:'Geschiedenis',profile:'Mijn profiel',catalogue:'Catalogus'},
-  de:{logout:'Abmelden',submitOk:'Preise gesendet ✓',noConsult:'Keine Anfragen.',prefillTip:'Aus Ihrem Verlauf',prefillCat:'Aus Ihrem Katalog',dashboard:'Anfragen',history:'Verlauf',profile:'Mein Profil',catalogue:'Katalog'},
-  it:{logout:'Disconnetti',submitOk:'Prezzi inviati ✓',noConsult:'Nessuna consulenza.',prefillTip:'Dal vostro storico',prefillCat:'Dal vostro catalogo',dashboard:'Consulenze',history:'Storico',profile:'Il mio profilo',catalogue:'Catalogo'}
-};
+const L={fr:{logout:'Déconnexion',submitOk:'Prix envoyés ✓',noConsult:'Aucune consultation.',prefillHist:'Depuis votre historique',prefillCat:'Depuis votre catalogue'},en:{logout:'Sign out',submitOk:'Prices sent ✓',noConsult:'No consultations.',prefillHist:'From your history',prefillCat:'From your catalogue'},es:{logout:'Cerrar sesión',submitOk:'Precios enviados ✓',noConsult:'Sin consultas.',prefillHist:'De su historial',prefillCat:'De su catálogo'},ca:{logout:'Tancar sessió',submitOk:'Preus enviats ✓',noConsult:'Cap consulta.',prefillHist:'Del vostre historial',prefillCat:'Del vostre catàleg'},nl:{logout:'Uitloggen',submitOk:'Prijzen verzonden ✓',noConsult:'Geen aanvragen.',prefillHist:'Uit uw geschiedenis',prefillCat:'Uit uw catalogus'},de:{logout:'Abmelden',submitOk:'Preise gesendet ✓',noConsult:'Keine Anfragen.',prefillHist:'Aus Ihrem Verlauf',prefillCat:'Aus Ihrem Katalog'},it:{logout:'Disconnetti',submitOk:'Prezzi inviati ✓',noConsult:'Nessuna consulenza.',prefillHist:'Dal vostro storico',prefillCat:'Dal vostro catalogo'}};
 let curLang='fr';
 function T(k){return(L[curLang]||L.fr)[k]||(L.fr)[k]||k;}
-function setLang(l){
-  curLang=l;document.getElementById('brand-sub').textContent='Répondez à vos consultations';
-  const tabs=document.querySelectorAll('.tab');
-  if(tabs[0])tabs[0].textContent='🏠 '+T('dashboard');
-  if(tabs[2])tabs[2].textContent='📦 '+T('catalogue');
-  if(tabs[3])tabs[3].textContent='📋 '+T('history');
-  if(tabs[4])tabs[4].textContent='👤 '+T('profile');
-  if(document.getElementById('p-lang'))document.getElementById('p-lang').value=l;
-  if(pepState.user)supa.from('comptes_pepinieres').update({langue:l}).eq('id',pepState.user.id);
-}
+function setLang(l){curLang=l;if(document.getElementById('p-lang'))document.getElementById('p-lang').value=l;if(pepState.user)supa.from('comptes_pepinieres').update({langue:l}).eq('id',pepState.user.id);}
 
-// ══════════════════════════════════════
 // STATE
-// ══════════════════════════════════════
 let pepState={mode:null,user:null,pepId:null,pepNom:'',consultId:null,vegetaux:[],reponses:{},allConsults:[],allHist:[],hasAccount:false,catalogue:[],validatedRows:new Set()};
 
-// ══════════════════════════════════════
 // WELCOME TABS
-// ══════════════════════════════════════
-function swWTab(t){['account','guest'].forEach(x=>{document.getElementById(`wt-${x}`).classList.toggle('active',x===t);document.getElementById(`wf-${x}`).classList.toggle('active',x===t);});document.getElementById('werr').style.display='none';}
-function swATab(t){['login','reg','magic'].forEach(x=>{document.getElementById(`at-${x}`).classList.toggle('active',x===t);document.getElementById(`af-${x}`).style.display=x===t?'block':'none';});}
+function swWTab(t){['account','guest'].forEach(x=>{document.getElementById('wt-'+x).classList.toggle('active',x===t);document.getElementById('wf-'+x).classList.toggle('active',x===t);});document.getElementById('werr').style.display='none';}
+function swATab(t){['login','reg','magic'].forEach(x=>{document.getElementById('at-'+x).classList.toggle('active',x===t);document.getElementById('af-'+x).style.display=x===t?'block':'none';});}
 
-// ══════════════════════════════════════
 // AUTH
-// ══════════════════════════════════════
 async function doALogin(){
   const email=document.getElementById('a-email').value.trim();const pwd=document.getElementById('a-pwd').value;
   if(!email||!pwd){showWErr('Email et mot de passe requis.');return;}
@@ -470,9 +398,8 @@ async function doALogin(){
   if(error){showWErr('Erreur : '+error.message);return;}
   await afterPepLogin(data.user,true);
 }
-
 async function doAReg(){
-  if(!document.getElementById('r-cgu').checked){showWErr('Vous devez accepter les CGU pour créer un compte.');return;}
+  if(!document.getElementById('r-cgu').checked){showWErr('Vous devez accepter les CGU.');return;}
   const pepnom=document.getElementById('r-pepnom').value.trim();const nom=document.getElementById('r-nom').value.trim();
   const email=document.getElementById('r-email').value.trim();const pwd=document.getElementById('r-pwd').value;
   const lang=document.getElementById('r-lang').value;const notif=document.getElementById('r-notif').value;
@@ -481,27 +408,20 @@ async function doAReg(){
   const{data,error}=await supa.auth.signUp({email,password:pwd,options:{data:{nom,pepnom}}});
   if(error){showWErr('Erreur : '+error.message);return;}
   if(data.user){
-    await supa.from('comptes_pepinieres').upsert({
-      id:data.user.id,nom,email,
-      tel:document.getElementById('r-tel').value.trim(),
-      langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()
-    });
+    await supa.from('comptes_pepinieres').upsert({id:data.user.id,nom,email,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()});
   }
   showWErr('Compte créé ! Connectez-vous.',false);swATab('login');
 }
-
 async function doMagic(){
   const email=document.getElementById('m-email').value.trim();if(!email){showWErr('Email requis.');return;}
-  const redirectUrl=`${window.location.origin}${window.location.pathname}${window.location.search}`;
+  const redirectUrl=window.location.href;
   const{error}=await supa.auth.signInWithOtp({email,options:{emailRedirectTo:redirectUrl}});
   if(error){showWErr('Erreur : '+error.message);return;}
-  showWErr(`Lien envoyé à ${email} — vérifiez votre boîte mail.`,false);
+  showWErr('Lien envoyé à '+email+' — vérifiez votre boîte mail.',false);
 }
-
 async function doGuest(){
   const token=document.getElementById('g-token').value.trim();const nom=document.getElementById('g-nom').value.trim();
-  if(!token){showWErr('Code d\'accès requis. Copiez-le depuis votre email.');return;}
-  // Vérifier le token de consultation
+  if(!token){showWErr('Code d\'accès requis (depuis votre email).');return;}
   const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
   if(error||!inv){showWErr('Code invalide ou expiré. Vérifiez votre email.');return;}
   if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré. Demandez un nouveau lien au consultant.');return;}
@@ -513,16 +433,21 @@ async function doGuest(){
 
 async function afterPepLogin(user,hasAccount=true){
   pepState.user=user;pepState.mode='account';pepState.hasAccount=hasAccount;
+  // Vérifier que c'est bien un compte PÉPINIÈRE (pas un consultant)
+  const{data:consultCheck}=await supa.from('profiles').select('id').eq('id',user.id).single();
+  if(consultCheck){
+    await supa.auth.signOut();
+    pepState.user=null;
+    document.getElementById('welcome').classList.remove('hidden');
+    showWErr('Ce compte est enregistré comme consultant. Utilisez l\'application consultant.');
+    return;
+  }
   const{data}=await supa.from('comptes_pepinieres').select('*').eq('id',user.id).single();
   if(data){
-    pepState.pepId=data.pepiniere_id;pepState.pepNom=data.nom||user.email.split('@')[0];
+    pepState.pepId=data.pepiniere_id;pepState.pepNom=data.pepnom||data.nom||user.email.split('@')[0];
     if(data.langue)setLang(data.langue);
-    if(document.getElementById('p-nom'))document.getElementById('p-nom').value=data.nom||'';
-    if(document.getElementById('p-pepnom'))document.getElementById('p-pepnom').value=data.pepnom||'';
+    ['p-nom','p-pepnom','p-tel','p-siret'].forEach(id=>{const key=id.replace('p-','');const val=data[key==='pepnom'?'pepnom':key==='nom'?'nom':key==='tel'?'tel':key==='siret'?'siret':''];if(val&&document.getElementById(id))document.getElementById(id).value=val;});
     document.getElementById('p-email').value=user.email;
-    if(data.tel&&document.getElementById('p-tel'))document.getElementById('p-tel').value=data.tel;
-    if(data.adresse&&document.getElementById('p-adr'))document.getElementById('p-adr').value=data.adresse;
-    if(data.siret&&document.getElementById('p-siret'))document.getElementById('p-siret').value=data.siret;
     if(data.langue&&document.getElementById('p-lang'))document.getElementById('p-lang').value=data.langue;
     if(data.notif_preference&&document.getElementById('p-notif'))document.getElementById('p-notif').value=data.notif_preference;
   } else {
@@ -530,22 +455,24 @@ async function afterPepLogin(user,hasAccount=true){
     document.getElementById('p-email').value=user.email;
     await supa.from('comptes_pepinieres').upsert({id:user.id,nom:pepState.pepNom,email:user.email,langue:curLang,notif_preference:'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
   }
-  // Lire params URL
+  // Lire paramètres URL (token ou consultation directe)
   const params=new URLSearchParams(window.location.search);
   const urlToken=params.get('token');const urlConsultId=params.get('consultation');
   showApp(false);
   if(urlToken){
-    // Accès direct via token depuis le mail
     const{data:inv}=await supa.from('invitations_consultation').select('*').eq('token',urlToken).single();
     if(inv&&new Date(inv.expires_at)>new Date()){
       const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
-      if(consult){pepState.pepId=pepState.pepId||inv.pepiniere_id;await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;}
+      if(consult){
+        if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;
+        await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;
+      }
     }
-  } else if(urlConsultId){
+  } else if(urlConsultId&&pepState.pepId){
     const{data:consult}=await supa.from('consultations').select('*').eq('id',urlConsultId).single();
-    if(consult&&pepState.pepId){await openConsult(consult,pepState.pepId);return;}
+    if(consult){await openConsult(consult,pepState.pepId);return;}
   }
-  loadDash();loadHist();loadCatalogue();
+  loadDash();if(pepState.hasAccount){loadHist();loadCatalogue();}
 }
 
 function showApp(guestMode=false){
@@ -554,12 +481,11 @@ function showApp(guestMode=false){
   document.getElementById('p-mode-chip').textContent=pepState.mode==='guest'?'Invité':'Compte';
   if(!guestMode){
     document.getElementById('main-tabs').style.display='flex';
-    if(!pepState.hasAccount){document.getElementById('tab-hist-btn').style.display='none';}
+    if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';
   } else {
     document.getElementById('main-tabs').style.display='none';goP('saisie');
   }
 }
-
 async function doLogout(){if(pepState.mode==='account')await supa.auth.signOut();location.reload();}
 function showWErr(msg,isErr=true){const el=document.getElementById('werr');el.textContent=msg;el.style.display='block';el.className='werr '+(isErr?'werr-e':'werr-ok');}
 
@@ -567,7 +493,7 @@ function showWErr(msg,isErr=true){const el=document.getElementById('werr');el.te
 supa.auth.getSession().then(({data})=>{if(data.session?.user)afterPepLogin(data.session.user,true);});
 supa.auth.onAuthStateChange((_,session)=>{if(session?.user&&!pepState.user)afterPepLogin(session.user,true);});
 
-// Params URL invité
+// Pré-remplir token depuis URL pour invité
 window.addEventListener('load',()=>{
   const params=new URLSearchParams(window.location.search);
   const token=params.get('token');const code=params.get('code');
@@ -578,9 +504,7 @@ window.addEventListener('load',()=>{
   }
 });
 
-// ══════════════════════════════════════
 // NAVIGATION
-// ══════════════════════════════════════
 function goP(name){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -590,115 +514,91 @@ function goP(name){
   if(name==='catalogue')renderCatalogue();
 }
 
-// ══════════════════════════════════════
 // DASHBOARD
-// ══════════════════════════════════════
 async function loadDash(){
   if(!pepState.pepId)return;
   const{data:reps}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
-  // Chercher aussi les invitations
   const{data:invs}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
-  const allConsultIds=[...new Set([...(reps||[]).map(r=>r.consultation_id),...(invs||[]).map(i=>i.consultation_id)])];
-  if(!allConsultIds.length){pepState.allConsults=[];renderDash();return;}
-  const{data:consults}=await supa.from('consultations').select('*').in('id',allConsultIds);
+  const allIds=[...new Set([...(reps||[]).map(r=>r.consultation_id),...(invs||[]).map(i=>i.consultation_id)])];
+  if(!allIds.length){pepState.allConsults=[];renderDash();return;}
+  const{data:consults}=await supa.from('consultations').select('*').in('id',allIds);
   pepState.allConsults=(consults||[]).map(c=>{
     const rep=(reps||[]).find(r=>r.consultation_id===c.id);
     const inv=(invs||[]).find(i=>i.consultation_id===c.id);
-    return{...c,repDate:rep?.updated_at,histCount:rep?.historique?.length||0,invDate:inv?.created_at,
-      statut_pep:rep?'répondu':'en-cours'};
+    return{...c,repDate:rep?.updated_at,histCount:rep?.historique?.length||0,invDate:inv?.created_at,statut_pep:rep?'répondu':'en-cours'};
   }).sort((a,b)=>new Date(b.invDate||b.created_at)-new Date(a.invDate||a.created_at));
   renderDash();
 }
-
 function renderDash(){
   const el=document.getElementById('dash-list');
-  const fSt=document.getElementById('f-st')?.value||'';
-  const fSr=(document.getElementById('f-sr')?.value||'').toLowerCase();
-  const list=pepState.allConsults.filter(c=>{
-    if(fSt&&c.statut_pep!==fSt)return false;
-    if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;
-    return true;
-  });
+  const fSt=document.getElementById('f-st')?.value||'';const fSr=(document.getElementById('f-sr')?.value||'').toLowerCase();
+  const list=pepState.allConsults.filter(c=>{if(fSt&&c.statut_pep!==fSt)return false;if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;return true;});
   document.getElementById('dash-bdg').textContent=list.length;
-  if(!list.length){el.innerHTML=`<div class="empty"><div class="ei">📋</div><p>${T('noConsult')}</p></div>`;return;}
-  el.innerHTML=`<div class="clist">${list.map(c=>`<div class="cc">
-    <div class="cc-row">
-      <span class="cc-firm">${c.affaire||'—'}</span>
-      <span class="cc-st st-${c.statut_pep||'en-cours'}">${c.statut_pep==='répondu'?'✓ Répondu':'En cours'}</span>
-    </div>
-    <div class="cc-meta">
-      ${c.ville||'—'} · 
-      ${c.date_consult?'Consultation : '+new Date(c.date_consult).toLocaleDateString('fr-FR'):''} · 
-      Livraison : ${c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'?'}
-    </div>
+  if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📋</div><p>'+T('noConsult')+'</p></div>';return;}
+  el.innerHTML='<div class="clist">'+list.map(c=>`<div class="cc">
+    <div class="cc-row"><span class="cc-firm">${c.affaire||'—'}</span><span class="cc-st st-${c.statut_pep||'en-cours'}">${c.statut_pep==='répondu'?'✓ Répondu':'En cours'}</span></div>
+    <div class="cc-meta">${c.ville||'—'} · Cons. du ${c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'?'} · Livraison : ${c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'?'}</div>
     <div style="display:flex;gap:6px;margin-top:7px;align-items:center;flex-wrap:wrap;">
       <button class="btn btn-p btn-sm" onclick="openConsultById('${c.id}')">✏️ ${c.statut_pep==='répondu'?'Modifier mes prix':'Saisir mes prix'}</button>
       ${c.histCount>0?`<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);">${c.histCount} envoi(s)</span>`:''}
       ${c.repDate?`<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);margin-left:auto;">Dernier envoi : ${new Date(c.repDate).toLocaleDateString('fr-FR')}</span>`:''}
     </div>
-  </div>`).join('')}</div>`;
+  </div>`).join('')+'</div>';
 }
-
 async function openConsultById(id){const c=pepState.allConsults.find(x=>x.id===id);if(c)await openConsult(c,pepState.pepId);}
-
 async function openConsult(consult,pepId){
   pepState.consultId=consult.id;pepState.pepId=pepId;pepState.validatedRows=new Set();
   document.getElementById('tab-saisie-btn').style.display='block';
   document.getElementById('saisie-info-card').style.display='block';
-  document.getElementById('saisie-title').textContent=`✏️ ${consult.affaire||'Consultation'} — ${consult.ville||''}`;
-  document.getElementById('saisie-meta').textContent=`Consultation du ${consult.date_consult?new Date(consult.date_consult).toLocaleDateString('fr-FR'):'?'} · Livraison : ${consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?'}${consult.remarques?' · '+consult.remarques:''}`;
+  document.getElementById('saisie-title').textContent='✏️ '+( consult.affaire||'Consultation')+' — '+(consult.ville||'');
+  document.getElementById('saisie-meta').textContent='Consultation du '+(consult.date_consult?new Date(consult.date_consult).toLocaleDateString('fr-FR'):'?')+' · Livraison : '+(consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?')+(consult.remarques?' · '+consult.remarques:'');
   const{data:vd}=await supa.from('vegetaux').select('*').eq('consultation_id',consult.id).order('ordre');
   pepState.vegetaux=vd||[];
   const{data:rd}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',consult.id).eq('pepiniere_id',pepId);
   pepState.reponses={};
   (rd||[]).forEach(r=>{const vi=pepState.vegetaux.findIndex(v=>v.id===r.vegetal_id);if(vi>=0){pepState.reponses[vi]={prix:r.prix_unit_ht,variante:r.variante||'',comment:r.commentaire||'',fraisPort:r.frais_port,hist:r.historique||[]};pepState.validatedRows.add(vi);}});
-  if(pepState.hasAccount){await prefillFromHistoryAndCatalogue();}
+  if(pepState.hasAccount)await prefillFromCatalogueAndHistory();
   renderSaisie();goP('saisie');
 }
 
-// ══════════════════════════════════════
-// PRÉ-REMPLISSAGE (historique + catalogue)
-// ══════════════════════════════════════
-async function prefillFromHistoryAndCatalogue(){
+// PRÉ-REMPLISSAGE (catalogue prioritaire, puis historique)
+async function prefillFromCatalogueAndHistory(){
   if(!pepState.pepId)return;
-  // Charger historique
-  const{data:hist}=await supa.from('reponses_pepinieres')
-    .select('vegetal_id,prix_unit_ht,updated_at,vegetaux(latin,calibre,contenant)')
-    .eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
   // Charger catalogue
-  const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);
-  pepState.catalogue=cat||[];
+  if(!pepState.catalogue.length){
+    const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);
+    pepState.catalogue=cat||[];
+  }
+  // Charger historique
+  const{data:hist}=await supa.from('reponses_pepinieres').select('vegetal_id,prix_unit_ht,updated_at,vegetaux(latin,calibre,contenant)').eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
   pepState.vegetaux.forEach((vg,vi)=>{
     if(pepState.reponses[vi]?.prix!=null)return;
-    // 1. Chercher dans le catalogue (priorité)
-    if(cat&&cat.length){
-      const catExact=cat.find(c=>c.latin?.toLowerCase()===vg.latin?.toLowerCase()&&c.calibre===vg.calibre&&c.contenant===(vg.contenant||vg.conditionnement));
-      if(catExact){pepState.reponses[vi]={prix:catExact.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillDate:catExact.updated_at};return;}
-      const catPartial=cat.find(c=>c.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
-      if(catPartial){pepState.reponses[vi]={prix:catPartial.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillConf:'partial',prefillCalib:catPartial.calibre};return;}
+    const cond=vg.contenant||vg.conditionnement||'';
+    // 1. Catalogue exact
+    if(pepState.catalogue.length){
+      const cExact=pepState.catalogue.find(c=>c.latin?.toLowerCase()===vg.latin?.toLowerCase()&&c.calibre===vg.calibre&&c.contenant===cond);
+      if(cExact){pepState.reponses[vi]={prix:cExact.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillDate:cExact.updated_at,prefillConf:'exact'};return;}
+      const cPartial=pepState.catalogue.find(c=>c.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
+      if(cPartial){pepState.reponses[vi]={prix:cPartial.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillConf:'partial',prefillCalib:cPartial.calibre};return;}
     }
-    // 2. Chercher dans l'historique
+    // 2. Historique exact
     if(hist&&hist.length){
-      const hExact=hist.find(r=>r.vegetaux?.latin?.toLowerCase()===vg.latin?.toLowerCase()&&r.vegetaux?.calibre===vg.calibre&&r.vegetaux?.contenant===(vg.contenant||vg.conditionnement));
-      if(hExact){pepState.reponses[vi]={prix:hExact.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillDate:hExact.updated_at};return;}
-      const hPartial=hist.find(r=>r.vegetaux?.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
-      if(hPartial){pepState.reponses[vi]={prix:hPartial.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillConf:'partial',prefillCalib:hPartial.vegetaux?.calibre};}
+      const hExact=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase()===vg.latin?.toLowerCase()&&r.vegetaux?.calibre===vg.calibre&&r.vegetaux?.contenant===cond);
+      if(hExact){pepState.reponses[vi]={prix:hExact.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillDate:hExact.updated_at,prefillConf:'exact'};return;}
+      const hPartial=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
+      if(hPartial)pepState.reponses[vi]={prix:hPartial.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillConf:'partial',prefillCalib:hPartial.vegetaux?.calibre};
     }
   });
 }
 
-// ══════════════════════════════════════
-// SAISIE DES PRIX
-// ══════════════════════════════════════
+// SAISIE
 function renderSaisie(){
   const tbody=document.getElementById('price-tbody');
-  if(!pepState.vegetaux.length){tbody.innerHTML=`<tr><td colspan="9" style="text-align:center;color:var(--sage);padding:16px;">${T('noConsult')}</td></tr>`;return;}
-  const validated=pepState.validatedRows;
+  if(!pepState.vegetaux.length){tbody.innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--sage);padding:16px;">'+T('noConsult')+'</td></tr>';return;}
   tbody.innerHTML=pepState.vegetaux.map((vg,vi)=>{
-    const rep=pepState.reponses[vi]||{};const isVal=validated.has(vi);
+    const rep=pepState.reponses[vi]||{};const isVal=pepState.validatedRows.has(vi);
     const isPf=rep.prefilled&&rep.prix!=null;
-    const srcLabel=isPf?(rep.prefillSrc==='catalogue'?T('prefillCat'):T('prefillTip')):'';
-    const isPartial=rep.prefillConf==='partial';
+    const srcLabel=isPf?(rep.prefillSrc==='catalogue'?T('prefillCat'):T('prefillHist')):'';
     return`<tr class="${isVal?'row-validated':'row-pending'}" id="tr-${vi}">
       <td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">${vi+1}</td>
       <td><em style="font-size:.74rem;">${vg.latin}</em></td>
@@ -706,33 +606,22 @@ function renderSaisie(){
       <td style="font-size:.68rem;">${vg.contenant||vg.conditionnement||'—'}</td>
       <td style="font-family:var(--mono);text-align:center;">${vg.qte}</td>
       <td>
-        <input type="number" step=".01" min="0" class="pinp ${isPf?'prefill':''}"
-          placeholder="—" value="${rep.prix||''}" id="p-${vi}"
-          onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].prix=parseFloat(this.value)||null;pepState.reponses[${vi}].prefilled=false;unvalidateRow(${vi});">
-        ${isPf?`<div class="prefill-tip">↑ ${srcLabel}${isPartial?' (approx.)':''}</div>`:''}
+        <input type="number" step=".01" min="0" class="pinp ${isPf?'prefill':''}" placeholder="—" value="${rep.prix||''}" id="p-${vi}"
+          onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].prix=parseFloat(this.value)||null;pepState.reponses[${vi}].prefilled=false;unvalRow(${vi});">
+        ${isPf?`<div class="prefill-tip">↑ ${srcLabel}${rep.prefillConf==='partial'?' (approx.)':''}${rep.prefillCalib?' · '+rep.prefillCalib:''}</div>`:''}
       </td>
-      <td><input type="text" placeholder="—" value="${rep.variante||''}" id="v-${vi}" style="font-size:.74rem;"
-          onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].variante=this.value;unvalidateRow(${vi});"></td>
-      <td><input type="text" placeholder="—" value="${rep.comment||''}" id="c-${vi}" style="font-size:.74rem;"
-          onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].comment=this.value;"></td>
-      <td><button class="btn btn-ok val-btn ${isVal?'':'btn-g'}" onclick="toggleValidate(${vi})" id="vbtn-${vi}">${isVal?'✓':'○'}</button></td>
+      <td><input type="text" placeholder="—" value="${rep.variante||''}" id="v-${vi}" style="font-size:.74rem;" onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].variante=this.value;unvalRow(${vi});"></td>
+      <td><input type="text" placeholder="—" value="${rep.comment||''}" id="c-${vi}" style="font-size:.74rem;" onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].comment=this.value;"></td>
+      <td><button class="btn val-btn ${isVal?'btn-ok':'btn-g'}" onclick="toggleVal(${vi})" id="vbtn-${vi}">${isVal?'✓':'○'}</button></td>
     </tr>`;
   }).join('');
   updateProgress();
   const existPort=Object.values(pepState.reponses).find(r=>r?.fraisPort);
   if(existPort?.fraisPort)document.getElementById('frais-port').value=existPort.fraisPort;
 }
-
-function toggleValidate(vi){
-  if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);
-  else pepState.validatedRows.add(vi);
-  const tr=document.getElementById(`tr-${vi}`);const btn=document.getElementById(`vbtn-${vi}`);
-  if(tr)tr.className=pepState.validatedRows.has(vi)?'row-validated':'row-pending';
-  if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className=`btn val-btn ${pepState.validatedRows.has(vi)?'btn-ok':'btn-g'}`;}
-  updateProgress();
-}
-function unvalidateRow(vi){pepState.validatedRows.delete(vi);const tr=document.getElementById(`tr-${vi}`);const btn=document.getElementById(`vbtn-${vi}`);if(tr)tr.className='row-pending';if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}updateProgress();}
-function updateProgress(){const total=pepState.vegetaux.length;const val=pepState.validatedRows.size;const filled=pepState.vegetaux.filter((_,vi)=>pepState.reponses[vi]?.prix!=null).length;const el=document.getElementById('submit-progress');if(el)el.textContent=`${val}/${total} validées · ${filled} prix saisis`;}
+function toggleVal(vi){if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);else pepState.validatedRows.add(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className=pepState.validatedRows.has(vi)?'row-validated':'row-pending';if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className='btn val-btn '+(pepState.validatedRows.has(vi)?'btn-ok':'btn-g');}updateProgress();}
+function unvalRow(vi){pepState.validatedRows.delete(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className='row-pending';if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}updateProgress();}
+function updateProgress(){const tot=pepState.vegetaux.length;const val=pepState.validatedRows.size;const filled=pepState.vegetaux.filter((_,vi)=>pepState.reponses[vi]?.prix!=null).length;const el=document.getElementById('submit-progress');if(el)el.textContent=val+'/'+tot+' validées · '+filled+' prix saisis';}
 
 async function submitPrix(){
   if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
@@ -741,65 +630,35 @@ async function submitPrix(){
   let n=0,errors=0;
   for(let vi=0;vi<pepState.vegetaux.length;vi++){
     const vg=pepState.vegetaux[vi];const rep=pepState.reponses[vi]||{};
-    const prixVal=parseFloat(document.getElementById(`p-${vi}`)?.value)||null;
-    const varVal=document.getElementById(`v-${vi}`)?.value.trim()||null;
-    const comVal=document.getElementById(`c-${vi}`)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
+    const prixVal=parseFloat(document.getElementById('p-'+vi)?.value)||null;
+    const varVal=document.getElementById('v-'+vi)?.value.trim()||null;
+    const comVal=document.getElementById('c-'+vi)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
     if(prixVal==null)continue;
     const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
-    const{error}=await supa.from('reponses_pepinieres').upsert({
-      consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,
-      prix_unit_ht:prixVal,variante:varVal,commentaire:comVal,frais_port:fraisPort,
-      historique:newHist,updated_at:new Date().toISOString()
-    },{onConflict:'vegetal_id,pepiniere_id'});
-    if(!error){
-      pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal,hist:newHist};
-      pepState.validatedRows.add(vi);n++;
-      // Alimenter le catalogue automatiquement
-      if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);
-    } else errors++;
+    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id'});
+    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal,hist:newHist};pepState.validatedRows.add(vi);n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
+    else errors++;
   }
-  // Mettre à jour statut dans le dashboard
-  if(pepState.pepId&&pepState.consultId){
-    const c=pepState.allConsults.find(x=>x.id===pepState.consultId);
-    if(c)c.statut_pep='répondu';
-  }
-  // Envoyer notification au consultant
   await notifyConsultant();
-  renderSaisie();
-  toast(`${T('submitOk')} (${n} végétal(ux))`+(errors?` · ${errors} erreur(s)`:''));
+  const c=pepState.allConsults.find(x=>x.id===pepState.consultId);if(c)c.statut_pep='répondu';
+  renderSaisie();toast(T('submitOk')+' ('+n+' végétal(ux))'+(errors?' · '+errors+' erreur(s)':''));
   if(pepState.mode==='account'){loadDash();if(pepState.hasAccount)loadHist();}
 }
-
-// Alimenter le catalogue automatiquement
 async function upsertCatalogue(vg,prix){
   if(!pepState.pepId)return;
-  await supa.from('catalogue_pepiniere').upsert({
-    pepiniere_id:pepState.pepId,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.contenant||vg.conditionnement||null,
-    prix_unit_ht:prix,updated_at:new Date().toISOString()
-  },{onConflict:'pepiniere_id,latin,calibre,contenant'});
+  await supa.from('catalogue_pepiniere').upsert({pepiniere_id:pepState.pepId,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.contenant||vg.conditionnement||null,prix_unit_ht:prix,updated_at:new Date().toISOString()},{onConflict:'pepiniere_id,latin,calibre,contenant'});
 }
-
-// Notifier le consultant
 async function notifyConsultant(){
   if(!pepState.consultId)return;
   try{
     const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).single();
     if(!consult)return;
-    const{data:prof}=await supa.from('profiles').select('email,nom').eq('id',consult.consultant_id).single();
-    if(!prof||!prof.email)return;
-    // Log notification (dans une vraie app, déclencher un email via Supabase Edge Function)
-    await supa.from('notifications').insert({
-      type:'pepiniere_reponse',user_id:consult.consultant_id,
-      message:`${pepState.pepNom} a répondu à la consultation "${consult.affaire||'—'}" — ${consult.ville||'—'}`,
-      consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false
-    }).catch(()=>{}); // Silencieux si la table n'existe pas encore
-  }catch(e){console.log('Notification non envoyée:',e.message);}
+    await supa.from('notifications').insert({type:'pepiniere_reponse',user_id:consult.consultant_id,message:`${pepState.pepNom} a répondu à la consultation "${consult.affaire||'—'}" — ${consult.ville||'—'}`,consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false}).catch(()=>{});
+  }catch(e){console.log('Notification:',e.message);}
 }
 
-// ══════════════════════════════════════
-// CATALOGUE DE PRIX
-// ══════════════════════════════════════
+// CATALOGUE
 async function loadCatalogue(){
   if(!pepState.pepId||!pepState.hasAccount)return;
   const{data}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId).order('latin');
@@ -808,16 +667,14 @@ async function loadCatalogue(){
   if(pepState.catalogue.length>0)document.getElementById('cat-controls').style.display='block';
   renderCatalogue();
 }
-
 function renderCatalogue(){
   const el=document.getElementById('cat-container');
   if(!pepState.hasAccount){el.innerHTML='<div class="notice notice-warn">Le catalogue est disponible uniquement avec un compte permanent.</div>';return;}
   const search=(document.getElementById('cat-search')?.value||'').toLowerCase();
   const list=pepState.catalogue.filter(c=>!search||c.latin?.toLowerCase().includes(search));
-  if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.<br>Importez un fichier ou répondez à des consultations.</p></div>';return;}
-  el.innerHTML=`<div style="overflow-x:auto;"><table class="cat-table">
-    <thead><tr><th>Nom latin</th><th>Calibre</th><th>Contenant</th><th>Prix unit. HT (€)</th><th>Remise %</th><th>Prix après remise</th><th>Mis à jour</th><th></th></tr></thead>
-    <tbody>${list.map((c,i)=>`<tr>
+  if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.</p></div>';return;}
+  el.innerHTML='<div style="overflow-x:auto;"><table class="cat-tbl"><thead><tr><th>Nom latin</th><th>Calibre</th><th>Contenant</th><th>Prix unit. HT (€)</th><th>Remise %</th><th>Prix après remise</th><th>Mis à jour</th><th></th></tr></thead><tbody>'+
+    list.map((c,i)=>`<tr>
       <td><em style="font-size:.76rem;">${c.latin||'—'}</em></td>
       <td style="font-family:var(--mono);font-size:.7rem;">${c.calibre||'—'}</td>
       <td style="font-size:.7rem;">${c.contenant||'—'}</td>
@@ -826,99 +683,111 @@ function renderCatalogue(){
       <td id="after-${i}" style="font-family:var(--mono);font-size:.7rem;color:var(--earth);">${c._prixApres?fmt(c._prixApres)+' €':'—'}</td>
       <td style="font-size:.64rem;color:var(--sage);font-family:var(--mono);">${c.updated_at?new Date(c.updated_at).toLocaleDateString('fr-FR'):'—'}</td>
       <td><button class="btn btn-d btn-sm" onclick="delCatItem('${c.id}')">✕</button></td>
-    </tr>`).join('')}</tbody>
-  </table></div>`;
+    </tr>`).join('')+'</tbody></table></div>';
 }
-
 function applyLinePct(i,pct){
-  const p=parseFloat(pct);const c=pepState.catalogue.filter(c=>{const search=(document.getElementById('cat-search')?.value||'').toLowerCase();return!search||c.latin?.toLowerCase().includes(search);})[i];
-  if(!c||isNaN(p))return;
-  c._pct=p;c._prixApres=c.prix_unit_ht*(1+p/100);
-  const el=document.getElementById(`after-${i}`);if(el)el.textContent=fmt(c._prixApres)+' €';
+  const p=parseFloat(pct);const search=(document.getElementById('cat-search')?.value||'').toLowerCase();const c=pepState.catalogue.filter(x=>!search||x.latin?.toLowerCase().includes(search))[i];
+  if(!c||isNaN(p))return;c._pct=p;c._prixApres=c.prix_unit_ht*(1+p/100);
+  const el=document.getElementById('after-'+i);if(el)el.textContent=fmt(c._prixApres)+' €';
 }
-
 function applyCatPct(){
   const pct=parseFloat(document.getElementById('cat-pct').value);if(isNaN(pct)){toast('Pourcentage invalide','error');return;}
-  pepState.catalogue.forEach((c,i)=>{c._pct=pct;c._prixApres=c.prix_unit_ht*(1+pct/100);});
-  renderCatalogue();setTimeout(()=>{pepState.catalogue.forEach((_,i)=>{const el=document.getElementById(`pct-${i}`);if(el)el.value=pct;});},50);
-  toast(`Remise de ${pct>0?'+':''}${pct}% appliquée sur ${pepState.catalogue.length} articles`);
+  pepState.catalogue.forEach(c=>{c._pct=pct;c._prixApres=c.prix_unit_ht*(1+pct/100);});
+  renderCatalogue();toast('Remise de '+(pct>0?'+':'')+pct+'% appliquée');
 }
-
-async function delCatItem(id){
-  if(!confirm('Supprimer cet article du catalogue ?'))return;
-  await supa.from('catalogue_pepiniere').delete().eq('id',id);
-  pepState.catalogue=pepState.catalogue.filter(c=>c.id!==id);
-  document.getElementById('cat-count').textContent=pepState.catalogue.length+' article(s)';
-  renderCatalogue();
-}
+async function delCatItem(id){if(!confirm('Supprimer cet article ?'))return;await supa.from('catalogue_pepiniere').delete().eq('id',id);pepState.catalogue=pepState.catalogue.filter(c=>c.id!==id);document.getElementById('cat-count').textContent=pepState.catalogue.length+' article(s)';renderCatalogue();}
 
 async function importCatalogue(inp){
-  if(!inp.files[0])return;
-  const file=inp.files[0];inp.value='';
+  if(!inp.files[0])return;const file=inp.files[0];inp.value='';
   const ext=file.name.split('.').pop().toLowerCase();
-  showCatStatus('<div class="aibox"><div class="spin"></div>Import du catalogue…</div>');
+  showCatSt('<div class="aibox"><div class="spin"></div>Import du catalogue…</div>');
   try{
-    let rows=[];
     if(ext==='pdf'){
-      // Import PDF via IA
       const b64=await toB64(file);
-      const res=await callClaude([{role:'user',content:[{type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},{type:'text',text:'Extrais le catalogue de prix végétaux. JSON uniquement: {"colonnes":["c1",...], "lignes":[[v,...],...]}'  }]}],2000);
-      let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('Catalogue illisible.');}
-      if(!p.lignes?.length)throw new Error('Aucune donnée.');
-      await processCatalogueRows(p.colonnes,p.lignes);return;
-    } else {
-      const buf=await file.arrayBuffer();const wb=XLSX.read(buf,{type:'array',cellDates:true});const ws=wb.Sheets[wb.SheetNames[0]];
-      rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false}).map(r=>r.map(c=>String(c??'').trim())).filter(r=>r.some(c=>c!==''));
+      showCatSt('<div class="aibox"><div class="spin"></div>Lecture du PDF par l\'IA…</div>');
+      const res=await callClaude([{role:'user',content:[
+        {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
+        {type:'text',text:`Expert végétaux paysagiste. Extrais TOUTES les lignes du catalogue de prix.
+Pour chaque ligne identifie :
+- Nom latin (sans calibre ni contenant)
+- Calibre/taille (12/14, 60-80cm, H150, Tour 8/10)
+- Contenant (MG=Motte Grillagée, RN=Racine Nue, AP=Airpot, CT=Conteneur, C2/C3/C35=Conteneur litres)
+- Prix unitaire HT
+RÈGLE : calibre=dimensions (chiffre/chiffre). contenant=mode culture (C35 est un contenant, pas un calibre).
+JSON uniquement : {"colonnes":["latin","calibre","contenant","prix"],"lignes":[["nom","cal","cont","prix"],...]}`}
+      ]}],3000);
+      let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('PDF illisible — essayez un format Excel ou CSV.');}
+      if(!p.lignes?.length)throw new Error('Aucune donnée extraite du PDF.');
+      // Aperçu avant confirmation
+      showCatSt(`<div style="background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;padding:11px 13px;">
+        <div style="font-weight:600;font-size:.76rem;margin-bottom:8px;color:var(--sage-d);">✓ ${p.lignes.length} ligne(s) extraite(s) — vérifiez l'aperçu ci-dessous</div>
+        <div style="overflow-x:auto;max-height:120px;overflow-y:auto;font-size:.66rem;font-family:var(--mono);">
+          ${p.lignes.slice(0,6).map(r=>'<div style="padding:2px 0;border-bottom:1px dotted var(--border);">'+r.map(x=>`<span style="margin-right:12px;">${x}</span>`).join('')+'</div>').join('')}
+        </div>
+        <button class="btn btn-p btn-sm" style="margin-top:9px;" onclick="processCatalogueRows(${JSON.stringify(p.colonnes)},${JSON.stringify(p.lignes)})">✓ Confirmer l'import</button>
+      </div>`);
+      return;
     }
+    // Excel / CSV
+    let rows=[];
+    if(ext==='csv'){rows=parseCSVAuto(await file.text());}
+    else{const buf=await file.arrayBuffer();const wb=XLSX.read(buf,{type:'array',cellDates:true});const ws=wb.Sheets[wb.SheetNames[0]];rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false});}
+    rows=rows.map(r=>r.map(c=>String(c??'').trim())).filter(r=>r.some(c=>c!==''));
     if(!rows.length)throw new Error('Fichier vide.');
-    // Détecter en-tête
     let hi=0;rows.slice(0,8).forEach((r,i)=>{const ne=r.filter(c=>c!=='');if(!ne.length)return;const sc=(ne.filter(c=>isNaN(parseFloat(c))).length/ne.length)*10+ne.length;if(sc>(rows[hi].filter(c=>isNaN(parseFloat(c))).length/Math.max(rows[hi].filter(c=>c!=='').length,1))*10+rows[hi].filter(c=>c!=='').length)hi=i;});
     const cols=rows[hi].map(c=>String(c).trim());const data=rows.slice(hi+1).filter(r=>r.some(c=>c!==''));
     await processCatalogueRows(cols,data);
-  }catch(e){showCatStatus(`<div class="notice notice-warn">⚠️ ${e.message}</div>`);}
+  }catch(e){showCatSt('<div class="notice notice-warn">⚠️ '+e.message+'</div>');}
 }
 
 async function processCatalogueRows(cols,rows){
-  showCatStatus('<div class="aibox"><div class="spin"></div>Analyse IA des colonnes catalogue…</div>');
-  const res=await callClaude([{role:'user',content:`Catalogue de prix végétaux. Colonnes: ${JSON.stringify(cols)}\nDonnées (5 lignes): ${JSON.stringify(rows.slice(0,5))}\nRÈGLES: calibre=taille (12/14, 16/18, 60-80cm). contenant=mode (MG,RN,C35,AP). prix=prix unitaire HT.\nJSON: {"latin":X,"calibre":X,"contenant":X,"prix":X,"mixed":false}`}],300);
+  showCatSt('<div class="aibox"><div class="spin"></div>Analyse IA des colonnes…</div>');
+  const res=await callClaude([{role:'user',content:`Catalogue prix végétaux. Colonnes: ${JSON.stringify(cols)}\nDonnées (5): ${JSON.stringify(rows.slice(0,5))}\nRÈGLES STRICTES:\n- calibre=taille (12/14, 16/18, 60-80cm). contenant=mode culture (MG,RN,AP,CT,C2,C35). C35=contenant, 12/14=calibre.\n- Si une colonne mélange tout, "mixed":true\nJSON: {"latin":X,"calibre":X,"contenant":X,"prix":X,"mixed":false}`}],400);
   let mp;try{mp=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){mp={};}
-  let n=0;const toInsert=[];
-  for(const row of rows){
-    const lat=mp.latin!=null?String(row[mp.latin]??'').trim():'';
-    if(!lat||lat.toLowerCase().startsWith('total')||(!isNaN(parseFloat(lat))&&lat.length<5))continue;
-    const prix=mp.prix!=null?parseFloat(String(row[mp.prix]).replace(',','.'))||null:null;
-    if(!prix)continue;
-    let cal='',cont='';
-    if(mp.mixed){
-      // Parsing simple : calibre = chiffre/chiffre ou chiffre-chiffre, contenant = reste
-      const calMatch=lat.match(/\d+[/\-]\d+|\d+cm/i);if(calMatch)cal=calMatch[0];
-      const contMatch=lat.match(/\b(MG|RN|AP|CT|C\d+L?)\b/i);if(contMatch)cont=contMatch[0].toUpperCase();
-    } else {
-      cal=mp.calibre!=null?String(row[mp.calibre]??'').trim():'';
-      cont=mp.contenant!=null?String(row[mp.contenant]??'').trim():'';
-    }
-    toInsert.push({pepiniere_id:pepState.pepId,latin:lat,calibre:cal||null,contenant:cont||null,prix_unit_ht:prix,updated_at:new Date().toISOString()});n++;
+  // Détecter si parsing mixte nécessaire
+  const sampleLatin=mp.latin!=null?rows.slice(0,6).map(r=>String(r[mp.latin]||'')).join(' '):'';
+  const needsMixed=mp.mixed||(!mp.calibre&&!mp.contenant)||/\b(MG|RN|AP|CT|C\d+L?)\b/.test(sampleLatin)||/\d+\/\d+/.test(sampleLatin);
+  let parsedMixed=null;
+  if(needsMixed&&mp.latin!=null){
+    showCatSt('<div class="aibox"><div class="spin"></div>Séparation désignation/calibre/contenant…</div>');
+    const latinVals=rows.map(r=>String(r[mp.latin]??'').trim()).filter(Boolean);
+    try{
+      const mRes=await callClaude([{role:'user',content:`Expert végétaux. Sépare chaque désignation.\nd=nom latin+cultivar UNIQUEMENT\nt=calibre/taille (chiffre/chiffre, chiffre-chiffrecm)\nc=contenant normalisé (MG,RN,AP,CT,C2,C35...). C+nombre=conteneur. JAMAIS confondre C35=contenant et 12/14=calibre.\nDATAS: ${JSON.stringify(latinVals.slice(0,80))}\nJSON: [{"d":"","t":"","c":""},...]`}],2000);
+      parsedMixed=JSON.parse(mRes.replace(/```json|```/g,'').trim());
+    }catch(e){parsedMixed=null;}
   }
+  let n=0;const toInsert=[];
+  rows.forEach((row,ri)=>{
+    let lat='',cal='',cont='';
+    if(mp.latin!=null){
+      const rawLat=String(row[mp.latin]??'').trim();
+      if(!rawLat||rawLat.toLowerCase().startsWith('total'))return;
+      if(parsedMixed&&parsedMixed[ri]){lat=parsedMixed[ri].d||rawLat;cal=parsedMixed[ri].t||'';cont=parsedMixed[ri].c||'';}
+      else{lat=rawLat;cal=mp.calibre!=null?String(row[mp.calibre]??'').trim():'';cont=mp.contenant!=null?String(row[mp.contenant]??'').trim():'';}
+    } else return;
+    if(!lat)return;
+    const prixVal=mp.prix!=null?parseFloat(String(row[mp.prix]||'').replace(',','.'))||null:null;
+    if(!prixVal)return;
+    const contU=cont.toUpperCase().trim();const contN=/^C(\d+)L?$/.test(contU)?contU.replace(/L$/,''):/^(MG|RN|AP|CT)$/.test(contU)?contU:cont;
+    toInsert.push({pepiniere_id:pepState.pepId,latin:lat,calibre:cal||null,contenant:contN||null,prix_unit_ht:prixVal,updated_at:new Date().toISOString()});n++;
+  });
+  if(!n){showCatSt('<div class="notice notice-warn">⚠️ Aucun article valide trouvé. Vérifiez que le fichier contient bien des noms latins et des prix.</div>');return;}
   if(toInsert.length){
     const{error}=await supa.from('catalogue_pepiniere').upsert(toInsert,{onConflict:'pepiniere_id,latin,calibre,contenant'});
-    if(error){showCatStatus(`<div class="notice notice-warn">⚠️ Erreur : ${error.message}</div>`);return;}
+    if(error){showCatSt('<div class="notice notice-warn">⚠️ Erreur : '+error.message+'</div>');return;}
   }
-  showCatStatus(`<div class="notice notice-ok">✓ ${n} article(s) importés dans le catalogue.</div>`);
-  setTimeout(()=>{document.getElementById('cat-status').style.display='none';},5000);
+  showCatSt('<div class="notice notice-ok">✓ '+n+' article(s) importés dans le catalogue.</div>');
+  setTimeout(()=>{const e=document.getElementById('cat-status');if(e)e.style.display='none';},6000);
   await loadCatalogue();
 }
+function showCatSt(h){const e=document.getElementById('cat-status');e.style.display='block';e.innerHTML=h;}
+function parseCSVAuto(text){const lines=text.split(/\r?\n/).filter(l=>l.trim());if(!lines.length)return[];const seps=[';',',','\t'];const counts=seps.map(s=>lines[0].split(s).length);const sep=seps[counts.indexOf(Math.max(...counts))];return lines.map(l=>{const cells=[];let cur='',inQ=false;for(let i=0;i<l.length;i++){if(l[i]==='"'){inQ=!inQ;}else if(l[i]===sep&&!inQ){cells.push(cur.trim());cur='';}else cur+=l[i];}cells.push(cur.trim());return cells;});}
 
-function showCatStatus(h){const e=document.getElementById('cat-status');e.style.display='block';e.innerHTML=h;}
-
-// ══════════════════════════════════════
 // HISTORIQUE
-// ══════════════════════════════════════
 async function loadHist(){
   if(!pepState.pepId)return;
   if(!pepState.hasAccount){document.getElementById('hist-notice').style.display='block';return;}
-  const{data}=await supa.from('reponses_pepinieres')
-    .select('*,vegetaux(latin,calibre,contenant),consultations(affaire,ville,date_consult)')
-    .eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
+  const{data}=await supa.from('reponses_pepinieres').select('*,vegetaux(latin,calibre,contenant),consultations(affaire,ville,date_consult)').eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
   pepState.allHist=data||[];
   const firms=[...new Set((data||[]).map(r=>r.consultations?.affaire).filter(Boolean))];
   const sel=document.getElementById('h-firm');sel.innerHTML='<option value="">Toutes les entreprises</option>'+firms.map(f=>`<option value="${f}">${f}</option>`).join('');
@@ -942,17 +811,17 @@ function renderHist(){
   </div>`).join('');
 }
 
-// ══════════════════════════════════════
 // PROFIL
-// ══════════════════════════════════════
 async function saveProfil(){
   if(!pepState.user)return;
   const lang=document.getElementById('p-lang').value;const notif=document.getElementById('p-notif').value;
   const{error}=await supa.from('comptes_pepinieres').upsert({
-    id:pepState.user.id,nom:document.getElementById('p-nom').value.trim(),
+    id:pepState.user.id,
+    nom:document.getElementById('p-nom').value.trim(),
     pepnom:document.getElementById('p-pepnom').value.trim(),
-    tel:document.getElementById('p-tel').value.trim(),adresse:document.getElementById('p-adr').value.trim(),
-    siret:document.getElementById('p-siret').value.trim(),langue:lang,notif_preference:notif,email:pepState.user.email
+    tel:document.getElementById('p-tel').value.trim(),
+    siret:document.getElementById('p-siret').value.trim(),
+    langue:lang,notif_preference:notif,email:pepState.user.email
   });
   if(error){toast('Erreur : '+error.message,'error');return;}
   setLang(lang);toast('Profil enregistré ✓');
@@ -967,16 +836,12 @@ async function changePwd(){
 }
 async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('Déconnecté de tous les appareils.');setTimeout(()=>location.reload(),1500);}
 async function deleteAccount(){
-  if(!confirm('Supprimer définitivement votre compte et toutes vos données ? Cette action est irréversible.'))return;
   if(!pepState.user)return;
   await supa.from('comptes_pepinieres').delete().eq('id',pepState.user.id);
-  await supa.auth.admin?.deleteUser?.(pepState.user.id).catch(()=>{});
   await supa.auth.signOut();toast('Compte supprimé.');setTimeout(()=>location.reload(),1500);
 }
 
-// ══════════════════════════════════════
 // UTILS
-// ══════════════════════════════════════
 const fmt=n=>typeof n==='number'?n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}):n;
 function toB64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=()=>rej(new Error('Lecture impossible'));r.readAsDataURL(f);});}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
