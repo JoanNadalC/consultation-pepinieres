@@ -666,7 +666,7 @@ async function openChantier(id){
 
   // 1. Charger végétaux (persistants)
   const{data:vd}=await supa.from('vegetaux').select('*').eq('consultation_id',id).order('ordre');
-  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude||null,conditionnement:vg.contenant||vg.conditionnement||'',qteF:null}));
+  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude||null,conditionnement:vg.contenant||vg.conditionnement||'',selPi:null,prixTransport:null,qteF:null}));
 
   // 2. Charger pépinières liées à CE chantier (table consultation_pepinieres)
   peps=[];
@@ -734,7 +734,7 @@ async function saveConsultation(){
   const{error:delErr}=await supa.from('vegetaux').delete().eq('consultation_id',currentConsultId);
   if(delErr){toast('Erreur suppression végétaux : '+delErr.message,'error');return;}
   if(vegs.length){
-    const vRows=vegs.map((vg,i)=>({consultation_id:currentConsultId,ordre:i,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.conditionnement||null,qte:vg.qte,unite:vg.unite||'U',remarques:vg.remarques||null,variantes:vg.variantes||[],prix_etude:vg.prixEtude||null}));
+    const vRows=vegs.map((vg,i)=>({consultation_id:currentConsultId,ordre:i,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.conditionnement||vg.contenant||null,qte:vg.qte,unite:vg.unite||'U',remarques:vg.remarques||null,variantes:vg.variantes||[],prix_etude:vg.prixEtude||null}));
     const{data:inserted,error:insErr}=await supa.from('vegetaux').insert(vRows).select('id,ordre');
     if(insErr){toast('Erreur sauvegarde végétaux : '+insErr.message,'error');console.error('Détail erreur végétaux:',insErr);return;}
     // Mettre à jour les IDs en mémoire immédiatement
@@ -894,11 +894,47 @@ function rmPep(i){peps.splice(i,1);renderPepList();markDirty('setup');}
 function normCond(s){if(!s)return'';const t=s.toUpperCase().trim();if(t==='MG'||t.includes('MOTTE GRILL'))return'MG';if(t==='RN'||t.includes('RACINE NUE'))return'RN';if(t==='AP'||t.includes('AIRPOT'))return'AP';if(/^CT$|^CONTENEUR$/.test(t))return'CT';if(/^C(\d+)L?$/.test(t)){const m=t.match(/^C(\d+)/);return m?`C${m[1]}`:'CT';}return s.trim();}
 function addVegManual(){
   const lat=v('v-lat'),qty=parseInt(v('v-qty'))||0;if(!lat||!qty){alert('Nom latin et quantité requis.');return;}
-  vegs.push({latin:lat,calibre:v('v-cal'),conditionnement:normCond(v('v-cond')),qte:qty,unite:v('v-unite')||'U',remarques:v('v-rem'),variantes:[],prixEtude:parseFloat(v('v-pe'))||null,qteF:null});
+  vegs.push({latin:lat,calibre:v('v-cal'),conditionnement:normCond(v('v-cond')),qte:qty,unite:v('v-unite')||'U',remarques:v('v-rem'),variantes:[],prixEtude:parseFloat(v('v-pe'))||null,prixTransport:null,selPi:null,qteF:null});
   ['v-lat','v-cal','v-cond','v-qty','v-unite','v-pe','v-rem'].forEach(id=>document.getElementById(id).value='');
   renderVeg();markDirty('vegetaux');
 }
 function rmVeg(i){vegs.splice(i,1);const np={};Object.keys(prix).forEach(k=>{const ik=parseInt(k);if(ik!==i)np[ik>i?ik-1:ik]=prix[k];});prix=np;renderVeg();markDirty('vegetaux');}
+function openEditVeg(i){
+  const vg=vegs[i];
+  // Remplir le formulaire manuel avec les données existantes
+  document.getElementById('v-lat').value=vg.latin||'';
+  document.getElementById('v-cal').value=vg.calibre||'';
+  document.getElementById('v-cond').value=vg.conditionnement||'';
+  document.getElementById('v-qty').value=vg.qte||'';
+  document.getElementById('v-unite').value=vg.unite||'U';
+  document.getElementById('v-pe').value=vg.prixEtude||'';
+  document.getElementById('v-rem').value=vg.remarques||'';
+  // Supprimer la ligne existante et noter l'index pour réinsertion
+  window._editVegIdx=i;
+  // Scroll vers le formulaire
+  document.getElementById('v-lat').scrollIntoView({behavior:'smooth',block:'center'});
+  document.getElementById('v-lat').focus();
+  // Changer le bouton Ajouter en Mettre à jour
+  const btn=document.querySelector('[onclick="addVegManual()"]');
+  if(btn){btn.textContent='✓ Mettre à jour';btn.onclick=()=>updateVeg(i);}
+  toast('Modifiez les champs puis cliquez "Mettre à jour"');
+}
+function updateVeg(i){
+  const lat=v('v-lat'),qty=parseInt(v('v-qty'))||0;if(!lat||!qty){alert('Nom latin et quantité requis.');return;}
+  vegs[i]={...vegs[i],latin:lat,calibre:v('v-cal'),conditionnement:normCond(v('v-cond')),qte:qty,unite:v('v-unite')||'U',remarques:v('v-rem'),prixEtude:parseFloat(v('v-pe'))||null};
+  ['v-lat','v-cal','v-cond','v-qty','v-unite','v-pe','v-rem'].forEach(id=>document.getElementById(id).value='');
+  // Remettre le bouton en mode Ajouter
+  const btn=document.querySelector('[onclick*="updateVeg"]');
+  if(btn){btn.textContent='＋ Ajouter';btn.onclick=()=>addVegManual();}
+  window._editVegIdx=null;renderVeg();markDirty('vegetaux');toast('Végétal mis à jour ✓');
+}
+function insertVegAfter(i){
+  // Insérer une ligne vide après l'index i
+  vegs.splice(i+1,0,{latin:'',calibre:'',conditionnement:'',qte:1,unite:'U',remarques:'',variantes:[],prixEtude:null,prixTransport:null,selPi:null,qteF:null});
+  renderVeg();markDirty('vegetaux');
+  // Ouvrir l'édition sur la nouvelle ligne
+  setTimeout(()=>openEditVeg(i+1),100);
+}
 function renderVeg(){
   document.getElementById('vbdg').textContent=vegs.length+' végétal(ux)';
   const c=document.getElementById('vcon');
@@ -912,7 +948,7 @@ function renderVeg(){
       <div style="font-size:.68rem;">${vg.unite||'U'}</div>
       <div style="font-family:var(--mono);font-size:.68rem;">${vg.prixEtude?fmt(vg.prixEtude)+' €':'—'}</div>
       <div style="font-size:.66rem;color:var(--sage);">${vg.remarques||'—'}</div>
-      <div style="display:flex;gap:2px;"><button class="btn btn-g btn-sm" onclick="openVarModal(${i})">🔀</button><button class="btn btn-d btn-sm" onclick="rmVeg(${i})">✕</button></div>
+      <div style="display:flex;gap:2px;"><button class="btn btn-g btn-sm" onclick="openEditVeg(${i})" title="Modifier">✏️</button><button class="btn btn-g btn-sm" onclick="openVarModal(${i})" title="Variantes">🔀</button><button class="btn btn-g btn-sm" onclick="insertVegAfter(${i})" title="Insérer après">＋</button><button class="btn btn-d btn-sm" onclick="rmVeg(${i})">✕</button></div>
     </div>`).join('')}`;
 }
 function openVarModal(vi){
@@ -1066,7 +1102,7 @@ async function applyImport(){
     else{cal=iMap['calibre']!=null?String(r[iMap['calibre']]??'').trim():'';cond=normCond(iMap['contenant']!=null?String(r[iMap['contenant']]??'').trim():'');}
     const qty=iMap['qte']!=null?parseInt(String(r[iMap['qte']]).replace(/\s/g,''))||1:1;
     const pe=iMap['prixEtude']!=null?parseFloat(String(r[iMap['prixEtude']]).replace(',','.'))||null:null;
-    vegs.push({latin:lat,calibre:cal,conditionnement:cond,qte:qty,unite:iMap['unite']!=null?String(r[iMap['unite']]??'').trim()||'U':'U',remarques:iMap['remarques']!=null?String(r[iMap['remarques']]??'').trim():'',variantes:[],prixEtude:pe,qteF:null});
+    vegs.push({latin:lat,calibre:cal,conditionnement:cond,qte:qty,unite:iMap['unite']!=null?String(r[iMap['unite']]??'').trim()||'U':'U',remarques:iMap['remarques']!=null?String(r[iMap['remarques']]??'').trim():'',variantes:[],prixEtude:pe,prixTransport:null,selPi:null,qteF:null});
     n++;pi++;
   });
   cancelImport();renderVeg();markDirty('vegetaux');

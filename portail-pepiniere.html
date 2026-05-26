@@ -408,7 +408,9 @@ async function doAReg(){
   const{data,error}=await supa.auth.signUp({email,password:pwd,options:{data:{nom,pepnom}}});
   if(error){showWErr('Erreur : '+error.message);return;}
   if(data.user){
-    await supa.from('comptes_pepinieres').upsert({id:data.user.id,nom,email,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()});
+    // Sauvegarder le profil immédiatement + en session au cas où
+    sessionStorage.setItem('pending_pep_profile',JSON.stringify({nom,pepnom,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif}));
+    await supa.from('comptes_pepinieres').upsert({id:data.user.id,nom,pepnom,email,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()});
   }
   showWErr('Compte créé ! Connectez-vous.',false);swATab('login');
 }
@@ -453,7 +455,12 @@ async function afterPepLogin(user,hasAccount=true){
   } else {
     pepState.pepNom=user.email.split('@')[0];
     document.getElementById('p-email').value=user.email;
-    await supa.from('comptes_pepinieres').upsert({id:user.id,nom:pepState.pepNom,email:user.email,langue:curLang,notif_preference:'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
+    // Récupérer données en attente (venant de l'inscription)
+    const pending=sessionStorage.getItem('pending_pep_profile');
+    const pendingData=pending?JSON.parse(pending):{};
+    sessionStorage.removeItem('pending_pep_profile');
+    await supa.from('comptes_pepinieres').upsert({id:user.id,nom:pendingData.nom||pepState.pepNom,pepnom:pendingData.pepnom||'',tel:pendingData.tel||'',email:user.email,langue:pendingData.langue||curLang,notif_preference:pendingData.notif_preference||'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
+    if(pendingData.nom)pepState.pepNom=pendingData.pepnom||pendingData.nom;
   }
   // Lire paramètres URL (token ou consultation directe)
   const params=new URLSearchParams(window.location.search);
@@ -719,24 +726,24 @@ async function importCatalogue(inp){
       showCatSt('<div class="aibox"><div class="spin"></div>Lecture du PDF par l\'IA…</div>');
       const res=await callClaude([{role:'user',content:[
         {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
-        {type:'text',text:`Expert végétaux paysagiste. Extrais TOUTES les lignes du catalogue de prix de ce document.
-Pour chaque ligne identifie :
-- Nom latin UNIQUEMENT (sans calibre ni contenant)
-- Calibre/taille (12/14, 60-80, H150, Tour 8/10)  
-- Contenant normalisé : MG, RN, AP, CT, C2L, C3L, C5L, C10L, C15L, C20L, C35L, C40L
-- Quantité (si présente)
-- Prix unitaire HT
-- Remise % (si présente)
-- Prix net HT (si présent)
+        {type:'text',text:`Expert végétaux paysagiste. Extrais le tableau de végétaux de ce document.
 
-IMPORTANT : le séparateur entre nom latin et contenant peut être | (pipe), espace, /, virgule.
-Ex: "Arbutus unedo | C10L" → latin="Arbutus unedo", contenant="C10L"
-Ex: "Cistus x florentinus | C2L" → latin="Cistus x florentinus", contenant="C2L"
-RÈGLE : C10L, C2L, C35L = contenants (PAS des calibres). 12/14 = calibre (PAS un contenant).
-Ignore les lignes d'en-tête, totaux, informations de la pépinière.
+FORMAT TYPIQUE : Quantitat | Concepte | Altura | Preu | %Dte. | Preu Net
+- Concepte/Désignation = nom latin + contenant séparés par |
+- Altura/Hauteur = calibre (peut être vide)
+- Preu/Prix brut = IGNORER (c'est le prix avant remise)
+- %Dte./Remise = IGNORER
+- Preu Net/Prix Net = UTILISER — c'est le prix final HT après remise
+
+SÉPARATION : "Arbutus unedo | C10L" → latin="Arbutus unedo", contenant="C10L"
+CONTENANTS : C2L, C5L, C10L, C15L, C20L, C35L, C40L, MG, RN, AP, CT
+CALIBRES : 12/14, 16/18, 60-80, H150, H200 (jamais un prix ni un contenant)
+PRIX : utiliser UNIQUEMENT le prix net après remise. Ignorer prix brut et %.
+Ignorer : en-têtes, totaux, coordonnées pépinière, lignes vides.
+
 JSON uniquement :
-{"colonnes":["latin","calibre","contenant","qte","prix","remise","prixNet"],
- "lignes":[["nom latin","calibre","contenant","qte","prix","remise","prixNet"],...]}`}
+{"colonnes":["latin","calibre","contenant","qte","prixNet"],
+ "lignes":[["nom latin","calibre","contenant","qte","prixNet"],...]}`}
       ]}],3000);
       let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('PDF illisible — essayez un format Excel ou CSV.');}
       if(!p.lignes?.length)throw new Error('Aucune donnée extraite du PDF.');
