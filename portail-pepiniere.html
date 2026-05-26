@@ -493,13 +493,25 @@ function showWErr(msg,isErr=true){const el=document.getElementById('werr');el.te
 supa.auth.getSession().then(({data})=>{if(data.session?.user)afterPepLogin(data.session.user,true);});
 supa.auth.onAuthStateChange((_,session)=>{if(session?.user&&!pepState.user)afterPepLogin(session.user,true);});
 
-// Pré-remplir token depuis URL pour invité
-window.addEventListener('load',()=>{
+// Token dans URL — accès direct invité sans afficher l'écran de bienvenue
+window.addEventListener('load',async()=>{
   const params=new URLSearchParams(window.location.search);
   const token=params.get('token');const code=params.get('code');
-  if((token||code)&&!pepState.user){
-    if(token)document.getElementById('g-token').value=token;
-    else if(code)document.getElementById('g-token').value=code;
+  const t=token||code;
+  if(t&&!pepState.user){
+    // Vérifier le token immédiatement
+    const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',t).single();
+    if(!error&&inv&&new Date(inv.expires_at)>new Date()){
+      // Token valide — accès direct sans saisie
+      const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
+      if(consult){
+        pepState.mode='guest';pepState.pepNom='Invité';pepState.pepId=inv.pepiniere_id;
+        pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
+        showApp(true);await openConsult(consult,inv.pepiniere_id);return;
+      }
+    }
+    // Token invalide ou expiré — afficher formulaire invité avec code pré-rempli
+    document.getElementById('g-token').value=t;
     swWTab('guest');
   }
 });
@@ -707,14 +719,24 @@ async function importCatalogue(inp){
       showCatSt('<div class="aibox"><div class="spin"></div>Lecture du PDF par l\'IA…</div>');
       const res=await callClaude([{role:'user',content:[
         {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
-        {type:'text',text:`Expert végétaux paysagiste. Extrais TOUTES les lignes du catalogue de prix.
+        {type:'text',text:`Expert végétaux paysagiste. Extrais TOUTES les lignes du catalogue de prix de ce document.
 Pour chaque ligne identifie :
-- Nom latin (sans calibre ni contenant)
-- Calibre/taille (12/14, 60-80cm, H150, Tour 8/10)
-- Contenant (MG=Motte Grillagée, RN=Racine Nue, AP=Airpot, CT=Conteneur, C2/C3/C35=Conteneur litres)
+- Nom latin UNIQUEMENT (sans calibre ni contenant)
+- Calibre/taille (12/14, 60-80, H150, Tour 8/10)  
+- Contenant normalisé : MG, RN, AP, CT, C2L, C3L, C5L, C10L, C15L, C20L, C35L, C40L
+- Quantité (si présente)
 - Prix unitaire HT
-RÈGLE : calibre=dimensions (chiffre/chiffre). contenant=mode culture (C35 est un contenant, pas un calibre).
-JSON uniquement : {"colonnes":["latin","calibre","contenant","prix"],"lignes":[["nom","cal","cont","prix"],...]}`}
+- Remise % (si présente)
+- Prix net HT (si présent)
+
+IMPORTANT : le séparateur entre nom latin et contenant peut être | (pipe), espace, /, virgule.
+Ex: "Arbutus unedo | C10L" → latin="Arbutus unedo", contenant="C10L"
+Ex: "Cistus x florentinus | C2L" → latin="Cistus x florentinus", contenant="C2L"
+RÈGLE : C10L, C2L, C35L = contenants (PAS des calibres). 12/14 = calibre (PAS un contenant).
+Ignore les lignes d'en-tête, totaux, informations de la pépinière.
+JSON uniquement :
+{"colonnes":["latin","calibre","contenant","qte","prix","remise","prixNet"],
+ "lignes":[["nom latin","calibre","contenant","qte","prix","remise","prixNet"],...]}`}
       ]}],3000);
       let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('PDF illisible — essayez un format Excel ou CSV.');}
       if(!p.lignes?.length)throw new Error('Aucune donnée extraite du PDF.');
@@ -746,13 +768,28 @@ async function processCatalogueRows(cols,rows){
   let mp;try{mp=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){mp={};}
   // Détecter si parsing mixte nécessaire
   const sampleLatin=mp.latin!=null?rows.slice(0,6).map(r=>String(r[mp.latin]||'')).join(' '):'';
-  const needsMixed=mp.mixed||(!mp.calibre&&!mp.contenant)||/\b(MG|RN|AP|CT|C\d+L?)\b/.test(sampleLatin)||/\d+\/\d+/.test(sampleLatin);
+  const needsMixed=mp.mixed||(!mp.calibre&&!mp.contenant)||/\|/.test(sampleLatin)||/\b(MG|RN|AP|CT|C\d+L?)\b/.test(sampleLatin)||/\d+\/\d+/.test(sampleLatin);
   let parsedMixed=null;
   if(needsMixed&&mp.latin!=null){
     showCatSt('<div class="aibox"><div class="spin"></div>Séparation désignation/calibre/contenant…</div>');
     const latinVals=rows.map(r=>String(r[mp.latin]??'').trim()).filter(Boolean);
     try{
-      const mRes=await callClaude([{role:'user',content:`Expert végétaux. Sépare chaque désignation.\nd=nom latin+cultivar UNIQUEMENT\nt=calibre/taille (chiffre/chiffre, chiffre-chiffrecm)\nc=contenant normalisé (MG,RN,AP,CT,C2,C35...). C+nombre=conteneur. JAMAIS confondre C35=contenant et 12/14=calibre.\nDATAS: ${JSON.stringify(latinVals.slice(0,80))}\nJSON: [{"d":"","t":"","c":""},...]`}],2000);
+      const mRes=await callClaude([{role:'user',content:`Expert végétaux paysagiste. Sépare chaque désignation en 3 parties.
+d = nom latin + cultivar UNIQUEMENT. Jamais de taille ni de contenant.
+t = calibre/taille (12/14, 16/18, 60-80cm, H150). Peut être vide.
+c = contenant normalisé (MG, RN, AP, CT, C2L, C10L, C35L, C2, C35). C+nombre = conteneur litres. Peut être vide.
+SÉPARATEURS : |, espace, /, virgule entre nom et calibre/contenant.
+
+EXEMPLES :
+"Arbutus unedo | C10L" → {"d":"Arbutus unedo","t":"","c":"C10L"}
+"Cistus x florentinus | C2L" → {"d":"Cistus x florentinus","t":"","c":"C2L"}
+"Euphorbia dendroides | C2L" → {"d":"Euphorbia dendroides","t":"","c":"C2L"}
+"Acer platanoides 12/14 MG" → {"d":"Acer platanoides","t":"12/14","c":"MG"}
+"Betula pendula C35" → {"d":"Betula pendula","t":"","c":"C35"}
+"Taxus baccata H150 AP" → {"d":"Taxus baccata","t":"H150","c":"AP"}
+
+DONNÉES : ${JSON.stringify(latinVals.slice(0,80))}
+JSON uniquement, même longueur : [{"d":"","t":"","c":""},...]`}],2000);
       parsedMixed=JSON.parse(mRes.replace(/```json|```/g,'').trim());
     }catch(e){parsedMixed=null;}
   }
