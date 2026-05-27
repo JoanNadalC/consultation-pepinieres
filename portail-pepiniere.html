@@ -381,7 +381,7 @@ const supa=supabase.createClient(SUPA_URL,SUPA_KEY);
 const L={fr:{logout:'Déconnexion',submitOk:'Prix envoyés ✓',noConsult:'Aucune consultation.',prefillHist:'Depuis votre historique',prefillCat:'Depuis votre catalogue'},en:{logout:'Sign out',submitOk:'Prices sent ✓',noConsult:'No consultations.',prefillHist:'From your history',prefillCat:'From your catalogue'},es:{logout:'Cerrar sesión',submitOk:'Precios enviados ✓',noConsult:'Sin consultas.',prefillHist:'De su historial',prefillCat:'De su catálogo'},ca:{logout:'Tancar sessió',submitOk:'Preus enviats ✓',noConsult:'Cap consulta.',prefillHist:'Del vostre historial',prefillCat:'Del vostre catàleg'},nl:{logout:'Uitloggen',submitOk:'Prijzen verzonden ✓',noConsult:'Geen aanvragen.',prefillHist:'Uit uw geschiedenis',prefillCat:'Uit uw catalogus'},de:{logout:'Abmelden',submitOk:'Preise gesendet ✓',noConsult:'Keine Anfragen.',prefillHist:'Aus Ihrem Verlauf',prefillCat:'Aus Ihrem Katalog'},it:{logout:'Disconnetti',submitOk:'Prezzi inviati ✓',noConsult:'Nessuna consulenza.',prefillHist:'Dal vostro storico',prefillCat:'Dal vostro catalogo'}};
 let curLang='fr';
 function T(k){return(L[curLang]||L.fr)[k]||(L.fr)[k]||k;}
-function setLang(l){curLang=l;if(document.getElementById('p-lang'))document.getElementById('p-lang').value=l;if(pepState.user)supa.from('comptes_pepinieres').update({langue:l}).eq('id',pepState.user.id);}
+function setLang(l){curLang=l;if(document.getElementById('p-lang'))document.getElementById('p-lang').value=l;if(pepState.user)supa.from('compte_pepiniere').update({langue:l}).eq('id',pepState.user.id);}
 
 // STATE
 let pepState={mode:null,user:null,pepId:null,pepNom:'',consultId:null,vegetaux:[],reponses:{},allConsults:[],allHist:[],hasAccount:false,catalogue:[],validatedRows:new Set()};
@@ -410,7 +410,7 @@ async function doAReg(){
   if(data.user){
     // Sauvegarder le profil immédiatement + en session au cas où
     sessionStorage.setItem('pending_pep_profile',JSON.stringify({nom,pepnom,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif}));
-    await supa.from('comptes_pepinieres').upsert({id:data.user.id,nom,pepnom,email,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()});
+    await supa.from('compte_pepiniere').upsert({id:data.user.id,nom,pepnom,email,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()});
   }
   showWErr('Compte créé ! Connectez-vous.',false);swATab('login');
 }
@@ -436,7 +436,7 @@ async function doGuest(){
 async function afterPepLogin(user,hasAccount=true){
   pepState.user=user;pepState.mode='account';pepState.hasAccount=hasAccount;
   // Vérifier que c'est bien un compte PÉPINIÈRE (pas un consultant)
-  const{data:consultCheck}=await supa.from('profiles').select('id').eq('id',user.id).single();
+  const{data:consultCheck}=await supa.from('compte_consultant').select('id').eq('id',user.id).single();
   if(consultCheck){
     await supa.auth.signOut();
     pepState.user=null;
@@ -447,7 +447,7 @@ async function afterPepLogin(user,hasAccount=true){
     },200);
     return;
   }
-  const{data}=await supa.from('comptes_pepinieres').select('*').eq('id',user.id).single();
+  const{data}=await supa.from('compte_pepiniere').select('*').eq('id',user.id).single();
   if(data){
     pepState.pepId=data.pepiniere_id;pepState.pepNom=data.pepnom||data.nom||user.email.split('@')[0];
     if(data.langue)setLang(data.langue);
@@ -462,7 +462,7 @@ async function afterPepLogin(user,hasAccount=true){
     const pending=sessionStorage.getItem('pending_pep_profile');
     const pendingData=pending?JSON.parse(pending):{};
     sessionStorage.removeItem('pending_pep_profile');
-    await supa.from('comptes_pepinieres').upsert({id:user.id,nom:pendingData.nom||pepState.pepNom,pepnom:pendingData.pepnom||'',tel:pendingData.tel||'',email:user.email,langue:pendingData.langue||curLang,notif_preference:pendingData.notif_preference||'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
+    await supa.from('compte_pepiniere').upsert({id:user.id,nom:pendingData.nom||pepState.pepNom,pepnom:pendingData.pepnom||'',tel:pendingData.tel||'',email:user.email,langue:pendingData.langue||curLang,notif_preference:pendingData.notif_preference||'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
     if(pendingData.nom)pepState.pepNom=pendingData.pepnom||pendingData.nom;
   }
   // Lire paramètres URL (token ou consultation directe)
@@ -862,7 +862,7 @@ function renderHist(){
 async function saveProfil(){
   if(!pepState.user)return;
   const lang=document.getElementById('p-lang').value;const notif=document.getElementById('p-notif').value;
-  const{error}=await supa.from('comptes_pepinieres').upsert({
+  const{error}=await supa.from('compte_pepiniere').upsert({
     id:pepState.user.id,
     nom:document.getElementById('p-nom').value.trim(),
     pepnom:document.getElementById('p-pepnom').value.trim(),
@@ -884,7 +884,7 @@ async function changePwd(){
 async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('Déconnecté de tous les appareils.');setTimeout(()=>location.reload(),1500);}
 async function deleteAccount(){
   if(!pepState.user)return;
-  await supa.from('comptes_pepinieres').delete().eq('id',pepState.user.id);
+  await supa.from('compte_pepiniere').delete().eq('id',pepState.user.id);
   await supa.auth.signOut();toast('Compte supprimé.');setTimeout(()=>location.reload(),1500);
 }
 
