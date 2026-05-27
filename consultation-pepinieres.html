@@ -559,7 +559,7 @@ async function doLogin(){
   const{data:prof}=await supa.from('profiles').select('id').eq('id',data.user.id).single();
   if(!prof){
     await supa.auth.signOut();
-    showAErr('Ce compte est enregistré comme pépinière. Utilisez le portail pépinière.');
+    showAErr('Le compte '+email+' est un compte pépinière. Connectez-vous sur le portail pépinière : https://joannadalc.github.io/consultation-pepinieres/portail-pepiniere.html');
     return;
   }
   afterLogin(data.user);
@@ -666,7 +666,7 @@ async function openChantier(id){
 
   // 1. Charger végétaux (persistants)
   const{data:vd}=await supa.from('vegetaux').select('*').eq('consultation_id',id).order('ordre');
-  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude||null,conditionnement:vg.contenant||vg.conditionnement||'',selPi:null,prixTransport:null,qteF:null}));
+  vegs=(vd||[]).map(vg=>({...vg,variantes:vg.variantes||[],prixEtude:vg.prix_etude_ht||vg.prix_etude||null,conditionnement:vg.contenant||vg.conditionnement||'',selPi:null,prixTransport:null,qteF:null}));
 
   // 2. Charger pépinières liées à CE chantier (table consultation_pepinieres)
   peps=[];
@@ -734,7 +734,7 @@ async function saveConsultation(){
   const{error:delErr}=await supa.from('vegetaux').delete().eq('consultation_id',currentConsultId);
   if(delErr){toast('Erreur suppression végétaux : '+delErr.message,'error');return;}
   if(vegs.length){
-    const vRows=vegs.map((vg,i)=>({consultation_id:currentConsultId,ordre:i,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.conditionnement||vg.contenant||null,qte:vg.qte,unite:vg.unite||'U',remarques:vg.remarques||null,variantes:vg.variantes||[],prix_etude:vg.prixEtude||null}));
+    const vRows=vegs.map((vg,i)=>({consultation_id:currentConsultId,ordre:i,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.conditionnement||vg.contenant||null,qte:vg.qte,unite:vg.unite||'U',remarques:vg.remarques||null,variantes:vg.variantes||[],prix_etude_ht:vg.prixEtude||null}));
     const{data:inserted,error:insErr}=await supa.from('vegetaux').insert(vRows).select('id,ordre');
     if(insErr){toast('Erreur sauvegarde végétaux : '+insErr.message,'error');console.error('Détail erreur végétaux:',insErr);return;}
     // Mettre à jour les IDs en mémoire immédiatement
@@ -949,7 +949,17 @@ function renderVeg(){
       <div style="font-family:var(--mono);font-size:.68rem;">${vg.prixEtude?fmt(vg.prixEtude)+' €':'—'}</div>
       <div style="font-size:.66rem;color:var(--sage);">${vg.remarques||'—'}</div>
       <div style="display:flex;gap:2px;"><button class="btn btn-g btn-sm" onclick="openEditVeg(${i})" title="Modifier">✏️</button><button class="btn btn-g btn-sm" onclick="openVarModal(${i})" title="Variantes">🔀</button><button class="btn btn-g btn-sm" onclick="insertVegAfter(${i})" title="Insérer après">＋</button><button class="btn btn-d btn-sm" onclick="rmVeg(${i})">✕</button></div>
-    </div>`).join('')}`;
+    </div>
+    ${(vg.variantes||[]).map((vr,ri)=>`<div class="vrow vg8" style="background:#fdf5e8;border-left:3px solid var(--earth);">
+      <div style="padding-left:14px;font-size:.72rem;color:var(--earth);">↳ <em>${vr.latin||vg.latin}</em></div>
+      <div style="font-family:var(--mono);font-size:.66rem;">${vr.calibre||vg.calibre||'—'}</div>
+      <div style="font-size:.66rem;">${vr.conditionnement||vg.conditionnement||'—'}</div>
+      <div style="font-family:var(--mono);">${vg.qte}</div>
+      <div style="font-size:.66rem;">${vr.unite||vg.unite||'U'}</div>
+      <div style="font-size:.66rem;color:var(--sage);">—</div>
+      <div style="font-size:.64rem;color:var(--sage);font-style:italic;">variante ${ri+1}</div>
+      <div></div>
+    </div>`).join('')}`).join('')}`;
 }
 function openVarModal(vi){
   const vg=vegs[vi];
@@ -1175,7 +1185,13 @@ async function openMailtoWithToken(pi){
 function dlConsultXLSX(){
   const wb=XLSX.utils.book_new();
   const hdr=['N°','Nom latin','Calibre / Taille','Contenant','Quantité','Unité','Prix unitaire HT (€)','Variante proposée','Commentaire'];
-  const rows=[hdr,...vegs.map((vg,i)=>[i+1,vg.latin,vg.calibre||'',vg.conditionnement||'',vg.qte,vg.unite||'U','','',''])];
+  const rows=[hdr];
+  vegs.forEach((vg,i)=>{
+    rows.push([i+1,vg.latin,vg.calibre||'',vg.conditionnement||'',vg.qte,vg.unite||'U','','','']);
+    (vg.variantes||[]).forEach((vr,ri)=>{
+      rows.push(['','↳ '+(vr.latin||vg.latin),vr.calibre||vg.calibre||'',vr.conditionnement||vg.conditionnement||'',vg.qte,vg.unite||'U','Variante '+(ri+1),'','']);
+    });
+  });
   const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[{wch:4},{wch:28},{wch:12},{wch:10},{wch:7},{wch:5},{wch:18},{wch:24},{wch:28}];
   XLSX.utils.book_append_sheet(wb,ws,'Consultation');XLSX.writeFile(wb,`Consultation_${v('s-ville')||'projet'}.xlsx`);
 }
@@ -1250,7 +1266,10 @@ function showRepPreview(pi,matched,resultats){
     <span style="margin-left:9px;font-family:var(--mono);font-size:.68rem;">🟢 ${ex} · 🟠 ${pr} variante · 🔴 ${ic}</span>
   </div><div style="overflow-x:auto;"><table class="ptbl"><thead><tr><th>#</th><th>Végétal</th><th>Cal.</th><th>Cont.</th><th>Conf.</th><th>Prix</th><th>Cal. rép.</th><th>Cont. rép.</th><th>Corriger</th></tr></thead><tbody>`;
   vegs.forEach((vg,vi)=>{
-    const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:null;const varPep=(prix[vi]?.variantes||{})[pi]||[];
+    const e=prix[vi]&&prix[vi][pi]?prix[vi][pi]:null;
+    const varPep=(prix[vi]?.variantes||{})[pi]||[];
+    // Variantes définies sur le végétal (depuis l'onglet végétaux)
+    const varVeg=vg.variantes||[];
     const ci=e?.confiance==='exact'?'🟢':e?.confiance==='probable'?'🟠':e?.confiance==='incertain'?'🔴':'⚪';
     html+=`<tr style="${!e?.unit&&!varPep.length?'background:#fff8f0;':''}">
       <td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">${vi+1}</td>

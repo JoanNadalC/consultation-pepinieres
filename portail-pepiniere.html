@@ -440,8 +440,11 @@ async function afterPepLogin(user,hasAccount=true){
   if(consultCheck){
     await supa.auth.signOut();
     pepState.user=null;
-    document.getElementById('welcome').classList.remove('hidden');
-    showWErr('Ce compte est enregistré comme consultant. Utilisez l\'application consultant.');
+    setTimeout(()=>{
+      document.getElementById('welcome').classList.remove('hidden');
+      swWTab('account');swATab('login');
+      showWErr('Le compte '+user.email+' est un compte consultant. Connectez-vous avec votre compte pépinière.');
+    },200);
     return;
   }
   const{data}=await supa.from('comptes_pepinieres').select('*').eq('id',user.id).single();
