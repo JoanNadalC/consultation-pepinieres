@@ -16,7 +16,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:300;min-height:100vh;}
-/* WELCOME */
 #welcome{position:fixed;inset:0;background:var(--sage-d);display:flex;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s;padding:16px;overflow-y:auto;}
 #welcome.hidden{opacity:0;pointer-events:none;}
 .wbox{background:var(--white);border-radius:16px;padding:38px 34px;width:100%;max-width:490px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
@@ -33,10 +32,9 @@ body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weigh
 .atabs2{display:flex;gap:2px;background:var(--cream);padding:3px;border-radius:6px;margin-bottom:13px;}
 .atab2{flex:1;text-align:center;padding:6px;border-radius:5px;font-family:var(--mono);font-size:.6rem;cursor:pointer;border:none;background:transparent;color:var(--sage);transition:all .14s;}
 .atab2.active{background:var(--sage-d);color:var(--white);}
-.cgu-box{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:12px;max-height:150px;overflow-y:auto;font-size:.72rem;line-height:1.6;margin-bottom:10px;color:var(--ink);}
+.cgu-box{background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:12px;max-height:150px;overflow-y:auto;font-size:.72rem;line-height:1.6;margin-bottom:10px;}
 .cgu-box h4{font-family:var(--serif);font-size:.88rem;color:var(--sage-d);margin-bottom:6px;}
 .cgu-box h5{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sage);margin:8px 0 4px;}
-/* HEADER */
 header{background:var(--sage-d);color:var(--cream);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--earth);gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:100;}
 .brand h1{font-family:var(--serif);font-size:1.25rem;font-weight:600;}
 .brand p{font-size:.57rem;opacity:.5;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;}
@@ -47,22 +45,18 @@ header{background:var(--sage-d);color:var(--cream);padding:12px 20px;display:fle
 .hright{display:flex;align-items:center;gap:7px;}
 .uchip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.62rem;color:var(--cream);}
 .mode-chip{background:var(--earth);border-radius:20px;padding:3px 8px;font-family:var(--mono);font-size:.56rem;color:var(--white);}
-/* LAYOUT */
 main{max-width:1100px;margin:0 auto;padding:18px 14px;}
 .sec{display:none;}.sec.active{display:block;animation:fi .2s ease;}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-/* CARDS */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:13px;box-shadow:0 2px 10px var(--sh);}
 .ct{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--sage-d);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--earth-l);display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
 .bdg{font-family:var(--mono);font-size:.57rem;background:var(--earth-l);color:var(--sage-d);padding:2px 7px;border-radius:20px;margin-left:auto;}
-/* FORM */
 label{display:block;font-size:.6rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:3px;font-weight:500;}
 input[type=text],input[type=number],input[type=email],input[type=password],textarea,select{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:.82rem;transition:border-color .15s;outline:none;}
 input:focus,textarea:focus,select:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(107,125,90,.10);background:var(--white);}
 textarea{resize:vertical;min-height:54px;}
 .gr{display:grid;gap:10px;margin-bottom:10px;}
 .c2{grid-template-columns:1fr 1fr;}.c3{grid-template-columns:1fr 1fr 1fr;}
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-family:var(--mono);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;font-weight:500;transition:all .14s;white-space:nowrap;}
 .btn-p{background:var(--sage-d);color:var(--cream);}.btn-p:hover{background:var(--sage);transform:translateY(-1px);}
 .btn-s{background:var(--earth-l);color:var(--ink);border:1.5px solid var(--earth);}.btn-s:hover{background:var(--earth);color:var(--white);}
@@ -71,7 +65,6 @@ textarea{resize:vertical;min-height:54px;}
 .btn-d{background:#fde8e0;color:var(--rust);border:1.5px solid #f0c4b0;}.btn-d:hover{background:var(--rust);color:#fff;}
 .btn-sm{padding:3px 8px;font-size:.57rem;}
 .abar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
-/* CONSULTATIONS */
 .clist{display:grid;gap:8px;}
 .cc{background:var(--cream);border:1.5px solid var(--border);border-radius:8px;padding:12px 14px;transition:all .14s;}
 .cc:hover{border-color:var(--sage);box-shadow:0 3px 10px var(--sh);}
@@ -80,53 +73,42 @@ textarea{resize:vertical;min-height:54px;}
 .cc-st{font-family:var(--mono);font-size:.54rem;padding:2px 7px;border-radius:20px;text-transform:uppercase;}
 .st-en-cours{background:#e0eaf8;color:#2a4080;}
 .st-répondu{background:#d4edda;color:#1a5c28;}
-.st-clôturé{background:#f0ede4;color:#7a6a40;}
 .cc-meta{font-size:.67rem;color:var(--sage);font-family:var(--mono);margin-top:3px;}
-/* SAISIE */
 .ptable{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
 .ptable th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;position:sticky;top:60px;z-index:2;}
 .ptable th:first-child{border-radius:6px 0 0 0;}.ptable th:last-child{border-radius:0 6px 0 0;}
 .ptable td{padding:6px 8px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle;}
 .ptable td:first-child{border-left:1px solid var(--border);}
 .ptable tr:nth-child(even) td{background:#faf5e8;}.ptable tr:nth-child(odd) td{background:var(--white);}
-.ptable tr:last-child td:first-child{border-radius:0 0 0 6px;}.ptable tr:last-child td:last-child{border-radius:0 0 6px 0;}
+.ptable tr.var-row td{background:#fdf5e8!important;border-left:3px solid var(--earth);}
 .pinp{width:90px;padding:4px 6px;font-family:var(--mono);font-size:.74rem;text-align:right;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);outline:none;}
 .pinp:focus{border-color:var(--sage);background:var(--white);}
-.pinp::placeholder{color:#b8a888;font-size:.66rem;}
-.prefill{background:#eef3e8!important;border-color:var(--sage-l)!important;}
+.pinp.prefill{background:#eef3e8!important;border-color:var(--sage-l)!important;}
 .prefill-tip{font-size:.54rem;color:var(--sage);font-family:var(--mono);margin-top:2px;font-style:italic;}
 .row-validated td{background:#f0f8f0!important;}
-.row-pending td{background:var(--white)!important;}
 .val-btn{font-size:.56rem;padding:2px 6px;}
-/* CATALOGUE */
 .cat-tbl{width:100%;border-collapse:collapse;font-size:.74rem;}
 .cat-tbl th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;text-transform:uppercase;text-align:left;}
 .cat-tbl td{padding:5px 8px;border-bottom:1px solid var(--border);}
 .cat-tbl tr:nth-child(even) td{background:#faf5e8;}
 .pct-inp{width:58px;padding:3px 5px;font-family:var(--mono);font-size:.7rem;text-align:right;border:1.5px solid var(--border);border-radius:4px;background:var(--cream);outline:none;}
-/* IMPORT */
 .dz-box{border:2px dashed var(--border);border-radius:10px;padding:24px 15px;text-align:center;cursor:pointer;transition:all .17s;background:var(--cream);}
 .dz-box:hover,.dz-box.dragover{border-color:var(--sage);background:rgba(107,125,90,.05);}
 .dzi{font-size:1.6rem;margin-bottom:5px;opacity:.33;}
 .aibox{display:flex;align-items:center;gap:8px;padding:9px 13px;background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;font-size:.74rem;color:var(--sage-d);}
 .spin{width:13px;height:13px;border:2px solid var(--sage-l);border-top-color:var(--sage-d);border-radius:50%;animation:sp .7s linear infinite;flex-shrink:0;}
 @keyframes sp{to{transform:rotate(360deg)}}
-/* HISTORIQUE */
 .hist-group{background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:10px 13px;margin-bottom:7px;}
 .hist-hdr{font-family:var(--serif);font-size:.86rem;font-weight:600;color:var(--sage-d);margin-bottom:3px;}
 .hist-meta{font-family:var(--mono);font-size:.6rem;color:var(--sage);margin-bottom:6px;}
 .hist-row{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;padding:2px 0;border-bottom:1px dotted var(--border);}
 .hist-row:last-child{border:none;}
 .hist-p{font-family:var(--mono);font-weight:600;color:var(--sage-d);}
-.hist-prev{font-size:.6rem;color:var(--sage);font-family:var(--mono);}
-/* FBAR */
 .fbar{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px;align-items:center;}
 .fbar select,.fbar input{width:auto;padding:5px 8px;font-family:var(--mono);font-size:.62rem;}
-/* TOAST */
 .toast{position:fixed;bottom:18px;right:18px;background:var(--sage-d);color:var(--cream);padding:9px 15px;border-radius:7px;font-family:var(--mono);font-size:.62rem;box-shadow:0 4px 18px rgba(0,0,0,.2);z-index:500;transform:translateY(60px);opacity:0;transition:all .3s;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.error{background:var(--rust);}
-/* MISC */
 .tip{font-size:.63rem;color:var(--sage);margin-top:4px;font-style:italic;}
 .empty{text-align:center;padding:28px 14px;color:var(--sage);}
 .empty .ei{font-size:1.9rem;margin-bottom:6px;opacity:.32;}
@@ -150,20 +132,17 @@ textarea{resize:vertical;min-height:54px;}
     </div>
     <div id="werr" class="werr"></div>
 
-    <!-- COMPTE -->
     <div id="wf-account" class="wf active">
       <div class="atabs2">
         <button class="atab2 active" id="at-login" onclick="swATab('login')">Connexion</button>
         <button class="atab2" id="at-reg" onclick="swATab('reg')">Créer un compte</button>
         <button class="atab2" id="at-magic" onclick="swATab('magic')">Lien magique</button>
       </div>
-      <!-- Connexion -->
       <div id="af-login">
         <div class="gr" style="margin-bottom:9px;"><div><label>Email</label><input type="email" id="a-email" placeholder="contact@pepiniere.fr" onkeydown="if(event.key==='Enter')doALogin()"></div></div>
         <div class="gr" style="margin-bottom:12px;"><div><label>Mot de passe</label><input type="password" id="a-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doALogin()"></div></div>
         <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doALogin()">Se connecter</button>
       </div>
-      <!-- Inscription -->
       <div id="af-reg" style="display:none;">
         <div class="gr c2" style="margin-bottom:9px;">
           <div><label>Nom de la pépinière *</label><input type="text" id="r-pepnom" placeholder="Pépinière Durand"></div>
@@ -181,41 +160,32 @@ textarea{resize:vertical;min-height:54px;}
           </div>
         </div>
         <div class="cgu-box">
-          <h4>Conditions Générales d'Utilisation — Consultation Pépinières</h4>
+          <h4>Conditions Générales d'Utilisation</h4>
           <p><em>Version 1.0 — Mai 2026</em></p>
-          <h5>1. Objet du service</h5>
-          <p>La plateforme Consultation Pépinières est un outil professionnel permettant aux bureaux d'études paysagers et aux pépinières de gérer leurs consultations de prix végétaux. L'accès est réservé aux professionnels.</p>
-          <h5>2. Données personnelles et confidentialité (RGPD)</h5>
-          <p>Les données collectées (nom, email, prix commerciaux, historique) sont traitées conformément au RGPD (Règlement UE 2016/679). Les prix commerciaux des pépinières sont des données confidentielles, accessibles uniquement au consultant ayant émis la consultation et à la pépinière concernée. Durée de conservation : 3 ans.</p>
-          <h5>3. Droits des utilisateurs</h5>
-          <p>Vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Contactez-nous via l'email de votre compte.</p>
-          <h5>4. Hébergement</h5>
-          <p>Données hébergées par Supabase (AWS Europe — Ireland) et GitHub Pages (Microsoft Ireland), tous deux conformes au RGPD.</p>
-          <h5>5. Responsabilité</h5>
-          <p>Le Service est fourni "en l'état". Les utilisateurs sont seuls responsables de l'exactitude des données saisies.</p>
-          <h5>6. Droit applicable</h5>
-          <p>Droit français — Tribunaux français compétents.</p>
+          <h5>1. Objet</h5><p>Outil professionnel de gestion des consultations de prix végétaux. Réservé aux professionnels.</p>
+          <h5>2. Données personnelles (RGPD)</h5><p>Les prix commerciaux sont confidentiels, accessibles uniquement au consultant et à la pépinière concernée. Conservation : 3 ans.</p>
+          <h5>3. Droits</h5><p>Accès, rectification, suppression via l'email de votre compte.</p>
+          <h5>4. Hébergement</h5><p>Supabase (AWS Europe) et GitHub Pages (Microsoft Ireland), conformes RGPD.</p>
+          <h5>5. Droit applicable</h5><p>Droit français — Tribunaux français.</p>
         </div>
-        <label style="display:flex;align-items:center;gap:8px;font-family:var(--body);text-transform:none;font-size:.74rem;color:var(--ink);cursor:pointer;margin-bottom:12px;">
-          <input type="checkbox" id="r-cgu" style="width:auto;margin:0;"> J'ai lu et j'accepte les CGU
+        <label style="display:flex;align-items:center;gap:8px;font-family:var(--body);text-transform:none;font-size:.74rem;cursor:pointer;margin-bottom:12px;">
+          <input type="checkbox" id="r-cgu" style="width:auto;margin:0;"> J'accepte les CGU
         </label>
         <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doAReg()">Créer mon compte</button>
       </div>
-      <!-- Lien magique -->
       <div id="af-magic" style="display:none;">
-        <div class="notice notice-warn" style="margin-bottom:10px;">⚠️ Le lien magique ne donne pas accès à l'historique complet de vos réponses.</div>
+        <div class="notice notice-warn" style="margin-bottom:10px;">⚠️ Le lien magique ne donne pas accès à l'historique complet.</div>
         <div class="gr" style="margin-bottom:12px;"><div><label>Votre email</label><input type="email" id="m-email" placeholder="contact@pepiniere.fr"></div></div>
-        <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doMagic()">📧 Envoyer le lien de connexion</button>
-        <p class="tip" style="text-align:center;margin-top:7px;">Lien valable 24h — aucun mot de passe requis.</p>
+        <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doMagic()">📧 Envoyer le lien</button>
+        <p class="tip" style="text-align:center;margin-top:7px;">Lien valable 24h.</p>
       </div>
     </div>
 
-    <!-- INVITÉ -->
     <div id="wf-guest" class="wf">
-      <div class="notice notice-info" style="margin-bottom:10px;">En mode invité, vous répondez directement sans créer de compte. Aucun historique ne sera sauvegardé.</div>
-      <p style="font-size:.76rem;color:var(--sage);margin-bottom:10px;">Si vous avez reçu un lien de consultation par email, cliquez simplement dessus — il vous amène directement ici avec le code pré-rempli.</p>
+      <div class="notice notice-info" style="margin-bottom:10px;">En mode invité, aucun historique ne sera sauvegardé.</div>
+      <p style="font-size:.76rem;color:var(--sage);margin-bottom:10px;">Si vous avez reçu un lien par email, cliquez dessus — le code sera pré-rempli automatiquement.</p>
       <div class="gr" style="margin-bottom:9px;"><div><label>Votre nom ou pépinière *</label><input type="text" id="g-nom" placeholder="Pépinière Durand"></div></div>
-      <div class="gr" style="margin-bottom:12px;"><div><label>Code d'accès (depuis votre email) *</label><input type="text" id="g-token" placeholder="Collez le code reçu par email"></div></div>
+      <div class="gr" style="margin-bottom:12px;"><div><label>Code d'accès (depuis votre email) *</label><input type="text" id="g-token" placeholder="Collez le code reçu"></div></div>
       <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doGuest()">Accéder à la consultation</button>
     </div>
   </div>
@@ -238,12 +208,11 @@ textarea{resize:vertical;min-height:54px;}
 </header>
 
 <main>
-<!-- DASHBOARD -->
 <div class="sec active" id="tab-dashboard">
   <div class="card">
     <div class="ct">🏠 Mes consultations <span class="bdg" id="dash-bdg">0</span></div>
     <div class="fbar">
-      <select id="f-st" onchange="renderDash()"><option value="">Tous les statuts</option><option value="en-cours">En cours</option><option value="répondu">Répondu</option><option value="clôturé">Clôturé</option></select>
+      <select id="f-st" onchange="renderDash()"><option value="">Tous</option><option value="en-cours">En cours</option><option value="répondu">Répondu</option></select>
       <input type="text" id="f-sr" placeholder="Rechercher…" oninput="renderDash()">
       <button class="btn btn-g btn-sm" onclick="loadDash()">↻</button>
     </div>
@@ -251,7 +220,6 @@ textarea{resize:vertical;min-height:54px;}
   </div>
 </div>
 
-<!-- SAISIE -->
 <div class="sec" id="tab-saisie">
   <div class="card" id="saisie-info-card" style="display:none;">
     <div class="ct" id="saisie-title">✏️ Saisie des prix</div>
@@ -275,18 +243,16 @@ textarea{resize:vertical;min-height:54px;}
         <button class="btn btn-p" onclick="submitPrix()">💾 Valider &amp; envoyer mes prix</button>
         <span id="submit-progress" style="font-family:var(--mono);font-size:.66rem;color:var(--sage);"></span>
       </div>
-      <p class="tip">Vous pouvez revenir modifier vos prix avant la clôture de la consultation.</p>
     </div>
   </div>
 </div>
 
-<!-- CATALOGUE -->
 <div class="sec" id="tab-catalogue">
   <div class="card">
     <div class="ct">📦 Mon catalogue de prix</div>
-    <p style="font-size:.74rem;color:var(--sage);margin-bottom:12px;">Importez votre catalogue ou laissez-le se construire au fil de vos consultations. Il sera utilisé pour pré-remplir vos futures réponses.</p>
+    <p style="font-size:.74rem;color:var(--sage);margin-bottom:12px;">Importez votre catalogue ou laissez-le se construire automatiquement au fil de vos réponses.</p>
     <div class="abar">
-      <button class="btn btn-s" onclick="document.getElementById('cat-file').click()">⬆ Importer un catalogue</button>
+      <button class="btn btn-s" onclick="document.getElementById('cat-file').click()">⬆ Importer</button>
       <input type="file" id="cat-file" accept=".xlsx,.xls,.csv,.pdf" style="display:none" onchange="importCatalogue(this)">
       <button class="btn btn-g btn-sm" onclick="loadCatalogue()">↻ Actualiser</button>
       <span id="cat-count" style="font-family:var(--mono);font-size:.66rem;color:var(--sage);"></span>
@@ -297,20 +263,19 @@ textarea{resize:vertical;min-height:54px;}
         <span style="font-family:var(--mono);font-size:.62rem;color:var(--sage-d);">Remise globale :</span>
         <input type="number" step=".1" id="cat-pct" placeholder="-10" style="width:68px;padding:4px 7px;font-family:var(--mono);">
         <span style="font-size:.66rem;color:var(--sage);">%</span>
-        <button class="btn btn-p btn-sm" onclick="applyCatPct()">Appliquer à tout</button>
+        <button class="btn btn-p btn-sm" onclick="applyCatPct()">Appliquer</button>
         <div style="width:1px;height:20px;background:var(--border);"></div>
         <input type="text" id="cat-search" placeholder="Rechercher…" oninput="renderCatalogue()" style="width:150px;padding:4px 7px;font-family:var(--mono);font-size:.66rem;">
       </div>
     </div>
-    <div id="cat-container"><div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.<br>Importez un fichier ou répondez à des consultations.</p></div></div>
+    <div id="cat-container"><div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.</p></div></div>
   </div>
 </div>
 
-<!-- HISTORIQUE -->
 <div class="sec" id="tab-historique">
   <div class="card">
     <div class="ct">📋 Historique de mes réponses</div>
-    <div id="hist-notice" class="notice notice-warn" style="display:none;">⚠️ L'historique complet est disponible uniquement avec un compte permanent (email + mot de passe).</div>
+    <div id="hist-notice" class="notice notice-warn" style="display:none;">⚠️ L'historique est disponible uniquement avec un compte permanent.</div>
     <div class="fbar">
       <select id="h-firm" onchange="renderHist()"><option value="">Toutes les entreprises</option></select>
       <input type="text" id="h-sr" placeholder="Rechercher un végétal…" oninput="renderHist()">
@@ -319,7 +284,6 @@ textarea{resize:vertical;min-height:54px;}
   </div>
 </div>
 
-<!-- PROFIL -->
 <div class="sec" id="tab-profil">
   <div class="card">
     <div class="ct">👤 Mon profil pépinière</div>
@@ -331,20 +295,12 @@ textarea{resize:vertical;min-height:54px;}
       <div><label>Email (non modifiable)</label><input type="email" id="p-email" disabled style="opacity:.6;"></div>
       <div><label>Téléphone</label><input type="text" id="p-tel"></div>
     </div>
-    <div class="gr c2">
-      <div><label>SIRET (optionnel)</label><input type="text" id="p-siret" placeholder="XXX XXX XXX XXXXX"></div>
+    <div class="gr c2" style="margin-bottom:12px;">
       <div><label>Langue préférée</label>
         <select id="p-lang"><option value="fr">🇫🇷 Français</option><option value="en">🇬🇧 English</option><option value="es">🇪🇸 Español</option><option value="ca">🏴 Català</option><option value="nl">🇳🇱 Nederlands</option><option value="de">🇩🇪 Deutsch</option><option value="it">🇮🇹 Italiano</option></select>
       </div>
-    </div>
-    <div class="gr" style="margin-bottom:12px;">
-      <div><label>Notifications de consultation</label>
-        <select id="p-notif">
-          <option value="each">À chaque consultation reçue</option>
-          <option value="daily">Récapitulatif journalier</option>
-          <option value="weekly">Récapitulatif hebdomadaire</option>
-          <option value="none">Aucune notification</option>
-        </select>
+      <div><label>Notifications</label>
+        <select id="p-notif"><option value="each">À chaque consultation</option><option value="daily">Récap journalier</option><option value="weekly">Récap hebdo</option><option value="none">Aucune</option></select>
       </div>
     </div>
     <button class="btn btn-p" onclick="saveProfil()">💾 Enregistrer</button>
@@ -362,10 +318,10 @@ textarea{resize:vertical;min-height:54px;}
     <div class="ct">📋 Mentions légales</div>
     <p style="font-size:.74rem;line-height:1.7;color:var(--sage);">
       <strong style="color:var(--sage-d);">Hébergement</strong> : GitHub Pages (Microsoft Ireland) · Supabase (AWS Europe — Ireland)<br>
-      <strong style="color:var(--sage-d);">Données personnelles</strong> : Traitées conformément au RGPD. Durée de conservation : 3 ans.<br>
-      <strong style="color:var(--sage-d);">Droit applicable</strong> : Droit français — Tribunaux français compétents.
+      <strong style="color:var(--sage-d);">RGPD</strong> : Données conservées 3 ans. Droits d'accès/suppression via votre email.<br>
+      <strong style="color:var(--sage-d);">Droit applicable</strong> : Droit français.
     </p>
-    <button class="btn btn-d btn-sm" style="margin-top:10px;" onclick="if(confirm('Supprimer définitivement votre compte et toutes vos données ?'))deleteAccount()">🗑 Supprimer mon compte (RGPD)</button>
+    <button class="btn btn-d btn-sm" style="margin-top:10px;" onclick="if(confirm('Supprimer définitivement votre compte ?'))deleteAccount()">🗑 Supprimer mon compte</button>
   </div>
 </div>
 </main>
@@ -378,7 +334,7 @@ const PROXY_URL='https://claude-proxy.jncoutier.workers.dev/';
 const supa=supabase.createClient(SUPA_URL,SUPA_KEY);
 
 // I18N
-const L={fr:{logout:'Déconnexion',submitOk:'Prix envoyés ✓',noConsult:'Aucune consultation.',prefillHist:'Depuis votre historique',prefillCat:'Depuis votre catalogue'},en:{logout:'Sign out',submitOk:'Prices sent ✓',noConsult:'No consultations.',prefillHist:'From your history',prefillCat:'From your catalogue'},es:{logout:'Cerrar sesión',submitOk:'Precios enviados ✓',noConsult:'Sin consultas.',prefillHist:'De su historial',prefillCat:'De su catálogo'},ca:{logout:'Tancar sessió',submitOk:'Preus enviats ✓',noConsult:'Cap consulta.',prefillHist:'Del vostre historial',prefillCat:'Del vostre catàleg'},nl:{logout:'Uitloggen',submitOk:'Prijzen verzonden ✓',noConsult:'Geen aanvragen.',prefillHist:'Uit uw geschiedenis',prefillCat:'Uit uw catalogus'},de:{logout:'Abmelden',submitOk:'Preise gesendet ✓',noConsult:'Keine Anfragen.',prefillHist:'Aus Ihrem Verlauf',prefillCat:'Aus Ihrem Katalog'},it:{logout:'Disconnetti',submitOk:'Prezzi inviati ✓',noConsult:'Nessuna consulenza.',prefillHist:'Dal vostro storico',prefillCat:'Dal vostro catalogo'}};
+const L={fr:{submitOk:'Prix envoyés ✓',noConsult:'Aucune consultation.',prefillHist:'Depuis votre historique',prefillCat:'Depuis votre catalogue'},en:{submitOk:'Prices sent ✓',noConsult:'No consultations.',prefillHist:'From your history',prefillCat:'From your catalogue'},es:{submitOk:'Precios enviados ✓',noConsult:'Sin consultas.',prefillHist:'De su historial',prefillCat:'De su catálogo'},ca:{submitOk:'Preus enviats ✓',noConsult:'Cap consulta.',prefillHist:'Del vostre historial',prefillCat:'Del vostre catàleg'},nl:{submitOk:'Prijzen verzonden ✓',noConsult:'Geen aanvragen.',prefillHist:'Uit uw geschiedenis',prefillCat:'Uit uw catalogus'},de:{submitOk:'Preise gesendet ✓',noConsult:'Keine Anfragen.',prefillHist:'Aus Ihrem Verlauf',prefillCat:'Aus Ihrem Katalog'},it:{submitOk:'Prezzi inviati ✓',noConsult:'Nessuna consulenza.',prefillHist:'Dal vostro storico',prefillCat:'Dal vostro catalogo'}};
 let curLang='fr';
 function T(k){return(L[curLang]||L.fr)[k]||(L.fr)[k]||k;}
 function setLang(l){curLang=l;if(document.getElementById('p-lang'))document.getElementById('p-lang').value=l;if(pepState.user)supa.from('compte_pepiniere').update({langue:l}).eq('id',pepState.user.id);}
@@ -386,7 +342,7 @@ function setLang(l){curLang=l;if(document.getElementById('p-lang'))document.getE
 // STATE
 let pepState={mode:null,user:null,pepId:null,pepNom:'',consultId:null,vegetaux:[],reponses:{},allConsults:[],allHist:[],hasAccount:false,catalogue:[],validatedRows:new Set()};
 
-// WELCOME TABS
+// AUTH TABS
 function swWTab(t){['account','guest'].forEach(x=>{document.getElementById('wt-'+x).classList.toggle('active',x===t);document.getElementById('wf-'+x).classList.toggle('active',x===t);});document.getElementById('werr').style.display='none';}
 function swATab(t){['login','reg','magic'].forEach(x=>{document.getElementById('at-'+x).classList.toggle('active',x===t);document.getElementById('af-'+x).style.display=x===t?'block':'none';});}
 
@@ -408,25 +364,23 @@ async function doAReg(){
   const{data,error}=await supa.auth.signUp({email,password:pwd,options:{data:{nom,pepnom}}});
   if(error){showWErr('Erreur : '+error.message);return;}
   if(data.user){
-    // Sauvegarder le profil immédiatement + en session au cas où
-    sessionStorage.setItem('pending_pep_profile',JSON.stringify({nom,pepnom,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif}));
+    sessionStorage.setItem('pending_pep',JSON.stringify({nom,pepnom,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif}));
     await supa.from('compte_pepiniere').upsert({id:data.user.id,nom,pepnom,email,tel:document.getElementById('r-tel').value.trim(),langue:lang,notif_preference:notif,cgu_accepted:true,cgu_date:new Date().toISOString()});
   }
   showWErr('Compte créé ! Connectez-vous.',false);swATab('login');
 }
 async function doMagic(){
   const email=document.getElementById('m-email').value.trim();if(!email){showWErr('Email requis.');return;}
-  const redirectUrl=window.location.href;
-  const{error}=await supa.auth.signInWithOtp({email,options:{emailRedirectTo:redirectUrl}});
+  const{error}=await supa.auth.signInWithOtp({email,options:{emailRedirectTo:window.location.href}});
   if(error){showWErr('Erreur : '+error.message);return;}
-  showWErr('Lien envoyé à '+email+' — vérifiez votre boîte mail.',false);
+  showWErr('Lien envoyé à '+email,false);
 }
 async function doGuest(){
   const token=document.getElementById('g-token').value.trim();const nom=document.getElementById('g-nom').value.trim();
-  if(!token){showWErr('Code d\'accès requis (depuis votre email).');return;}
+  if(!token){showWErr('Code d\'accès requis.');return;}
   const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
-  if(error||!inv){showWErr('Code invalide ou expiré. Vérifiez votre email.');return;}
-  if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré. Demandez un nouveau lien au consultant.');return;}
+  if(error||!inv){showWErr('Code invalide ou expiré.');return;}
+  if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré.');return;}
   const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
   if(!consult){showWErr('Consultation introuvable.');return;}
   pepState.mode='guest';pepState.pepNom=nom||'Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
@@ -435,52 +389,39 @@ async function doGuest(){
 
 async function afterPepLogin(user,hasAccount=true){
   pepState.user=user;pepState.mode='account';pepState.hasAccount=hasAccount;
-  // Vérifier que c'est bien un compte PÉPINIÈRE (pas un consultant)
+  // Vérifier que c'est un compte PÉPINIÈRE (pas consultant)
   const{data:consultCheck}=await supa.from('compte_consultant').select('id').eq('id',user.id).single();
   if(consultCheck){
-    await supa.auth.signOut();
-    pepState.user=null;
-    setTimeout(()=>{
-      document.getElementById('welcome').classList.remove('hidden');
-      swWTab('account');swATab('login');
-      showWErr('Le compte '+user.email+' est un compte consultant. Connectez-vous avec votre compte pépinière.');
-    },200);
+    await supa.auth.signOut();pepState.user=null;
+    setTimeout(()=>{document.getElementById('welcome').classList.remove('hidden');swWTab('account');swATab('login');showWErr('Le compte '+user.email+' est un compte consultant. Utilisez l\'application consultant.');},200);
     return;
   }
   const{data}=await supa.from('compte_pepiniere').select('*').eq('id',user.id).single();
   if(data){
     pepState.pepId=data.pepiniere_id;pepState.pepNom=data.pepnom||data.nom||user.email.split('@')[0];
     if(data.langue)setLang(data.langue);
-    ['p-nom','p-pepnom','p-tel','p-siret'].forEach(id=>{const key=id.replace('p-','');const val=data[key==='pepnom'?'pepnom':key==='nom'?'nom':key==='tel'?'tel':key==='siret'?'siret':''];if(val&&document.getElementById(id))document.getElementById(id).value=val;});
+    if(document.getElementById('p-nom'))document.getElementById('p-nom').value=data.nom||'';
+    if(document.getElementById('p-pepnom'))document.getElementById('p-pepnom').value=data.pepnom||'';
     document.getElementById('p-email').value=user.email;
+    if(data.tel&&document.getElementById('p-tel'))document.getElementById('p-tel').value=data.tel;
     if(data.langue&&document.getElementById('p-lang'))document.getElementById('p-lang').value=data.langue;
     if(data.notif_preference&&document.getElementById('p-notif'))document.getElementById('p-notif').value=data.notif_preference;
   } else {
     pepState.pepNom=user.email.split('@')[0];
     document.getElementById('p-email').value=user.email;
-    // Récupérer données en attente (venant de l'inscription)
-    const pending=sessionStorage.getItem('pending_pep_profile');
-    const pendingData=pending?JSON.parse(pending):{};
-    sessionStorage.removeItem('pending_pep_profile');
-    await supa.from('compte_pepiniere').upsert({id:user.id,nom:pendingData.nom||pepState.pepNom,pepnom:pendingData.pepnom||'',tel:pendingData.tel||'',email:user.email,langue:pendingData.langue||curLang,notif_preference:pendingData.notif_preference||'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
-    if(pendingData.nom)pepState.pepNom=pendingData.pepnom||pendingData.nom;
+    const pending=sessionStorage.getItem('pending_pep');const pd=pending?JSON.parse(pending):{};sessionStorage.removeItem('pending_pep');
+    await supa.from('compte_pepiniere').upsert({id:user.id,nom:pd.nom||pepState.pepNom,pepnom:pd.pepnom||'',tel:pd.tel||'',email:user.email,langue:pd.langue||curLang,notif_preference:pd.notif_preference||'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
+    if(pd.nom)pepState.pepNom=pd.pepnom||pd.nom;
   }
-  // Lire paramètres URL (token ou consultation directe)
-  const params=new URLSearchParams(window.location.search);
-  const urlToken=params.get('token');const urlConsultId=params.get('consultation');
+  // Params URL
+  const params=new URLSearchParams(window.location.search);const urlToken=params.get('token');
   showApp(false);
   if(urlToken){
     const{data:inv}=await supa.from('invitations_consultation').select('*').eq('token',urlToken).single();
     if(inv&&new Date(inv.expires_at)>new Date()){
       const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
-      if(consult){
-        if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;
-        await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;
-      }
+      if(consult){if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;}
     }
-  } else if(urlConsultId&&pepState.pepId){
-    const{data:consult}=await supa.from('consultations').select('*').eq('id',urlConsultId).single();
-    if(consult){await openConsult(consult,pepState.pepId);return;}
   }
   loadDash();if(pepState.hasAccount){loadHist();loadCatalogue();}
 }
@@ -489,44 +430,29 @@ function showApp(guestMode=false){
   document.getElementById('welcome').classList.add('hidden');
   document.getElementById('p-uchip').textContent='🌿 '+pepState.pepNom;
   document.getElementById('p-mode-chip').textContent=pepState.mode==='guest'?'Invité':'Compte';
-  if(!guestMode){
-    document.getElementById('main-tabs').style.display='flex';
-    if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';
-  } else {
-    document.getElementById('main-tabs').style.display='none';goP('saisie');
-  }
+  if(!guestMode){document.getElementById('main-tabs').style.display='flex';if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';}
+  else{document.getElementById('main-tabs').style.display='none';goP('saisie');}
 }
 async function doLogout(){if(pepState.mode==='account')await supa.auth.signOut();location.reload();}
 function showWErr(msg,isErr=true){const el=document.getElementById('werr');el.textContent=msg;el.style.display='block';el.className='werr '+(isErr?'werr-e':'werr-ok');}
 
-// Session existante
 supa.auth.getSession().then(({data})=>{if(data.session?.user)afterPepLogin(data.session.user,true);});
 supa.auth.onAuthStateChange((_,session)=>{if(session?.user&&!pepState.user)afterPepLogin(session.user,true);});
 
-// Token dans URL — accès direct invité sans afficher l'écran de bienvenue
+// Token URL pour invité
 window.addEventListener('load',async()=>{
-  const params=new URLSearchParams(window.location.search);
-  const token=params.get('token');const code=params.get('code');
-  const t=token||code;
-  if(t&&!pepState.user){
-    // Vérifier le token immédiatement
-    const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',t).single();
+  const params=new URLSearchParams(window.location.search);const token=params.get('token')||params.get('code');
+  if(token&&!pepState.user){
+    const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
     if(!error&&inv&&new Date(inv.expires_at)>new Date()){
-      // Token valide — accès direct sans saisie
       const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
-      if(consult){
-        pepState.mode='guest';pepState.pepNom='Invité';pepState.pepId=inv.pepiniere_id;
-        pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
-        showApp(true);await openConsult(consult,inv.pepiniere_id);return;
-      }
+      if(consult){pepState.mode='guest';pepState.pepNom='Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;showApp(true);await openConsult(consult,inv.pepiniere_id);return;}
     }
-    // Token invalide ou expiré — afficher formulaire invité avec code pré-rempli
-    document.getElementById('g-token').value=t;
-    swWTab('guest');
+    document.getElementById('g-token').value=token;swWTab('guest');
   }
 });
 
-// NAVIGATION
+// NAV
 function goP(name){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -545,8 +471,7 @@ async function loadDash(){
   if(!allIds.length){pepState.allConsults=[];renderDash();return;}
   const{data:consults}=await supa.from('consultations').select('*').in('id',allIds);
   pepState.allConsults=(consults||[]).map(c=>{
-    const rep=(reps||[]).find(r=>r.consultation_id===c.id);
-    const inv=(invs||[]).find(i=>i.consultation_id===c.id);
+    const rep=(reps||[]).find(r=>r.consultation_id===c.id);const inv=(invs||[]).find(i=>i.consultation_id===c.id);
     return{...c,repDate:rep?.updated_at,histCount:rep?.historique?.length||0,invDate:inv?.created_at,statut_pep:rep?'répondu':'en-cours'};
   }).sort((a,b)=>new Date(b.invDate||b.created_at)-new Date(a.invDate||a.created_at));
   renderDash();
@@ -557,25 +482,26 @@ function renderDash(){
   const list=pepState.allConsults.filter(c=>{if(fSt&&c.statut_pep!==fSt)return false;if(fSr&&!(c.ville||'').toLowerCase().includes(fSr)&&!(c.affaire||'').toLowerCase().includes(fSr))return false;return true;});
   document.getElementById('dash-bdg').textContent=list.length;
   if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📋</div><p>'+T('noConsult')+'</p></div>';return;}
-  el.innerHTML='<div class="clist">'+list.map(c=>`<div class="cc">
-    <div class="cc-row"><span class="cc-firm">${c.affaire||'—'}</span><span class="cc-st st-${c.statut_pep||'en-cours'}">${c.statut_pep==='répondu'?'✓ Répondu':'En cours'}</span></div>
-    <div class="cc-meta">${c.ville||'—'} · Cons. du ${c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'?'} · Livraison : ${c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'?'}</div>
-    <div style="display:flex;gap:6px;margin-top:7px;align-items:center;flex-wrap:wrap;">
-      <button class="btn btn-p btn-sm" onclick="openConsultById('${c.id}')">✏️ ${c.statut_pep==='répondu'?'Modifier mes prix':'Saisir mes prix'}</button>
-      ${c.histCount>0?`<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);">${c.histCount} envoi(s)</span>`:''}
-      ${c.repDate?`<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);margin-left:auto;">Dernier envoi : ${new Date(c.repDate).toLocaleDateString('fr-FR')}</span>`:''}
-    </div>
-  </div>`).join('')+'</div>';
+  el.innerHTML='<div class="clist">'+list.map(c=>'<div class="cc">'+
+    '<div class="cc-row"><span class="cc-firm">'+(c.affaire||'—')+'</span><span class="cc-st st-'+(c.statut_pep||'en-cours')+'">'+(c.statut_pep==='répondu'?'✓ Répondu':'En cours')+'</span></div>'+
+    '<div class="cc-meta">'+(c.ville||'—')+' · Cons. du '+(c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'?')+' · Livraison : '+(c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'?')+'</div>'+
+    '<div style="display:flex;gap:6px;margin-top:7px;align-items:center;flex-wrap:wrap;">'+
+      '<button class="btn btn-p btn-sm" onclick="openConsultById(\''+c.id+'\')">✏️ '+(c.statut_pep==='répondu'?'Modifier mes prix':'Saisir mes prix')+'</button>'+
+      (c.repDate?'<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);margin-left:auto;">Dernier envoi : '+new Date(c.repDate).toLocaleDateString('fr-FR')+'</span>':'')+
+    '</div></div>').join('')+'</div>';
 }
 async function openConsultById(id){const c=pepState.allConsults.find(x=>x.id===id);if(c)await openConsult(c,pepState.pepId);}
+
 async function openConsult(consult,pepId){
   pepState.consultId=consult.id;pepState.pepId=pepId;pepState.validatedRows=new Set();
   document.getElementById('tab-saisie-btn').style.display='block';
   document.getElementById('saisie-info-card').style.display='block';
-  document.getElementById('saisie-title').textContent='✏️ '+( consult.affaire||'Consultation')+' — '+(consult.ville||'');
+  document.getElementById('saisie-title').textContent='✏️ '+(consult.affaire||'Consultation')+' — '+(consult.ville||'');
   document.getElementById('saisie-meta').textContent='Consultation du '+(consult.date_consult?new Date(consult.date_consult).toLocaleDateString('fr-FR'):'?')+' · Livraison : '+(consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?')+(consult.remarques?' · '+consult.remarques:'');
-  const{data:vd}=await supa.from('vegetaux').select('*').eq('consultation_id',consult.id).order('ordre');
+  // Charger végétaux avec les vraies colonnes
+  const{data:vd}=await supa.from('vegetaux').select('id,ordre,latin,calibre,contenant,qte,unite,remarques,prix_etude_ht,variantes').eq('consultation_id',consult.id).order('ordre');
   pepState.vegetaux=vd||[];
+  // Charger réponses existantes
   const{data:rd}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',consult.id).eq('pepiniere_id',pepId);
   pepState.reponses={};
   (rd||[]).forEach(r=>{const vi=pepState.vegetaux.findIndex(v=>v.id===r.vegetal_id);if(vi>=0){pepState.reponses[vi]={prix:r.prix_unit_ht,variante:r.variante||'',comment:r.commentaire||'',fraisPort:r.frais_port,hist:r.historique||[]};pepState.validatedRows.add(vi);}});
@@ -583,32 +509,25 @@ async function openConsult(consult,pepId){
   renderSaisie();goP('saisie');
 }
 
-// PRÉ-REMPLISSAGE (catalogue prioritaire, puis historique)
+// PRÉ-REMPLISSAGE
 async function prefillFromCatalogueAndHistory(){
   if(!pepState.pepId)return;
-  // Charger catalogue
-  if(!pepState.catalogue.length){
-    const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);
-    pepState.catalogue=cat||[];
-  }
-  // Charger historique
+  if(!pepState.catalogue.length){const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);pepState.catalogue=cat||[];}
   const{data:hist}=await supa.from('reponses_pepinieres').select('vegetal_id,prix_unit_ht,updated_at,vegetaux(latin,calibre,contenant)').eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
   pepState.vegetaux.forEach((vg,vi)=>{
     if(pepState.reponses[vi]?.prix!=null)return;
-    const cond=vg.contenant||vg.conditionnement||'';
-    // 1. Catalogue exact
+    const cond=vg.contenant||'';
     if(pepState.catalogue.length){
-      const cExact=pepState.catalogue.find(c=>c.latin?.toLowerCase()===vg.latin?.toLowerCase()&&c.calibre===vg.calibre&&c.contenant===cond);
-      if(cExact){pepState.reponses[vi]={prix:cExact.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillDate:cExact.updated_at,prefillConf:'exact'};return;}
-      const cPartial=pepState.catalogue.find(c=>c.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
-      if(cPartial){pepState.reponses[vi]={prix:cPartial.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillConf:'partial',prefillCalib:cPartial.calibre};return;}
+      const cEx=pepState.catalogue.find(c=>c.latin?.toLowerCase()===vg.latin?.toLowerCase()&&c.calibre===vg.calibre&&c.contenant===cond);
+      if(cEx){pepState.reponses[vi]={prix:cEx.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillDate:cEx.updated_at,prefillConf:'exact'};return;}
+      const cPart=pepState.catalogue.find(c=>c.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
+      if(cPart){pepState.reponses[vi]={prix:cPart.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillConf:'partial',prefillCalib:cPart.calibre};return;}
     }
-    // 2. Historique exact
     if(hist&&hist.length){
-      const hExact=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase()===vg.latin?.toLowerCase()&&r.vegetaux?.calibre===vg.calibre&&r.vegetaux?.contenant===cond);
-      if(hExact){pepState.reponses[vi]={prix:hExact.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillDate:hExact.updated_at,prefillConf:'exact'};return;}
-      const hPartial=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
-      if(hPartial)pepState.reponses[vi]={prix:hPartial.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillConf:'partial',prefillCalib:hPartial.vegetaux?.calibre};
+      const hEx=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase()===vg.latin?.toLowerCase()&&r.vegetaux?.calibre===vg.calibre&&r.vegetaux?.contenant===cond);
+      if(hEx){pepState.reponses[vi]={prix:hEx.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillDate:hEx.updated_at,prefillConf:'exact'};return;}
+      const hPart=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
+      if(hPart)pepState.reponses[vi]={prix:hPart.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillConf:'partial',prefillCalib:hPart.vegetaux?.calibre};
     }
   });
 }
@@ -621,28 +540,32 @@ function renderSaisie(){
     const rep=pepState.reponses[vi]||{};const isVal=pepState.validatedRows.has(vi);
     const isPf=rep.prefilled&&rep.prix!=null;
     const srcLabel=isPf?(rep.prefillSrc==='catalogue'?T('prefillCat'):T('prefillHist')):'';
-    return`<tr class="${isVal?'row-validated':'row-pending'}" id="tr-${vi}">
-      <td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">${vi+1}</td>
-      <td><em style="font-size:.74rem;">${vg.latin}</em></td>
-      <td style="font-family:var(--mono);font-size:.68rem;">${vg.calibre||'—'}</td>
-      <td style="font-size:.68rem;">${vg.contenant||vg.conditionnement||'—'}</td>
-      <td style="font-family:var(--mono);text-align:center;">${vg.qte}</td>
-      <td>
-        <input type="number" step=".01" min="0" class="pinp ${isPf?'prefill':''}" placeholder="—" value="${rep.prix||''}" id="p-${vi}"
-          onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].prix=parseFloat(this.value)||null;pepState.reponses[${vi}].prefilled=false;unvalRow(${vi});">
-        ${isPf?`<div class="prefill-tip">↑ ${srcLabel}${rep.prefillConf==='partial'?' (approx.)':''}${rep.prefillCalib?' · '+rep.prefillCalib:''}</div>`:''}
-      </td>
-      <td><input type="text" placeholder="—" value="${rep.variante||''}" id="v-${vi}" style="font-size:.74rem;" onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].variante=this.value;unvalRow(${vi});"></td>
-      <td><input type="text" placeholder="—" value="${rep.comment||''}" id="c-${vi}" style="font-size:.74rem;" onchange="pepState.reponses[${vi}]=pepState.reponses[${vi}]||{};pepState.reponses[${vi}].comment=this.value;"></td>
-      <td><button class="btn val-btn ${isVal?'btn-ok':'btn-g'}" onclick="toggleVal(${vi})" id="vbtn-${vi}">${isVal?'✓':'○'}</button></td>
-    </tr>`;
+    // Vérifier si c'est une variante (via jsonb variantes du parent ou ordre)
+    const isVar=vg.variantes&&Array.isArray(vg.variantes)&&vi>0&&pepState.vegetaux[vi-1]&&(vg.latin===pepState.vegetaux[vi-1].latin||vg.calibre!==pepState.vegetaux[vi-1].calibre);
+    return'<tr class="'+(isVal?'row-validated':'')+(isVar?' var-row':'')+'" id="tr-'+vi+'">'+
+      '<td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">'+(isVar?'↳':''+(vi+1))+'</td>'+
+      '<td><em style="font-size:.74rem;">'+(vg.latin||'—')+'</em></td>'+
+      '<td style="font-family:var(--mono);font-size:.68rem;">'+(vg.calibre||'—')+'</td>'+
+      '<td style="font-size:.68rem;">'+(vg.contenant||'—')+'</td>'+
+      '<td style="font-family:var(--mono);text-align:center;">'+(vg.qte||1)+'</td>'+
+      '<td>'+
+        '<input type="number" step=".01" min="0" class="pinp'+(isPf?' prefill':'')+'" placeholder="—" value="'+(rep.prix||'')+'" id="p-'+vi+'"'+
+        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].prix=parseFloat(this.value)||null;pepState.reponses['+vi+'].prefilled=false;unvalRow('+vi+');">'+
+        (isPf?'<div class="prefill-tip">↑ '+srcLabel+(rep.prefillConf==='partial'?' (approx.)':'')+'</div>':'')+
+      '</td>'+
+      '<td><input type="text" placeholder="—" value="'+(rep.variante||'')+'" id="v-'+vi+'" style="font-size:.74rem;"'+
+        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].variante=this.value;unvalRow('+vi+');"></td>'+
+      '<td><input type="text" placeholder="—" value="'+(rep.comment||'')+'" id="c-'+vi+'" style="font-size:.74rem;"'+
+        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].comment=this.value;"></td>'+
+      '<td><button class="btn val-btn '+(isVal?'btn-ok':'btn-g')+'" onclick="toggleVal('+vi+')" id="vbtn-'+vi+'">'+(isVal?'✓':'○')+'</button></td>'+
+    '</tr>';
   }).join('');
   updateProgress();
   const existPort=Object.values(pepState.reponses).find(r=>r?.fraisPort);
   if(existPort?.fraisPort)document.getElementById('frais-port').value=existPort.fraisPort;
 }
-function toggleVal(vi){if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);else pepState.validatedRows.add(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className=pepState.validatedRows.has(vi)?'row-validated':'row-pending';if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className='btn val-btn '+(pepState.validatedRows.has(vi)?'btn-ok':'btn-g');}updateProgress();}
-function unvalRow(vi){pepState.validatedRows.delete(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className='row-pending';if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}updateProgress();}
+function toggleVal(vi){if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);else pepState.validatedRows.add(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className=(pepState.validatedRows.has(vi)?'row-validated':'')+' '+( tr.className.includes('var-row')?'var-row':'');if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className='btn val-btn '+(pepState.validatedRows.has(vi)?'btn-ok':'btn-g');}updateProgress();}
+function unvalRow(vi){pepState.validatedRows.delete(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr){const cls=tr.className;tr.className=cls.replace('row-validated','').trim();}if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}updateProgress();}
 function updateProgress(){const tot=pepState.vegetaux.length;const val=pepState.validatedRows.size;const filled=pepState.vegetaux.filter((_,vi)=>pepState.reponses[vi]?.prix!=null).length;const el=document.getElementById('submit-progress');if(el)el.textContent=val+'/'+tot+' validées · '+filled+' prix saisis';}
 
 async function submitPrix(){
@@ -669,14 +592,14 @@ async function submitPrix(){
 }
 async function upsertCatalogue(vg,prix){
   if(!pepState.pepId)return;
-  await supa.from('catalogue_pepiniere').upsert({pepiniere_id:pepState.pepId,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.contenant||vg.conditionnement||null,prix_unit_ht:prix,updated_at:new Date().toISOString()},{onConflict:'pepiniere_id,latin,calibre,contenant'});
+  await supa.from('catalogue_pepiniere').upsert({pepiniere_id:pepState.pepId,latin:vg.latin,calibre:vg.calibre||null,contenant:vg.contenant||null,prix_unit_ht:prix,updated_at:new Date().toISOString()},{onConflict:'pepiniere_id,latin,calibre,contenant'});
 }
 async function notifyConsultant(){
   if(!pepState.consultId)return;
   try{
     const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).single();
     if(!consult)return;
-    await supa.from('notifications').insert({type:'pepiniere_reponse',user_id:consult.consultant_id,message:`${pepState.pepNom} a répondu à la consultation "${consult.affaire||'—'}" — ${consult.ville||'—'}`,consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false}).catch(()=>{});
+    await supa.from('notifications').insert({type:'pepiniere_reponse',user_id:consult.consultant_id,message:pepState.pepNom+' a répondu à la consultation "'+(consult.affaire||'—')+'" — '+(consult.ville||'—'),consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false}).catch(()=>{});
   }catch(e){console.log('Notification:',e.message);}
 }
 
@@ -694,30 +617,22 @@ function renderCatalogue(){
   if(!pepState.hasAccount){el.innerHTML='<div class="notice notice-warn">Le catalogue est disponible uniquement avec un compte permanent.</div>';return;}
   const search=(document.getElementById('cat-search')?.value||'').toLowerCase();
   const list=pepState.catalogue.filter(c=>!search||c.latin?.toLowerCase().includes(search));
-  if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📦</div><p>Aucun article dans le catalogue.</p></div>';return;}
+  if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📦</div><p>Aucun article.</p></div>';return;}
   el.innerHTML='<div style="overflow-x:auto;"><table class="cat-tbl"><thead><tr><th>Nom latin</th><th>Calibre</th><th>Contenant</th><th>Prix unit. HT (€)</th><th>Remise %</th><th>Prix après remise</th><th>Mis à jour</th><th></th></tr></thead><tbody>'+
-    list.map((c,i)=>`<tr>
-      <td><em style="font-size:.76rem;">${c.latin||'—'}</em></td>
-      <td style="font-family:var(--mono);font-size:.7rem;">${c.calibre||'—'}</td>
-      <td style="font-size:.7rem;">${c.contenant||'—'}</td>
-      <td style="font-family:var(--mono);font-weight:600;color:var(--sage-d);">${c.prix_unit_ht?fmt(c.prix_unit_ht)+' €':'—'}</td>
-      <td><input type="number" step=".1" placeholder="0" class="pct-inp" id="pct-${i}" value="${c._pct||''}" onchange="applyLinePct(${i},this.value)"></td>
-      <td id="after-${i}" style="font-family:var(--mono);font-size:.7rem;color:var(--earth);">${c._prixApres?fmt(c._prixApres)+' €':'—'}</td>
-      <td style="font-size:.64rem;color:var(--sage);font-family:var(--mono);">${c.updated_at?new Date(c.updated_at).toLocaleDateString('fr-FR'):'—'}</td>
-      <td><button class="btn btn-d btn-sm" onclick="delCatItem('${c.id}')">✕</button></td>
-    </tr>`).join('')+'</tbody></table></div>';
+    list.map((c,i)=>'<tr>'+
+      '<td><em style="font-size:.76rem;">'+(c.latin||'—')+'</em></td>'+
+      '<td style="font-family:var(--mono);font-size:.7rem;">'+(c.calibre||'—')+'</td>'+
+      '<td style="font-size:.7rem;">'+(c.contenant||'—')+'</td>'+
+      '<td style="font-family:var(--mono);font-weight:600;color:var(--sage-d);">'+(c.prix_unit_ht?fmt(c.prix_unit_ht)+' €':'—')+'</td>'+
+      '<td><input type="number" step=".1" placeholder="0" class="pct-inp" id="pct-'+i+'" value="'+(c._pct||'')+'" onchange="applyLinePct('+i+',this.value)"></td>'+
+      '<td id="after-'+i+'" style="font-family:var(--mono);font-size:.7rem;color:var(--earth);">'+(c._prixApres?fmt(c._prixApres)+' €':'—')+'</td>'+
+      '<td style="font-size:.64rem;color:var(--sage);font-family:var(--mono);">'+(c.updated_at?new Date(c.updated_at).toLocaleDateString('fr-FR'):'—')+'</td>'+
+      '<td><button class="btn btn-d btn-sm" onclick="delCatItem(\''+c.id+'\')">✕</button></td>'+
+    '</tr>').join('')+'</tbody></table></div>';
 }
-function applyLinePct(i,pct){
-  const p=parseFloat(pct);const search=(document.getElementById('cat-search')?.value||'').toLowerCase();const c=pepState.catalogue.filter(x=>!search||x.latin?.toLowerCase().includes(search))[i];
-  if(!c||isNaN(p))return;c._pct=p;c._prixApres=c.prix_unit_ht*(1+p/100);
-  const el=document.getElementById('after-'+i);if(el)el.textContent=fmt(c._prixApres)+' €';
-}
-function applyCatPct(){
-  const pct=parseFloat(document.getElementById('cat-pct').value);if(isNaN(pct)){toast('Pourcentage invalide','error');return;}
-  pepState.catalogue.forEach(c=>{c._pct=pct;c._prixApres=c.prix_unit_ht*(1+pct/100);});
-  renderCatalogue();toast('Remise de '+(pct>0?'+':'')+pct+'% appliquée');
-}
-async function delCatItem(id){if(!confirm('Supprimer cet article ?'))return;await supa.from('catalogue_pepiniere').delete().eq('id',id);pepState.catalogue=pepState.catalogue.filter(c=>c.id!==id);document.getElementById('cat-count').textContent=pepState.catalogue.length+' article(s)';renderCatalogue();}
+function applyLinePct(i,pct){const p=parseFloat(pct);const search=(document.getElementById('cat-search')?.value||'').toLowerCase();const c=pepState.catalogue.filter(x=>!search||x.latin?.toLowerCase().includes(search))[i];if(!c||isNaN(p))return;c._pct=p;c._prixApres=c.prix_unit_ht*(1+p/100);const el=document.getElementById('after-'+i);if(el)el.textContent=fmt(c._prixApres)+' €';}
+function applyCatPct(){const pct=parseFloat(document.getElementById('cat-pct').value);if(isNaN(pct)){toast('Pourcentage invalide','error');return;}pepState.catalogue.forEach(c=>{c._pct=pct;c._prixApres=c.prix_unit_ht*(1+pct/100);});renderCatalogue();toast('Remise de '+(pct>0?'+':'')+pct+'% appliquée');}
+async function delCatItem(id){if(!confirm('Supprimer ?'))return;await supa.from('catalogue_pepiniere').delete().eq('id',id);pepState.catalogue=pepState.catalogue.filter(c=>c.id!==id);document.getElementById('cat-count').textContent=pepState.catalogue.length+' article(s)';renderCatalogue();}
 
 async function importCatalogue(inp){
   if(!inp.files[0])return;const file=inp.files[0];inp.value='';
@@ -726,80 +641,44 @@ async function importCatalogue(inp){
   try{
     if(ext==='pdf'){
       const b64=await toB64(file);
-      showCatSt('<div class="aibox"><div class="spin"></div>Lecture du PDF par l\'IA…</div>');
       const res=await callClaude([{role:'user',content:[
         {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
-        {type:'text',text:`Expert végétaux paysagiste. Extrais le tableau de végétaux de ce document.
-
-FORMAT TYPIQUE : Quantitat | Concepte | Altura | Preu | %Dte. | Preu Net
-- Concepte/Désignation = nom latin + contenant séparés par |
-- Altura/Hauteur = calibre (peut être vide)
-- Preu/Prix brut = IGNORER (c'est le prix avant remise)
-- %Dte./Remise = IGNORER
-- Preu Net/Prix Net = UTILISER — c'est le prix final HT après remise
-
-SÉPARATION : "Arbutus unedo | C10L" → latin="Arbutus unedo", contenant="C10L"
-CONTENANTS : C2L, C5L, C10L, C15L, C20L, C35L, C40L, MG, RN, AP, CT
-CALIBRES : 12/14, 16/18, 60-80, H150, H200 (jamais un prix ni un contenant)
-PRIX : utiliser UNIQUEMENT le prix net après remise. Ignorer prix brut et %.
-Ignorer : en-têtes, totaux, coordonnées pépinière, lignes vides.
-
-JSON uniquement :
-{"colonnes":["latin","calibre","contenant","qte","prixNet"],
- "lignes":[["nom latin","calibre","contenant","qte","prixNet"],...]}`}
+        {type:'text',text:'Expert végétaux paysagiste. Extrais le catalogue de prix.\nFORMAT POSSIBLE : Quantitat | Concepte | Altura | Preu | %Dte. | Preu Net\n- Concepte = nom latin + contenant séparés par |\n- Altura = calibre\n- Preu Net = prix final après remise → UTILISER CE PRIX uniquement\n- Preu brut et %Dte = IGNORER\nSÉPARATION : "Arbutus unedo | C10L" → latin="Arbutus unedo", contenant="C10L"\nCONTENANTS : C2L, C5L, C10L, C15L, C20L, C35L, C40L, MG, RN, AP, CT\nIgnorer : en-têtes, totaux, coordonnées.\nJSON uniquement :\n{"colonnes":["latin","calibre","contenant","qte","prixNet"],\n "lignes":[["nom","cal","cont","qte","prixNet"],...]}'}
       ]}],3000);
-      let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('PDF illisible — essayez un format Excel ou CSV.');}
-      if(!p.lignes?.length)throw new Error('Aucune donnée extraite du PDF.');
-      // Aperçu avant confirmation
-      showCatSt(`<div style="background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;padding:11px 13px;">
-        <div style="font-weight:600;font-size:.76rem;margin-bottom:8px;color:var(--sage-d);">✓ ${p.lignes.length} ligne(s) extraite(s) — vérifiez l'aperçu ci-dessous</div>
-        <div style="overflow-x:auto;max-height:120px;overflow-y:auto;font-size:.66rem;font-family:var(--mono);">
-          ${p.lignes.slice(0,6).map(r=>'<div style="padding:2px 0;border-bottom:1px dotted var(--border);">'+r.map(x=>`<span style="margin-right:12px;">${x}</span>`).join('')+'</div>').join('')}
-        </div>
-        <button class="btn btn-p btn-sm" style="margin-top:9px;" onclick="processCatalogueRows(${JSON.stringify(p.colonnes)},${JSON.stringify(p.lignes)})">✓ Confirmer l'import</button>
-      </div>`);
+      let p;try{p=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){throw new Error('PDF illisible.');}
+      if(!p.lignes?.length)throw new Error('Aucune donnée extraite.');
+      showCatSt('<div style="background:#e8f0e4;border:1px solid var(--sage-l);border-radius:7px;padding:11px 13px;">'+
+        '<div style="font-weight:600;font-size:.76rem;margin-bottom:8px;color:var(--sage-d);">✓ '+p.lignes.length+' ligne(s) extraite(s)</div>'+
+        '<div style="overflow-x:auto;max-height:120px;overflow-y:auto;font-size:.66rem;font-family:var(--mono);">'+
+          p.lignes.slice(0,6).map(r=>'<div style="padding:2px 0;border-bottom:1px dotted var(--border);">'+r.map(x=>'<span style="margin-right:12px;">'+(x||'—')+'</span>').join('')+'</div>').join('')+
+        '</div>'+
+        '<button class="btn btn-p btn-sm" style="margin-top:9px;" onclick="processCatalogueRows('+JSON.stringify(p.colonnes)+','+JSON.stringify(p.lignes)+')">✓ Confirmer l\'import</button>'+
+      '</div>');
       return;
     }
-    // Excel / CSV
     let rows=[];
     if(ext==='csv'){rows=parseCSVAuto(await file.text());}
     else{const buf=await file.arrayBuffer();const wb=XLSX.read(buf,{type:'array',cellDates:true});const ws=wb.Sheets[wb.SheetNames[0]];rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false});}
     rows=rows.map(r=>r.map(c=>String(c??'').trim())).filter(r=>r.some(c=>c!==''));
     if(!rows.length)throw new Error('Fichier vide.');
-    let hi=0;rows.slice(0,8).forEach((r,i)=>{const ne=r.filter(c=>c!=='');if(!ne.length)return;const sc=(ne.filter(c=>isNaN(parseFloat(c))).length/ne.length)*10+ne.length;if(sc>(rows[hi].filter(c=>isNaN(parseFloat(c))).length/Math.max(rows[hi].filter(c=>c!=='').length,1))*10+rows[hi].filter(c=>c!=='').length)hi=i;});
+    let hi=0;let bs=-1;rows.slice(0,8).forEach((r,i)=>{const ne=r.filter(c=>c!=='');if(!ne.length)return;const sc=(ne.filter(c=>isNaN(parseFloat(c))).length/ne.length)*10+ne.length;if(sc>bs){bs=sc;hi=i;}});
     const cols=rows[hi].map(c=>String(c).trim());const data=rows.slice(hi+1).filter(r=>r.some(c=>c!==''));
     await processCatalogueRows(cols,data);
   }catch(e){showCatSt('<div class="notice notice-warn">⚠️ '+e.message+'</div>');}
 }
 
 async function processCatalogueRows(cols,rows){
-  showCatSt('<div class="aibox"><div class="spin"></div>Analyse IA des colonnes…</div>');
-  const res=await callClaude([{role:'user',content:`Catalogue prix végétaux. Colonnes: ${JSON.stringify(cols)}\nDonnées (5): ${JSON.stringify(rows.slice(0,5))}\nRÈGLES STRICTES:\n- calibre=taille (12/14, 16/18, 60-80cm). contenant=mode culture (MG,RN,AP,CT,C2,C35). C35=contenant, 12/14=calibre.\n- Si une colonne mélange tout, "mixed":true\nJSON: {"latin":X,"calibre":X,"contenant":X,"prix":X,"mixed":false}`}],400);
+  showCatSt('<div class="aibox"><div class="spin"></div>Analyse IA…</div>');
+  const res=await callClaude([{role:'user',content:'Catalogue prix végétaux. Colonnes: '+JSON.stringify(cols)+'\nDonnées (5): '+JSON.stringify(rows.slice(0,5))+'\nRÈGLES : calibre=taille (12/14, 60-80cm). contenant=mode culture (MG,RN,C10L,C35L). prix=prix net après remise uniquement.\nSi colonne mélange nom+contenant avec |, "mixed":true\nJSON: {"latin":X,"calibre":X,"contenant":X,"prix":X,"mixed":false}'}],400);
   let mp;try{mp=JSON.parse(res.replace(/```json|```/g,'').trim());}catch(e){mp={};}
-  // Détecter si parsing mixte nécessaire
   const sampleLatin=mp.latin!=null?rows.slice(0,6).map(r=>String(r[mp.latin]||'')).join(' '):'';
-  const needsMixed=mp.mixed||(!mp.calibre&&!mp.contenant)||/\|/.test(sampleLatin)||/\b(MG|RN|AP|CT|C\d+L?)\b/.test(sampleLatin)||/\d+\/\d+/.test(sampleLatin);
+  const needsMixed=mp.mixed||(!mp.calibre&&!mp.contenant)||/\|/.test(sampleLatin)||/\b(C\d+L?|MG|RN|AP|CT)\b/.test(sampleLatin)||/\d+\/\d+/.test(sampleLatin);
   let parsedMixed=null;
   if(needsMixed&&mp.latin!=null){
     showCatSt('<div class="aibox"><div class="spin"></div>Séparation désignation/calibre/contenant…</div>');
     const latinVals=rows.map(r=>String(r[mp.latin]??'').trim()).filter(Boolean);
     try{
-      const mRes=await callClaude([{role:'user',content:`Expert végétaux paysagiste. Sépare chaque désignation en 3 parties.
-d = nom latin + cultivar UNIQUEMENT. Jamais de taille ni de contenant.
-t = calibre/taille (12/14, 16/18, 60-80cm, H150). Peut être vide.
-c = contenant normalisé (MG, RN, AP, CT, C2L, C10L, C35L, C2, C35). C+nombre = conteneur litres. Peut être vide.
-SÉPARATEURS : |, espace, /, virgule entre nom et calibre/contenant.
-
-EXEMPLES :
-"Arbutus unedo | C10L" → {"d":"Arbutus unedo","t":"","c":"C10L"}
-"Cistus x florentinus | C2L" → {"d":"Cistus x florentinus","t":"","c":"C2L"}
-"Euphorbia dendroides | C2L" → {"d":"Euphorbia dendroides","t":"","c":"C2L"}
-"Acer platanoides 12/14 MG" → {"d":"Acer platanoides","t":"12/14","c":"MG"}
-"Betula pendula C35" → {"d":"Betula pendula","t":"","c":"C35"}
-"Taxus baccata H150 AP" → {"d":"Taxus baccata","t":"H150","c":"AP"}
-
-DONNÉES : ${JSON.stringify(latinVals.slice(0,80))}
-JSON uniquement, même longueur : [{"d":"","t":"","c":""},...]`}],2000);
+      const mRes=await callClaude([{role:'user',content:'Expert végétaux. Sépare chaque désignation.\nd=nom latin UNIQUEMENT\nt=calibre/taille (12/14, 60-80cm)\nc=contenant (MG,RN,AP,CT,C2L,C10L,C35L...). Séparateur peut être |, espace, /.\n\nEXEMPLES :\n"Arbutus unedo | C10L" → {"d":"Arbutus unedo","t":"","c":"C10L"}\n"Cistus x florentinus | C2L" → {"d":"Cistus x florentinus","t":"","c":"C2L"}\n"Acer platanoides 12/14 MG" → {"d":"Acer platanoides","t":"12/14","c":"MG"}\n\nDONNÉES : '+JSON.stringify(latinVals.slice(0,80))+'\nJSON : [{"d":"","t":"","c":""},...]'}],2000);
       parsedMixed=JSON.parse(mRes.replace(/```json|```/g,'').trim());
     }catch(e){parsedMixed=null;}
   }
@@ -818,13 +697,11 @@ JSON uniquement, même longueur : [{"d":"","t":"","c":""},...]`}],2000);
     const contU=cont.toUpperCase().trim();const contN=/^C(\d+)L?$/.test(contU)?contU.replace(/L$/,''):/^(MG|RN|AP|CT)$/.test(contU)?contU:cont;
     toInsert.push({pepiniere_id:pepState.pepId,latin:lat,calibre:cal||null,contenant:contN||null,prix_unit_ht:prixVal,updated_at:new Date().toISOString()});n++;
   });
-  if(!n){showCatSt('<div class="notice notice-warn">⚠️ Aucun article valide trouvé. Vérifiez que le fichier contient bien des noms latins et des prix.</div>');return;}
-  if(toInsert.length){
-    const{error}=await supa.from('catalogue_pepiniere').upsert(toInsert,{onConflict:'pepiniere_id,latin,calibre,contenant'});
-    if(error){showCatSt('<div class="notice notice-warn">⚠️ Erreur : '+error.message+'</div>');return;}
-  }
-  showCatSt('<div class="notice notice-ok">✓ '+n+' article(s) importés dans le catalogue.</div>');
-  setTimeout(()=>{const e=document.getElementById('cat-status');if(e)e.style.display='none';},6000);
+  if(!n){showCatSt('<div class="notice notice-warn">⚠️ Aucun article valide trouvé.</div>');return;}
+  const{error}=await supa.from('catalogue_pepiniere').upsert(toInsert,{onConflict:'pepiniere_id,latin,calibre,contenant'});
+  if(error){showCatSt('<div class="notice notice-warn">⚠️ Erreur : '+error.message+'</div>');return;}
+  showCatSt('<div class="notice notice-ok">✓ '+n+' article(s) importés.</div>');
+  setTimeout(()=>{const e=document.getElementById('cat-status');if(e)e.style.display='none';},5000);
   await loadCatalogue();
 }
 function showCatSt(h){const e=document.getElementById('cat-status');e.style.display='block';e.innerHTML=h;}
@@ -837,7 +714,7 @@ async function loadHist(){
   const{data}=await supa.from('reponses_pepinieres').select('*,vegetaux(latin,calibre,contenant),consultations(affaire,ville,date_consult)').eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
   pepState.allHist=data||[];
   const firms=[...new Set((data||[]).map(r=>r.consultations?.affaire).filter(Boolean))];
-  const sel=document.getElementById('h-firm');sel.innerHTML='<option value="">Toutes les entreprises</option>'+firms.map(f=>`<option value="${f}">${f}</option>`).join('');
+  const sel=document.getElementById('h-firm');sel.innerHTML='<option value="">Toutes les entreprises</option>'+firms.map(f=>'<option value="'+f+'">'+f+'</option>').join('');
   renderHist();
 }
 function renderHist(){
@@ -847,41 +724,35 @@ function renderHist(){
   const list=pepState.allHist.filter(r=>{if(fF&&r.consultations?.affaire!==fF)return false;if(fS&&!r.vegetaux?.latin?.toLowerCase().includes(fS))return false;return true;});
   if(!list.length){el.innerHTML='<div class="empty"><div class="ei">📋</div><p>Aucun historique.</p></div>';return;}
   const grouped={};list.forEach(r=>{const k=r.consultation_id;if(!grouped[k])grouped[k]={c:r.consultations,items:[]};grouped[k].items.push(r);});
-  el.innerHTML=Object.entries(grouped).map(([_,g])=>`<div class="hist-group">
-    <div class="hist-hdr">${g.c?.affaire||'—'} — ${g.c?.ville||'—'}</div>
-    <div class="hist-meta">${g.c?.date_consult?'Consultation du '+new Date(g.c.date_consult).toLocaleDateString('fr-FR'):''}</div>
-    ${g.items.map(r=>`<div class="hist-row">
-      <span><em style="font-size:.72rem;">${r.vegetaux?.latin||'—'}</em> <span style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">${r.vegetaux?.calibre||''} ${r.vegetaux?.contenant||''}</span></span>
-      <span class="hist-p">${r.prix_unit_ht?fmt(r.prix_unit_ht)+' €':'—'}</span>
-    </div>
-    ${(r.historique||[]).length>1?`<div style="margin:2px 0 4px 10px;">${(r.historique||[]).slice(0,-1).map(h=>`<span class="hist-prev">${new Date(h.ts).toLocaleDateString('fr-FR')} : ${h.prix?fmt(h.prix)+' €':'—'}</span>`).join(' · ')}</div>`:''}`).join('')}
-  </div>`).join('');
+  el.innerHTML=Object.entries(grouped).map(([_,g])=>'<div class="hist-group">'+
+    '<div class="hist-hdr">'+(g.c?.affaire||'—')+' — '+(g.c?.ville||'—')+'</div>'+
+    '<div class="hist-meta">'+(g.c?.date_consult?'Consultation du '+new Date(g.c.date_consult).toLocaleDateString('fr-FR'):'')+'</div>'+
+    g.items.map(r=>'<div class="hist-row">'+
+      '<span><em style="font-size:.72rem;">'+(r.vegetaux?.latin||'—')+'</em> <span style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">'+(r.vegetaux?.calibre||'')+' '+(r.vegetaux?.contenant||'')+'</span></span>'+
+      '<span class="hist-p">'+(r.prix_unit_ht?fmt(r.prix_unit_ht)+' €':'—')+'</span></div>'+
+      ((r.historique||[]).length>1?'<div style="margin:2px 0 4px 10px;">'+(r.historique||[]).slice(0,-1).map(h=>'<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);">'+new Date(h.ts).toLocaleDateString('fr-FR')+' : '+(h.prix?fmt(h.prix)+' €':'—')+'</span>').join(' · ')+'</div>':'')).join('')+
+  '</div>').join('');
 }
 
 // PROFIL
 async function saveProfil(){
   if(!pepState.user)return;
   const lang=document.getElementById('p-lang').value;const notif=document.getElementById('p-notif').value;
-  const{error}=await supa.from('compte_pepiniere').upsert({
-    id:pepState.user.id,
-    nom:document.getElementById('p-nom').value.trim(),
-    pepnom:document.getElementById('p-pepnom').value.trim(),
-    tel:document.getElementById('p-tel').value.trim(),
-    siret:document.getElementById('p-siret').value.trim(),
-    langue:lang,notif_preference:notif,email:pepState.user.email
-  });
+  const payload={id:pepState.user.id,nom:document.getElementById('p-nom').value.trim(),pepnom:document.getElementById('p-pepnom').value.trim(),tel:document.getElementById('p-tel').value.trim(),langue:lang,notif_preference:notif,email:pepState.user.email};
+  const{error}=await supa.from('compte_pepiniere').upsert(payload);
   if(error){toast('Erreur : '+error.message,'error');return;}
-  setLang(lang);toast('Profil enregistré ✓');
+  setLang(lang);pepState.pepNom=payload.pepnom||payload.nom||pepState.pepNom;
+  document.getElementById('p-uchip').textContent='🌿 '+pepState.pepNom;
+  toast('Profil enregistré ✓');
 }
 async function changePwd(){
   const pwd=document.getElementById('p-pwd').value;const pwd2=document.getElementById('p-pwd2').value;
-  if(!pwd||pwd.length<8){toast('Mot de passe trop court','error');return;}
-  if(pwd!==pwd2){toast('Mots de passe différents','error');return;}
+  if(!pwd||pwd.length<8){toast('Trop court','error');return;}if(pwd!==pwd2){toast('Différents','error');return;}
   const{error}=await supa.auth.updateUser({password:pwd});
   if(error){toast('Erreur : '+error.message,'error');return;}
   document.getElementById('p-pwd').value='';document.getElementById('p-pwd2').value='';toast('Mot de passe modifié ✓');
 }
-async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('Déconnecté de tous les appareils.');setTimeout(()=>location.reload(),1500);}
+async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('Déconnecté.');setTimeout(()=>location.reload(),1500);}
 async function deleteAccount(){
   if(!pepState.user)return;
   await supa.from('compte_pepiniere').delete().eq('id',pepState.user.id);
@@ -889,17 +760,14 @@ async function deleteAccount(){
 }
 
 // UTILS
-const fmt=n=>typeof n==='number'?n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}):n;
+const fmt=n=>typeof n==='number'?n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}):String(n||0);
 function toB64(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=()=>rej(new Error('Lecture impossible'));r.readAsDataURL(f);});}
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
-
 async function callClaude(messages,maxTokens=1000){
-  let res;
-  try{res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTokens,messages})});}
+  let res;try{res=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:maxTokens,messages})});}
   catch(e){throw new Error('Proxy injoignable : '+e.message);}
   if(!res.ok)throw new Error('Erreur proxy HTTP '+res.status);
-  const data=await res.json();
-  if(data.error)throw new Error(data.error.message||'Erreur API');
+  const data=await res.json();if(data.error)throw new Error(data.error.message||'Erreur API');
   return data.content.map(b=>b.text||'').join('');
 }
 </script>
