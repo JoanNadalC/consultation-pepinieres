@@ -136,7 +136,6 @@ textarea{resize:vertical;min-height:54px;}
       <div class="atabs2">
         <button class="atab2 active" id="at-login" onclick="swATab('login')">Connexion</button>
         <button class="atab2" id="at-reg" onclick="swATab('reg')">Créer un compte</button>
-        <button class="atab2" id="at-magic" onclick="swATab('magic')">Lien magique</button>
       </div>
       <div id="af-login">
         <div class="gr" style="margin-bottom:9px;"><div><label>Email</label><input type="email" id="a-email" placeholder="contact@pepiniere.fr" onkeydown="if(event.key==='Enter')doALogin()"></div></div>
@@ -173,19 +172,13 @@ textarea{resize:vertical;min-height:54px;}
         </label>
         <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doAReg()">Créer mon compte</button>
       </div>
-      <div id="af-magic" style="display:none;">
-        <div class="notice notice-warn" style="margin-bottom:10px;">⚠️ Le lien magique ne donne pas accès à l'historique complet.</div>
-        <div class="gr" style="margin-bottom:12px;"><div><label>Votre email</label><input type="email" id="m-email" placeholder="contact@pepiniere.fr"></div></div>
-        <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doMagic()">📧 Envoyer le lien</button>
-        <p class="tip" style="text-align:center;margin-top:7px;">Lien valable 24h.</p>
-      </div>
+
     </div>
 
     <div id="wf-guest" class="wf">
-      <div class="notice notice-info" style="margin-bottom:10px;">En mode invité, aucun historique ne sera sauvegardé.</div>
-      <p style="font-size:.76rem;color:var(--sage);margin-bottom:10px;">Si vous avez reçu un lien par email, cliquez dessus — le code sera pré-rempli automatiquement.</p>
-      <div class="gr" style="margin-bottom:9px;"><div><label>Votre nom ou pépinière *</label><input type="text" id="g-nom" placeholder="Pépinière Durand"></div></div>
-      <div class="gr" style="margin-bottom:12px;"><div><label>Code d'accès (depuis votre email) *</label><input type="text" id="g-token" placeholder="Collez le code reçu"></div></div>
+      <div class="notice notice-info" style="margin-bottom:10px;">En mode invité, aucun historique ne sera sauvegardé. Votre nom sera celui enregistré par le consultant.</div>
+      <p style="font-size:.76rem;color:var(--sage);margin-bottom:10px;">Si vous avez reçu un lien par email, cliquez dessus — le code sera pré-rempli et vous arriverez directement sur la consultation.</p>
+      <div class="gr" style="margin-bottom:12px;"><div><label>Code d'accès (depuis votre email) *</label><input type="text" id="g-token" placeholder="Collez le code reçu par email"></div></div>
       <button class="btn btn-p" style="width:100%;justify-content:center;" onclick="doGuest()">Accéder à la consultation</button>
     </div>
   </div>
@@ -344,7 +337,7 @@ let pepState={mode:null,user:null,pepId:null,pepNom:'',consultId:null,vegetaux:[
 
 // AUTH TABS
 function swWTab(t){['account','guest'].forEach(x=>{document.getElementById('wt-'+x).classList.toggle('active',x===t);document.getElementById('wf-'+x).classList.toggle('active',x===t);});document.getElementById('werr').style.display='none';}
-function swATab(t){['login','reg','magic'].forEach(x=>{document.getElementById('at-'+x).classList.toggle('active',x===t);document.getElementById('af-'+x).style.display=x===t?'block':'none';});}
+function swATab(t){['login','reg'].forEach(x=>{document.getElementById('at-'+x).classList.toggle('active',x===t);document.getElementById('af-'+x).style.display=x===t?'block':'none';});}
 
 // AUTH
 async function doALogin(){
@@ -376,14 +369,17 @@ async function doMagic(){
   showWErr('Lien envoyé à '+email,false);
 }
 async function doGuest(){
-  const token=document.getElementById('g-token').value.trim();const nom=document.getElementById('g-nom').value.trim();
-  if(!token){showWErr('Code d\'accès requis.');return;}
+  const token=document.getElementById('g-token').value.trim();
+  if(!token){showWErr('Code d'accès requis — copiez-le depuis votre email.');return;}
   const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
-  if(error||!inv){showWErr('Code invalide ou expiré.');return;}
-  if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré.');return;}
+  if(error||!inv){showWErr('Code invalide ou expiré. Vérifiez votre email.');return;}
+  if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré. Demandez un nouveau lien au consultant.');return;}
   const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
   if(!consult){showWErr('Consultation introuvable.');return;}
-  pepState.mode='guest';pepState.pepNom=nom||'Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
+  // Récupérer le nom depuis la table pepinieres (saisi par le consultant)
+  const{data:pepData}=await supa.from('pepinieres').select('nom').eq('id',inv.pepiniere_id).single();
+  const nom=pepData?.nom||'Invité';
+  pepState.mode='guest';pepState.pepNom=nom;pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
   showApp(true);await openConsult(consult,inv.pepiniere_id);
 }
 
@@ -423,7 +419,7 @@ async function afterPepLogin(user,hasAccount=true){
       if(consult){if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;}
     }
   }
-  loadDash();if(pepState.hasAccount){loadHist();loadCatalogue();}
+  loadDash();loadNotifsBadge();if(pepState.hasAccount){loadHist();loadCatalogue();}
 }
 
 function showApp(guestMode=false){
@@ -448,6 +444,7 @@ window.addEventListener('load',async()=>{
       const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
       if(consult){pepState.mode='guest';pepState.pepNom='Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;showApp(true);await openConsult(consult,inv.pepiniere_id);return;}
     }
+    // Afficher le formulaire invité avec le code pré-rempli
     document.getElementById('g-token').value=token;swWTab('guest');
   }
 });
@@ -463,6 +460,22 @@ function goP(name){
 }
 
 // DASHBOARD
+async function loadNotifsBadge(){
+  if(!pepState.user)return;
+  const{data}=await supa.from('notifications').select('id').eq('user_id',pepState.user.id).eq('read',false);
+  const count=(data||[]).length;
+  // Afficher badge sur l'onglet Consultations
+  const tab=document.querySelector('.tab.active, .tab:first-child');
+  if(count>0&&tab){
+    if(!document.getElementById('notif-badge-tab')){
+      const badge=document.createElement('span');badge.id='notif-badge-tab';
+      badge.style.cssText='background:var(--earth);color:white;border-radius:50%;width:14px;height:14px;font-size:.55rem;display:inline-flex;align-items:center;justify-content:center;margin-left:4px;font-family:var(--mono);font-weight:600;';
+      badge.textContent=count;
+      document.querySelectorAll('.tab')[0].appendChild(badge);
+    }
+  }
+}
+
 async function loadDash(){
   if(!pepState.pepId)return;
   const{data:reps}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
@@ -487,7 +500,9 @@ function renderDash(){
     '<div class="cc-meta">'+(c.ville||'—')+' · Cons. du '+(c.date_consult?new Date(c.date_consult).toLocaleDateString('fr-FR'):'?')+' · Livraison : '+(c.date_livraison?new Date(c.date_livraison).toLocaleDateString('fr-FR'):'?')+'</div>'+
     '<div style="display:flex;gap:6px;margin-top:7px;align-items:center;flex-wrap:wrap;">'+
       '<button class="btn btn-p btn-sm" onclick="openConsultById(\''+c.id+'\')">✏️ '+(c.statut_pep==='répondu'?'Modifier mes prix':'Saisir mes prix')+'</button>'+
-      (c.repDate?'<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);margin-left:auto;">Dernier envoi : '+new Date(c.repDate).toLocaleDateString('fr-FR')+'</span>':'')+
+      (!c.repDate&&c.invDate?'<span style="background:#fdecd4;color:#7a4a10;font-family:var(--mono);font-size:.58rem;padding:2px 7px;border-radius:20px;">🔔 Nouveau</span>':'')+
+      (c.repDate?'<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);margin-left:auto;">Dernier envoi : '+new Date(c.repDate).toLocaleDateString('fr-FR')+'</span>':
+       c.invDate?'<span style="font-size:.6rem;color:var(--sage);font-family:var(--mono);margin-left:auto;">Reçue le '+new Date(c.invDate).toLocaleDateString('fr-FR')+'</span>':'')+
     '</div></div>').join('')+'</div>';
 }
 async function openConsultById(id){const c=pepState.allConsults.find(x=>x.id===id);if(c)await openConsult(c,pepState.pepId);}
@@ -506,7 +521,17 @@ async function openConsult(consult,pepId){
   pepState.reponses={};
   (rd||[]).forEach(r=>{const vi=pepState.vegetaux.findIndex(v=>v.id===r.vegetal_id);if(vi>=0){pepState.reponses[vi]={prix:r.prix_unit_ht,variante:r.variante||'',comment:r.commentaire||'',fraisPort:r.frais_port,hist:r.historique||[]};pepState.validatedRows.add(vi);}});
   if(pepState.hasAccount)await prefillFromCatalogueAndHistory();
+  // Marquer les notifications liées à cette consultation comme lues
+  if(pepState.user){
+    await supa.from('notifications').update({read:true})
+      .eq('user_id',pepState.user.id)
+      .eq('consultation_id',consult.id)
+      .eq('read',false)
+      .catch(()=>{});
+  }
   renderSaisie();goP('saisie');
+  // Retirer le badge si plus de notifs
+  loadNotifsBadge();
 }
 
 // PRÉ-REMPLISSAGE
