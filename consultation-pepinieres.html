@@ -1234,12 +1234,23 @@ async function sendToPortal(pi){
 }
 
 async function openMailtoWithToken(pi){
-  if(!currentConsultId){toast('Enregistrez d\'abord la consultation.','error');return;}
+  // Enregistrer si besoin pour avoir un ID
+  if(!currentConsultId){await saveConsultation();if(!currentConsultId){toast('Erreur enregistrement.','error');return;}}
   const p=peps[pi];const lang=p.langue||'fr';const Lp=LNG[lang]||LNG.fr;
   const ville=v('s-ville'),affaire=v('s-affaire'),dateC=v('s-date');
   const subj=encodeURIComponent((Lp.mailSubj)+(ville?' — '+ville:'')+(affaire?' — '+affaire:'')+' — '+dateC);
-  const{data:inv}=await supa.from('invitations_consultation').select('token').eq('consultation_id',currentConsultId).eq('pepiniere_id',p.id).single();
-  const token=inv?.token;const link=token?PORTAL_URL+'?token='+token:PORTAL_URL;
+  // Créer ou récupérer le token
+  let token=null;
+  const{data:existInv}=await supa.from('invitations_consultation').select('token').eq('consultation_id',currentConsultId).eq('pepiniere_id',p.id).single();
+  if(existInv?.token){token=existInv.token;}
+  else{
+    const{data:newInv}=await supa.from('invitations_consultation').insert({
+      consultation_id:currentConsultId,pepiniere_id:p.id,
+      expires_at:new Date(Date.now()+30*24*3600*1000).toISOString()
+    }).select('token').single();
+    token=newInv?.token;
+  }
+  const link=token?PORTAL_URL+'?token='+token:PORTAL_URL;
   const body=encodeURIComponent(Lp.mailHi+'\n\n'+Lp.mailBody+'\n\n'+Lp.mailProj+' : '+(affaire||'—')+' — '+(ville||'—')+'\n'+Lp.mailDel+' : '+(v('s-livraison')||'?')+'\n\n'+Lp.mailFile+'\n\n'+Lp.mailPortal+' :\n'+link+'\n\n'+Lp.mailReg+',\n'+(v('s-nom')||''));
   window.location.href='mailto:'+(p.email||'')+'?subject='+subj+'&body='+body;
 }

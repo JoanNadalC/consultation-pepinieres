@@ -188,7 +188,7 @@ textarea{resize:vertical;min-height:54px;}
   <div class="brand"><h1>🌿 Portail Pépinière</h1><p id="brand-sub">Répondez à vos consultations</p></div>
   <div class="tabs" id="main-tabs" style="display:none;">
     <button class="tab active" onclick="goP('dashboard')">🏠 Consultations</button>
-    <button class="tab" onclick="goP('saisie')" id="tab-saisie-btn" style="display:none;">✏️ Saisir les prix</button>
+    <button class="tab" onclick="goP('chiffrage')" id="tab-chiffrage-btn" style="display:none;">💶 Chiffrage</button>
     <button class="tab" onclick="goP('catalogue')" id="tab-cat-btn">📦 Catalogue</button>
     <button class="tab" onclick="goP('historique')" id="tab-hist-btn">📋 Historique</button>
     <button class="tab" onclick="goP('profil')">👤 Mon profil</button>
@@ -236,6 +236,29 @@ textarea{resize:vertical;min-height:54px;}
         <button class="btn btn-p" onclick="submitPrix()">💾 Valider &amp; envoyer mes prix</button>
         <span id="submit-progress" style="font-family:var(--mono);font-size:.66rem;color:var(--sage);"></span>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="tab-chiffrage">
+  <div class="card" id="chiffrage-info-card" style="display:none;">
+    <div class="ct" id="chiffrage-title">💶 Chiffrage</div>
+    <div id="chiffrage-meta" style="font-size:.72rem;color:var(--sage);font-family:var(--mono);"></div>
+  </div>
+  <div class="card">
+    <div class="ct">🌿 Liste des végétaux
+      <button class="btn btn-ok btn-sm" onclick="submitChiffrage()" style="margin-left:auto;">✅ Valider &amp; envoyer</button>
+    </div>
+    <p style="font-size:.7rem;color:var(--sage);margin-bottom:10px;">Saisissez vos prix, proposez des variantes si besoin. Validez pour envoyer au consultant.</p>
+    <div id="chiffrage-tbody-wrap" style="overflow-x:auto;">
+      <div class="empty"><div class="ei">🌿</div><p>Ouvrez une consultation depuis l'onglet Consultations.</p></div>
+    </div>
+    <div style="margin-top:12px;" id="chiffrage-footer" style="display:none;">
+      <div class="gr c2">
+        <div><label>Frais de port HT (€)</label><input type="number" step=".01" min="0" id="chiffrage-port" placeholder="0.00"></div>
+        <div><label>Commentaire général</label><input type="text" id="chiffrage-comment" placeholder="Délai, conditions…"></div>
+      </div>
+      <button class="btn btn-p" onclick="submitChiffrage()">✅ Valider &amp; envoyer mes prix au consultant</button>
     </div>
   </div>
 </div>
@@ -454,9 +477,10 @@ function goP(name){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   const el=document.getElementById('tab-'+name);if(el)el.classList.add('active');
-  const idx=['dashboard','saisie','catalogue','historique','profil'].indexOf(name);
+  const idx=['dashboard','chiffrage','catalogue','historique','profil'].indexOf(name);
   const tabs=document.querySelectorAll('.tab');if(idx>=0&&tabs[idx])tabs[idx].classList.add('active');
   if(name==='catalogue')renderCatalogue();
+  if(name==='chiffrage')renderChiffrage();
 }
 
 // DASHBOARD
@@ -477,10 +501,25 @@ async function loadNotifsBadge(){
 }
 
 async function loadDash(){
-  if(!pepState.pepId)return;
-  const{data:reps}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
-  const{data:invs}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
-  const allIds=[...new Set([...(reps||[]).map(r=>r.consultation_id),...(invs||[]).map(i=>i.consultation_id)])];
+  // Chercher les consultations même si pepId est null (via notifications ou invitations)
+  let allIds=[];
+  let reps=[], invs=[];
+  
+  if(pepState.pepId){
+    const{data:r}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
+    const{data:i}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
+    reps=r||[]; invs=i||[];
+  }
+  
+  // Aussi chercher via les notifications de l'utilisateur connecté
+  if(pepState.user){
+    const{data:notifs}=await supa.from('notifications').select('consultation_id').eq('user_id',pepState.user.id).not('consultation_id','is',null);
+    const notifIds=(notifs||[]).map(n=>n.consultation_id).filter(Boolean);
+    allIds=[...new Set([...reps.map(r=>r.consultation_id),...invs.map(i=>i.consultation_id),...notifIds])];
+  } else {
+    allIds=[...new Set([...reps.map(r=>r.consultation_id),...invs.map(i=>i.consultation_id)])];
+  }
+  
   if(!allIds.length){pepState.allConsults=[];renderDash();return;}
   const{data:consults}=await supa.from('consultations').select('*').in('id',allIds);
   pepState.allConsults=(consults||[]).map(c=>{
@@ -510,9 +549,14 @@ async function openConsultById(id){const c=pepState.allConsults.find(x=>x.id===i
 async function openConsult(consult,pepId){
   pepState.consultId=consult.id;pepState.pepId=pepId;pepState.validatedRows=new Set();
   document.getElementById('tab-saisie-btn').style.display='block';
+  document.getElementById('tab-chiffrage-btn').style.display='block';
   document.getElementById('saisie-info-card').style.display='block';
   document.getElementById('saisie-title').textContent='✏️ '+(consult.affaire||'Consultation')+' — '+(consult.ville||'');
   document.getElementById('saisie-meta').textContent='Consultation du '+(consult.date_consult?new Date(consult.date_consult).toLocaleDateString('fr-FR'):'?')+' · Livraison : '+(consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?')+(consult.remarques?' · '+consult.remarques:'');
+  // Remplir aussi l'onglet chiffrage
+  document.getElementById('chiffrage-info-card').style.display='block';
+  document.getElementById('chiffrage-title').textContent='💶 '+(consult.affaire||'Consultation')+' — '+(consult.ville||'');
+  document.getElementById('chiffrage-meta').textContent='Livraison : '+(consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?');
   // Charger végétaux avec les vraies colonnes
   const{data:vd}=await supa.from('vegetaux').select('id,ordre,latin,calibre,contenant,qte,unite,remarques,prix_etude_ht,variantes').eq('consultation_id',consult.id).order('ordre');
   pepState.vegetaux=vd||[];
@@ -532,6 +576,114 @@ async function openConsult(consult,pepId){
   renderSaisie();goP('saisie');
   // Retirer le badge si plus de notifs
   loadNotifsBadge();
+}
+
+// CHIFFRAGE
+function renderChiffrage(){
+  const wrap=document.getElementById('chiffrage-tbody-wrap');
+  const footer=document.getElementById('chiffrage-footer');
+  if(!pepState.vegetaux.length){
+    wrap.innerHTML='<div class="empty"><div class="ei">🌿</div><p>Ouvrez une consultation depuis l\'onglet Consultations.</p></div>';
+    return;
+  }
+  if(footer)footer.style.display='block';
+  
+  let rows='<table class="ptable"><thead><tr>'+
+    '<th>#</th><th>Nom latin</th><th>Calibre</th><th>Contenant</th>'+
+    '<th style="text-align:center;">Qté</th><th>Prix unit. HT (€)</th>'+
+    '<th>Variante proposée</th><th>Commentaire</th><th>✓</th>'+
+  '</tr></thead><tbody>';
+  
+  pepState.vegetaux.forEach((vg,vi)=>{
+    const rep=pepState.reponses[vi]||{};
+    const isVal=pepState.validatedRows.has(vi);
+    const isPf=rep.prefilled&&rep.prix!=null;
+    const isVar=vg.is_variant===true;
+    rows+='<tr class="'+(isVal?'row-validated ':'')+( isVar?'var-row':'')+'" id="ch-tr-'+vi+'">'+
+      '<td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">'+(isVar?'↳':vi+1)+'</td>'+
+      '<td><em style="font-size:.74rem;">'+(isVar?'<span style="color:var(--earth);">↳ </span>':'')+vg.latin+'</em></td>'+
+      '<td style="font-family:var(--mono);font-size:.68rem;">'+(vg.calibre||'—')+'</td>'+
+      '<td style="font-size:.68rem;">'+(vg.contenant||'—')+'</td>'+
+      '<td style="font-family:var(--mono);text-align:center;">'+(vg.qte||1)+'</td>'+
+      '<td>'+
+        '<input type="number" step=".01" min="0" class="pinp'+(isPf?' prefill':'')+'" placeholder="—" value="'+(rep.prix||'')+'" id="ch-p-'+vi+'"'+
+        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].prix=parseFloat(this.value)||null;pepState.reponses['+vi+'].prefilled=false;chUnval('+vi+')">'+
+        (isPf?'<div class="prefill-tip">↑ '+(rep.prefillSrc==='catalogue'?T('prefillCat'):T('prefillHist'))+'</div>':'')+
+      '</td>'+
+      '<td><input type="text" placeholder="—" value="'+(rep.variante||'')+'" id="ch-v-'+vi+'" style="font-size:.74rem;"'+
+        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].variante=this.value"></td>'+
+      '<td><input type="text" placeholder="—" value="'+(rep.comment||'')+'" id="ch-c-'+vi+'" style="font-size:.74rem;"'+
+        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].comment=this.value"></td>'+
+      '<td><button class="btn val-btn '+(isVal?'btn-ok':'btn-g')+'" onclick="chToggleVal('+vi+')" id="ch-vbtn-'+vi+'">'+(isVal?'✓':'○')+'</button></td>'+
+    '</tr>';
+  });
+  rows+='</tbody></table>';
+  wrap.innerHTML=rows;
+}
+
+function chToggleVal(vi){
+  if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);
+  else pepState.validatedRows.add(vi);
+  const tr=document.getElementById('ch-tr-'+vi);
+  const btn=document.getElementById('ch-vbtn-'+vi);
+  if(tr){const c=tr.className;tr.className=(pepState.validatedRows.has(vi)?'row-validated ':'')+( c.includes('var-row')?'var-row':'');}
+  if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className='btn val-btn '+(pepState.validatedRows.has(vi)?'btn-ok':'btn-g');}
+}
+function chUnval(vi){
+  pepState.validatedRows.delete(vi);
+  const tr=document.getElementById('ch-tr-'+vi);const btn=document.getElementById('ch-vbtn-'+vi);
+  if(tr){const c=tr.className;tr.className=c.replace('row-validated','').trim();}
+  if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}
+}
+
+async function submitChiffrage(){
+  if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
+  const fraisPort=parseFloat(document.getElementById('chiffrage-port')?.value)||null;
+  const commentGen=document.getElementById('chiffrage-comment')?.value.trim()||'';
+  let n=0,errors=0;
+  for(let vi=0;vi<pepState.vegetaux.length;vi++){
+    const vg=pepState.vegetaux[vi];
+    const prixVal=parseFloat(document.getElementById('ch-p-'+vi)?.value)||null;
+    const varVal=document.getElementById('ch-v-'+vi)?.value.trim()||null;
+    const comVal=document.getElementById('ch-c-'+vi)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
+    if(prixVal==null)continue;
+    const rep=pepState.reponses[vi]||{};
+    const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
+    const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
+    const{error}=await supa.from('reponses_pepinieres').upsert({
+      consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,
+      prix_unit_ht:prixVal,variante:varVal,commentaire:comVal,
+      frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()
+    },{onConflict:'vegetal_id,pepiniere_id'});
+    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal,hist:newHist};n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
+    else errors++;
+  }
+  // Notifier le consultant
+  await notifyConsultantChiffrage();
+  const c=pepState.allConsults.find(x=>x.id===pepState.consultId);if(c)c.statut_pep='répondu';
+  renderChiffrage();
+  toast(T('submitOk')+' ('+n+' végétal(ux))'+(errors?' · '+errors+' erreur(s)':''));
+  if(pepState.mode==='account'){loadDash();}
+}
+
+async function notifyConsultantChiffrage(){
+  if(!pepState.consultId)return;
+  try{
+    const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).single();
+    if(!consult)return;
+    // Notification dans le portail consultant
+    await supa.from('notifications').insert({
+      type:'pepiniere_reponse',user_id:consult.consultant_id,
+      message:pepState.pepNom+' a envoyé son chiffrage pour "'+( consult.affaire||'—')+'" — '+(consult.ville||'—'),
+      consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false
+    }).catch(()=>{});
+    // Email via Edge Function
+    await fetch('https://xdbgmedtwqxbfijkoqnj.supabase.co/functions/v1/notify-pepiniere',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkYmdtZWR0d3F4YmZpamtvcW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NDEyODIsImV4cCI6MjA5NDQxNzI4Mn0.WPArcadGokK06BXNoO8NF8D0ceMqIgeZDIjveIz2zXk'},
+      body:JSON.stringify({consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,type:'chiffrage'})
+    }).catch(()=>{});
+  }catch(e){console.log('Notification consultant:',e.message);}
 }
 
 // PRÉ-REMPLISSAGE
