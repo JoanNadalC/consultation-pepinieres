@@ -442,7 +442,7 @@ table.ct{width:100%;border-collapse:separate;border-spacing:0;font-size:.74rem;t
 <div class="overlay" id="unsaved-modal">
   <div class="modal">
     <h2>⚠️ Modifications non enregistrées</h2>
-    <p style="font-size:.78rem;color:var(--sage);margin-bottom:14px;">Des modifications n'ont pas été enregistrées.</p>
+    <p style="font-size:.78rem;color:var(--sage);margin-bottom:14px;">Des modifications n\'ont pas été enregistrées.</p>
     <div style="display:flex;gap:7px;flex-wrap:wrap;">
       <button class="btn btn-ok" onclick="saveAndNav()">💾 Enregistrer &amp; continuer</button>
       <button class="btn btn-d" onclick="discardAndNav()">Ignorer &amp; continuer</button>
@@ -1170,14 +1170,14 @@ async function generateToken(pi){
     Lp.mailFile+'<br><br>'+
     '<strong>'+Lp.mailPortal+' :</strong><br>'+
     '<a href="'+link+'" style="color:var(--sage-d);font-weight:500;word-break:break-all;">'+link+'</a>'+
-    (token?'<div style="font-family:var(--mono);font-size:.62rem;color:var(--sage);margin-top:3px;">Code d'accès inclus dans le lien — aucune saisie requise pour la pépinière</div>':'')+
+    (token?'<div style="font-family:var(--mono);font-size:.62rem;color:var(--sage);margin-top:3px;">Code d\'accès inclus dans le lien — aucune saisie requise pour la pépinière</div>':'')+
     '<br><br>'+Lp.mailReg+',<br>'+(v('s-nom')||'[Votre nom]')+'</div>';
 }
 
 async function sendToPortal(pi){
-  if(!currentConsultId){toast('Enregistrez d'abord la consultation.','error');return;}
+  if(!currentConsultId){toast('Enregistrez d\'abord la consultation.','error');return;}
   const p=peps[pi];
-  if(!p.hasAccount){toast('Cette pépinière n'a pas de compte portail.','error');return;}
+  if(!p.hasAccount){toast('Cette pépinière n\'a pas de compte portail.','error');return;}
   // Créer le token d'invitation
   let token=null;
   const{data:existing}=await supa.from('invitations_consultation').select('token').eq('consultation_id',currentConsultId).eq('pepiniere_id',p.id).single();
@@ -1186,7 +1186,7 @@ async function sendToPortal(pi){
     const{data:newInv}=await supa.from('invitations_consultation').insert({consultation_id:currentConsultId,pepiniere_id:p.id,expires_at:new Date(Date.now()+30*24*3600*1000).toISOString()}).select('token').single();
     token=newInv?.token;
   }
-  if(!token){toast('Erreur lors de la création du lien.','error');return;}
+  if(!token){toast('Erreur lors de la cr\'eation du lien.','error');return;}
   // Créer notification dans le portail
   const{data:cpData}=await supa.from('compte_pepiniere').select('id,notif_preference').eq('pepiniere_id',p.id).single();
   if(cpData){

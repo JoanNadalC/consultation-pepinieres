@@ -370,7 +370,7 @@ async function doMagic(){
 }
 async function doGuest(){
   const token=document.getElementById('g-token').value.trim();
-  if(!token){showWErr('Code d'accès requis — copiez-le depuis votre email.');return;}
+  if(!token){showWErr('Code d\'accès requis — copiez-le depuis votre email.');return;}
   const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
   if(error||!inv){showWErr('Code invalide ou expiré. Vérifiez votre email.');return;}
   if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré. Demandez un nouveau lien au consultant.');return;}
