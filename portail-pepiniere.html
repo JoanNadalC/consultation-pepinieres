@@ -519,6 +519,17 @@ async function loadDash(){
     const{data:r}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
     const{data:i}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
     reps=r||[]; invs=i||[];
+  } else if(pepState.user) {
+    // pepId pas encore lié — chercher les invitations via toutes les pepinieres
+    // qui ont cet email
+    const{data:pepLinks}=await supa.from('compte_pepiniere').select('pepiniere_id').eq('id',pepState.user.id);
+    const pepIds=(pepLinks||[]).map(p=>p.pepiniere_id).filter(Boolean);
+    if(pepIds.length){
+      pepState.pepId=pepIds[0]; // Lier le premier trouvé
+      const{data:r}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
+      const{data:i}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
+      reps=r||[]; invs=i||[];
+    }
   }
   
   // Aussi chercher via les notifications de l'utilisateur connecté
@@ -567,9 +578,22 @@ async function openConsult(consult,pepId){
   document.getElementById('chiffrage-info-card').style.display='block';
   document.getElementById('chiffrage-title').textContent='💶 '+(consult.affaire||'Consultation')+' — '+(consult.ville||'');
   document.getElementById('chiffrage-meta').textContent='Livraison : '+(consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?');
-  // Charger végétaux avec les vraies colonnes
-  const{data:vd}=await supa.from('vegetaux').select('id,ordre,latin,calibre,contenant,qte,unite,remarques,prix_etude_ht,variantes').eq('consultation_id',consult.id).order('ordre');
+  // Charger végétaux — via RPC pour contourner RLS si invité
+  let vd=null;
+  try{
+    const r=await supa.from('vegetaux').select('id,ordre,latin,calibre,contenant,qte,unite,remarques,prix_etude_ht,variantes,is_variant,parent_ordre').eq('consultation_id',consult.id).order('ordre');
+    vd=r.data;
+  }catch(e){console.warn('vegetaux direct:',e);}
+  
+  // Si pas de résultat (RLS bloque invité), utiliser RPC SECURITY DEFINER
+  if(!vd||!vd.length){
+    try{
+      const r2=await supa.rpc('get_vegetaux_by_consultation',{p_consultation_id:consult.id});
+      vd=r2.data;
+    }catch(e){console.warn('vegetaux RPC:',e);}
+  }
   pepState.vegetaux=vd||[];
+  console.log('%c🌿 '+pepState.vegetaux.length+' végétal(ux) chargé(s)','color:green');
   // Charger réponses existantes
   const{data:rd}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',consult.id).eq('pepiniere_id',pepId);
   pepState.reponses={};
