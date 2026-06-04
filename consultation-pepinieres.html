@@ -1243,14 +1243,14 @@ async function sendToPortal(pi){
   // Créer notification dans le portail
   const{data:cpData}=await supa.from('compte_pepiniere').select('id,notif_preference').eq('pepiniere_id',p.id).single();
   if(cpData){
-    await supa.from('notifications').insert({
+    try{await supa.from('notifications').insert({
       type:'nouvelle_consultation',
       user_id:cpData.id,
       message:'Nouvelle consultation de prix : '+(v('s-affaire')||'—')+' — '+(v('s-ville')||'—'),
       consultation_id:currentConsultId,
       pepiniere_id:p.id,
       read:false
-    }).catch(()=>{});
+    });}catch(e){console.warn('notification:',e);}
     // Appeler la Edge Function pour envoyer l'email si préférence !== none
     if(cpData.notif_preference!=='none'){
       try{
@@ -1448,9 +1448,6 @@ function renderComp(){
       '<td class="etude-c psep">'+
         '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.66rem;" placeholder="€" value="'+(eu||'')+'"'+
         ' onchange="vegs['+vi+'].prix_etude_ht=parseFloat(this.value)||null;updateRowTotals('+vi+');markDirty(\'comparaison\')">'+'</td>'+
-      '<td class="etude-c">'+
-        '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.66rem;" placeholder="€" value="'+(etr||'')+'" title="Transport étude"'+
-        ' onchange="vegs['+vi+'].prix_transport_ht=parseFloat(this.value)||null;updateRowTotals('+vi+');markDirty(\'comparaison\')">'+'</td>'+
       '<td class="etude-c" id="et-'+vi+'" style="font-family:var(--mono);font-size:.66rem;text-align:right;">'+(et?fmt(et)+'€':'—')+'</td>'+
       peps.map((_,pi)=>{
         const e=prix[vi][pi]||{};const isBest=selPi===pi&&bv!=null;

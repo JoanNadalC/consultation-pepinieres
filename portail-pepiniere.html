@@ -397,19 +397,34 @@ async function doGuest(){
   const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
   if(error||!inv){showWErr('Code invalide ou expiré. Vérifiez votre email.');return;}
   if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré. Demandez un nouveau lien au consultant.');return;}
-  // Lire la consultation via une fonction RPC pour contourner la RLS
-  const{data:consult,error:cErr}=await supa.rpc('get_consultation_by_token',{p_token:token}).single();
-  if(cErr||!consult){
-    // Fallback: essayer lecture directe
+  // Lire la consultation via RPC (contourne RLS)
+  let consult=null;
+  try{
+    const{data:c1}=await supa.rpc('get_consultation_by_token',{p_token:token});
+    if(c1&&c1.length)consult=c1[0];
+    else if(c1&&c1.id)consult=c1;
+  }catch(e){console.warn('RPC get_consultation_by_token:',e);}
+  // Fallback lecture directe
+  if(!consult){
     const{data:c2}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
-    if(!c2){showWErr('Consultation introuvable. Vérifiez que le lien est correct.');return;}
-    const{data:pepData}=await supa.from('pepinieres').select('nom').eq('id',inv.pepiniere_id).single();
-    pepState.mode='guest';pepState.pepNom=pepData?.nom||'Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
-    showApp(true);await openConsult(c2,inv.pepiniere_id);return;
+    consult=c2;
   }
-  const{data:pepData}=await supa.from('pepinieres').select('nom').eq('id',inv.pepiniere_id).single();
-  pepState.mode='guest';pepState.pepNom=pepData?.nom||'Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
-  showApp(true);await openConsult(consult,inv.pepiniere_id);
+  if(!consult){showWErr('Consultation introuvable. Vérifiez que le lien est correct.');return;}
+  // Récupérer le nom via compte_pepiniere (lecture publique autorisée)
+  let nom='Invité';
+  try{
+    const{data:cpData}=await supa.from('compte_pepiniere').select('pepnom,nom').eq('pepiniere_id',inv.pepiniere_id).single();
+    if(cpData)nom=cpData.pepnom||cpData.nom||'Invité';
+  }catch(e){
+    // Pas de compte — nom générique
+    nom='Pépinière';
+  }
+  pepState.mode='guest';pepState.pepNom=nom;
+  pepState.pepId=inv.pepiniere_id;
+  pepState.consultId=inv.consultation_id;
+  pepState.hasAccount=false;
+  showApp(true);
+  await openConsult(consult,inv.pepiniere_id);
 }
 
 async function afterPepLogin(user,hasAccount=true){
@@ -541,8 +556,11 @@ async function loadDash(){
     allIds=[...new Set([...reps.map(r=>r.consultation_id),...invs.map(i=>i.consultation_id)])];
   }
   
+  console.log('loadDash — pepId:',pepState.pepId,'allIds:',allIds);
   if(!allIds.length){pepState.allConsults=[];renderDash();return;}
-  const{data:consults}=await supa.from('consultations').select('*').in('id',allIds);
+  const{data:consults,error:cErr}=await supa.from('consultations').select('*').in('id',allIds);
+  if(cErr)console.error('loadDash consultations error:',cErr);
+  console.log('loadDash — consultations chargées:',consults?.length||0);
   pepState.allConsults=(consults||[]).map(c=>{
     const rep=(reps||[]).find(r=>r.consultation_id===c.id);const inv=(invs||[]).find(i=>i.consultation_id===c.id);
     return{...c,repDate:rep?.updated_at,histCount:rep?.historique?.length||0,invDate:inv?.created_at,statut_pep:rep?'répondu':'en-cours'};
@@ -569,9 +587,12 @@ async function openConsultById(id){const c=pepState.allConsults.find(x=>x.id===i
 
 async function openConsult(consult,pepId){
   pepState.consultId=consult.id;pepState.pepId=pepId;pepState.validatedRows=new Set();
-  document.getElementById('tab-saisie-btn').style.display='block';
-  document.getElementById('tab-chiffrage-btn').style.display='block';
-  document.getElementById('saisie-info-card').style.display='block';
+  const saisieBtn=document.getElementById('tab-saisie-btn');
+  if(saisieBtn)saisieBtn.style.display='block';
+  const chiffrageBtn=document.getElementById('tab-chiffrage-btn');
+  if(chiffrageBtn)chiffrageBtn.style.display='block';
+  const saisieCard=document.getElementById('saisie-info-card');
+  if(saisieCard)saisieCard.style.display='block';
   document.getElementById('saisie-title').textContent='✏️ '+(consult.affaire||'Consultation')+' — '+(consult.ville||'');
   document.getElementById('saisie-meta').textContent='Consultation du '+(consult.date_consult?new Date(consult.date_consult).toLocaleDateString('fr-FR'):'?')+' · Livraison : '+(consult.date_livraison?new Date(consult.date_livraison).toLocaleDateString('fr-FR'):'?')+(consult.remarques?' · '+consult.remarques:'');
   // Remplir aussi l'onglet chiffrage
