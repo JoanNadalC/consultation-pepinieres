@@ -613,7 +613,24 @@ async function afterLogin(user){
 }
 async function doLogout(){await supa.auth.signOut();location.reload();}
 function showAErr(msg,isErr=true){const el=document.getElementById('aerr');el.textContent=msg;el.style.display='block';el.style.background=isErr?'#fde8e0':'#d4edda';el.style.color=isErr?'#8a3818':'#1a5c28';el.style.borderColor=isErr?'#f0c4b0':'#a8d8b0';}
-supa.auth.getSession().then(({data})=>{if(data.session?.user)afterLogin(data.session.user);});
+// Restauration session robuste via onAuthStateChange
+supa.auth.onAuthStateChange(async(event, session)=>{
+  if(event==='SIGNED_IN'||event==='TOKEN_REFRESHED'||event==='INITIAL_SESSION'){
+    if(session?.user&&!currentUser){
+      await afterLogin(session.user);
+    }
+  }
+  if(event==='SIGNED_OUT'){
+    currentUser=null;allChantiers=[];
+    document.getElementById('auth-screen').classList.remove('hidden');
+  }
+});
+// Vérification initiale au cas où la session est déjà active
+supa.auth.getSession().then(async({data})=>{
+  if(data.session?.user&&!currentUser){
+    await afterLogin(data.session.user);
+  }
+});
 
 // ══════════════════════════════════════
 // UNSAVED + NAV
