@@ -535,7 +535,11 @@ async function disconnectAll(){await supa.auth.signOut({scope:'global'});toast('
 
 async function loadNotifications(){
   if(!currentUser)return;
-  const{data}=await supa.from('notifications').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(20).catch(()=>({data:[]}));
+  let data=[];
+  try{
+    const r=await supa.from('notifications').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(20);
+    data=r.data||[];
+  }catch(e){console.warn('notifications:',e);return;}
   const unread=(data||[]).filter(n=>!n.read).length;
   document.getElementById('notif-dot').style.display=unread>0?'block':'none';
   document.getElementById('notif-count').textContent=unread>0?String(unread):'0';
