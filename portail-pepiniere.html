@@ -397,12 +397,18 @@ async function doGuest(){
   const{data:inv,error}=await supa.from('invitations_consultation').select('*').eq('token',token).single();
   if(error||!inv){showWErr('Code invalide ou expiré. Vérifiez votre email.');return;}
   if(new Date(inv.expires_at)<new Date()){showWErr('Ce code a expiré. Demandez un nouveau lien au consultant.');return;}
-  const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
-  if(!consult){showWErr('Consultation introuvable.');return;}
-  // Récupérer le nom depuis la table pepinieres (saisi par le consultant)
+  // Lire la consultation via une fonction RPC pour contourner la RLS
+  const{data:consult,error:cErr}=await supa.rpc('get_consultation_by_token',{p_token:token}).single();
+  if(cErr||!consult){
+    // Fallback: essayer lecture directe
+    const{data:c2}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
+    if(!c2){showWErr('Consultation introuvable. Vérifiez que le lien est correct.');return;}
+    const{data:pepData}=await supa.from('pepinieres').select('nom').eq('id',inv.pepiniere_id).single();
+    pepState.mode='guest';pepState.pepNom=pepData?.nom||'Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
+    showApp(true);await openConsult(c2,inv.pepiniere_id);return;
+  }
   const{data:pepData}=await supa.from('pepinieres').select('nom').eq('id',inv.pepiniere_id).single();
-  const nom=pepData?.nom||'Invité';
-  pepState.mode='guest';pepState.pepNom=nom;pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
+  pepState.mode='guest';pepState.pepNom=pepData?.nom||'Invité';pepState.pepId=inv.pepiniere_id;pepState.consultId=inv.consultation_id;pepState.hasAccount=false;
   showApp(true);await openConsult(consult,inv.pepiniere_id);
 }
 
@@ -438,7 +444,11 @@ async function afterPepLogin(user,hasAccount=true){
   if(urlToken){
     const{data:inv}=await supa.from('invitations_consultation').select('*').eq('token',urlToken).single();
     if(inv&&new Date(inv.expires_at)>new Date()){
-      const{data:consult}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();
+      // Essayer RPC d'abord, puis fallback direct
+      let consult=null;
+      const{data:c1}=await supa.rpc('get_consultation_by_token',{p_token:urlToken}).single().catch(()=>({data:null}));
+      if(c1){consult=c1;}
+      else{const{data:c2}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();consult=c2;}
       if(consult){if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;}
     }
   }

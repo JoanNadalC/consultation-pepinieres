@@ -608,7 +608,8 @@ async function afterLogin(user){
     document.getElementById('am-name').textContent=user.email.split('@')[0];
     document.getElementById('am-email').textContent=user.email;
   }
-  loadCarnet();loadChantiers();loadNotifications();
+  // Attendre que tout soit initialisé avant de charger
+  await Promise.all([loadCarnet(), loadChantiers(), loadNotifications()]);
 }
 async function doLogout(){await supa.auth.signOut();location.reload();}
 function showAErr(msg,isErr=true){const el=document.getElementById('aerr');el.textContent=msg;el.style.display='block';el.style.background=isErr?'#fde8e0':'#d4edda';el.style.color=isErr?'#8a3818':'#1a5c28';el.style.borderColor=isErr?'#f0c4b0':'#a8d8b0';}
@@ -642,9 +643,19 @@ function discardAndNav(){closeModal('unsaved-modal');const cur=document.querySel
 // CHANTIERS
 // ══════════════════════════════════════
 async function loadChantiers(){
-  if(!currentUser)return;
+  if(!currentUser){
+    // Tenter de récupérer la session active
+    const{data:s}=await supa.auth.getSession();
+    if(s?.session?.user)currentUser=s.session.user;
+    else{console.warn('loadChantiers: pas de currentUser');return;}
+  }
   const{data,error}=await supa.from('consultations').select('*').eq('consultant_id',currentUser.id).order('created_at',{ascending:false});
-  if(error){toast('Erreur chargement consultations : '+error.message,'error');return;}
+  if(error){
+    console.error('Erreur loadChantiers:',error);
+    toast('Erreur chargement : '+error.message,'error');
+    return;
+  }
+  console.log('%c📋 '+( data?.length||0)+' consultation(s) chargée(s)','color:green');
   allChantiers=data||[];renderChantiers();
 }
 function renderChantiers(){
@@ -883,14 +894,26 @@ async function searchAcctPeps(query){
 
 async function addAcctPep(userId,nom,email){
   if(peps.length>=6){toast('Maximum 6 pépinières','error');return;}
-  // Chercher ou créer la fiche pepinieres liée
-  const{data:cpData}=await supa.from('compte_pepiniere').select('pepiniere_id').eq('id',userId).single();
+  // Chercher les infos complètes du compte pépinière
+  const{data:cpData}=await supa.from('compte_pepiniere').select('pepiniere_id,nom,pepnom,email,tel,adresse').eq('id',userId).single();
   let pepId=cpData?.pepiniere_id;
   if(!pepId){
-    const{data:newPep}=await supa.from('pepinieres').insert({consultant_id:currentUser.id,nom,email}).select().single();
-    if(newPep){pepId=newPep.id;await supa.from('compte_pepiniere').update({pepiniere_id:pepId}).eq('id',userId);}
+    // Créer une fiche dans pepinieres pour ce consultant
+    const pepNom=cpData?.pepnom||cpData?.nom||nom;
+    const{data:newPep,error:newPepErr}=await supa.from('pepinieres').insert({
+      consultant_id:currentUser.id,
+      nom:pepNom,
+      email:cpData?.email||email,
+      tel:cpData?.tel||'',
+      adresse:cpData?.adresse||''
+    }).select().single();
+    if(newPepErr){toast('Erreur création fiche : '+newPepErr.message,'error');return;}
+    if(newPep){
+      pepId=newPep.id;
+      await supa.from('compte_pepiniere').update({pepiniere_id:pepId}).eq('id',userId).catch(e=>console.warn(e));
+    }
   }
-  if(!pepId){toast('Erreur lors de l\'ajout','error');return;}
+  if(!pepId){toast('Impossible de créer la fiche pépinière.','error');return;}
   const{data:pepData}=await supa.from('pepinieres').select('*').eq('id',pepId).single();
   if(pepData)peps.push({...pepData,hasAccount:true});
   document.getElementById('acct-results').innerHTML='';document.getElementById('acct-search-inp').value='';
