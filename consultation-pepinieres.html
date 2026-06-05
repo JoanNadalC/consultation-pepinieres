@@ -615,6 +615,18 @@ async function afterLogin(user){
   // Attendre que tout soit initialisé avant de charger
   loadCarnet();loadChantiers();loadNotifications();
 }
+async function loadConsultantInfo(){
+  // Afficher le nom du chantier chargé dans le bandeau
+  const affaire=document.getElementById('s-affaire')?.value||'';
+  const ville=document.getElementById('s-ville')?.value||'';
+  let chip=document.getElementById('chantier-chip');
+  if(!chip){
+    chip=document.createElement('div');chip.id='chantier-chip';
+    chip.style.cssText='background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.6rem;color:var(--cream);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+    document.querySelector('.hright').prepend(chip);
+  }
+  chip.textContent=currentConsultId&&(affaire||ville)?'📋 '+(affaire||'—')+' — '+(ville||'—'):'';
+}
 async function doLogout(){
   try{await supa.auth.signOut();}catch(e){console.warn('signOut:',e);}
   currentUser=null;
@@ -648,7 +660,7 @@ function _nav(name){
   let chip=document.getElementById('chantier-chip');
   if(!chip){chip=document.createElement('div');chip.id='chantier-chip';chip.style.cssText='background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.6rem;color:var(--cream);';document.querySelector('.hright').prepend(chip);}
   chip.textContent=currentConsultId&&(affaire||ville)?'📋 '+(affaire||'—')+' — '+(ville||'—'):'';
-  if(name==='envoi')renderEnvoi();
+  loadConsultantInfo();if(name==='envoi')renderEnvoi();
   if(name==='reponses'){renderRepSel();checkPortalReplies();}
   if(name==='comparaison')renderComp();
   if(name==='commande')renderCmd();
@@ -1479,7 +1491,8 @@ function renderComp(){
   // Ligne frais de port
   tbl+='<tr class="port-row">'+
     '<td colspan="4" style="text-align:right;font-family:var(--mono);font-size:.6rem;color:var(--sage);font-style:italic;">Frais de port HT</td>'+
-    '<td class="etude-c psep"></td><td class="etude-c"></td><td class="etude-c"></td>'+
+    '<td class="etude-c psep" style="padding:3px 4px;"><input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.66rem;" placeholder="transp. €" value="'+(portEtude||'')+'" title="Prix étude transport" onchange="portEtudeVal=this.value;updateGlobalTotals();markDirty(\'comparaison\')"></td>'+
+    '<td class="etude-c" style="font-family:var(--mono);font-size:.65rem;text-align:right;">'+(portEtude?fmt(parseFloat(portEtude))+'€':'—')+'</td>'+
     peps.map((p,pi)=>'<td class="psep" style="padding:3px 4px;">'+
       '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.67rem;" placeholder="0 €" value="'+(portT[pi]||'')+'" title="Frais de port — '+esc(p.nom)+'"'+
       ' onchange="setPort('+pi+',this.value);markDirty(\'comparaison\')">'+'</td>').join('')+

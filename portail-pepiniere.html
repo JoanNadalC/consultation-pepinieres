@@ -590,11 +590,14 @@ async function loadDash(){
     allIds=[...new Set([...reps.map(r=>r.consultation_id),...invs.map(i=>i.consultation_id)])];
   }
   
-  console.log('loadDash — pepId:',pepState.pepId,'allIds:',allIds);
-  if(!allIds.length){pepState.allConsults=[];renderDash();return;}
+  console.log('loadDash — pepId:',pepState.pepId,'allIds:',allIds,'reps:',reps.length,'invs:',invs.length);
+  if(!allIds.length){
+    console.warn('loadDash: aucune consultation trouvée pour pepId='+pepState.pepId);
+    pepState.allConsults=[];renderDash();return;
+  }
   const{data:consults,error:cErr}=await supa.from('consultations').select('*').in('id',allIds);
   if(cErr)console.error('loadDash consultations error:',cErr);
-  console.log('loadDash — consultations chargées:',consults?.length||0);
+  console.log('loadDash — consultations chargées:',consults?.length||0,consults);
   pepState.allConsults=(consults||[]).map(c=>{
     const rep=(reps||[]).find(r=>r.consultation_id===c.id);const inv=(invs||[]).find(i=>i.consultation_id===c.id);
     return{...c,repDate:rep?.updated_at,histCount:rep?.historique?.length||0,invDate:inv?.created_at,statut_pep:rep?'répondu':'en-cours'};
@@ -726,22 +729,21 @@ function chUnval(vi){
 }
 
 async function submitPrixInvite(){
-  // Mode invité: sauvegarder via upsert normal
-  // Nécessite une policy RLS INSERT sur reponses_pepinieres sans auth
   const fraisPort=parseFloat(document.getElementById('frais-port').value)||null;
   let n=0;
   for(let vi=0;vi<pepState.vegetaux.length;vi++){
     const vg=pepState.vegetaux[vi];
     const prixVal=parseFloat(document.getElementById('p-'+vi)?.value)||null;
-    const varVal=document.getElementById('v-'+vi)?.value.trim()||null;
     const comVal=document.getElementById('c-'+vi)?.value.trim()||null;
     if(prixVal==null||!vg.id)continue;
+    // Construire la description variante si c'est une variante pépinière
+    const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):null;
     const{error}=await supa.from('reponses_pepinieres').upsert({
       consultation_id:pepState.consultId,
       vegetal_id:vg.id,
       pepiniere_id:pepState.pepId,
       prix_unit_ht:prixVal,
-      variante:vg.is_variant?varDesc:varVal,
+      variante:varDesc,
       commentaire:comVal,
       frais_port:fraisPort,
       historique:[{ts:new Date().toISOString(),prix:prixVal}],
@@ -754,7 +756,7 @@ async function submitPrixInvite(){
     toast(n+' prix envoyés ✓');
     await notifyConsultant();
   } else {
-    toast('Erreur: impossible d\'envoyer les prix. Créez un compte pour sauvegarder.','error');
+    toast('Erreur envoi — vérifiez la console.','error');
   }
 }
 
@@ -846,7 +848,6 @@ function renderSaisie(){
     '<th style="width:90px;">Contenant</th>'+
     '<th style="width:60px;text-align:center;">Qté</th>'+
     '<th style="width:130px;">Prix unit. HT (€)</th>'+
-    '<th>Variante proposée</th>'+
     '<th>Commentaire</th>'+
     '<th style="width:80px;">✓</th>'+
   '</tr></thead>';
@@ -875,8 +876,7 @@ function renderSaisie(){
         ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].prix=parseFloat(this.value)||null;pepState.reponses['+vi+'].prefilled=false;unvalRow('+vi+');">'+
         (isPf?'<div class="prefill-tip">↑ '+srcLabel+(rep.prefillConf==='partial'?' (approx.)':'')+'</div>':'')+
       '</td>'+
-      '<td><input type="text" placeholder="—" value="'+(rep.variante||'')+'" id="v-'+vi+'" style="font-size:.74rem;"'+
-        ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].variante=this.value;unvalRow('+vi+');"></td>'+
+
       '<td><input type="text" placeholder="—" value="'+(rep.comment||'')+'" id="c-'+vi+'" style="font-size:.74rem;"'+
         ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].comment=this.value;"></td>'+
       '<td style="display:flex;gap:2px;">'+
