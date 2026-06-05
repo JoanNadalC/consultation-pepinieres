@@ -413,12 +413,9 @@ async function doGuest(){
   // Récupérer le nom via compte_pepiniere (lecture publique autorisée)
   let nom='Invité';
   try{
-    const{data:cpData}=await supa.from('compte_pepiniere').select('pepnom,nom').eq('pepiniere_id',inv.pepiniere_id).single();
+    const{data:cpData}=await supa.from('compte_pepiniere').select('pepnom,nom').eq('pepiniere_id',inv.pepiniere_id).maybeSingle();
     if(cpData)nom=cpData.pepnom||cpData.nom||'Invité';
-  }catch(e){
-    // Pas de compte — nom générique
-    nom='Pépinière';
-  }
+  }catch(e){nom='Pépinière';}
   pepState.mode='guest';pepState.pepNom=nom;
   pepState.pepId=inv.pepiniere_id;
   pepState.consultId=inv.consultation_id;
@@ -691,6 +688,39 @@ function chUnval(vi){
   if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}
 }
 
+async function submitPrixInvite(){
+  // Mode invité: sauvegarder via upsert normal
+  // Nécessite une policy RLS INSERT sur reponses_pepinieres sans auth
+  const fraisPort=parseFloat(document.getElementById('frais-port').value)||null;
+  let n=0;
+  for(let vi=0;vi<pepState.vegetaux.length;vi++){
+    const vg=pepState.vegetaux[vi];
+    const prixVal=parseFloat(document.getElementById('p-'+vi)?.value)||null;
+    const varVal=document.getElementById('v-'+vi)?.value.trim()||null;
+    const comVal=document.getElementById('c-'+vi)?.value.trim()||null;
+    if(prixVal==null||!vg.id)continue;
+    const{error}=await supa.from('reponses_pepinieres').upsert({
+      consultation_id:pepState.consultId,
+      vegetal_id:vg.id,
+      pepiniere_id:pepState.pepId,
+      prix_unit_ht:prixVal,
+      variante:varVal,
+      commentaire:comVal,
+      frais_port:fraisPort,
+      historique:[{ts:new Date().toISOString(),prix:prixVal}],
+      updated_at:new Date().toISOString()
+    },{onConflict:'vegetal_id,pepiniere_id'});
+    if(!error)n++;
+    else console.error('Erreur upsert invité:',error);
+  }
+  if(n>0){
+    toast(n+' prix envoyés ✓');
+    await notifyConsultant();
+  } else {
+    toast('Erreur: impossible d\'envoyer les prix. Créez un compte pour sauvegarder.','error');
+  }
+}
+
 async function submitChiffrage(){
   if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
   const fraisPort=parseFloat(document.getElementById('chiffrage-port')?.value)||null;
@@ -724,7 +754,7 @@ async function submitChiffrage(){
 async function notifyConsultantChiffrage(){
   if(!pepState.consultId)return;
   try{
-    const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).single();
+    const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).maybeSingle();
     if(!consult)return;
     // Notification dans le portail consultant
     await supa.from('notifications').insert({
@@ -772,8 +802,7 @@ function renderSaisie(){
     const rep=pepState.reponses[vi]||{};const isVal=pepState.validatedRows.has(vi);
     const isPf=rep.prefilled&&rep.prix!=null;
     const srcLabel=isPf?(rep.prefillSrc==='catalogue'?T('prefillCat'):T('prefillHist')):'';
-    // Vérifier si c'est une variante (via jsonb variantes du parent ou ordre)
-    const isVar=vg.variantes&&Array.isArray(vg.variantes)&&vi>0&&pepState.vegetaux[vi-1]&&(vg.latin===pepState.vegetaux[vi-1].latin||vg.calibre!==pepState.vegetaux[vi-1].calibre);
+    const isVar=vg.is_variant===true;
     return'<tr class="'+(isVal?'row-validated':'')+(isVar?' var-row':'')+'" id="tr-'+vi+'">'+
       '<td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">'+(isVar?'↳':''+(vi+1))+'</td>'+
       '<td><em style="font-size:.74rem;">'+(vg.latin||'—')+'</em></td>'+
@@ -789,12 +818,36 @@ function renderSaisie(){
         ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].variante=this.value;unvalRow('+vi+');"></td>'+
       '<td><input type="text" placeholder="—" value="'+(rep.comment||'')+'" id="c-'+vi+'" style="font-size:.74rem;"'+
         ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].comment=this.value;"></td>'+
-      '<td><button class="btn val-btn '+(isVal?'btn-ok':'btn-g')+'" onclick="toggleVal('+vi+')" id="vbtn-'+vi+'">'+(isVal?'✓':'○')+'</button></td>'+
+      '<td style="display:flex;gap:2px;">'+
+        (isVar?'':'<button class="btn btn-g btn-sm" onclick="addSaisieVar('+vi+')" style="font-size:.54rem;padding:2px 5px;" title="Ajouter variante">＋var</button>')+
+        '<button class="btn val-btn '+(isVal?'btn-ok':'btn-g')+'" onclick="toggleVal('+vi+')" id="vbtn-'+vi+'">'+(isVal?'✓':'○')+'</button>'+
+        (isVar?'<button class="btn btn-d btn-sm" onclick="rmSaisieVar('+vi+')" style="font-size:.54rem;padding:2px 5px;">✕</button>':'')+
+      '</td>'+
     '</tr>';
   }).join('');
   updateProgress();
   const existPort=Object.values(pepState.reponses).find(r=>r?.fraisPort);
   if(existPort?.fraisPort)document.getElementById('frais-port').value=existPort.fraisPort;
+}
+function addSaisieVar(vi){
+  const parent=pepState.vegetaux[vi];
+  const varVeg={
+    id:null, ordre:vi+0.5,
+    latin:parent.latin, calibre:parent.calibre,
+    contenant:parent.contenant, qte:parent.qte,
+    unite:parent.unite||'U', remarques:'',
+    prix_etude_ht:null, is_variant:true,
+    parent_ordre:vi, variantes:[]
+  };
+  pepState.vegetaux.splice(vi+1, 0, varVeg);
+  renderSaisie();
+  toast('Variante ajoutée — renseignez le calibre/contenant réel');
+}
+function rmSaisieVar(vi){
+  pepState.vegetaux.splice(vi, 1);
+  delete pepState.reponses[vi];
+  pepState.validatedRows.delete(vi);
+  renderSaisie();
 }
 function toggleVal(vi){if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);else pepState.validatedRows.add(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className=(pepState.validatedRows.has(vi)?'row-validated':'')+' '+( tr.className.includes('var-row')?'var-row':'');if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className='btn val-btn '+(pepState.validatedRows.has(vi)?'btn-ok':'btn-g');}updateProgress();}
 function unvalRow(vi){pepState.validatedRows.delete(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr){const cls=tr.className;tr.className=cls.replace('row-validated','').trim();}if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}updateProgress();}
@@ -802,6 +855,11 @@ function updateProgress(){const tot=pepState.vegetaux.length;const val=pepState.
 
 async function submitPrix(){
   if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
+  // En mode invité, vérifier qu'on a bien un pepiniere_id
+  if(pepState.mode==='guest'&&!pepState.user){
+    // Mode invité sans compte: utiliser la clé de service via Edge Function
+    await submitPrixInvite();return;
+  }
   const fraisPort=parseFloat(document.getElementById('frais-port').value)||null;
   const commentGen=document.getElementById('comment-gen').value.trim();
   let n=0,errors=0;
@@ -829,7 +887,7 @@ async function upsertCatalogue(vg,prix){
 async function notifyConsultant(){
   if(!pepState.consultId)return;
   try{
-    const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).single();
+    const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).maybeSingle();
     if(!consult)return;
     await supa.from('notifications').insert({type:'pepiniere_reponse',user_id:consult.consultant_id,message:pepState.pepNom+' a répondu à la consultation "'+(consult.affaire||'—')+'" — '+(consult.ville||'—'),consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false}).catch(()=>{});
   }catch(e){console.log('Notification:',e.message);}

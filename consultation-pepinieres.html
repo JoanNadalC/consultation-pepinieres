@@ -549,10 +549,10 @@ async function loadNotifications(){
     <div>${n.message||'Notification'}</div>
     <div style="font-family:var(--mono);font-size:.6rem;color:var(--sage);margin-top:2px;">${new Date(n.created_at).toLocaleDateString('fr-FR')} ${new Date(n.created_at).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</div>
   </div>`).join('');
-  if(unread>0)await supa.from('notifications').update({read:true}).eq('user_id',currentUser.id).eq('read',false).catch(()=>{});
+  if(unread>0)await supa.from('notifications').update({read:true}).eq('user_id',currentUser.id).eq('read',false);
   document.getElementById('notif-dot').style.display='none';document.getElementById('notif-count').textContent='0';
 }
-async function markAllRead(){await supa.from('notifications').update({read:true}).eq('user_id',currentUser.id).catch(()=>{});loadNotifications();}
+async function markAllRead(){await supa.from('notifications').update({read:true}).eq('user_id',currentUser.id);loadNotifications();}
 
 // ══════════════════════════════════════
 // AUTH
@@ -921,7 +921,7 @@ async function addAcctPep(userId,nom,email){
     if(newPepErr){toast('Erreur création fiche : '+newPepErr.message,'error');return;}
     if(newPep){
       pepId=newPep.id;
-      await supa.from('compte_pepiniere').update({pepiniere_id:pepId}).eq('id',userId).catch(e=>console.warn(e));
+      await supa.from('compte_pepiniere').update({pepiniere_id:pepId}).eq('id',userId);
     }
   }
   if(!pepId){toast('Impossible de créer la fiche pépinière.','error');return;}
