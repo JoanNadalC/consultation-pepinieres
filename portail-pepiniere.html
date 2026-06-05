@@ -223,10 +223,7 @@ textarea{resize:vertical;min-height:54px;}
       <button class="btn btn-ok btn-sm" onclick="submitPrix()" style="margin-left:auto;">💾 Valider &amp; envoyer</button>
     </div>
     <p style="font-size:.7rem;color:var(--sage);margin-bottom:10px;">Cases vertes = pré-remplies depuis votre catalogue ou historique. Validez chaque ligne ✓ avant envoi.</p>
-    <div style="overflow-x:auto;"><table class="ptable">
-      <thead><tr><th>#</th><th>Nom latin</th><th>Calibre</th><th>Contenant</th><th style="text-align:center;">Qté</th><th>Prix unit. HT (€)</th><th>Variante proposée</th><th>Commentaire</th><th>✓</th></tr></thead>
-      <tbody id="price-tbody"></tbody>
-    </table></div>
+    <div style="overflow-x:auto;" id="saisie-table-wrap"></div>
     <div style="margin-top:12px;">
       <div class="gr c2">
         <div><label>Frais de port HT (€)</label><input type="number" step=".01" min="0" id="frais-port" placeholder="0.00"></div>
@@ -471,6 +468,10 @@ function showApp(guestMode=false){
   document.getElementById('welcome').classList.add('hidden');
   document.getElementById('p-uchip').textContent='🌿 '+pepState.pepNom;
   document.getElementById('p-mode-chip').textContent=pepState.mode==='guest'?'Invité':'Compte';
+  // Charger et afficher les infos consultant
+  if(pepState.consultId){
+    loadConsultantInfo();
+  }
   if(!guestMode){document.getElementById('main-tabs').style.display='flex';if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';}
   else{document.getElementById('main-tabs').style.display='none';goP('saisie');}
 }
@@ -495,6 +496,42 @@ window.addEventListener('load',async()=>{
 });
 
 // NAV
+async function loadConsultantInfo(){
+  if(!pepState.consultId)return;
+  try{
+    const{data:c}=await supa.from('consultations').select('affaire,ville,consultant_id,date_livraison').eq('id',pepState.consultId).maybeSingle();
+    if(!c)return;
+    // Mettre à jour le chip consultation dans le bandeau
+    let consultBadge=document.getElementById('consult-chip');
+    if(!consultBadge){
+      consultBadge=document.createElement('div');
+      consultBadge.id='consult-chip';
+      consultBadge.style.cssText='background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.6rem;color:var(--cream);white-space:nowrap;';
+      document.querySelector('.hright').prepend(consultBadge);
+    }
+    consultBadge.textContent='📋 '+(c.affaire||'—')+' — '+(c.ville||'—');
+    // Infos consultant
+    if(c.consultant_id){
+      const{data:cons}=await supa.from('compte_consultant').select('nom,societe,telephone,adresse_complete').eq('id',c.consultant_id).maybeSingle();
+      if(cons){
+        let infoBanner=document.getElementById('consultant-banner');
+        if(!infoBanner){
+          infoBanner=document.createElement('div');
+          infoBanner.id='consultant-banner';
+          infoBanner.style.cssText='background:var(--earth-l);border-bottom:1px solid var(--earth);padding:5px 20px;font-size:.68rem;font-family:var(--mono);color:var(--sage-d);display:flex;gap:16px;flex-wrap:wrap;';
+          document.querySelector('main').before(infoBanner);
+        }
+        infoBanner.innerHTML=
+          '<span>🏢 <strong>'+(cons.societe||cons.nom||'—')+'</strong></span>'+
+          (cons.nom?'<span>👤 '+cons.nom+'</span>':'')+
+          (cons.telephone?'<span>📞 '+cons.telephone+'</span>':'')+
+          (cons.adresse_complete?'<span>📍 '+cons.adresse_complete+'</span>':'')+
+          '<span style="margin-left:auto;">Consultation : <strong>'+(c.affaire||'—')+' — '+(c.ville||'—')+'</strong>'+(c.date_livraison?' · Livraison : '+new Date(c.date_livraison).toLocaleDateString('fr-FR'):'')+' </span>';
+      }
+    }
+  }catch(e){console.warn('loadConsultantInfo:',e);}
+}
+
 function goP(name){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -625,7 +662,7 @@ async function openConsult(consult,pepId){
       .eq('read',false)
       .catch(()=>{});
   }
-  renderSaisie();goP('saisie');
+  renderSaisie();goP('saisie');loadConsultantInfo();
   // Retirer le badge si plus de notifs
   loadNotifsBadge();
 }
@@ -704,7 +741,7 @@ async function submitPrixInvite(){
       vegetal_id:vg.id,
       pepiniere_id:pepState.pepId,
       prix_unit_ht:prixVal,
-      variante:varVal,
+      variante:vg.is_variant?varDesc:varVal,
       commentaire:comVal,
       frais_port:fraisPort,
       historique:[{ts:new Date().toISOString(),prix:prixVal}],
@@ -733,14 +770,14 @@ async function submitChiffrage(){
     const comVal=document.getElementById('ch-c-'+vi)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
     if(prixVal==null)continue;
     const rep=pepState.reponses[vi]||{};
-    const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
+    const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
     const{error}=await supa.from('reponses_pepinieres').upsert({
       consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,
-      prix_unit_ht:prixVal,variante:varVal,commentaire:comVal,
+      prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,
       frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()
     },{onConflict:'vegetal_id,pepiniere_id'});
-    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal,hist:newHist};n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
+    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,hist:newHist};n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
     else errors++;
   }
   // Notifier le consultant
@@ -796,19 +833,43 @@ async function prefillFromCatalogueAndHistory(){
 
 // SAISIE
 function renderSaisie(){
-  const tbody=document.getElementById('price-tbody');
-  if(!pepState.vegetaux.length){tbody.innerHTML='<tr><td colspan="9" style="text-align:center;color:var(--sage);padding:16px;">'+T('noConsult')+'</td></tr>';return;}
-  tbody.innerHTML=pepState.vegetaux.map((vg,vi)=>{
+  const wrap=document.getElementById('saisie-table-wrap');
+  if(!wrap)return;
+  if(!pepState.vegetaux.length){
+    wrap.innerHTML='<div class="empty"><div class="ei">🌿</div><p>'+T('noConsult')+'</p></div>';
+    return;
+  }
+  const thead='<thead><tr>'+
+    '<th style="width:30px;">#</th>'+
+    '<th>Nom latin</th>'+
+    '<th style="width:80px;">Calibre</th>'+
+    '<th style="width:90px;">Contenant</th>'+
+    '<th style="width:60px;text-align:center;">Qté</th>'+
+    '<th style="width:130px;">Prix unit. HT (€)</th>'+
+    '<th>Variante proposée</th>'+
+    '<th>Commentaire</th>'+
+    '<th style="width:80px;">✓</th>'+
+  '</tr></thead>';
+  const rows=pepState.vegetaux.map((vg,vi)=>{
     const rep=pepState.reponses[vi]||{};const isVal=pepState.validatedRows.has(vi);
     const isPf=rep.prefilled&&rep.prix!=null;
     const srcLabel=isPf?(rep.prefillSrc==='catalogue'?T('prefillCat'):T('prefillHist')):'';
     const isVar=vg.is_variant===true;
     return'<tr class="'+(isVal?'row-validated':'')+(isVar?' var-row':'')+'" id="tr-'+vi+'">'+
       '<td style="font-family:var(--mono);font-size:.6rem;color:var(--sage);">'+(isVar?'↳':''+(vi+1))+'</td>'+
-      '<td><em style="font-size:.74rem;">'+(vg.latin||'—')+'</em></td>'+
-      '<td style="font-family:var(--mono);font-size:.68rem;">'+(vg.calibre||'—')+'</td>'+
-      '<td style="font-size:.68rem;">'+(vg.contenant||'—')+'</td>'+
-      '<td style="font-family:var(--mono);text-align:center;">'+(vg.qte||1)+'</td>'+
+      '<td>'+(isVar?
+        '<input type="text" value="'+(vg.latin||'')+'" placeholder="Nom latin" style="font-style:italic;font-size:.74rem;color:var(--earth);border:1.5px solid var(--earth-l);border-radius:4px;padding:2px 5px;background:#fdf5e8;width:100%;" onchange="pepState.vegetaux['+vi+'].latin=this.value">':
+        '<em style="font-size:.74rem;">'+( vg.latin||'—')+'</em>'
+      )+'</td>'+
+      '<td>'+(isVar?
+        '<input type="text" value="'+(vg.calibre||'')+'" placeholder="ex: 12/14" style="font-family:var(--mono);font-size:.7rem;border:1.5px solid var(--earth-l);border-radius:4px;padding:2px 4px;width:100%;background:#fdf5e8;" onchange="pepState.vegetaux['+vi+'].calibre=this.value">':
+        '<span style="font-family:var(--mono);font-size:.68rem;">'+(vg.calibre||'—')+'</span>'
+      )+'</td>'+
+      '<td>'+(isVar?
+        '<input type="text" value="'+(vg.contenant||'')+'" placeholder="ex: C35" style="font-size:.7rem;border:1.5px solid var(--earth-l);border-radius:4px;padding:2px 4px;width:100%;background:#fdf5e8;" onchange="pepState.vegetaux['+vi+'].contenant=this.value">':
+        '<span style="font-size:.68rem;">'+(vg.contenant||'—')+'</span>'
+      )+'</td>'+
+      '<td><input type="number" min="1" value="'+(vg.qte||1)+'" title="Modifier si stock insuffisant" style="width:54px;text-align:center;font-family:var(--mono);font-size:.72rem;border:1.5px solid var(--border);border-radius:4px;padding:2px 4px;background:var(--cream);" onchange="pepState.vegetaux['+vi+'].qte=parseInt(this.value)||1"></td>'+
       '<td>'+
         '<input type="number" step=".01" min="0" class="pinp'+(isPf?' prefill':'')+'" placeholder="—" value="'+(rep.prix||'')+'" id="p-'+vi+'"'+
         ' onchange="pepState.reponses['+vi+']=pepState.reponses['+vi+']||{};pepState.reponses['+vi+'].prix=parseFloat(this.value)||null;pepState.reponses['+vi+'].prefilled=false;unvalRow('+vi+');">'+
@@ -825,6 +886,7 @@ function renderSaisie(){
       '</td>'+
     '</tr>';
   }).join('');
+  wrap.innerHTML='<table class="ptable">'+thead+'<tbody>'+rows+'</tbody></table>';
   updateProgress();
   const existPort=Object.values(pepState.reponses).find(r=>r?.fraisPort);
   if(existPort?.fraisPort)document.getElementById('frais-port').value=existPort.fraisPort;
@@ -869,10 +931,12 @@ async function submitPrix(){
     const varVal=document.getElementById('v-'+vi)?.value.trim()||null;
     const comVal=document.getElementById('c-'+vi)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
     if(prixVal==null)continue;
-    const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
+    // Pour les variantes pépinière: construire la description complète
+    const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):varVal;
+    const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
-    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id'});
-    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal,hist:newHist};pepState.validatedRows.add(vi);n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
+    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id'});
+    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,hist:newHist};pepState.validatedRows.add(vi);n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
     else errors++;
   }
   await notifyConsultant();

@@ -642,6 +642,12 @@ function _nav(name){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   ['chantiers','setup','vegetaux','envoi','reponses','comparaison','commande'].forEach((n,i)=>{if(n===name)document.querySelectorAll('.tab')[i].classList.add('active');});
+  // Mettre à jour le bandeau avec le nom du chantier
+  const affaire=document.getElementById('s-affaire')?.value;
+  const ville=document.getElementById('s-ville')?.value;
+  let chip=document.getElementById('chantier-chip');
+  if(!chip){chip=document.createElement('div');chip.id='chantier-chip';chip.style.cssText='background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-family:var(--mono);font-size:.6rem;color:var(--cream);';document.querySelector('.hright').prepend(chip);}
+  chip.textContent=currentConsultId&&(affaire||ville)?'📋 '+(affaire||'—')+' — '+(ville||'—'):'';
   if(name==='envoi')renderEnvoi();
   if(name==='reponses'){renderRepSel();checkPortalReplies();}
   if(name==='comparaison')renderComp();
@@ -1243,23 +1249,24 @@ async function sendToPortal(pi){
   // Créer notification dans le portail
   const{data:cpData}=await supa.from('compte_pepiniere').select('id,notif_preference').eq('pepiniere_id',p.id).single();
   if(cpData){
-    try{await supa.from('notifications').insert({
-      type:'nouvelle_consultation',
-      user_id:cpData.id,
-      message:'Nouvelle consultation de prix : '+(v('s-affaire')||'—')+' — '+(v('s-ville')||'—'),
-      consultation_id:currentConsultId,
-      pepiniere_id:p.id,
-      read:false
-    });}catch(e){console.warn('notification:',e);}
+    try{
+      await supa.from('notifications').insert({
+        type:'nouvelle_consultation',
+        user_id:cpData.id,
+        message:'Nouvelle consultation : '+(v('s-affaire')||'—')+' — '+(v('s-ville')||'—'),
+        consultation_id:currentConsultId,
+        pepiniere_id:p.id,
+        read:false
+      });
+    }catch(e){console.warn('Notifications (non bloquant):',e.message);}
     // Appeler la Edge Function pour envoyer l'email si préférence !== none
     if(cpData.notif_preference!=='none'){
-      try{
-        await fetch(SUPA_URL+'/functions/v1/notify-pepiniere',{
-          method:'POST',
-          headers:{'Content-Type':'application/json','Authorization':'Bearer '+SUPA_KEY},
-          body:JSON.stringify({consultation_id:currentConsultId,pepiniere_id:p.id})
-        });
-      }catch(e){console.warn('Edge Function non joignable:',e.message);}
+      // Edge Function pour email (CORS peut bloquer depuis GitHub Pages)
+      fetch(SUPA_URL+'/functions/v1/notify-pepiniere',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+SUPA_KEY},
+        body:JSON.stringify({consultation_id:currentConsultId,pepiniere_id:p.id})
+      }).then(r=>console.log('Email notif:',r.status)).catch(e=>console.warn('Edge Function (non bloquant):',e.message));
     }
   }
   toast('✓ Consultation envoyée au portail de '+p.nom+(cpData?.notif_preference!=='none'?' — email de notification envoyé':''));
@@ -1413,7 +1420,7 @@ function renderComp(){
     '<th style="width:140px;min-width:110px;">Végétal</th>'+
     '<th style="width:70px;">Cal.</th>'+
     '<th style="width:65px;">Cont.</th>'+
-    '<th style="width:55px;text-align:center;" title="Quantité chantier">Qté</th>'+
+    '<th style="width:70px;text-align:center;" title="Quantité chantier">Qté</th>'+
     '<th class="etude-th psep-th" style="width:75px;" title="Prix étude HT/u">Étude HT</th>'+
     '<th class="etude-th" style="width:78px;">Tot.étude</th>'+
     pepThs+
