@@ -1404,6 +1404,7 @@ function renderComp(){
   const c=document.getElementById('comp-con');
   if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📊</div><p>Ajoutez végétaux &amp; pépinières.</p></div>';return;}
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
+  const portEtude=parseFloat(portEtudeVal)||0;
   const n=peps.length;
   const pepW=n<=2?150:n<=3?120:n<=4?100:n<=5?88:78;
 
@@ -1491,8 +1492,8 @@ function renderComp(){
   // Ligne frais de port
   tbl+='<tr class="port-row">'+
     '<td colspan="4" style="text-align:right;font-family:var(--mono);font-size:.6rem;color:var(--sage);font-style:italic;">Frais de port HT</td>'+
-    '<td class="etude-c psep" style="padding:3px 4px;"><input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.66rem;" placeholder="transp. €" value="'+(portEtude||'')+'" title="Prix étude transport" onchange="portEtudeVal=this.value;updateGlobalTotals();markDirty(\'comparaison\')"></td>'+
-    '<td class="etude-c" style="font-family:var(--mono);font-size:.65rem;text-align:right;">'+(portEtude?fmt(parseFloat(portEtude))+'€':'—')+'</td>'+
+    '<td class="etude-c psep" style="padding:3px 4px;"><input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.66rem;" placeholder="transp. €" value="'+(portEtudeVal||'')+'" title="Prix étude transport" onchange="portEtudeVal=this.value;updateGlobalTotals();markDirty(\'comparaison\')"></td>'+
+    '<td class="etude-c" style="font-family:var(--mono);font-size:.65rem;text-align:right;">'+(portEtudeVal?fmt(parseFloat(portEtudeVal))+'€':'—')+'</td>'+
     peps.map((p,pi)=>'<td class="psep" style="padding:3px 4px;">'+
       '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.67rem;" placeholder="0 €" value="'+(portT[pi]||'')+'" title="Frais de port — '+esc(p.nom)+'"'+
       ' onchange="setPort('+pi+',this.value);markDirty(\'comparaison\')">'+'</td>').join('')+
@@ -1584,6 +1585,7 @@ function updateRowTotals(vi){
 }
 function updateGlobalTotals(){
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
+  const portEtude=parseFloat(portEtudeVal)||0;
   const totEt=calcTotEt();const totRt=calcTotRt(portT);const totD=totEt&&totRt?totRt-totEt:null;const tdc=totD===null?'dz':totD<0?'dn':'dp';
   const etEl=document.getElementById('tot-et');if(etEl)etEl.textContent=totEt?fmt(totEt)+'€':'—';
   const rtEl=document.getElementById('tot-rt');if(rtEl)rtEl.textContent=totRt>0?fmt(totRt)+'€':'—';
@@ -1637,6 +1639,7 @@ function renderCmd(){
   const c=document.getElementById('cmd-con');
   if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📦</div><p>Complétez la comparaison.</p></div>';return;}
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
+  const portEtude=parseFloat(portEtudeVal)||0;
   // Statistiques
   const totalVegs=vegs.length;
   const nonCommandés=vegs.filter((_,vi)=>vegs[vi].sel_pepiniere_pi===-1).length;
