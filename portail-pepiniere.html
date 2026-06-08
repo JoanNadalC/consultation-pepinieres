@@ -447,8 +447,12 @@ async function afterPepLogin(user,hasAccount=true){
     await supa.from('compte_pepiniere').upsert({id:user.id,nom:pd.nom||pepState.pepNom,pepnom:pd.pepnom||'',tel:pd.tel||'',email:user.email,langue:pd.langue||curLang,notif_preference:pd.notif_preference||'each',cgu_accepted:true,cgu_date:new Date().toISOString()});
     if(pd.nom)pepState.pepNom=pd.pepnom||pd.nom;
   }
-  // Params URL
+  // Params URL — nettoyer le token après connexion avec compte
   const params=new URLSearchParams(window.location.search);const urlToken=params.get('token');
+  // Nettoyer l'URL pour ne pas rester bloqué sur le token
+  if(urlToken&&window.history){
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
   showApp(false);
   if(urlToken){
     const{data:inv}=await supa.from('invitations_consultation').select('*').eq('token',urlToken).single();
@@ -459,7 +463,13 @@ async function afterPepLogin(user,hasAccount=true){
       try{const r1=await supa.rpc('get_consultation_by_token',{p_token:urlToken});if(r1.data&&r1.data.length)c1=r1.data[0];else if(r1.data?.id)c1=r1.data;}catch(e){console.warn('RPC token:',e);}
       if(c1){consult=c1;}
       else{const{data:c2}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();consult=c2;}
-      if(consult){if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;}
+      if(consult){
+        if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;
+        // Charger le dashboard d'abord, puis ouvrir la consultation
+        await loadDash();
+        await openConsult(consult,pepState.pepId||inv.pepiniere_id);
+        return;
+      }
     }
   }
   loadDash();loadNotifsBadge();if(pepState.hasAccount){loadHist();loadCatalogue();}
@@ -473,8 +483,15 @@ function showApp(guestMode=false){
   if(pepState.consultId){
     loadConsultantInfo();
   }
-  if(!guestMode){document.getElementById('main-tabs').style.display='flex';if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';}
-  else{document.getElementById('main-tabs').style.display='none';goP('saisie');}
+  // Toujours afficher les onglets pour les comptes
+  if(!guestMode){
+    document.getElementById('main-tabs').style.display='flex';
+    if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';
+  } else {
+    // Mode invité: masquer les onglets sauf si on veut naviguer
+    document.getElementById('main-tabs').style.display='none';
+    goP('saisie');
+  }
 }
 async function doLogout(){if(pepState.mode==='account')await supa.auth.signOut();location.reload();}
 function showWErr(msg,isErr=true){const el=document.getElementById('werr');el.textContent=msg;el.style.display='block';el.className='werr '+(isErr?'werr-e':'werr-ok');}
