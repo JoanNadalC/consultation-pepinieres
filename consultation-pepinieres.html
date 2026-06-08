@@ -1333,7 +1333,10 @@ function renderRepSel(){const sel=document.getElementById('rep-pi');sel.innerHTM
 
 async function checkPortalReplies(){
   if(!currentConsultId)return;
-  const{data}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',currentConsultId);
+  console.log('checkPortalReplies — vegs IDs:',(vegs||[]).map(v=>v.id?.substring(0,8)));
+  console.log('checkPortalReplies — peps IDs:',(peps||[]).map(p=>p.id?.substring(0,8)));
+  const{data,error:repErr}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',currentConsultId);
+  console.log('reponses_pepinieres:',(data||[]).length,'erreur:',repErr?.message);
   if(!data||!data.length)return;
   let hasNew=false;
   data.forEach(r=>{
