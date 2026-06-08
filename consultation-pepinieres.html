@@ -1424,6 +1424,7 @@ function clearRepSt(){document.getElementById('rep-status').style.display='none'
 // COMPARAISON — colonnes adaptatives, transport ligne dédiée, sélection par ligne
 // ══════════════════════════════════════
 async function renderCompAsync(){
+  console.log('renderCompAsync — currentConsultId:',currentConsultId,'vegs:',vegs.length,'peps:',peps.length);
   await checkPortalReplies();
   renderComp();
 }
