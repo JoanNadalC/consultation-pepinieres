@@ -565,7 +565,7 @@ async function doLogin(){
   const{data,error}=await supa.auth.signInWithPassword({email,password:pwd});
   if(error){showAErr('Erreur : '+error.message);return;}
   // Vérifier que c'est un compte CONSULTANT
-  const{data:prof}=await supa.from('compte_consultant').select('id').eq('id',data.user.id).single();
+  const{data:prof}=await supa.from('compte_consultant').select('id').eq('id',data.user.id).maybeSingle();
   if(!prof){
     await supa.auth.signOut();
     showAErr('Le compte '+email+' est un compte pépinière. Utilisez le portail pépinière : '+PORTAL_URL);return;
@@ -590,7 +590,7 @@ async function afterLogin(user){
   document.getElementById('s-email').value=user.email;
   document.getElementById('s-date').value=new Date().toLocaleDateString('fr-FR');
   document.getElementById('ap-email').value=user.email;
-  const{data}=await supa.from('compte_consultant').select('*').eq('id',user.id).single();
+  const{data}=await supa.from('compte_consultant').select('*').eq('id',user.id).maybeSingle();
   if(data){
     const nom=(data.nom||'')+(data.societe?' — '+data.societe:'');
     document.getElementById('am-name').textContent=nom||user.email.split('@')[0];
