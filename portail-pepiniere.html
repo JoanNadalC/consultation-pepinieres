@@ -220,7 +220,10 @@ textarea{resize:vertical;min-height:54px;}
   </div>
   <div class="card">
     <div class="ct">💶 Vos prix unitaires HT
-      <button class="btn btn-ok btn-sm" onclick="submitPrix()" style="margin-left:auto;">💾 Valider &amp; envoyer</button>
+      <div style="margin-left:auto;display:flex;gap:6px;">
+        <button class="btn btn-g btn-sm" onclick="savePrixTemp()" id="btn-save-temp" style="display:none;">💾 Sauvegarder</button>
+        <button class="btn btn-ok btn-sm" onclick="submitPrix()">✅ Valider &amp; envoyer</button>
+      </div>
     </div>
     <p style="font-size:.7rem;color:var(--sage);margin-bottom:10px;">Cases vertes = pré-remplies depuis votre catalogue ou historique. Validez chaque ligne ✓ avant envoi.</p>
     <div style="overflow-x:auto;" id="saisie-table-wrap"></div>
@@ -483,13 +486,19 @@ function showApp(guestMode=false){
   if(pepState.consultId){
     loadConsultantInfo();
   }
-  // Toujours afficher les onglets pour les comptes
   if(!guestMode){
-    document.getElementById('main-tabs').style.display='flex';
-    if(!pepState.hasAccount)document.getElementById('tab-hist-btn').style.display='none';
+    // Compte: afficher tous les onglets
+    const tabs=document.getElementById('main-tabs');
+    if(tabs)tabs.style.display='flex';
+    // Masquer historique si pas de compte permanent
+    const histBtn=document.getElementById('tab-hist-btn');
+    if(histBtn&&!pepState.hasAccount)histBtn.style.display='none';
+    // Aller au dashboard
+    goP('dashboard');
   } else {
-    // Mode invité: masquer les onglets sauf si on veut naviguer
-    document.getElementById('main-tabs').style.display='none';
+    // Invité: masquer les onglets, aller directement à la saisie
+    const tabs=document.getElementById('main-tabs');
+    if(tabs)tabs.style.display='none';
     goP('saisie');
   }
 }
@@ -674,7 +683,14 @@ async function openConsult(consult,pepId){
   // Charger réponses existantes
   const{data:rd}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',consult.id).eq('pepiniere_id',pepId);
   pepState.reponses={};
-  (rd||[]).forEach(r=>{const vi=pepState.vegetaux.findIndex(v=>v.id===r.vegetal_id);if(vi>=0){pepState.reponses[vi]={prix:r.prix_unit_ht,variante:r.variante||'',comment:r.commentaire||'',fraisPort:r.frais_port,hist:r.historique||[]};pepState.validatedRows.add(vi);}});
+  (rd||[]).forEach(r=>{
+    const vi=pepState.vegetaux.findIndex(v=>v.id===r.vegetal_id);
+    if(vi>=0){
+      pepState.reponses[vi]={prix:r.prix_unit_ht,variante:r.variante||'',comment:r.commentaire||'',fraisPort:r.frais_port,hist:r.historique||[]};
+      // Marquer comme validé seulement si updated_at est défini (= envoyé)
+      if(r.updated_at)pepState.validatedRows.add(vi);
+    }
+  });
   if(pepState.hasAccount)await prefillFromCatalogueAndHistory();
   // Marquer les notifications liées à cette consultation comme lues
   if(pepState.user){
@@ -684,6 +700,9 @@ async function openConsult(consult,pepId){
       .eq('read',false);
   }
   renderSaisie();goP('saisie');loadConsultantInfo();
+  // Afficher bouton sauvegarde seulement pour comptes permanents
+  const btnSave=document.getElementById('btn-save-temp');
+  if(btnSave&&pepState.hasAccount&&!guestMode)btnSave.style.display='inline-flex';
   // Retirer le badge si plus de notifs
   loadNotifsBadge();
 }
@@ -935,6 +954,37 @@ function rmSaisieVar(vi){
 function toggleVal(vi){if(pepState.validatedRows.has(vi))pepState.validatedRows.delete(vi);else pepState.validatedRows.add(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr)tr.className=(pepState.validatedRows.has(vi)?'row-validated':'')+' '+( tr.className.includes('var-row')?'var-row':'');if(btn){btn.textContent=pepState.validatedRows.has(vi)?'✓':'○';btn.className='btn val-btn '+(pepState.validatedRows.has(vi)?'btn-ok':'btn-g');}updateProgress();}
 function unvalRow(vi){pepState.validatedRows.delete(vi);const tr=document.getElementById('tr-'+vi);const btn=document.getElementById('vbtn-'+vi);if(tr){const cls=tr.className;tr.className=cls.replace('row-validated','').trim();}if(btn){btn.textContent='○';btn.className='btn val-btn btn-g';}updateProgress();}
 function updateProgress(){const tot=pepState.vegetaux.length;const val=pepState.validatedRows.size;const filled=pepState.vegetaux.filter((_,vi)=>pepState.reponses[vi]?.prix!=null).length;const el=document.getElementById('submit-progress');if(el)el.textContent=val+'/'+tot+' validées · '+filled+' prix saisis';}
+
+async function savePrixTemp(){
+  // Sauvegarder les prix sans envoyer — pour reprendre plus tard
+  if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
+  const fraisPort=parseFloat(document.getElementById('frais-port').value)||null;
+  let n=0;
+  for(let vi=0;vi<pepState.vegetaux.length;vi++){
+    const vg=pepState.vegetaux[vi];
+    const prixVal=parseFloat(document.getElementById('p-'+vi)?.value)||null;
+    const varVal=document.getElementById('v-'+vi)?.value?.trim()||null;
+    const comVal=document.getElementById('c-'+vi)?.value?.trim()||null;
+    if(prixVal==null||!vg.id)continue;
+    const rep=pepState.reponses[vi]||{};
+    const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):varVal;
+    // Sauvegarder sans updated_at pour indiquer que ce n'est pas encore envoyé
+    const{error}=await supa.from('reponses_pepinieres').upsert({
+      consultation_id:pepState.consultId,
+      vegetal_id:vg.id,
+      pepiniere_id:pepState.pepId,
+      prix_unit_ht:prixVal,
+      variante:vg.is_variant?varDesc:varVal,
+      commentaire:comVal,
+      frais_port:fraisPort,
+      historique:rep.hist||[],
+      updated_at:null  // null = sauvegardé mais pas encore envoyé
+    },{onConflict:'vegetal_id,pepiniere_id'});
+    if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal};n++;}
+  }
+  if(n>0)toast(n+' prix sauvegardés — vous pouvez revenir plus tard pour envoyer ✓');
+  else toast('Aucun prix à sauvegarder','error');
+}
 
 async function submitPrix(){
   if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
