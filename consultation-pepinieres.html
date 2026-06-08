@@ -1502,7 +1502,7 @@ function renderComp(){
         return '<td class="px-cell psep'+(isBest?' best':'')+'" data-vi="'+vi+'" data-pi="'+pi+'" style="padding:3px 4px;">'+
           '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.69rem;font-weight:'+(isBest?'600':'400')+';" placeholder="€" value="'+(e.unit!=null?e.unit:'')+'"'+
           ' onchange="setPrix('+vi+','+pi+',this.value);updateRowTotals('+vi+');markDirty(\'comparaison\')">'+ 
-          (e.variante?'<div style="font-size:.52rem;color:var(--sage);margin-top:1px;">↪ '+esc(e.variante)+'</div>':'')+
+          (e.variante?'<div style="font-size:.60rem;background:#fdf0e0;border-left:2px solid var(--earth);padding:2px 4px;margin-top:2px;color:var(--earth);font-weight:500;">↪ pép: '+esc(e.variante)+'</div>':'')+
           (e.comment?'<div style="font-size:.50rem;color:var(--earth);font-style:italic;">'+esc(e.comment)+'</div>':'')+
           '</td>';
       }).join('')+
