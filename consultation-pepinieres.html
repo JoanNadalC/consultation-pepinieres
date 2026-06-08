@@ -746,15 +746,18 @@ async function openChantier(id){
       const{data:pepD,error:pepErr}=await supa.from('pepinieres').select('*').in('id',pepIds);
       console.log('pepD:', pepD?.length, 'erreur:', pepErr?.message);
       if(pepD&&pepD.length){
-        // Vérifier lesquelles ont un compte portail
-        const{data:cpAccts}=await supa.from('compte_pepiniere').select('pepiniere_id').in('pepiniere_id',pepIds);
-        const acctIds=new Set((cpAccts||[]).map(a=>a.pepiniere_id).filter(Boolean));
+        // Vérifier lesquelles ont un compte portail (non bloquant)
+        let acctIds=new Set();
+        try{
+          const{data:cpAccts}=await supa.from('compte_pepiniere').select('pepiniere_id').in('pepiniere_id',pepIds);
+          acctIds=new Set((cpAccts||[]).map(a=>a.pepiniere_id).filter(Boolean));
+        }catch(e){console.warn('compte_pepiniere lookup:',e.message);}
         peps=cpLink.map(lnk=>{
           const p=pepD.find(p=>p.id===lnk.pepiniere_id);
           if(!p)return null;
           return{...p,hasAccount:acctIds.has(p.id)};
         }).filter(Boolean);
-        console.log('peps chargées:', peps.length);
+        console.log('%c✅ '+peps.length+' pépinière(s) chargée(s)','color:green');
       }
     }
   }
