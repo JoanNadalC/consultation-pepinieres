@@ -662,7 +662,7 @@ function _nav(name){
   chip.textContent=currentConsultId&&(affaire||ville)?'📋 '+(affaire||'—')+' — '+(ville||'—'):'';
   loadConsultantInfo();if(name==='envoi')renderEnvoi();
   if(name==='reponses'){renderRepSel();checkPortalReplies();}
-  if(name==='comparaison')renderComp();
+  if(name==='comparaison')renderCompAsync();
   if(name==='commande')renderCmd();
 }
 async function saveAndNav(){closeModal('unsaved-modal');const cur=document.querySelector('.sec.active')?.id?.replace('tab-','');if(cur==='comparaison')await saveComparatif();else await saveConsultation();if(pendingNav){_nav(pendingNav);pendingNav=null;}}
@@ -1337,12 +1337,26 @@ async function checkPortalReplies(){
   if(!data||!data.length)return;
   let hasNew=false;
   data.forEach(r=>{
-    const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
-    if(vi<0||pi<0)return;
+    const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
+    const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
+    if(vi<0||pi<0){
+      console.log('Prix portail non mappé — vegetal_id:',r.vegetal_id,'pepiniere_id:',r.pepiniere_id);
+      return;
+    }
     if(!prix[vi])prix[vi]={};
-    if(r.prix_unit_ht!=null&&!prix[vi][pi]?.unit){prix[vi][pi]={...prix[vi][pi]||{},unit:r.prix_unit_ht};hasNew=true;}
-    if(r.frais_port!=null){if(!prix['port'])prix['port']={};prix['port'][pi]=r.frais_port;}
+    if(r.prix_unit_ht!=null){
+      // Toujours mettre à jour avec les prix du portail
+      prix[vi][pi]={...prix[vi][pi]||{},unit:r.prix_unit_ht,fromPortal:true};
+      hasNew=true;
+    }
+    if(r.variante)prix[vi][pi].variante=r.variante;
+    if(r.commentaire)prix[vi][pi].comment=r.commentaire;
+    if(r.frais_port!=null){
+      if(!prix['port'])prix['port']={};
+      prix['port'][pi]=r.frais_port;
+    }
   });
+  if(hasNew)console.log('%c✅ Prix portail chargés','color:green');
   if(hasNew)document.getElementById('notif-rep').style.display='block';
 }
 
@@ -1406,6 +1420,10 @@ function clearRepSt(){document.getElementById('rep-status').style.display='none'
 // ══════════════════════════════════════
 // COMPARAISON — colonnes adaptatives, transport ligne dédiée, sélection par ligne
 // ══════════════════════════════════════
+async function renderCompAsync(){
+  await checkPortalReplies();
+  renderComp();
+}
 function renderComp(){
   const c=document.getElementById('comp-con');
   if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📊</div><p>Ajoutez végétaux &amp; pépinières.</p></div>';return;}
