@@ -738,11 +738,13 @@ async function openChantier(id){
 
   // 2. Charger pépinières liées à CE chantier
   peps=[];
-  const{data:cpLink}=await supa.from('consultation_pepinieres').select('pepiniere_id,ordre').eq('consultation_id',id).order('ordre');
+  const{data:cpLink,error:cpErr}=await supa.from('consultation_pepinieres').select('pepiniere_id,ordre').eq('consultation_id',id).order('ordre');
+  console.log('cpLink:', cpLink?.length, 'erreur:', cpErr?.message);
   if(cpLink&&cpLink.length){
     const pepIds=cpLink.map(r=>r.pepiniere_id).filter(Boolean);
     if(pepIds.length){
-      const{data:pepD}=await supa.from('pepinieres').select('*').in('id',pepIds);
+      const{data:pepD,error:pepErr}=await supa.from('pepinieres').select('*').in('id',pepIds);
+      console.log('pepD:', pepD?.length, 'erreur:', pepErr?.message);
       if(pepD&&pepD.length){
         // Vérifier lesquelles ont un compte portail
         const{data:cpAccts}=await supa.from('compte_pepiniere').select('pepiniere_id').in('pepiniere_id',pepIds);
@@ -752,6 +754,7 @@ async function openChantier(id){
           if(!p)return null;
           return{...p,hasAccount:acctIds.has(p.id)};
         }).filter(Boolean);
+        console.log('peps chargées:', peps.length);
       }
     }
   }
