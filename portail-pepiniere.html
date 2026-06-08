@@ -565,8 +565,9 @@ async function loadDash(){
   let reps=[], invs=[];
   
   if(pepState.pepId){
-    const{data:r}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
-    const{data:i}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
+    const{data:r,error:rErr}=await supa.from('reponses_pepinieres').select('consultation_id,updated_at,historique').eq('pepiniere_id',pepState.pepId);
+    const{data:i,error:iErr}=await supa.from('invitations_consultation').select('consultation_id,created_at').eq('pepiniere_id',pepState.pepId);
+    console.log('reponses:',r?.length,'err:',rErr?.message,'invitations:',i?.length,'err:',iErr?.message);
     reps=r||[]; invs=i||[];
   } else if(pepState.user) {
     // pepId pas encore lié — chercher les invitations via toutes les pepinieres
