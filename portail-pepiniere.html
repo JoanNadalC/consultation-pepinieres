@@ -75,7 +75,7 @@ textarea{resize:vertical;min-height:54px;}
 .st-répondu{background:#d4edda;color:#1a5c28;}
 .cc-meta{font-size:.67rem;color:var(--sage);font-family:var(--mono);margin-top:3px;}
 .ptable{width:100%;border-collapse:separate;border-spacing:0;font-size:.76rem;}
-.ptable th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;position:sticky;top:60px;z-index:2;}
+.ptable th{background:var(--sage-d);color:var(--cream);padding:6px 8px;font-family:var(--mono);font-size:.54rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400;text-align:left;}
 .ptable th:first-child{border-radius:6px 0 0 0;}.ptable th:last-child{border-radius:0 6px 0 0;}
 .ptable td{padding:6px 8px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle;}
 .ptable td:first-child{border-left:1px solid var(--border);}
@@ -424,7 +424,7 @@ async function doGuest(){
 async function afterPepLogin(user,hasAccount=true){
   pepState.user=user;pepState.mode='account';pepState.hasAccount=hasAccount;
   // Vérifier que c'est un compte PÉPINIÈRE (pas consultant)
-  const{data:consultCheck}=await supa.from('compte_consultant').select('id').eq('id',user.id).single();
+  const{data:consultCheck}=await supa.from('compte_consultant').select('id').eq('id',user.id).maybeSingle();
   if(consultCheck){
     await supa.auth.signOut();pepState.user=null;
     setTimeout(()=>{document.getElementById('welcome').classList.remove('hidden');swWTab('account');swATab('login');showWErr('Le compte '+user.email+' est un compte consultant. Utilisez l\'application consultant.');},200);
@@ -813,7 +813,10 @@ async function notifyConsultantChiffrage(){
 // PRÉ-REMPLISSAGE
 async function prefillFromCatalogueAndHistory(){
   if(!pepState.pepId)return;
-  if(!pepState.catalogue.length){const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);pepState.catalogue=cat||[];}
+  if(!pepState.catalogue.length){
+    try{const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);pepState.catalogue=cat||[];}
+    catch(e){console.warn('catalogue_pepiniere:',e.message);pepState.catalogue=[];}
+  }
   const{data:hist}=await supa.from('reponses_pepinieres').select('vegetal_id,prix_unit_ht,updated_at,vegetaux(latin,calibre,contenant)').eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
   pepState.vegetaux.forEach((vg,vi)=>{
     if(pepState.reponses[vi]?.prix!=null)return;
@@ -960,7 +963,9 @@ async function notifyConsultant(){
 // CATALOGUE
 async function loadCatalogue(){
   if(!pepState.pepId||!pepState.hasAccount)return;
-  const{data}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId).order('latin');
+  let data=null;
+  try{const r=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId).order('latin');data=r.data;}
+  catch(e){console.warn('catalogue load:',e.message);data=[];}
   pepState.catalogue=data||[];
   document.getElementById('cat-count').textContent=pepState.catalogue.length+' article(s)';
   if(pepState.catalogue.length>0)document.getElementById('cat-controls').style.display='block';
