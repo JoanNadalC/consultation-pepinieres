@@ -455,7 +455,8 @@ async function afterPepLogin(user,hasAccount=true){
     if(inv&&new Date(inv.expires_at)>new Date()){
       // Essayer RPC d'abord, puis fallback direct
       let consult=null;
-      const{data:c1}=await supa.rpc('get_consultation_by_token',{p_token:urlToken}).single().catch(()=>({data:null}));
+      let c1=null;
+      try{const r1=await supa.rpc('get_consultation_by_token',{p_token:urlToken});if(r1.data&&r1.data.length)c1=r1.data[0];else if(r1.data?.id)c1=r1.data;}catch(e){console.warn('RPC token:',e);}
       if(c1){consult=c1;}
       else{const{data:c2}=await supa.from('consultations').select('*').eq('id',inv.consultation_id).single();consult=c2;}
       if(consult){if(!pepState.pepId)pepState.pepId=inv.pepiniere_id;await openConsult(consult,pepState.pepId||inv.pepiniere_id);return;}
@@ -663,8 +664,7 @@ async function openConsult(consult,pepId){
     await supa.from('notifications').update({read:true})
       .eq('user_id',pepState.user.id)
       .eq('consultation_id',consult.id)
-      .eq('read',false)
-      .catch(()=>{});
+      .eq('read',false);
   }
   renderSaisie();goP('saisie');loadConsultantInfo();
   // Retirer le badge si plus de notifs
@@ -801,13 +801,13 @@ async function notifyConsultantChiffrage(){
       type:'pepiniere_reponse',user_id:consult.consultant_id,
       message:pepState.pepNom+' a envoyé son chiffrage pour "'+( consult.affaire||'—')+'" — '+(consult.ville||'—'),
       consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false
-    }).catch(()=>{});
+    });
     // Email via Edge Function
     await fetch('https://xdbgmedtwqxbfijkoqnj.supabase.co/functions/v1/notify-pepiniere',{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkYmdtZWR0d3F4YmZpamtvcW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NDEyODIsImV4cCI6MjA5NDQxNzI4Mn0.WPArcadGokK06BXNoO8NF8D0ceMqIgeZDIjveIz2zXk'},
       body:JSON.stringify({consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,type:'chiffrage'})
-    }).catch(()=>{});
+    });
   }catch(e){console.log('Notification consultant:',e.message);}
 }
 
@@ -957,7 +957,7 @@ async function notifyConsultant(){
   try{
     const{data:consult}=await supa.from('consultations').select('consultant_id,affaire,ville').eq('id',pepState.consultId).maybeSingle();
     if(!consult)return;
-    await supa.from('notifications').insert({type:'pepiniere_reponse',user_id:consult.consultant_id,message:pepState.pepNom+' a répondu à la consultation "'+(consult.affaire||'—')+'" — '+(consult.ville||'—'),consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false}).catch(()=>{});
+    await supa.from('notifications').insert({type:'pepiniere_reponse',user_id:consult.consultant_id,message:pepState.pepNom+' a répondu à la consultation "'+(consult.affaire||'—')+'" — '+(consult.ville||'—'),consultation_id:pepState.consultId,pepiniere_id:pepState.pepId,read:false});
   }catch(e){console.log('Notification:',e.message);}
 }
 
