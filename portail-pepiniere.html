@@ -797,7 +797,7 @@ async function submitPrixInvite(){
       commentaire:comVal,
       frais_port:fraisPort,
       historique:[{ts:new Date().toISOString(),prix:prixVal}],
-      est_variante:vg.is_variant===true,
+      est_variante:!!vg.parentVegetalId,
       variante_ordre:vg._varOrdre||0,
       updated_at:new Date().toISOString()
     },{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
@@ -1089,7 +1089,7 @@ async function submitPrix(){
     const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):varVal;
     const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
-    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,est_variante:vg.is_variant===true,variante_ordre:vg._varOrdre||0,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
+    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,est_variante:!!vg.parentVegetalId,variante_ordre:vg._varOrdre||0,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
     if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,hist:newHist};pepState.validatedRows.add(vi);n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
     else errors++;
   }
