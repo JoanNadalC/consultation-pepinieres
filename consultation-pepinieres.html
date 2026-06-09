@@ -1348,11 +1348,10 @@ async function checkPortalReplies(){
     const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
     if(vi<0||pi<0)return;
     
-    // Une variante pépinière = est_variante=true ET vegetal_id appartient à un parent
-    // càd le vegetal_id matche un vg dont isVariant=false (le parent)
-    // Une variante consultant = est_variante peut être true mais le vg.isVariant=true
+    // Variante pépinière = variante_ordre > 0 (créée via +var dans le portail)
+    // Variante consultant = variante_ordre = 0 (existe dans vegetaux avec isVariant=true)
     const vg=vegs[vi];
-    const isVarPep=r.est_variante&&!vg.isVariant; // Variante créée par pépinière
+    const isVarPep=r.est_variante&&(r.variante_ordre>0); // Variante créée par pépinière
     
     if(isVarPep){
       // Variante pépinière → ligne séparée dans le comparatif
