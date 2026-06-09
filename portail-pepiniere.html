@@ -769,12 +769,23 @@ function chUnval(vi){
 async function submitPrixInvite(){
   const fraisPort=parseFloat(document.getElementById('frais-port').value)||null;
   let n=0;
+  // S'assurer que _varOrdre est défini pour chaque ligne
+  const varOrdreMap2={};
+  pepState.vegetaux.forEach(function(v2,i2){
+    if(!v2.is_variant){pepState.vegetaux[i2]._varOrdre=0;return;}
+    const pid=v2.parentVegetalId||v2.id;
+    if(!pid)return;
+    if(v2._varOrdre!=null)return; // Déjà défini dans addSaisieVar
+    if(!varOrdreMap2[pid])varOrdreMap2[pid]=0;
+    varOrdreMap2[pid]++;
+    pepState.vegetaux[i2]._varOrdre=varOrdreMap2[pid];
+  });
   for(let vi=0;vi<pepState.vegetaux.length;vi++){
     const vg=pepState.vegetaux[vi];
     const prixVal=parseFloat(document.getElementById('p-'+vi)?.value)||null;
     const comVal=document.getElementById('c-'+vi)?.value.trim()||null;
-    const effectiveId=vg.is_variant?(vg.parentVegetalId||vg.id):vg.id;
-    if(prixVal==null||!effectiveId)continue;
+    const effectiveId=vg.is_variant?vg.parentVegetalId:vg.id;
+    if(prixVal==null||!effectiveId){if(prixVal!=null)console.warn('effectiveId null vi='+vi);continue;}
     // Construire la description variante si c'est une variante pépinière
     const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):null;
     const{error}=await supa.from('reponses_pepinieres').upsert({
@@ -811,8 +822,8 @@ async function submitChiffrage(){
     const prixVal=parseFloat(document.getElementById('ch-p-'+vi)?.value)||null;
     const varVal=document.getElementById('ch-v-'+vi)?.value.trim()||null;
     const comVal=document.getElementById('ch-c-'+vi)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
-    const effectiveId2=vg.is_variant?(vg.parentVegetalId||vg.id):vg.id;
-    if(prixVal==null||!effectiveId2)continue;
+    const effectiveId2=vg.is_variant?vg.parentVegetalId:vg.id;
+    if(prixVal==null||!effectiveId2){if(!effectiveId2)console.warn('effectiveId2 null vi='+vi);continue;}
     const rep=pepState.reponses[vi]||{};
     const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
@@ -1004,15 +1015,18 @@ function renderSaisie(){
 }
 function addSaisieVar(vi){
   const parent=pepState.vegetaux[vi];
+  // Compter les variantes existantes pour ce parent
+  const existingVars=pepState.vegetaux.filter(v=>v.is_variant&&(v.parentVegetalId===parent.id));
   const varVeg={
-    id:parent.id,  // IMPORTANT: même vegetal_id que le parent pour l'upsert
+    id:null,  // Pas d'ID propre — sera créé avec le vegetal_id du parent
     ordre:vi+0.5,
     latin:parent.latin, calibre:parent.calibre,
     contenant:parent.contenant, qte:parent.qte,
     unite:parent.unite||'U', remarques:'',
     prix_etude_ht:null, is_variant:true,
     parent_ordre:vi, variantes:[],
-    parentVegetalId:parent.id  // Garder référence au parent
+    parentVegetalId:parent.id,  // ID du végétal parent
+    _varOrdre:existingVars.length+1  // Ordre de cette variante
   };
   pepState.vegetaux.splice(vi+1, 0, varVeg);
   renderSaisie();
@@ -1075,7 +1089,7 @@ async function submitPrix(){
     const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):varVal;
     const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
-    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
+    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,est_variante:vg.is_variant===true,variante_ordre:vg._varOrdre||0,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
     if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,hist:newHist};pepState.validatedRows.add(vi);n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
     else errors++;
   }
