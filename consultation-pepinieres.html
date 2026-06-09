@@ -1354,7 +1354,9 @@ async function checkPortalReplies(){
     if(r.frais_port!=null){if(!prix['port'])prix['port']={};prix['port'][pi]=r.frais_port;}
   });
   
-  // 2. Charger les variantes pépinière comme lignes supplémentaires
+  // 2. Charger les variantes pépinière — RESET d'abord pour éviter accumulation
+  // Réinitialiser toutes les variantesPep existantes
+  vegs.forEach((_,vi)=>{if(prix[vi])delete prix[vi].variantesPep;});
   variantesPep.forEach(r=>{
     const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
     const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
@@ -1443,6 +1445,7 @@ async function renderCompAsync(){
 }
 function renderComp(){
   const c=document.getElementById('comp-con');
+  console.log('renderComp — vegs:',vegs.length,'peps:',peps.length,'prix sample:',JSON.stringify(prix).substring(0,200));
   if(!vegs.length||!peps.length){c.innerHTML='<div class="empty"><div class="ei">📊</div><p>Ajoutez végétaux &amp; pépinières.</p></div>';return;}
   const portT=peps.map((_,pi)=>parseFloat((prix['port']&&prix['port'][pi])||0));
   const portEtude=parseFloat(portEtudeVal)||0;
