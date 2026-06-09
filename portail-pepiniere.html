@@ -773,12 +773,13 @@ async function submitPrixInvite(){
     const vg=pepState.vegetaux[vi];
     const prixVal=parseFloat(document.getElementById('p-'+vi)?.value)||null;
     const comVal=document.getElementById('c-'+vi)?.value.trim()||null;
-    if(prixVal==null||!vg.id)continue;
+    const effectiveId=vg.is_variant?(vg.parentVegetalId||vg.id):vg.id;
+    if(prixVal==null||!effectiveId)continue;
     // Construire la description variante si c'est une variante pépinière
     const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):null;
     const{error}=await supa.from('reponses_pepinieres').upsert({
       consultation_id:pepState.consultId,
-      vegetal_id:vg.id,
+      vegetal_id:effectiveId,
       pepiniere_id:pepState.pepId,
       prix_unit_ht:prixVal,
       variante:varDesc,
@@ -808,7 +809,8 @@ async function submitChiffrage(){
     const prixVal=parseFloat(document.getElementById('ch-p-'+vi)?.value)||null;
     const varVal=document.getElementById('ch-v-'+vi)?.value.trim()||null;
     const comVal=document.getElementById('ch-c-'+vi)?.value.trim()||(vi===0&&commentGen?commentGen:null)||null;
-    if(prixVal==null)continue;
+    const effectiveId2=vg.is_variant?(vg.parentVegetalId||vg.id):vg.id;
+    if(prixVal==null||!effectiveId2)continue;
     const rep=pepState.reponses[vi]||{};
     const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
@@ -935,16 +937,18 @@ function renderSaisie(){
 function addSaisieVar(vi){
   const parent=pepState.vegetaux[vi];
   const varVeg={
-    id:null, ordre:vi+0.5,
+    id:parent.id,  // IMPORTANT: même vegetal_id que le parent pour l'upsert
+    ordre:vi+0.5,
     latin:parent.latin, calibre:parent.calibre,
     contenant:parent.contenant, qte:parent.qte,
     unite:parent.unite||'U', remarques:'',
     prix_etude_ht:null, is_variant:true,
-    parent_ordre:vi, variantes:[]
+    parent_ordre:vi, variantes:[],
+    parentVegetalId:parent.id  // Garder référence au parent
   };
   pepState.vegetaux.splice(vi+1, 0, varVeg);
   renderSaisie();
-  toast('Variante ajoutée — renseignez le calibre/contenant réel');
+  toast('Variante ajoutée — modifiez le calibre/contenant réel');
 }
 function rmSaisieVar(vi){
   pepState.vegetaux.splice(vi, 1);
@@ -972,7 +976,7 @@ async function savePrixTemp(){
     // Sauvegarder sans updated_at pour indiquer que ce n'est pas encore envoyé
     const{error}=await supa.from('reponses_pepinieres').upsert({
       consultation_id:pepState.consultId,
-      vegetal_id:vg.id,
+      vegetal_id:effectiveId,
       pepiniere_id:pepState.pepId,
       prix_unit_ht:prixVal,
       variante:vg.is_variant?varDesc:varVal,
