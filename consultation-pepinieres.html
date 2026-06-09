@@ -1339,37 +1339,41 @@ async function checkPortalReplies(){
   console.log('reponses_pepinieres:',(data||[]).length,'erreur:',repErr?.message);
   if(!data||!data.length)return;
   let hasNew=false;
-  // Séparer les réponses principales des variantes pépinière
-  const principales=data.filter(r=>!r.est_variante);
-  const variantesPep=data.filter(r=>r.est_variante);
-  
-  // 1. Charger les prix principaux
-  principales.forEach(r=>{
-    const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
-    const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
-    if(vi<0||pi<0)return;
-    if(!prix[vi])prix[vi]={};
-    if(r.prix_unit_ht!=null){prix[vi][pi]={...prix[vi][pi]||{},unit:r.prix_unit_ht,fromPortal:true};hasNew=true;}
-    if(r.commentaire)prix[vi][pi].comment=r.commentaire;
-    if(r.frais_port!=null){if(!prix['port'])prix['port']={};prix['port'][pi]=r.frais_port;}
-  });
-  
-  // 2. Charger les variantes pépinière — RESET d'abord pour éviter accumulation
-  // Réinitialiser toutes les variantesPep existantes
+  // Réinitialiser variantesPep pour éviter accumulation
   vegs.forEach((_,vi)=>{if(prix[vi])delete prix[vi].variantesPep;});
-  variantesPep.forEach(r=>{
+
+  data.forEach(r=>{
+    if(!r.vegetal_id)return; // Ignorer les lignes sans vegetal_id
     const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
     const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
     if(vi<0||pi<0)return;
-    if(!prix[vi])prix[vi]={};
-    if(!prix[vi].variantesPep)prix[vi].variantesPep={};
-    if(!prix[vi].variantesPep[pi])prix[vi].variantesPep[pi]=[];
-    prix[vi].variantesPep[pi].push({
-      unit:r.prix_unit_ht,
-      description:r.variante||'',
-      ordre:r.variante_ordre||1,
-      fromPortal:true
-    });
+    
+    // Une variante pépinière = est_variante=true ET vegetal_id appartient à un parent
+    // càd le vegetal_id matche un vg dont isVariant=false (le parent)
+    // Une variante consultant = est_variante peut être true mais le vg.isVariant=true
+    const vg=vegs[vi];
+    const isVarPep=r.est_variante&&!vg.isVariant; // Variante créée par pépinière
+    
+    if(isVarPep){
+      // Variante pépinière → ligne séparée dans le comparatif
+      if(!prix[vi])prix[vi]={};
+      if(!prix[vi].variantesPep)prix[vi].variantesPep={};
+      if(!prix[vi].variantesPep[pi])prix[vi].variantesPep[pi]=[];
+      prix[vi].variantesPep[pi].push({
+        unit:r.prix_unit_ht,
+        description:r.variante||'',
+        ordre:r.variante_ordre||1,
+        fromPortal:true
+      });
+    } else {
+      // Prix principal (végétal normal ou variante consultant)
+      if(!prix[vi])prix[vi]={};
+      if(r.prix_unit_ht!=null){
+        prix[vi][pi]={...prix[vi][pi]||{},unit:r.prix_unit_ht,fromPortal:true};
+      }
+      if(r.commentaire)prix[vi][pi].comment=r.commentaire;
+      if(r.frais_port!=null){if(!prix['port'])prix['port']={};prix['port'][pi]=r.frais_port;}
+    }
     hasNew=true;
   });
   console.log('%c✅ Prix portail chargés — état prix:','color:green', JSON.stringify(
