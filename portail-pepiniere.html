@@ -703,7 +703,7 @@ async function openConsult(consult,pepId){
   renderSaisie();goP('saisie');loadConsultantInfo();
   // Afficher bouton sauvegarde seulement pour comptes permanents
   const btnSave=document.getElementById('btn-save-temp');
-  if(btnSave&&pepState.hasAccount&&!guestMode)btnSave.style.display='inline-flex';
+  if(btnSave&&pepState.hasAccount&&pepState.mode!=='guest')btnSave.style.display='inline-flex';
   // Retirer le badge si plus de notifs
   loadNotifsBadge();
 }
