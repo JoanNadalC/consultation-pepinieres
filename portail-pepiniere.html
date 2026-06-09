@@ -567,6 +567,7 @@ function goP(name){
   const tabs=document.querySelectorAll('.tab');if(idx>=0&&tabs[idx])tabs[idx].classList.add('active');
   if(name==='catalogue')renderCatalogue();
   if(name==='chiffrage')renderChiffrage();
+  if(name==='dashboard')loadDash(); // Recharger à chaque visite
 }
 
 // DASHBOARD

@@ -1359,16 +1359,9 @@ async function checkPortalReplies(){
       prix['port'][pi]=r.frais_port;
     }
   });
-  if(hasNew){
-    console.log('%c✅ Prix portail chargés','color:green');
-    // Afficher les variantes chargées
-    vegs.forEach((_,vi)=>{
-      peps.forEach((_,pi)=>{
-        const e=prix[vi]&&prix[vi][pi];
-        if(e?.variante)console.log('Variante vi='+vi+' pi='+pi+':', e.variante);
-      });
-    });
-  }
+  console.log('%c✅ Prix portail chargés — état prix:','color:green', JSON.stringify(
+    Object.fromEntries(Object.entries(prix).map(([k,v])=>[k, typeof v==='object'?Object.fromEntries(Object.entries(v).map(([k2,v2])=>[k2,{unit:v2?.unit,variante:v2?.variante}])):v]))
+  ));
   if(hasNew)document.getElementById('notif-rep').style.display='block';
 }
 
