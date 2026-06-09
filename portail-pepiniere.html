@@ -1014,19 +1014,30 @@ function renderSaisie(){
   if(existPort?.fraisPort)document.getElementById('frais-port').value=existPort.fraisPort;
 }
 function addSaisieVar(vi){
+  const clicked=pepState.vegetaux[vi];
+  // Trouver le vrai parent (végétal non-variant)
+  // Si la ligne cliquée est elle-même une variante consultant, remonter au parent
+  let trueParentId=clicked.id;
+  if(clicked.is_variant&&clicked.parentVegetalId){
+    trueParentId=clicked.parentVegetalId;
+  } else if(clicked.is_variant){
+    // Chercher le parent dans la liste (premier végétal non-variant du même nom)
+    const parentVeg=pepState.vegetaux.find(v=>!v.is_variant&&v.latin===clicked.latin);
+    if(parentVeg)trueParentId=parentVeg.id;
+  }
+  // Compter les variantes pép existantes pour ce parent
+  const existingVars=pepState.vegetaux.filter(v=>v.parentVegetalId===trueParentId);
   const parent=pepState.vegetaux[vi];
-  // Compter les variantes existantes pour ce parent
-  const existingVars=pepState.vegetaux.filter(v=>v.is_variant&&(v.parentVegetalId===parent.id));
   const varVeg={
-    id:null,  // Pas d'ID propre — sera créé avec le vegetal_id du parent
+    id:null,
     ordre:vi+0.5,
     latin:parent.latin, calibre:parent.calibre,
     contenant:parent.contenant, qte:parent.qte,
     unite:parent.unite||'U', remarques:'',
     prix_etude_ht:null, is_variant:true,
     parent_ordre:vi, variantes:[],
-    parentVegetalId:parent.id,  // ID du végétal parent
-    _varOrdre:existingVars.length+1  // Ordre de cette variante
+    parentVegetalId:trueParentId,  // Toujours l'ID du végétal racine
+    _varOrdre:existingVars.length+1
   };
   pepState.vegetaux.splice(vi+1, 0, varVeg);
   renderSaisie();
