@@ -786,8 +786,10 @@ async function submitPrixInvite(){
       commentaire:comVal,
       frais_port:fraisPort,
       historique:[{ts:new Date().toISOString(),prix:prixVal}],
+      est_variante:vg.is_variant===true,
+      variante_ordre:vg._varOrdre||0,
       updated_at:new Date().toISOString()
-    },{onConflict:'vegetal_id,pepiniere_id'});
+    },{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
     if(!error)n++;
     else console.error('Erreur upsert invité:',error);
   }
@@ -818,7 +820,7 @@ async function submitChiffrage(){
       consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,
       prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,
       frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()
-    },{onConflict:'vegetal_id,pepiniere_id'});
+    },{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
     if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,hist:newHist};n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
     else errors++;
   }
@@ -1050,7 +1052,7 @@ async function savePrixTemp(){
       frais_port:fraisPort,
       historique:rep.hist||[],
       updated_at:null  // null = sauvegardé mais pas encore envoyé
-    },{onConflict:'vegetal_id,pepiniere_id'});
+    },{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
     if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:varVal,comment:comVal};n++;}
   }
   if(n>0)toast(n+' prix sauvegardés — vous pouvez revenir plus tard pour envoyer ✓');
@@ -1059,11 +1061,7 @@ async function savePrixTemp(){
 
 async function submitPrix(){
   if(!pepState.consultId||!pepState.pepId){toast('Consultation non chargée.','error');return;}
-  // En mode invité, vérifier qu'on a bien un pepiniere_id
-  if(pepState.mode==='guest'&&!pepState.user){
-    // Mode invité sans compte: utiliser la clé de service via Edge Function
-    await submitPrixInvite();return;
-  }
+  if(pepState.mode==='guest'&&!pepState.user){await submitPrixInvite();return;}
   const fraisPort=parseFloat(document.getElementById('frais-port').value)||null;
   const commentGen=document.getElementById('comment-gen').value.trim();
   let n=0,errors=0;
@@ -1077,7 +1075,7 @@ async function submitPrix(){
     const varDesc=vg.is_variant?(vg.latin+(vg.calibre?' '+vg.calibre:'')+(vg.contenant?' '+vg.contenant:'')):varVal;
     const histEntry={ts:new Date().toISOString(),prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,validated:pepState.validatedRows.has(vi)};
     const newHist=pepState.hasAccount?[...(rep.hist||[]),histEntry]:[histEntry];
-    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id'});
+    const{error}=await supa.from('reponses_pepinieres').upsert({consultation_id:pepState.consultId,vegetal_id:vg.id,pepiniere_id:pepState.pepId,prix_unit_ht:prixVal,variante:vg.is_variant?varDesc:varVal,commentaire:comVal,frais_port:fraisPort,historique:newHist,updated_at:new Date().toISOString()},{onConflict:'vegetal_id,pepiniere_id,variante_ordre'});
     if(!error){pepState.reponses[vi]={...rep,prix:prixVal,variante:vg.is_variant?varDesc:varVal,comment:comVal,hist:newHist};pepState.validatedRows.add(vi);n++;if(pepState.hasAccount)await upsertCatalogue(vg,prixVal);}
     else errors++;
   }

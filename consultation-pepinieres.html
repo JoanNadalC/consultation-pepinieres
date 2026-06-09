@@ -1335,29 +1335,40 @@ async function checkPortalReplies(){
   if(!currentConsultId)return;
   console.log('checkPortalReplies — vegs IDs:',(vegs||[]).map(v=>v.id?.substring(0,8)));
   console.log('checkPortalReplies — peps IDs:',(peps||[]).map(p=>p.id?.substring(0,8)));
-  const{data,error:repErr}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',currentConsultId);
+  const{data,error:repErr}=await supa.from('reponses_pepinieres').select('*').eq('consultation_id',currentConsultId).order('variante_ordre',{ascending:true});
   console.log('reponses_pepinieres:',(data||[]).length,'erreur:',repErr?.message);
   if(!data||!data.length)return;
   let hasNew=false;
-  data.forEach(r=>{
+  // Séparer les réponses principales des variantes pépinière
+  const principales=data.filter(r=>!r.est_variante);
+  const variantesPep=data.filter(r=>r.est_variante);
+  
+  // 1. Charger les prix principaux
+  principales.forEach(r=>{
     const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
     const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
-    if(vi<0||pi<0){
-      console.log('Prix portail non mappé — vegetal_id:',r.vegetal_id,'pepiniere_id:',r.pepiniere_id);
-      return;
-    }
+    if(vi<0||pi<0)return;
     if(!prix[vi])prix[vi]={};
-    if(r.prix_unit_ht!=null){
-      // Toujours mettre à jour avec les prix du portail
-      prix[vi][pi]={...prix[vi][pi]||{},unit:r.prix_unit_ht,fromPortal:true};
-      hasNew=true;
-    }
-    if(r.variante)prix[vi][pi].variante=r.variante;
+    if(r.prix_unit_ht!=null){prix[vi][pi]={...prix[vi][pi]||{},unit:r.prix_unit_ht,fromPortal:true};hasNew=true;}
     if(r.commentaire)prix[vi][pi].comment=r.commentaire;
-    if(r.frais_port!=null){
-      if(!prix['port'])prix['port']={};
-      prix['port'][pi]=r.frais_port;
-    }
+    if(r.frais_port!=null){if(!prix['port'])prix['port']={};prix['port'][pi]=r.frais_port;}
+  });
+  
+  // 2. Charger les variantes pépinière comme lignes supplémentaires
+  variantesPep.forEach(r=>{
+    const vi=vegs.findIndex(vg=>vg.id===r.vegetal_id);
+    const pi=peps.findIndex(p=>p.id===r.pepiniere_id);
+    if(vi<0||pi<0)return;
+    if(!prix[vi])prix[vi]={};
+    if(!prix[vi].variantesPep)prix[vi].variantesPep={};
+    if(!prix[vi].variantesPep[pi])prix[vi].variantesPep[pi]=[];
+    prix[vi].variantesPep[pi].push({
+      unit:r.prix_unit_ht,
+      description:r.variante||'',
+      ordre:r.variante_ordre||1,
+      fromPortal:true
+    });
+    hasNew=true;
   });
   console.log('%c✅ Prix portail chargés — état prix:','color:green', JSON.stringify(
     Object.fromEntries(Object.entries(prix).map(([k,v])=>[k, typeof v==='object'?Object.fromEntries(Object.entries(v).map(([k2,v2])=>[k2,{unit:v2?.unit,variante:v2?.variante}])):v]))
@@ -1504,7 +1515,7 @@ function renderComp(){
         return '<td class="px-cell psep'+(isBest?' best':'')+'" data-vi="'+vi+'" data-pi="'+pi+'" style="padding:3px 4px;">'+
           '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.69rem;font-weight:'+(isBest?'600':'400')+';" placeholder="€" value="'+(e.unit!=null?e.unit:'')+'"'+
           ' onchange="setPrix('+vi+','+pi+',this.value);updateRowTotals('+vi+');markDirty(\'comparaison\')">'+ 
-          (e.variante?'<div style="font-size:.60rem;background:#fdf0e0;border-left:2px solid var(--earth);padding:2px 4px;margin-top:2px;color:var(--earth);font-weight:500;">↪ pép: '+esc(e.variante)+'</div>':'')+
+
           (e.comment?'<div style="font-size:.50rem;color:var(--earth);font-style:italic;">'+esc(e.comment)+'</div>':'')+
           '</td>';
       }).join('')+
@@ -1516,7 +1527,33 @@ function renderComp(){
       '</td>'+
       '<td id="rt-'+vi+'" style="font-family:var(--mono);font-size:.66rem;text-align:right;font-weight:600;color:var(--sage-d);">'+(rt?fmt(rt)+'€':'—')+'</td>'+
       '<td id="d-'+vi+'" class="'+dc+'" style="text-align:right;font-family:var(--mono);font-size:.63rem;">'+ds+'</td>'+
-    '</tr>';
+    '</tr>'+
+    // Lignes variantes pépinière (proposées depuis le portail)
+    peps.map(function(_,pi){
+      var vPep=(prix[vi]&&prix[vi].variantesPep&&prix[vi].variantesPep[pi])||[];
+      return vPep.map(function(vr){
+        var cells=peps.map(function(_2,pi2){
+          if(pi2===pi){
+            return '<td class="psep" style="background:#fff3e0!important;padding:3px 4px;">'+
+              '<input type="number" step=".01" min="0" class="ci ci-r" style="font-size:.69rem;background:#fff3e0;" placeholder="€" value="'+(vr.unit||'')+'"'+
+              ' onchange="setVarPepPrix('+vi+','+pi+','+vr.ordre+',this.value)">'+
+            '</td>';
+          }
+          return '<td class="psep" style="background:#fff3e0!important;"></td>';
+        }).join('');
+        return '<tr style="background:#fff3e0;">'+
+          '<td colspan="4" style="padding:3px 8px;font-size:.7rem;color:#e65100;font-style:italic;border-left:3px solid var(--earth);">'+
+            '<span style="font-weight:600;">↪ Variante pép.</span> : '+esc(vr.description)+
+          '</td>'+
+          '<td class="etude-c psep"></td>'+
+          '<td class="etude-c"></td>'+
+          cells+
+          '<td style="background:#fff3e0!important;"></td>'+
+          '<td style="background:#fff3e0!important;"></td>'+
+          '<td style="background:#fff3e0!important;"></td>'+
+        '</tr>';
+      }).join('');
+    }).join('');
   });
 
   // Ligne frais de port
@@ -1657,6 +1694,13 @@ function getEffPi(vi){
 }
 function getBest(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&e?.unit!=null).map(([,e])=>e.unit);if(!vals.length)return null;return Math.min(...vals);}
 function getBestPi(vi){const row=prix[vi]||{};const vals=Object.entries(row).filter(([k,e])=>k!=='port'&&e?.unit!=null).map(([pi,e])=>({pi:parseInt(pi),val:e.unit}));if(!vals.length)return null;return vals.reduce((a,b)=>b.val<a.val?b:a).pi;}
+function setVarPepPrix(vi,pi,ordre,val){
+  if(!prix[vi])prix[vi]={};
+  if(!prix[vi].variantesPep)prix[vi].variantesPep={};
+  if(!prix[vi].variantesPep[pi])prix[vi].variantesPep[pi]=[];
+  const vr=prix[vi].variantesPep[pi].find(v=>v.ordre===ordre);
+  if(vr)vr.unit=parseFloat(val)||null;
+}
 function setPort(pi,val){if(!prix['port'])prix['port']={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix['port'][pi]=n;else delete prix['port'][pi];updateGlobalTotals();}
 function setPrix(vi,pi,val){if(!prix[vi])prix[vi]={};if(!prix[vi][pi])prix[vi][pi]={};const n=parseFloat(val);if(!isNaN(n)&&n>=0)prix[vi][pi].unit=n;else delete prix[vi][pi].unit;}
 function hlBest(){clrHL();vegs.forEach((_,vi)=>{const bpi=getEffPi(vi);if(bpi!=null)document.querySelectorAll('.px-cell[data-vi="'+vi+'"][data-pi="'+bpi+'"]').forEach(c=>c.classList.add('best'));});}
