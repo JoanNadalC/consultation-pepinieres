@@ -851,27 +851,93 @@ async function notifyConsultantChiffrage(){
 }
 
 // PRÉ-REMPLISSAGE
+// Règles de correspondance botaniques strictes:
+// - Genre + espèce + calibre + contenant identiques → exact ✅
+// - Genre + espèce identiques + cultivar différent + calibre + contenant identiques → approx ✅
+// - Genre + espèce différents → jamais proposé ❌
+// - Calibre ou contenant différent → jamais proposé ❌
+
+function parseLatinName(latin){
+  if(!latin)return{genre:'',espece:'',cultivar:''};
+  // Enlever les cultivars entre guillemets ou apostrophes
+  const cultivarMatch=latin.match(/['"]([^'"]+)['"]/);
+  const cultivar=cultivarMatch?cultivarMatch[1]:'';
+  const base=latin.replace(/['"][^'"]+['"]/,'').trim();
+  const parts=base.split(/\s+/);
+  const genre=(parts[0]||'').toLowerCase();
+  const espece=(parts[1]||'').toLowerCase();
+  return{genre,espece,cultivar};
+}
+
+function latinMatch(latin1,latin2){
+  // Retourne: 'exact', 'cultivar', ou null
+  const n1=parseLatinName(latin1);
+  const n2=parseLatinName(latin2);
+  if(!n1.genre||!n1.espece||!n2.genre||!n2.espece)return null;
+  // Genre et espèce doivent être identiques
+  if(n1.genre!==n2.genre||n1.espece!==n2.espece)return null;
+  // Cultivar: si identique ou l'un des deux est vide → exact
+  if(n1.cultivar===n2.cultivar)return'exact';
+  if(!n1.cultivar||!n2.cultivar)return'cultivar';
+  // Cultivars différents → cultivar (approx)
+  return'cultivar';
+}
+
 async function prefillFromCatalogueAndHistory(){
   if(!pepState.pepId)return;
   if(!pepState.catalogue.length){
     try{const{data:cat}=await supa.from('catalogue_pepiniere').select('*').eq('pepiniere_id',pepState.pepId);pepState.catalogue=cat||[];}
     catch(e){console.warn('catalogue_pepiniere:',e.message);pepState.catalogue=[];}
   }
-  const{data:hist}=await supa.from('reponses_pepinieres').select('vegetal_id,prix_unit_ht,updated_at,vegetaux(latin,calibre,contenant)').eq('pepiniere_id',pepState.pepId).not('prix_unit_ht','is',null).order('updated_at',{ascending:false});
+  const{data:hist}=await supa.from('reponses_pepinieres')
+    .select('vegetal_id,prix_unit_ht,updated_at,vegetaux(latin,calibre,contenant)')
+    .eq('pepiniere_id',pepState.pepId)
+    .not('prix_unit_ht','is',null)
+    .order('updated_at',{ascending:false});
+
   pepState.vegetaux.forEach((vg,vi)=>{
     if(pepState.reponses[vi]?.prix!=null)return;
     const cond=vg.contenant||'';
+    const cal=vg.calibre||'';
+
+    // 1. Chercher dans le catalogue
     if(pepState.catalogue.length){
-      const cEx=pepState.catalogue.find(c=>c.latin?.toLowerCase()===vg.latin?.toLowerCase()&&c.calibre===vg.calibre&&c.contenant===cond);
-      if(cEx){pepState.reponses[vi]={prix:cEx.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillDate:cEx.updated_at,prefillConf:'exact'};return;}
-      const cPart=pepState.catalogue.find(c=>c.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
-      if(cPart){pepState.reponses[vi]={prix:cPart.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'catalogue',prefillConf:'partial',prefillCalib:cPart.calibre};return;}
+      for(const c of pepState.catalogue){
+        const match=latinMatch(c.latin,vg.latin);
+        if(!match)continue;
+        // Calibre ET contenant doivent être identiques
+        const calOk=(c.calibre||'')===(cal);
+        const condOk=(c.contenant||'')===(cond);
+        if(!calOk||!condOk)continue;
+        // Correspondance valide
+        pepState.reponses[vi]={
+          prix:c.prix_unit_ht,variante:'',comment:'',
+          prefilled:true,prefillSrc:'catalogue',
+          prefillDate:c.updated_at,
+          prefillConf:match==='exact'?'exact':'cultivar'
+        };
+        return;
+      }
     }
+
+    // 2. Chercher dans l'historique
     if(hist&&hist.length){
-      const hEx=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase()===vg.latin?.toLowerCase()&&r.vegetaux?.calibre===vg.calibre&&r.vegetaux?.contenant===cond);
-      if(hEx){pepState.reponses[vi]={prix:hEx.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillDate:hEx.updated_at,prefillConf:'exact'};return;}
-      const hPart=(hist||[]).find(r=>r.vegetaux?.latin?.toLowerCase().split(' ')[0]===vg.latin?.toLowerCase().split(' ')[0]);
-      if(hPart)pepState.reponses[vi]={prix:hPart.prix_unit_ht,variante:'',comment:'',prefilled:true,prefillSrc:'historique',prefillConf:'partial',prefillCalib:hPart.vegetaux?.calibre};
+      for(const r of hist){
+        const hLatin=r.vegetaux?.latin||'';
+        const match=latinMatch(hLatin,vg.latin);
+        if(!match)continue;
+        // Calibre ET contenant doivent être identiques
+        const calOk=(r.vegetaux?.calibre||'')===(cal);
+        const condOk=(r.vegetaux?.contenant||'')===(cond);
+        if(!calOk||!condOk)continue;
+        pepState.reponses[vi]={
+          prix:r.prix_unit_ht,variante:'',comment:'',
+          prefilled:true,prefillSrc:'historique',
+          prefillDate:r.updated_at,
+          prefillConf:match==='exact'?'exact':'cultivar'
+        };
+        return;
+      }
     }
   });
 }
